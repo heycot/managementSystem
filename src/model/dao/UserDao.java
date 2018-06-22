@@ -13,6 +13,7 @@ import javax.sql.ConnectionPoolDataSource;
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
 import model.bean.Results;
+import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
 import model.bean.Skills;
 import model.bean.User;
@@ -549,6 +550,47 @@ public class UserDao {
 		}
 		
 		return listClasses;
+	}
+	public ArrayList<Schedule> getTrainerSchedule(int user_id){
+		conn=ConnectDBLibrary.getConnection();
+		ArrayList<Schedule> schedule= new ArrayList<>();
+		
+		String sql = " SELECT classes.name as classname,rooms.name as roomname, courses.name as coursename, trainer_id,classes.class_id, classes.created_at, time_of_date, date_of_week ,count_lesson,fullname FROM classes "
+					+ "INNER JOIN courses ON courses.course_id = classes.course_id "
+					+ "INNER JOIN users ON users.user_id = classes.trainer_id "
+					+ "INNER JOIN rooms ON rooms.room_id = classes.room_id  WHERE  classes.trainer_id = ? ";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+			Schedule list = new Schedule();
+				list.setClassid(rs.getInt("class_id"));
+				list.setTrainerId(rs.getInt("trainer_id"));
+				list.setFullname(rs.getString("fullname"));
+				list.setNameclass(rs.getString("classname"));
+				list.setCountLession(rs.getInt("count_lesson"));
+				list.setCreateAt(rs.getDate("created_at"));
+				list.setDateOfWeek(rs.getString("date_of_week"));
+				list.setTimeOfDate(rs.getString("time_of_date"));
+				list.setCourse(rs.getString("coursename"));
+				list.setNameroom(rs.getString("roomname"));
+				schedule.add(list);
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 finally {
+			
+
+			
+		}
+		
+		
+		return schedule;
 	}
 
 }
