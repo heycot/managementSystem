@@ -53,6 +53,9 @@ public class UserBo {
 		List<User> users= userDao.getUsersByRoleId(roleId);
 		return users;
 	}
+	public ArrayList<Schedule> getTrainerSchedule(int user_id){
+		return userDao.getTrainerSchedule(user_id);
+	}
 	
 	
 	public int checkTraineeInformation(String username, String pass, String fullname, String dateOfBirth, String email, String gender, String address, String phone) {
