@@ -29,8 +29,8 @@ public class UserDao {
 		List<Ability> abilities= new ArrayList<>();
 		try{
 			String sql= "select u.*, s.name, a.* from users u "
-					+ "join ability a on u.user_id = a.user_id"
-					+ " join skills s on s.skill_id= a.skill_id "
+					+ "left join ability a on u.user_id = a.user_id"
+					+ "left join skills s on s.skill_id= a.skill_id "
 					+ "where u.role_id = ?";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, roleId);
