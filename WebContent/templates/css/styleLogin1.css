@@ -33,8 +33,8 @@ body{
 }
 
 .logo{
-        height: 50%;
-        width: 60%;
+        height: 60%;
+        width: 70%;
 }
 
 .formSite{
@@ -48,6 +48,7 @@ body{
 
 .formLogin{
     background-color: transparent;
+    vertical-align: center;
 }
 
 .divForm{
@@ -56,7 +57,7 @@ body{
 
 .nameForm{
     font-family: Arial, sans-serif;
-    font-size: 400%;
+    font-size: 300%;
     color: white;
 }
 
@@ -131,5 +132,115 @@ a:hover{
     color: white;
 }
 
+@media only screen and (max-width: 1000px) {
+	body{
+	    display: block;
+	    background: white;
+	    width: 100%;
+	    height: 100%;
+		font-family: Arial, sans-serif;
+	}
+	.container{
+        width: 100%;
+        height: 100%;
+        padding-top: 0%;
+        padding-left:0%;
+	}
+	.logoSite{
+		text-align:center;
+        height: 100%;
+        width: 100%;
+        margin-left:auto;
+        margin-right: auto;
+	}
+	.formSite{
+        float: left;
+        height: 100%;
+        width: 100%;
+        padding: 15px 15px 15px;
+	}
 
+	.formLogin{
+	    background-color: transparent;
+	    border:1px solid rgb(204, 204, 204);
+	    border-radius: 5px;
+	    padding-top: 40px;
+	    padding-bottom:40px;
+	}
+
+	.divForm{
+	    text-align: center;
+	}
+
+	.nameForm{
+	    font-family: Arial, sans-serif;
+	    font-size: 160%;
+	    color: rgb(139, 139, 139);
+	}
+
+	.divUsername{
+	    text-align: center;
+	}
+
+	.divPassword{
+	    margin-top: 5%;
+	    text-align: center;
+	} 
+
+	.label{
+	    font-size: 120%;
+	    color: rgb(139, 139, 139);
+	}
+
+	.inputUsername{
+	    border: 1px solid rgb(139, 139, 139);
+	    border-radius: 52px;
+	    height: 40px;
+	    width: 60%;
+	    color: rgb(83, 143, 17);
+	    font-size: 110%;
+	    padding-left: 5%;
+	    padding-right: 5%;
+	    margin-right: 5px;
+	}
+
+	.inputPassword{
+	    border: 1px solid rgb(139, 139, 139);
+	    border-radius: 52px;
+	    height: 40px;
+	    width: 60%;
+	    color: rgb(83, 143, 17);
+	    font-size: 110%;
+	    padding-left: 5%;
+	    padding-right: 5%;
+	    margin-right: 5px;
+	}
+
+	.button{
+	    text-align: center;
+	    margin-top: 5%;
+	}
+
+	.btnLogIn{ 
+	    border: 1px solid rgb(76, 175, 80);
+	    border-radius: 52px;
+	    height: 40px;
+	    width: 25%;
+	    background: white;
+	    color: rgb(37, 161, 72);
+	    font-weight: 500;
+	    font-size: 110%;
+	}
+
+	.divForgot{
+	    margin-top: 5%;
+	    text-align: center;
+	}
+
+	.forgotPass{
+	    font-size: 110%;
+	    color: rgb(139, 139, 139);
+	    font-family: Arial, sans-serif; 
+	}
+}
 
