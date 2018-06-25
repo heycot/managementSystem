@@ -35,12 +35,7 @@ public class AddTraineeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		System.out.println(request.getParameter("dateOfBirth"));
-		User trainee = new User(0, request.getParameter("username"), request.getParameter("password"),
-				request.getParameter("fullname"),
-				FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth")),
-				request.getParameter("email"), FormatDateLibrary.ConvertDateUntilToDateSQL(new Date()), 2,
-				Integer.parseInt(request.getParameter("gender")), request.getParameter("address"),
-				request.getParameter("phone"), "", "");
+		User trainee = new User(0, request.getParameter("username"), request.getParameter("password"), request.getParameter("fullname"), FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth")), request.getParameter("email"), FormatDateLibrary.ConvertDateUntilToDateSQL(new Date()), 2, Integer.parseInt(request.getParameter("gender")), request.getParameter("address"), request.getParameter("phone"), "", "");
 
 		UserBo userBo = new UserBo();
 
@@ -59,10 +54,7 @@ public class AddTraineeController extends HttpServlet {
 			rd.forward(request, response);
 
 		} else {
-			if (userBo.checkTraineeInformation(request.getParameter("username"), request.getParameter("password"),
-					request.getParameter("fullname"), request.getParameter("dateOfBirth"),
-					request.getParameter("email"), request.getParameter("address"),
-					request.getParameter("phone")) == false) {
+			if (userBo.checkTraineeInformation(request.getParameter("username"), request.getParameter("password"), request.getParameter("fullname"), request.getParameter("dateOfBirth"), request.getParameter("email"), request.getParameter("address"), request.getParameter("phone")) == false) {
 
 				request.setAttribute("error", " Please complete all information");
 				request.setAttribute("trainee", trainee);

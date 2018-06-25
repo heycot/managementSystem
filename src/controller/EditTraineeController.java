@@ -78,9 +78,7 @@ public class EditTraineeController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 			rd.forward(request, response);
 
-		} else if (userBo.checkTraineeInformation(request.getParameter("username"), trainee.getPassword(),
-				request.getParameter("fullname"), request.getParameter("dateOfBirth"), trainee.getEmail(),
-				request.getParameter("address"), request.getParameter("phone")) == false) {
+		} else if (userBo.checkTraineeInformation(request.getParameter("username"), trainee.getPassword(), request.getParameter("fullname"), request.getParameter("dateOfBirth"), trainee.getEmail(), request.getParameter("address"), request.getParameter("phone")) == false) {
 
 			request.setAttribute("error", " Please complete all information");
 			request.setAttribute("trainee", trainee);
