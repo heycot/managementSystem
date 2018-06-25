@@ -50,9 +50,7 @@ public class UserDao {
 				String avatar= rs.getString("image");
 				
 				if(roleId ==2 ){
-					User user= new User(userId, userName, password, fullName,
-							dateOfBirth, email, createdAt, roleId, gender, address, 
-							phone, notificationId, avatar);
+					User user= new User(userId, userName, password, fullName,dateOfBirth, email, createdAt, roleId, gender, address, phone, notificationId, avatar);
 					Ability ability= new Ability();
 					abilities.add(ability);
 					user.setAbilities(abilities);
@@ -585,12 +583,37 @@ public class UserDao {
 		}
 		 finally {
 			
-
+			 	
 			
 		}
 		
 		
 		return schedule;
+	}
+
+	public ArrayList<User> getUsers() {
+		ArrayList<User> users = new ArrayList<>();
+		String sql = "select * from users";
+		
+		
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				User user = new User(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"), rs.getDate("date_of_birth"), rs.getString("email"), rs.getDate("created_at"), rs.getInt("role_id"), rs.getInt("gender"), rs.getString("address"), rs.getString("phone"), rs.getString("notification_id"), rs.getString("image"));
+				users.add(user);		
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return users;
 	}
 
 }
