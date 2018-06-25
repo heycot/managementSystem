@@ -5,6 +5,7 @@ public class Results {
 	private int classId;
 	private int userId;
 	private int status;
+	private String className;
 	
 	public int getReaultId() {
 		return reaultId;
@@ -29,6 +30,12 @@ public class Results {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String  className) {
+		this.className = className;
 	}
 	public Results(int reaultId, int classId, int userId, int status) {
 		super();
