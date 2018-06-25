@@ -73,8 +73,8 @@
               	</div>
               
               	<div class="form-group">
-	              	<label class="required" >User Name</label>
-	              	<input class="form-control" id="txtname" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" required disabled="disabled"/>
+	              	<label class="required" >UserName</label>
+	              	<input class="form-control" id="txtname" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" required />
               	</div>
               	
               	<div class="form-group">
@@ -116,8 +116,8 @@
               	
               	
               	<div class="form-group">
-	              	<label class="required" >Phone</label>
-	              	<input class="form-control" id="txtname" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" required/>
+	              	<label class="required" >Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
+	              	<input class="form-control" id="txtphone" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" required/>
               	</div>
               	
               	<div class="form-group">
@@ -126,8 +126,8 @@
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Email</label>
-	              	<input class="form-control" id="txtname" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" required disabled="disabled"/>
+	              	<label class="required" >Email</label>&nbsp;<span id="spnEmailStatus"></span>
+	              	<input class="form-control" id="txtemail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" required disabled="disabled"/>
               	</div>
               	
               	<div class="form-group">
@@ -161,7 +161,7 @@
 	               
 	             	<div class="col-sm-4" style="float: left">
 	             		<div class="col-sm-2" style="float: left"><input class="btn btn-primary" type="submit" name="submit" value="Edit" /></div>
-	             		<div class="col-sm-2" style="float: left"><input class="btn btn-primary" type="reset" name="reset" value="Reset" /></div>
+	             		<div class="col-sm-2" style="float: left"><input class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
 	             		<div style="clear: both"></div>	
 	             	</div> 
 	             	
@@ -172,7 +172,7 @@
               <div style="margin-bottom: 5%"></div>
               </form> 
 
-            <script type="text/javascript">
+           <script type="text/javascript">
       				$(document).ready(function() {
       					$("#add-post").validate({
       						rules: {
@@ -180,31 +180,78 @@
                                 password:"required",
                                 fullname:"required",
                                 address:"required",
-                                phone:"required",
                                 dateOfBirth:"required",
-                                email:{
-                                	required: true,
-                                	email: true,
-                                }
-                               
       						},
       						messages: {
       							username:"This feild is required",
                                 password:"This feild is required",
                                 fullname:"This feild is required",
                                 address:"This feild is required",
-                                phone:"This feild is required",
                                 dateOfBirth:"This feild is required",
-                                email:{
-                                	required: "This feild is required",
-                                	email: "You enterd wrong email format"
-                                }
       						}
       					});
       				});
       				
+      				$(document).ready(function() {
+      					$('#txtphone').blur(function(e) {/* 
+      						if (validatePhone('txtphone')) { */
+          					if (checkPhoneNumber()) {
+      							$('#spnPhoneStatus').html('');
+      							 $('#spnPhoneStatus').css('color', 'green');
+      						}
+      						else {
+      							$('#spnPhoneStatus').html('Phone number must be 10 digits.');
+      							$('#spnPhoneStatus').css('color', 'red');
+      						}
+       					});
+      				});
       				
-                    
+      				function checkPhoneNumber() {
+      				    var flag = false;
+      				    var phone = $('#txtphone').val().trim(); // ID của trường Số điện thoại
+      				    if (phone != '') {
+      				        var firstNumber = phone.substring(0, 2);
+      				        if ((firstNumber == '09' || firstNumber == '08') && phone.length == 10) {
+      				            if (phone.match(/^\d{10}/)) {
+      				                flag = true;
+      				            }
+      				        } else if (firstNumber == '01' && phone.length == 11) {
+      				            if (phone.match(/^\d{11}/)) {
+      				                flag = true;
+      				            }
+      				        }
+      				    }
+      				    return flag;
+      				}
+      				$(document).ready(function(e) {
+      				    $('#txtemail').blur(function() {
+      				        var sEmail = $('#txtemail').val();
+      				        if ($.trim(sEmail).length == 0) {
+      							$('#spnEmailStatus').html('Please enter valid email address');
+     							 $('#spnEmailStatus').css('color', 'red');
+      				            e.preventDefault();
+      				        }
+      				        if (validateEmail(sEmail)) {
+      							$('#spnEmailStatus').html('');
+    							 $('#spnEmailStatus').css('color', 'green');
+      				        }
+      				        else {
+      							$('#spnEmailStatus').html('Please enter valid email address');
+    							 $('#spnEmailStatus').css('color', 'red');
+      				            e.preventDefault();
+      				        }
+      				    });
+      				});
+
+      				function validateEmail(sEmail) {
+      				    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+      				    if (filter.test(sEmail)) {
+      				        return true;
+      				    }
+      				    else {
+      				        return false;
+      				    }
+      				}
       			</script>
           </div>
         </div>

@@ -39,6 +39,7 @@ public class EditTraineeController extends HttpServlet {
 
 		UserBo userBo = new UserBo();
 		User trainee = userBo.getTraineeById(Integer.parseInt(request.getParameter("id")));
+		trainee.setUsername(request.getParameter("username"));
 		trainee.setFullname(request.getParameter("fullname"));
 		trainee.setAddress(request.getParameter("address"));
 		trainee.setGender(Integer.parseInt(request.getParameter("gender")));
@@ -55,32 +56,39 @@ public class EditTraineeController extends HttpServlet {
 				} else {
 
 					request.setAttribute("trainee", trainee);
-					request.setAttribute("error", "Two new password not the same");
+					request.setAttribute("error", " Two new password not the same");
 					RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 					rd.forward(request, response); 
 				}
 			} else {
 
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", "Your password is not correct");
+				request.setAttribute("error", " Your password is not correct");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 				rd.forward(request, response); 
 			}
 		}
 		
-		/* if ( userBo.checkTraineeInformation(request.getParameter("username"), request.getParameter("password"), request.getParameter("fullname"), request.getParameter("dateOfBirth") , request.getParameter("email"), request.getParameter("gender"), request.getParameter("address"), request.getParameter("phone")) == 0){
-			 	System.out.println();
-				request.setAttribute("error", "Please complete all information");
-				request.setAttribute("trainee", user);
-				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/addTrainee.jsp");
+		if (userBo.checkUsernameAlreadyExistsEdit(request.getParameter("username"), trainee.getUserId())) {
+
+			request.setAttribute("trainee", trainee);
+			request.setAttribute("error", " This username is already exists in system");
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
+			rd.forward(request, response); 
+			
+	 	} else if ( userBo.checkTraineeInformation(request.getParameter("username"), trainee.getPassword(), request.getParameter("fullname"), request.getParameter("dateOfBirth") , trainee.getEmail(), request.getParameter("address"), request.getParameter("phone")) == false){
+			 	
+				request.setAttribute("error", " Please complete all information");
+				request.setAttribute("trainee", trainee);
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 				rd.forward(request, response); 
 				
-		 }else */if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {
+		 }else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {
 			 
 			}else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
 
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", "Please add file jpg, png, gif");
+				request.setAttribute("error", " Please add file jpg, png, gif");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 				rd.forward(request, response); 
 				
@@ -93,7 +101,7 @@ public class EditTraineeController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/trainee/index?msg=1");
 			} else {
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", "Can't edit trainee. please try again later");
+				request.setAttribute("error", " Can't edit trainee. please try again later");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/edit.jsp");
 				rd.forward(request, response); 
 			}
