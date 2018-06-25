@@ -13,6 +13,7 @@ import javax.servlet.http.Part;
 import libralies.fileLibrary;
 import model.bean.Ability;
 import model.bean.Results;
+import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
 import model.bean.User;
 import model.dao.AbilityDao;
@@ -56,6 +57,7 @@ public class UserBo {
 		return users;
 	}
 	public ArrayList<Schedule> getTrainerSchedule(int user_id){
+		UserDao userDao= new UserDao();
 		return userDao.getTrainerSchedule(user_id);
 	}
 	
