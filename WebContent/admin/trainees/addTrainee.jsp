@@ -137,14 +137,20 @@
       					$("#add-post").validate({
       						rules: {
       							username:"required",
-                                password:"required",
+                                password:{
+                                	required: true,
+                                	minlength: 6,
+                                },
                                 fullname:"required",
                                 address:"required",
                                 dateOfBirth:"required",
       						},
       						messages: {
       							username:"This feild is required",
-                                password:"This feild is required",
+                                password:{
+                                	required: "This feild is required",
+                                	minlength: "Passwords must be at least 6 characters",
+                                },
                                 fullname:"This feild is required",
                                 address:"This feild is required",
                                 dateOfBirth:"This feild is required",
