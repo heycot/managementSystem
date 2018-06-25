@@ -29,6 +29,7 @@ public class UserBo {
 		}
 		
 	}
+	
 	public void addTrainer(User trainer, Ability ability){
 		UserDao userDao= new UserDao();
 		AbilityDao abilityDao= new AbilityDao();
@@ -51,23 +52,28 @@ public class UserBo {
 		User trainer= userDao.getUserByID(trainerId);
 		return trainer;
 	}
+	
 	public static List<User> getUsersByRoleId(int roleId){
 		UserDao userDao= new UserDao();
 		List<User> users= userDao.getUsersByRoleId(roleId);
 		return users;
 	}
+	
 	public ArrayList<Schedule> getTrainerSchedule(int user_id){
-		UserDao userDao= new UserDao();
+		userDao = new UserDao();
 		return userDao.getTrainerSchedule(user_id);
 	}
 	
 	
-	public int checkTraineeInformation(String username, String pass, String fullname, String dateOfBirth, String email, String gender, String address, String phone) {
-		if(!"".equals(username) || !"".equals(pass) || !"".equals(fullname) || !"".equals(dateOfBirth) || !"".equals(email) ||  !"".equals(gender) || !"".equals(address) || !"".equals(phone)) {
-			System.out.println();
-			return 0;
-		} 
-		return 1;
+	public boolean checkTraineeInformation(String username, String pass, String fullname, String dateOfBirth, String email, String address, String phone) {
+		System.out.println("username " + username);
+		System.out.println("pass :" + pass + "fullname:" + fullname + "dateOfBirth :" + dateOfBirth + "email:"+ email + "address:"+ address +"phone:" + phone);
+		if("".equals(username) || "".equals(pass) || "".equals(fullname) || "".equals(dateOfBirth) || "".equals(email) || "".equals(address) || "".equals(phone)) {
+			System.out.println("false");
+			return false;
+		}else {
+			return true;
+		}
 	}
 	
 	public int checkAddTraineeAvatar(Part part, HttpServletRequest request) {
@@ -111,6 +117,45 @@ public class UserBo {
 			e.printStackTrace();
 			return "2";
 		}
+	}
+	
+	public boolean checkUsernameAlreadyExists(String username) {
+		userDao = new UserDao();
+		ArrayList<User> users = userDao.getUsers();
+		
+		for (User user : users) {
+			if(user.getUsername().equals(username)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean checkUsernameAlreadyExistsEdit(String username, int userId) {
+		userDao = new UserDao();
+		ArrayList<User> users = userDao.getUsers();
+		
+		for (User user : users) {
+			if(user.getUsername().equals(username) && user.getUserId() != userId) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean checkEmailAlreadyExists(String email) {
+		userDao = new UserDao();
+		ArrayList<User> users = userDao.getUsers();
+		
+		for (User user : users) {
+			if(user.getEmail().equals(email)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	public int addTrainee(User user) {
