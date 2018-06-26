@@ -18,7 +18,7 @@ import model.bo.UserBo;
  * Servlet implementation class ListTraineeOfClassController
  */
 @WebServlet("/trainer/list")
-public class ListTraineeOfClassController extends HttpServlet {
+public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserBo  userBo;
 	
@@ -26,7 +26,7 @@ public class ListTraineeOfClassController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListTraineeOfClassController() {
+    public ListTraineeAndAssessmentOfClassController() {
         super();
         userBo = new UserBo();
         // TODO Auto-generated constructor stub

@@ -32,6 +32,7 @@
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+  
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}
@@ -134,6 +135,23 @@
           });
       });
      </script>
+     <script>   
+     function onSearch(){     
+     
+    	var xhttp = new XMLHttpRequest();
+    	document.getElementById("maincontent").innerHTML ="";
+    	xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+      		document.getElementById("maincontent").innerHTML = this.responseText;
+    }
+    };
+
+    xhttp.open("GET", "/management/trainee/listnoti", true);
+    xhttp.send();
+
+  }
+     
+	</script>  
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
             <a class="nav-link text-center" id="sidenavToggler">
@@ -148,6 +166,20 @@
               <i class="fa fa-fw fa-sign-out"></i>
               Logout</a>
           </li>
+          
+          <li class="notification">
+           <input type="button" id="submit" value="Search" onclick="onSearch()">
+            <a type="button" class="nav-link" data-toggle="modal"  onclick="onSearch()" >
+              <i class="fa fa-bell"></i>
+              Notification
+              </a>
+          </li>
+          <div id="maincontent">
+          	
+  			
+		 </div>
         </ul>
       </div>
     </nav>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
