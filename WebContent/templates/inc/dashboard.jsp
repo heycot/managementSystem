@@ -129,23 +129,7 @@
           });
       });
      </script>
-     <script>   
-     function onSearch(){     
-     
-    	var xhttp = new XMLHttpRequest();
-    	document.getElementById("maincontent").innerHTML ="";
-    	xhttp.onreadystatechange = function() {
-    	if (this.readyState == 4 && this.status == 200) {
-      		document.getElementById("maincontent").innerHTML = this.responseText;
-    }
-    };
 
-    xhttp.open("GET", "/management/trainee/listnoti", true);
-    xhttp.send();
-
-  }
-     
-	</script>  
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
             <a class="nav-link text-center" id="sidenavToggler">
@@ -162,7 +146,6 @@
           </li>
           
           <li class="notification">
-           <input type="button" id="submit" value="Search" onclick="onSearch()">
             <a type="button" class="nav-link" data-toggle="modal"  onclick="onSearch()" >
               <i class="fa fa-bell"></i>
               Notification
