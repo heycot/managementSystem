@@ -9,34 +9,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Admin</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
+    <title>Training Management System</title>
+    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
+    <link href="<%= request.getContextPath()%>/templates/css/style.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
-	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
-
- 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />	
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/style1.css"> 
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/sb-admin.css"> 
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/sb-admin.min.css"> 
+	<link href="<%= request.getContextPath()%>/templates/css/styleLogin.css" type="text/css" rel="stylesheet" />
+ 	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
 	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.validate.min.js"></script>
-
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  <link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
     <style type="text/css">
-      .hiden{display:none}
-      .error{color:red}
-
-    .label-info {background-color: #5bc0de;}
+	    .hiden{display:none}
+	    .error{color:red}
+	    .label-info {background-color: #5bc0de;}
     </style>
 
   </head>

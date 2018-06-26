@@ -31,7 +31,7 @@
 
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleNoti.css">
+  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
     <style type="text/css">
       .hiden{display:none}
