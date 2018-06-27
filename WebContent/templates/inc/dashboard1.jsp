@@ -9,29 +9,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Training Management System</title>
-    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
-    <link href="<%= request.getContextPath()%>/templates/css/style.css" rel="stylesheet">
+    <title>Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
-	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />	
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/style1.css"> 
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/sb-admin.css"> 
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/sb-admin.min.css"> 
-	<link href="<%= request.getContextPath()%>/templates/css/styleLogin.css" type="text/css" rel="stylesheet" />
- 	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
+
+ 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
 	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.validate.min.js"></script>
+
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-
+  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
     <style type="text/css">
-	    .hiden{display:none}
-	    .error{color:red}
-	    .label-info {background-color: #5bc0de;}
+      .hiden{display:none}
+      .error{color:red}
+
+    .label-info {background-color: #5bc0de;}
     </style>
 
   </head>
@@ -45,6 +51,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+      
+         
         <ul class="navbar-nav navbar-sidenav">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link" href="/admin">
@@ -83,7 +91,7 @@
                 <a href=""><i class="fa fa-list" ></i> List trainer</a>
               </li>
               <li>
-                <a href="<%= request.getContextPath()%>/trainer/add"><i class="fa fa-fw fa-plus"></i> Add trainer</a>
+                <a href=""><i class="fa fa-fw fa-plus"></i> Add trainer</a>
               </li>
             </ul>
           </li>
@@ -129,7 +137,6 @@
           });
       });
      </script>
-
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
             <a class="nav-link text-center" id="sidenavToggler">
@@ -137,27 +144,91 @@
             </a>
           </li>
         </ul>
+        
         <ul class="navbar-nav ml-auto">
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-fw fa-sign-out"></i>
-              Logout</a>
+		
+		  <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="iconMail fa fa-envelope-o"></i>
+                    <span class="badge bg-green">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu msg_list pull-right" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          This is a message.
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Your Java class is changed.
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          You can choose some new class.
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          See you again!
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                
+                
+          <li class="nav-item nav-item1">
+          	<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="<%=request.getContextPath()%>/templates/images/img.jpg" alt="" >John Doe
+            </a>
+            <ul class="dropdown-menu menu_user pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            </ul>
           </li>
           
-          <li class="notification">
-            <a type="button" class="nav-link" data-toggle="modal"  onclick="onSearch()" >
-              <i class="fa fa-bell"></i>
-              Notification
-              </a>
-          </li>
-          <div id="maincontent">
-          	
-  			
-		 </div>
+          
         </ul>
-      </div>
-    </nav>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+        
+       </div>
+       </nav>
+</body>
+</html>
 

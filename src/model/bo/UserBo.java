@@ -12,6 +12,7 @@ import javax.servlet.http.Part;
 
 import libralies.fileLibrary;
 import model.bean.Ability;
+import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
@@ -190,4 +191,9 @@ public class UserBo {
 		userDao= new UserDao();
 		return userDao.getUserItem(user_id);
 	}
+	public ArrayList<MyMessages> getMessagesOfTrainee( int user_id){
+		userDao= new UserDao();
+		return userDao.getMessagesOfTrainee(user_id);
+	}
 }
+

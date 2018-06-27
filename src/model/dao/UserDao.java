@@ -10,8 +10,13 @@ import java.util.List;
 
 import javax.sql.ConnectionPoolDataSource;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.org.apache.regexp.internal.recompile;
+
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
+import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
@@ -574,7 +579,7 @@ public class UserDao {
 				list.setCourse(rs.getString("coursename"));
 				list.setNameroom(rs.getString("roomname"));
 				schedule.add(list);
-				
+				int dem = schedule.size();
 				
 			}
 		} catch (SQLException e) {
@@ -589,6 +594,57 @@ public class UserDao {
 		
 		
 		return schedule;
+	}
+	public ArrayList<MyMessages> getMessagesOfTrainee(int user_id){
+		ArrayList<MyMessages> listMessages = new ArrayList<>();
+		conn=ConnectDBLibrary.getConnection();
+		String sql = "select msg_id, messages.user_id , messages.noti_id , status , notification.content FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.user_id= ? ";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			rs = pst.executeQuery();
+			while (rs.next()){
+				MyMessages myMessages = new MyMessages();
+				myMessages.setMsgId(rs.getInt("msg_id"));
+				myMessages.setNotiId(rs.getInt("noti_id"));
+				myMessages.setNotiContent(rs.getString("content"));
+				myMessages.setStatus(rs.getInt("status"));
+				listMessages.add(myMessages);
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+				
+		
+		}
+		return listMessages;
+		
+		
+		
+	
+	}
+	public MyMessages getMessageDetail(int msg_id) {
+		MyMessages messages = new MyMessages();
+		conn=ConnectDBLibrary.getConnection();
+		String sql = "select msg_id, messages.user_id , messages.noti_id , status , notification.content FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.msg_id = ? ";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, msg_id);
+			rs = pst.executeQuery();
+			while (rs.next()){
+				MyMessages myMessages = new MyMessages();
+				myMessages.setMsgId(rs.getInt("msg_id"));
+				myMessages.setNotiId(rs.getInt("noti_id"));
+				myMessages.setNotiContent(rs.getString("content"));
+				myMessages.setStatus(rs.getInt("status"));
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return messages;
+		
 	}
 
 	public ArrayList<User> getUsers() {

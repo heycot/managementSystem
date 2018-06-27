@@ -1,0 +1,84 @@
+.box-all-noti{
+	display: block;
+	margin-top: 20px;
+	margin-bottom:40px;
+	margin-left: auto;
+	margin-right:auto;
+	height: auto;
+	width:1000px;
+	border-radius: 5px 5px 5px;
+	border: 1px solid rgb(177, 177, 177);
+}
+
+.list-noti{
+	float: left;
+	margin:auto;
+	padding: 10px 10px 10px;
+}
+
+.box-all-noti ul li {
+	list-style-type: none;
+	background: rgb(247, 247, 247);
+	border: 1px solid rgb(212, 237, 218);
+}
+
+.noti{
+	padding: 20px 20px 20px;
+	height: 150px;
+}
+
+.labelNoti{
+	height: 50px;
+	margin: auto;
+}
+
+.divDate{
+	color: rgb(138, 138, 138);
+	font-size: 12px;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.divTime{
+	margin-left: 20px;
+	color: rgb(138, 138, 138);
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.time{
+	border: 1px solid rgb(212, 237, 218);
+	padding: 0px 5px 0px;
+	border-radius: 10px;
+}
+
+.r2{
+	margin-left: 6px;
+}
+
+.content{
+	height: 50px;
+	overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
