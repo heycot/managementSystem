@@ -27,42 +27,42 @@
 		  	</div>
   
             <form id="" action="" method="GET" >
-           		<div style="height: 10%"></div>
+           		<div style="height: 15%"></div>
             	<div class="col-sm-6" style="float: left">
 	              	<div class="form-group">
 		            	<label class="" >Fullname</label>
-		            	<input class="form-control" id="txtname" type="text" name="fullname" value="" placeholder="Fullname"  disabled="disabled" />
+		            	<label class="form-control" id="txtname">Fullname</label>
 	              	</div>
 	              	<div class="form-group">
 		              	<label class="" >Gender</label>
-		              	<input class="form-control" id="txtgender" type="text" name="gender" value="" placeholder="Gender"  disabled="disabled"/>
+		              	<label class="form-control" id="txtgender">Gender</label>
 	              	</div>
 	              	<div class="form-group">
 		              	<label class="" >Role</label>
-		              	<input class="form-control" id="txtrole" type="text" name="role" value="" placeholder="Role"  disabled="disabled"/>
+		              	<label class="form-control" id="txtrole">Role</label>
 	              	</div>
 	              	<div class="form-group">
 		              	<label class="" >Address</label>
-		              	<input class="form-control" id="txtaddress" type="text" name="address" value="" placeholder="Address"  disabled="disabled"/>
+		              	<label class="form-control" id="txtaddress" >Address</label>
 	              	</div>
           	  	</div>
               
               	<div class="col-sm-6" style="float: right">
 	              	<div class="form-group">
 		              	<label class="" >Phone</label>
-		              	<input class="form-control" id="txtphone" type="text" name="phone" value="" placeholder="Phone"  disabled="disabled"/>
+		              	<label class="form-control" id="txtphone">Phone</label>
 	              	</div>              	
 	              	<div class="form-group">
 		              	<label class="" >Birthday</label>
-		              	<input class="form-control" id="txtbirthday" type="text" name="dateOfBirth" value="" placeholder="Birthday"  disabled="disabled"/>
+		              	<label class="form-control" id="txtbirthday">Birthday</label>
 	              	</div>
 	              	<div class="form-group">
 		              	<label class="" >Email</label>
-		              	<input class="form-control" id="txtemail" type="text" name="email" value="" placeholder="Email"  disabled="disabled"/>
+		              	<label class="form-control" id="txtemail">Email</label>
 	              	</div>	                  
 	                <div class="form-group">
 		              	<label class="" >Skills:</label>
-		              	<input class="form-control" id="txtskills" type="text" name="skills" value="" placeholder="Skills"  disabled="disabled"/>
+		              	<label class="form-control" id="txtskills" >Skills</label>
 	              	</div>             	  
               	</div>
    			</form>
