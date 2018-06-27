@@ -64,6 +64,18 @@ public class EditTrainerController extends HttpServlet {
 
 		int skillId = Integer.parseInt(request.getParameter("skillId"));
 		int experience = Integer.parseInt(request.getParameter("experience"));
+		
+		System.out.println(userID);
+		System.out.println(userName);
+		System.out.println(fullName);
+		System.out.println(gender);
+		System.out.println(address);
+		System.out.println(phone);
+		System.out.println(avatar);
+		System.out.println(dateOfBirth);
+		System.out.println("SkillID: "+skillId);
+		System.out.println("Experience: "+experience);
+		System.out.println(oldPass);
 
 		User trainer = userBo.getTrainerById(userID);
 		trainer.setUsername(userName);
@@ -73,7 +85,9 @@ public class EditTrainerController extends HttpServlet {
 		trainer.setAddress(address);
 		trainer.setPhone(phone);
 		trainer.setDateOfBirth(dateOfBirth);
-		trainer.setAvatar(avatar);
+		if(avatar != null){
+			trainer.setAvatar(avatar);		
+		}
 
 		List<Ability> abilities = abilityBo.getAbilitiesByUserId(userID);
 
@@ -93,34 +107,39 @@ public class EditTrainerController extends HttpServlet {
 			}
 		}
 
-		if (!trainer.getPassword().equals(oldPass)) {
-			request.setAttribute("error", " This current password is incorrect!");
-			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
-
-			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
-		}
-
-		if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
-			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
-
-			request.setAttribute("error", " This username is already exists in system");
-			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
-
-		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {
-
-		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
-
-			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
-
-			request.setAttribute("error", " Please add file jpg, png, gif");
-			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
-		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
-			trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));
-		} else {
-			if (userBo.editTrainer(trainer) > 0) {
+//		if (trainer.getPassword().equals(oldPass) && !oldPass.equals("d41d8cd98f00b204e9800998ecf8427e")) {
+//			request.setAttribute("error", " This current password is incorrect!");
+//			request.setAttribute("trainer", trainer);
+//			request.setAttribute("abilities", abilities);
+//
+//			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
+//		}
+//		else{
+//			trainer.setPassword(password);
+//		}
+//		
+//		if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
+//			request.setAttribute("trainer", trainer);
+//			request.setAttribute("abilities", abilities);
+//
+//			request.setAttribute("error", " This username is already exists in system");
+//			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
+//
+//		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {
+//
+//		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
+//
+//			request.setAttribute("trainer", trainer);
+//			request.setAttribute("abilities", abilities);
+//			System.out.println("Fuck");
+//
+//
+//			request.setAttribute("error", " Please add file jpg, png, gif");
+//			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
+//		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
+//			trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));
+//		} else {
+			if (userBo.editTrainer(trainer) != 0) {
 				response.sendRedirect(request.getContextPath() + "/trainer/index");
 			} else {
 				request.setAttribute("trainer", trainer);
@@ -133,4 +152,5 @@ public class EditTrainerController extends HttpServlet {
 
 		}
 	}
-}
+
+
