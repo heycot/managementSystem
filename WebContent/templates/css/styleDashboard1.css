@@ -39,7 +39,7 @@ a.user-profile {
 }
 
 .dropdown-menu.msg_list span {
-    white-space: normal
+    white-space: normal;
 }
 .menu_user {
     border: medium none;
@@ -68,7 +68,6 @@ a.user-profile {
     box-shadow: none;
     display: none;
     float: left;
-    font-size: 14px;
     right: 2%;
     left: auto;
     line-height: 25px;
@@ -107,26 +106,23 @@ ul.msg_list li:last-child {
     padding: 10px
 }
 ul.msg_list li a {
-    padding: 3px 5px !important
+    padding: 3px 9px !important
 }
-ul.msg_list li a .image img {
-    border-radius: 15px 15px 15px;
-    -webkit-border-radius: 2px 2px 2px 2px;
-    float: left;
-    margin-right: 10px;
-    width: 11%;
-}
+
 ul.msg_list li a .time {
-    font-size: 11px;
+    font-size: 10px;
     font-style: italic;
     font-weight: bold;
     position: absolute;
-    right: 35px
+    right: 35px;
 }
 ul.msg_list li a .message {
     display: block !important;
     display: block !important;
-    font-size: 11px
+    font-size: 13px;
+    margin-top:30px;
+    height: 20px;
+    overflow: hidden;
 }
 .dropdown-menu.msg_list span {
     white-space: normal

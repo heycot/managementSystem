@@ -19,12 +19,6 @@
 				<ul class="list-noti">
 					<li class="noti1 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>
@@ -51,12 +45,7 @@
 					
 					<li class="noti2 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
+							
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>
@@ -83,12 +72,7 @@
 					
 					<li class="noti3 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
+							
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>
@@ -115,12 +99,7 @@
 					
 					<li class="noti4 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
+						
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>
@@ -147,12 +126,7 @@
 					
 					<li class="noti5 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
+							
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>
@@ -179,12 +153,7 @@
 					
 					<li class="noti6 noti">
 						<div class="r1 row">
-							<div class="divAvtSender">
-			  					<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-				  			</div>
-				  			<div class="divNameSender">
-				  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-				  			</div>
+							
 				  			<div class="divDate">
 				  				<label class="date">Mon, 15-June-2018</label>
 				  			</div>

@@ -18,12 +18,6 @@
 			  
 		  	<div class="box-noti">
 		  		<div class="labelNoti row">
-		  			<div class="divAvtSender">
-		  				<img src="<%=request.getContextPath()%>/templates/images/img.jpg" class="avtSender"/>
-		  			</div>
-		  			<div class="divNameSender">
-		  				<label class="nameSender" >Huong (Hetty) T. Mai</label>
-		  			</div>
 		  			<div class="divDate">
 		  				<label class="date">Mon, 15-June-2018</label>
 		  			</div>

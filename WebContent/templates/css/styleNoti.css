@@ -11,25 +11,8 @@
 }
 
 .labelNoti{
-	height: 100px;
+	height: 80px;
 	margin: auto;
-}
-
-.divAvtSender{
-	margin-left: 20px;
-    margin-top: 25px;
-}
-.avtSender{
-	width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-.divNameSender{
-	margin-top:38px;
-	margin-left:20px;
-}
-.nameSender{
-	color: rgb(52, 58, 64);
 }
 
 .space{
@@ -39,16 +22,20 @@
 
 .divDate{
 	color: rgb(138, 138, 138);
-	font-size: 12px;
-	margin-left: 170px;
-	margin-top: 38px;
+	font-size: 15px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 26px;
+
 }
 
 .divTime{
-	margin-left: 20px;
+	
 	color: rgb(138, 138, 138);
 	font-size: 12px;
-	margin-top: 33px;
+	margin-left: 20px;
+	margin-top: 26px;
+
 }
 
 .time{
