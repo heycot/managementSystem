@@ -383,7 +383,8 @@ public class UserDao {
 			conn = ConnectDBLibrary.getConnection();
 			System.out.println("Connect 2!");
 			
-			String sql = "SELECT fullname ,phone FROM learning  INNER JOIN users on learning.user_id = users.user_id  WHERE  learning.class_id = ? ";
+			String sql = "SELECT users.user_id as userid,fullname ,username, email, phone, classes.name FROM learning  INNER JOIN users on learning.user_id = users.user_id "
+					+ " INNER JOIN classes ON classes.class_id = learning.class_id WHERE  learning.class_id = ? ";
 			System.out.println(sql);
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, class_id);
@@ -391,9 +392,12 @@ public class UserDao {
 			
 			while (rs.next()) {
 				User user = new User();
-				user.setFullname(rs.getString(1));
-				user.setPhone(rs.getString(2));
 				
+				user.setFullname(rs.getString("fullname"));
+				user.setPhone(rs.getString("phone"));
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setUserId(rs.getInt("userid"));
 				listUser.add(user);			
 			}
 			System.out.println(listUser.size());
@@ -401,15 +405,14 @@ public class UserDao {
 				System.out.println("Cac hoc sinh lay duoc: ");
               	System.out.print(u1.getFullname());
 			}
-			
-			
-			
+	
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return listUser;
 	}
 	
+
 	public String getFullName(int user_id){
 		String fullname ="";
 
@@ -595,7 +598,7 @@ public class UserDao {
 		conn=ConnectDBLibrary.getConnection();
 		ArrayList<Schedule> schedule= new ArrayList<>();
 		
-		String sql = " SELECT classes.name as classname,rooms.name as roomname, courses.name as coursename, trainer_id,classes.class_id, classes.created_at, time_of_date, date_of_week ,count_lesson,fullname FROM classes "
+		String sql = " SELECT classes.name as classname,rooms.name as roomname, courses.name as coursename, trainer_id,classes.class_id, classes.created_at, time_of_date, date_of_week ,count_lesson,fullname, username FROM classes "
 					+ "INNER JOIN courses ON courses.course_id = classes.course_id "
 					+ "INNER JOIN users ON users.user_id = classes.trainer_id "
 					+ "INNER JOIN rooms ON rooms.room_id = classes.room_id  WHERE  classes.trainer_id = ? ";
@@ -615,8 +618,9 @@ public class UserDao {
 				list.setTimeOfDate(rs.getString("time_of_date"));
 				list.setCourse(rs.getString("coursename"));
 				list.setNameroom(rs.getString("roomname"));
+				list.setUsername(rs.getString("username"));
 				schedule.add(list);
-				int dem = schedule.size();
+				
 				
 			}
 		} catch (SQLException e) {
@@ -625,7 +629,7 @@ public class UserDao {
 		}
 		 finally {
 			
-			 	
+
 			
 		}
 		
@@ -707,6 +711,44 @@ public class UserDao {
 		}
 		
 		return users;
+	}
+	public boolean compareDuration(int class_id){
+		boolean bl = false;
+		conn=ConnectDBLibrary.getConnection();
+		String sql1="SELECT count_lesson, course_id FROM classes WHERE class_id=? ";
+	try {
+		pst = conn.prepareStatement(sql1);
+		pst.setInt(1, class_id);
+		rs = pst.executeQuery();
+		while (rs.next()) {
+			int count_lesson = rs.getInt("count_lesson");
+			int course_id = rs.getInt("course_id");
+			try {
+				String sql2="SELECT duration FROM courses WHERE course_id=?";
+				PreparedStatement pst1 = conn.prepareStatement(sql2);
+				pst1.setInt(1, course_id);	
+				ResultSet rs1 = pst1.executeQuery();
+				while(rs1.next()){
+					int duration = rs1.getInt("duration");
+					if(count_lesson==duration){
+						bl=true;
+						return bl;
+					} else {
+						bl=false;
+					}
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return bl;
+
 	}
 
 }
