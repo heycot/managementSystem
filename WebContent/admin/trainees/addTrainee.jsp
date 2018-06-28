@@ -92,7 +92,8 @@
               	
               	<div class="form-group">
 	              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
-	              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
+	              	<input class="form-control" id="txtname" type="file" name="avatar" value="" 
+	              	onchange="readURL(this);" />
     				<img id="blah" src="#" alt="your image" />
     				<script type="text/javascript">
     				function readURL(input) {

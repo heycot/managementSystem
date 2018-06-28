@@ -41,7 +41,6 @@
     <servlet-name>IndexController</servlet-name>
     <url-pattern></url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddTraineeController</servlet-name>
     <servlet-class>controller.AddTraineeController</servlet-class>
@@ -50,8 +49,6 @@
     <servlet-name>AddTraineeController</servlet-name>
     <url-pattern>/trainee/add</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>EditTraineeController</servlet-name>
     <servlet-class>controller.EditTraineeController</servlet-class>
@@ -61,6 +58,31 @@
     <url-pattern>/trainee/edit</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>AddNewTrainerController</servlet-name>
+    <servlet-class>controller.AddNewTrainerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewTrainerController</servlet-name>
+    <url-pattern>/trainer/add</url-pattern>
+  </servlet-mapping>
   
+  <servlet>
+    <servlet-name>IndexTrainerController</servlet-name>
+    <servlet-class>controller.IndexTrainerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexTrainerController</servlet-name>
+    <url-pattern>/trainer/index</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EditTrainerController</servlet-name>
+    <servlet-class>controller.EditTrainerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditTrainerController</servlet-name>
+    <url-pattern>/trainer/edit</url-pattern>
+  </servlet-mapping>
   
 </web-app>

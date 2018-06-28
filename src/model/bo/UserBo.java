@@ -22,41 +22,42 @@ import model.dao.UserDao;
 
 public class UserBo {
 	UserDao userDao;
-
-	public static void main(String[] args) {
-		List<User> users= getUsersByRoleId(3);
-		for(User user: users){
-			System.out.println(user.toString());
-		}
-		
-	}
 	
-	public void addTrainer(User trainer, Ability ability){
-		UserDao userDao= new UserDao();
+	public int addTrainer(User trainer, Ability ability){
+		userDao= new UserDao();
 		AbilityDao abilityDao= new AbilityDao();
 		
-		userDao.addTrainer(trainer);
-		ability.setUserId(userDao.getLastTrainerId());
-		abilityDao.addTrainerAbility(ability);
+		int kq= userDao.addTrainer(trainer);
+		ability.setUserId(userDao.getLastUserId());
+		abilityDao.addTrainerAbility(ability);		
+		return kq;
 	}
 	
-	public void editTrainer(User trainer, Ability ability){
-		UserDao userDao= new UserDao();
-		AbilityDao abilityDao= new AbilityDao();
-		
-		userDao.editTrainer(trainer);
-		abilityDao.editTrainerAbility(ability);
+	public int editTrainer(User trainer){
+		userDao= new UserDao();		
+		return userDao.editTrainer(trainer);
 	}
 	
-	public static User getTrainerById(int trainerId){
-		UserDao userDao= new UserDao();
+	public User getTrainerById(int trainerId){
+		userDao= new UserDao();
 		User trainer= userDao.getUserByID(trainerId);
 		return trainer;
 	}
 	
-	public static List<User> getUsersByRoleId(int roleId){
-		UserDao userDao= new UserDao();
+	public int getLastUserId(){
+		userDao= new UserDao();
+		return userDao.getLastUserId();
+	}
+	
+	public List<User> getUsersByRoleId(int roleId){
+		userDao= new UserDao();
 		List<User> users= userDao.getUsersByRoleId(roleId);
+		return users;
+	}
+	
+	public List<User> getUsers(){
+		userDao= new UserDao();
+		List<User> users= userDao.getUsers();
 		return users;
 	}
 	

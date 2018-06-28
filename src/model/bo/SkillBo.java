@@ -6,9 +6,12 @@ import model.bean.Skills;
 import model.dao.SkillDao;
 
 public class SkillBo {
+	SkillDao skillDao= new SkillDao();
 	public List<Skills> getSkills(){
-		SkillDao skillDao= new SkillDao();
 		return skillDao.getSkills();
+	}
+	public String getSkillById(int id){
+		return skillDao.getSkillById(id);
 	}
 
 }

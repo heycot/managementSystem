@@ -80,7 +80,7 @@
             </a>
             <ul class="sidenav-second-level collapse" id="trainer">
               <li>
-                <a href=""><i class="fa fa-list" ></i> List trainer</a>
+                <a href="<%= request.getContextPath()%>/trainer/index"><i class="fa fa-list" ></i> List trainer</a>
               </li>
               <li>
                 <a href="<%= request.getContextPath()%>/trainer/add"><i class="fa fa-fw fa-plus"></i> Add trainer</a>

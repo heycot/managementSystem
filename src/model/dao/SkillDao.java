@@ -32,6 +32,22 @@ public class SkillDao {
 			System.out.println(e);
 		}
 		return skills;
+	}
+	public String getSkillById(int id){
+		String name= "";
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "select name from skills where skill_id =?";
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs= pst.executeQuery();
+			while(rs.next()){
+				name=rs.getString("name");
+			}
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return name;
 		
 	}
 }
