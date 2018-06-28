@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard1.jsp" %>  
 <div class="content-wrapper py-3">
   <div class="container-fluid">
     <div class="card mb-3">

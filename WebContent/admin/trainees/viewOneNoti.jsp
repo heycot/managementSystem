@@ -1,7 +1,10 @@
+<%@page import="libralies.FormatDateLibrary"%>
+<%@page import="model.bean.MyMessages"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>
+<%@include file="/templates/inc/dashboard1.jsp" %>  
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleNoti.css">
 <style>
 	#add-post .required:after {
@@ -13,27 +16,27 @@
   <div class="container-fluid">
         <div class="card mb-3 divNoti">
        		<div class="alert alert-success">
+       		<%
+       		MyMessages messages = (MyMessages) request.getAttribute("messages");
+       		String ngay = FormatDateLibrary.FormatDateUntilToString(messages.getCreatedDate());
+       		%>
 				<strong>Notification</strong>
 			</div>
 			  
 		  	<div class="box-noti">
-		  		<div class="labelNoti row">
-		  			<div class="divDate">
-		  				<label class="date">Mon, 15-June-2018</label>
-		  			</div>
-		  			<div class="divTime">
-		  				<label class="time">09:52</label>
+		  		<div class="labelNoti">
+		  			<div class="divTitle row">
+		  				<label class="title"><%= messages.getTitle() %></label>
 		  			</div>
 		  		</div>
+		  		
 		  		<div class="space"></div>
 		  		<div class="divContentNoti">
 		  			<label class="contentNoti">
-		  				A flower is a special kind of plant part. 
-			  			Flowers are also called the bloom or blossom of a plant. 
-			  			The flower grows on a stalk – a thin node – which supports it. 
-			  			Flowers have petals. Inside the part of the flower that has petals are the parts which produce pollen and seeds.
-			  			Flowers are the reproductive structure of flowering plants, which are plants of the division Magnoliophyta, also called the Angiosperms.
-					</label>
+		  				<%= messages.getNotiContent() %>
+		  			</label>
+		  			<label class="date"> <%= ngay %></label>
+		  				
 		  		</div>
 		  	</div>
    		</div> 

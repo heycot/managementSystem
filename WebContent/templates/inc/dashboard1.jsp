@@ -27,12 +27,15 @@
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
  	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.validate.min.js"></script>
-
+ 	  <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}
@@ -137,6 +140,25 @@
           });
       });
      </script>
+     <script type="text/javascript">
+   $(document).ready(function()
+   { 
+      //khi nút submit được click
+    $('#btt').click(function(){
+    	
+        //Sử dụng phương thức Ajax.
+        $.ajax({
+              type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
+              url : 'ListNotificationAjax', //gửi dữ liệu sang trang data.php
+              success : function(result)  // Hàm thực thi khi nhận dữ liệu được từ server
+                        { 
+            				$('#result1').html(result);
+                        }
+              });
+        });
+    });
+</script>
+     
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
             <a class="nav-link text-center" id="sidenavToggler">
@@ -148,67 +170,14 @@
         <ul class="navbar-nav ml-auto">
 		
 		  <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="iconMail fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+		  	<a  class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                   <i id="btt" class="iconMail fa fa-envelope-o"></i>
+                    <span class="badge bg-green">?</span>
                   </a>
-                  <ul id="menu1" class="dropdown-menu msg_list pull-right" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          This is a message.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Your Java class is changed.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          You can choose some new class.
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          See you again!
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
+                  
+                  
+                  <ul id="result1" class="dropdown-menu msg_list pull-right" role="menu">
+                   
                   </ul>
                 </li>
                 
@@ -231,4 +200,3 @@
        </nav>
 </body>
 </html>
-

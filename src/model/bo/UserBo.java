@@ -196,5 +196,9 @@ public class UserBo {
 		userDao= new UserDao();
 		return userDao.getMessagesOfTrainee(user_id);
 	}
+	public MyMessages getMessageDetail(int msg_id){
+		userDao = new UserDao();
+		return userDao.getMessageDetail(msg_id);
+	}
 }
 
