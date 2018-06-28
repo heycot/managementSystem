@@ -37,14 +37,15 @@ public class AbilityDao {
 	public void editTrainerAbility(Ability ability){
 		conn= ConnectDBLibrary.getConnection();
 		try{
-			String sql= "update ability set skill_id=? and experience=? and course_id=?"
-					+ "where user_id =? ;";
+			String sql= "update ability set experience=? , course_id=? "
+					+ " where user_id =? and skill_id=? ;";
 			pst=conn.prepareStatement(sql);
 			
-			pst.setInt(1, ability.getSkillId());
-			pst.setInt(2, ability.getExperience());
-			pst.setInt(3, ability.getCourseId());
-			pst.setInt(4, ability.getUserId());
+
+			pst.setInt(1, ability.getExperience());
+			pst.setInt(2, ability.getCourseId());
+			pst.setInt(3, ability.getUserId());
+			pst.setInt(4, ability.getSkillId());
 			
 			pst.executeUpdate();
 		}

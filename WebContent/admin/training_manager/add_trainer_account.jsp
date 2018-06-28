@@ -46,8 +46,14 @@
 					<div class="form-group">
 						<label class="required"><strong>Password:</strong>:<span
 							style="color: red"> *</span></label> <input class="form-control"
-							id="txtname" type="password" name="password"
+							id="password" type="password" name="password"
 							placeholder="Password" required />
+					</div>
+					<div class="form-group">
+						<label class="required"><strong>Confirm Password:</strong>:<span
+							style="color: red"> *</span></label> <input class="form-control"
+							id="confirmpass" type="password" name="confirmpass"
+							placeholder="Confirm Password" required />
 					</div>
 
 					<div class="form-group">
@@ -233,6 +239,17 @@
       				        return false;
       				    }
       				}
+      				
+      				function checkPass(){
+						if (document.getElementById('password').value ==
+					          document.getElementById('confirmpass').value) {
+					          document.getElementById('message').style.color = 'green';
+					          document.getElementById('message').innerHTML = 'Matching';
+					      } else {
+					      		document.getElementById('message').style.color = 'red';
+					          document.getElementById('message').innerHTML = 'Not matching';
+					      }
+					}
       			</script>
 
 		</div>

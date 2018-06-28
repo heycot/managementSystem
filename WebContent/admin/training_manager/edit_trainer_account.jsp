@@ -56,13 +56,27 @@
 									class="form-control" id="usr" name="fullname"
 									value="<%=trainer.getFullname() %>" required />
 							</div>
+							
 							<div class="form-group">
-								<label class="required"><strong>Gender:</strong><span
-									style="color: red"> *</span></label> <br> <input type="radio"
-									name="gender" value="1" required="required"> Male <input type="radio"
-									name="gender" value="2">Female <input type="radio"
-									name="gender" value="0">Other
-							</div>
+			              	  <label class="required" >Gender</label> <br>
+			              	  <%
+			              	  String male = "", female = "", other = "";
+			              	  
+			              	  if ( trainer.getGender() == 0) { 
+			              		  male = "checked";
+			              	  } else if ( trainer.getGender() == 1) { 
+			              		  female = "checked";
+			              	  } else if ( trainer.getGender() == 2) {
+			              		  other = "checked";
+			              	  }
+			              	 %>
+							  <input type="radio" name="gender" value="0" <%= male%>> Male <br>
+							  <input type="radio" name="gender" value="1" <%= female%>> Female <br>
+							  <input type="radio" name="gender" value="2" <%= other%> > Other <br>
+			              	
+				              	
+		              	</div>
+							
 							<div class="form-group">
 								<label for="usr"><strong>Date Of Birth:</strong><span
 									style="color: red"> *</span></label> <input type="date"
@@ -134,18 +148,13 @@
 
 							<div class="form-group">
 
-								<label for="usr"><strong>Password:</strong><span
-									style="color: red;"> *</span></label> <input type="button"
-									value="Click here to change" onclick="changePass();"> <br>
-								<input style="display: none;" type="password"
-									class="form-control" id="oldpass" name="oldpass"
-									placeholder="Current password" /> <br> <input
-									style="display: none;" type="password" class="form-control"
-									id="newpass" name="newpass" onkeyup='checkPass();'
-									placeholder="New password" /> <br> <input
-									style="display: none;" type="password" class="form-control"
+								<label for="usr"><strong>Password:</strong><span style="color: red;"> *</span></label> 
+								<input type="button" value="Click here to change" onclick="changePass();"> <br>
+								<input style="display: none;" type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Current password" value="" />
+								<input style="display: none;" type="password" class="form-control" id="newpass" name="newpass" onkeyup='checkPass();' placeholder="New password" value=""/>
+								<input style="display: none;" type="password" class="form-control"
 									id="confirmpass" name="confirmpass" onkeyup='checkPass();'
-									placeholder="Confirm new password" /><span id='message'></span>
+									placeholder="Confirm new password" value=""/><span id='message'></span>
 							</div>
 
 							<script type="text/javascript">

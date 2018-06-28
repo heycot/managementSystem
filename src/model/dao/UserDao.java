@@ -193,8 +193,8 @@ public class UserDao {
 
 		try{
 			String sql= "update users set username=?, fullname=?, date_of_birth=?"
-					+ " ,address=? , phone=? , image=? , password=?"
-					+ "where user_id =?";
+					+ " ,address=? , phone=? , image=? , password=? "
+					+ " where user_id =?";
 			pst=conn.prepareStatement(sql);
 			pst.setString(1, trainer.getUsername());
 			pst.setString(2, trainer.getFullname());
