@@ -457,7 +457,7 @@ public class UserDao {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Loi nam o resultDao:" + e.getMessage());
 		}
 		return listResult;
 	}
@@ -635,8 +635,9 @@ public class UserDao {
 	public ArrayList<MyMessages> getMessagesOfTrainee(int user_id){
 		ArrayList<MyMessages> listMessages = new ArrayList<>();
 		conn=ConnectDBLibrary.getConnection();
-		String sql = "select msg_id, messages.user_id , messages.noti_id , status , notification.content FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.user_id= ? ";
+		String sql = "select msg_id, messages.user_id, notification.title, messages.noti_id , messages.status , notification.content, notification.createdDate FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.user_id= ?";
 		try {
+			System.out.println(sql);
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, user_id);
 			rs = pst.executeQuery();
@@ -646,8 +647,12 @@ public class UserDao {
 				myMessages.setNotiId(rs.getInt("noti_id"));
 				myMessages.setNotiContent(rs.getString("content"));
 				myMessages.setStatus(rs.getInt("status"));
+				myMessages.setTitle(rs.getString("title"));
+				myMessages.setCreatedDate(rs.getDate("createdDate"));
+				System.out.println(myMessages.getTitle());
+
 				listMessages.add(myMessages);
-				
+								
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -663,7 +668,7 @@ public class UserDao {
 	public MyMessages getMessageDetail(int msg_id) {
 		MyMessages messages = new MyMessages();
 		conn=ConnectDBLibrary.getConnection();
-		String sql = "select msg_id, messages.user_id , messages.noti_id , status , notification.content FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.msg_id = ? ";
+		String sql = "select msg_id, messages.user_id , messages.noti_id ,notification.title, notification.createdDate, messages.status , notification.content FROM messages  INNER JOIN users on messages.user_id = users.user_id  INNER JOIN notification ON notification.id = messages.noti_id where messages.msg_id = ?";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, msg_id);
@@ -674,6 +679,9 @@ public class UserDao {
 				myMessages.setNotiId(rs.getInt("noti_id"));
 				myMessages.setNotiContent(rs.getString("content"));
 				myMessages.setStatus(rs.getInt("status"));
+				myMessages.setTitle(rs.getString("title"));
+				myMessages.setCreatedDate(rs.getDate("createdDate"));
+				return myMessages;
 				
 			}
 		} catch (Exception e) {
@@ -683,6 +691,7 @@ public class UserDao {
 		return messages;
 		
 	}
+
 
 	public ArrayList<User> getUsers() {
 		ArrayList<User> users = new ArrayList<>();
