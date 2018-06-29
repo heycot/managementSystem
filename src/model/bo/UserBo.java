@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 import libralies.fileLibrary;
 import model.bean.Ability;
 import model.bean.MyMessages;
@@ -199,6 +201,19 @@ public class UserBo {
 	public MyMessages getMessageDetail(int msg_id){
 		userDao = new UserDao();
 		return userDao.getMessageDetail(msg_id);
+	}
+	public boolean compareDuration(int class_id){
+		userDao= new UserDao();
+		return userDao.compareDuration(class_id);
+	}
+	public int changeStatusOfMessages(int msg_id){
+		userDao = new UserDao();
+		return userDao.changeStatusMessages(msg_id);
+		
+	}
+	public ArrayList<Schedule> getClassOpening() {
+		userDao = new UserDao();
+		return userDao.getClassOpening();
 	}
 }
 

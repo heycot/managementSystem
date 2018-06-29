@@ -1,3 +1,4 @@
+<%@page import="model.bean.Schedule"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -25,8 +26,39 @@
 				    <th>Date</th>
 				    <th>Duration</th>
 				    <th>Trainer</th>
-				    <th></th>
+				    <th>Option</th>
 				  </tr>
+				  <%
+				  ArrayList<Schedule> listClassOpening = (ArrayList<Schedule>)request.getAttribute("listClassOpening");
+				  int count=0;
+				  for (Schedule classOpening : listClassOpening) {
+					  count++;
+				  
+				  %>
+				   <tr>
+				    <td class="no"><%= count %></td>
+				    <td class="name"><%= classOpening.getNameclass() %></td>
+				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
+				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
+				    <td class="duration"><%= classOpening.getCountLession() %></td>
+				    <td class="trainer"><%= classOpening.getUsername() %></td>
+				    
+				    <%
+				    
+				    
+				    %>
+				    <form action="/managementSystem/ListClassOpening" method="POST">
+				    <td class="btnRegister">
+				    	<input type="submit"  class="btn" value="Register" >
+				    	<input type="button" class="btn btn1" value="Cancel">
+				    </td>
+				    </form>
+				    
+				  </tr>
+				  <%
+					  
+				  }
+				  %>
 				  <tr>
 				    <td class="no">1</td>
 				    <td class="name">English session</td>

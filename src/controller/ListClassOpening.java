@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-
-import model.bean.MyMessages;
+import model.bean.Schedule;
 import model.bo.UserBo;
+import model.dao.UserDao;
 
 /**
- * Servlet implementation class DetailMessages
+ * Servlet implementation class ListClassOpening
  */
-@WebServlet("/trainee/detailnoti")
-public class DetailMessages extends HttpServlet {
+@WebServlet("/ListClassOpening")
+public class ListClassOpening extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserBo userBo;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailMessages() {
+    public ListClassOpening() {
         super();
         userBo = new UserBo();
         // TODO Auto-generated constructor stub
@@ -35,18 +35,13 @@ public class DetailMessages extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int msg_id  = Integer.valueOf((String)request.getParameter("msg_id"));
 		
-		MyMessages messages =  userBo.getMessageDetail(msg_id);
-		System.out.println(messages.getStatus());
-		if(messages.getStatus()== 0){
-			if(userBo.changeStatusOfMessages(msg_id)>=1){
-				System.out.println("Change status sucessfull!");
-			}
-		}
-		request.setAttribute("messages", messages);
-		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/viewOneNoti.jsp");
+		ArrayList<Schedule> listClassOpening = new ArrayList<>();
+		listClassOpening = userBo.getClassOpening();
+		request.setAttribute("listClassOpening", listClassOpening);
+		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/registerClass.jsp");
 		rd.forward(request, response);
+		
 	}
 
 	/**

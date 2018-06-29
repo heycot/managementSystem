@@ -149,7 +149,7 @@
         //Sử dụng phương thức Ajax.
         $.ajax({
               type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
-              url : 'ListNotificationAjax', //gửi dữ liệu sang trang data.php
+              url : '/managementSystem/ListNotificationAjax', //gửi dữ liệu sang trang data.php
               success : function(result)  // Hàm thực thi khi nhận dữ liệu được từ server
                         { 
             				$('#result1').html(result);

@@ -22,7 +22,7 @@ public class LoginConttroller extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
 		rd.forward(request, response);
 	}
 

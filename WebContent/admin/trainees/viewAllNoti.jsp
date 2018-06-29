@@ -22,11 +22,27 @@
 				<ul class="list-noti">
 					<%
 					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
+					%>
+					<li>Notification (<%= list.size()%>)</li>
+					
+					<%
 					for (MyMessages msg : list)  {
 						String ngay =  FormatDateLibrary.FormatDateUntilToString(msg.getCreatedDate());
+						if (msg.getStatus()==0){
+						%>
+						<li class="noti1 noti" style='background-color: rgb(212, 237, 218)' >
+						<% 
+						}
+						else {
+							%>
+						<li class="noti1 noti" >	
+					<%		
+						
+							
+						}
 
 					%>
-					<li class="noti1 noti">
+						<a href='/managementSystem/trainee/detailnoti?msg_id=<%= msg.getMsgId() %>'>
 						<div class="r1 row">
 				  			<div class="divTitle">
 				  				<label class="title"><%= msg.getTitle() %></label>
@@ -41,7 +57,7 @@
 			  					<%= msg.getNotiContent() %>
 			  				</label>
 		  				</div>
-			  			
+			  			</a>
 					</li>
 					<%
 					}

@@ -44,15 +44,18 @@ public class ListNotificationAjax extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		ArrayList<MyMessages> listMsg =  userBo.getMessagesOfTrainee(4);
-
 		PrintWriter out = response.getWriter();
-		
-		
+		int countrows =0 ;		
 		if (listMsg.size()!=0) {
 			out.print("<li>Notification</> "+" ("+listMsg.size()+")");
 			
 		
 			for (MyMessages myMessages: listMsg){
+				countrows++;
+				if (countrows==7) {
+					break;
+				}
+				
 				if(myMessages.getStatus()==0){
 					out.print("<li style='background-color: rgb(212, 237, 218)'><a href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%= request.getContextPath()%>/templates/images/img.jpg' alt='Profile Image' /></span>"
 							+ "<span>"

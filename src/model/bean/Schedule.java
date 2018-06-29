@@ -14,10 +14,19 @@ public class Schedule {
 	private int countLession;
 	private String nameroom;
 	private int classid;
+	private String username;
+	
+	
 	
 	
 
 
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getNameclass() {
 		return nameclass;
 	}
@@ -101,6 +110,24 @@ public class Schedule {
 		super();
 	}
 
+	
+	
+	public Schedule(String nameclass, String course, int trainerId, String fullname, Date createAt, String timeOfDate,
+			String dateOfWeek, int countLession, String nameroom, int classid, String username) {
+		super();
+		this.nameclass = nameclass;
+		this.course = course;
+		this.trainerId = trainerId;
+		this.fullname = fullname;
+		this.createAt = createAt;
+		this.timeOfDate = timeOfDate;
+		this.dateOfWeek = dateOfWeek;
+		this.countLession = countLession;
+		this.nameroom = nameroom;
+		this.classid = classid;
+		this.username = username;
+	}
+	
 	public Schedule(String nameclass, String course, int trainerId, String fullname, Date createAt, String timeOfDate,
 			String dateOfWeek, int countLession, String nameroom, int classid) {
 		super();
