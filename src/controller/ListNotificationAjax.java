@@ -57,7 +57,7 @@ public class ListNotificationAjax extends HttpServlet {
 				}
 				
 				if(myMessages.getStatus()==0){
-					out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%= request.getContextPath()%>/templates/images/img.jpg' alt='Profile Image' /></span>"
+					out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' /></span>"
 							+ "<span>"
 							
 									+ "</span>"
@@ -66,7 +66,7 @@ public class ListNotificationAjax extends HttpServlet {
 											+ " </span></a></li>");
 					}
 				else {
-					out.print("<li><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><img src='<%= request.getContextPath()%>/templates/images/img.jpg' alt='Profile Image' /></span>"
+					out.print("<li><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' />"
 							+ "<span>"
 							
 									+ "</span>"
