@@ -22,6 +22,10 @@
 	border: 1px solid rgb(212, 237, 218);
 }
 
+.h{
+	padding: 20px 25px 20px;
+}
+
 .noti{
 	padding: 20px 20px 20px;
 	height: 150px;
@@ -30,6 +34,10 @@
 .labelNoti{
 	height: 50px;
 	margin: auto;
+}
+
+.labelNoti:hover{
+	color: rgb(123, 185, 222);
 }
 
 .divTitle{
@@ -41,15 +49,16 @@
 
 .divDate{
 	margin-left: 20px;
-	color: rgb(138, 138, 138);
+	color: rgb(52, 58, 64);
 	font-size: 12px;
 	margin-top: 7px;
 }
 
 .date{
-	border: 1px solid rgb(212, 237, 218);
+	border: 1px solid rgb(52, 58, 64);
 	padding: 0px 5px 0px;
 	border-radius: 10px;
+	color: rgb(52, 58, 64);
 }
 
 .r2{
@@ -62,6 +71,8 @@
 	color: rgb(138, 138, 138);
 	font-size: 15px;
 }
+
+
 
 
 
