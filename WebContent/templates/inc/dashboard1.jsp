@@ -72,7 +72,10 @@
             </a>
             <ul class="sidenav-second-level collapse" id="trainee">
               <li>
-                <a href=""><i class="fa fa-fw fa-users"></i> List trainee</a>
+                <a href="/managementSystem/trainee/schedule?user_id=4"><i class="fa fa-fw fa-users"></i> Check trainee's schedule</a>
+              </li>
+              <li>
+                <a href="/managementSystem/trainee/results?user_id=4"><i class="fa fa-fw fa-users"></i> Check trainee's results</a>
               </li>
               <li>
                 <a href=""><i class="fa fa-fw fa-plus"></i> Add new trainee</a>
@@ -91,8 +94,9 @@
             </a>
             <ul class="sidenav-second-level collapse" id="trainer">
               <li>
-                <a href=""><i class="fa fa-list" ></i> List trainer</a>
+                <a href="/managementSystem/trainer/schedule?user_id=9"><i class="fa fa-list" ></i> Check trainer's schedule</a>
               </li>
+              
               <li>
                 <a href=""><i class="fa fa-fw fa-plus"></i> Add trainer</a>
               </li>
@@ -121,10 +125,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="room">
             <li>
-              <a href=" "><i class="fa fa-fw fa-list"></i> List rooms</a>
+              <a href="/managementSystem/room"><i class="fa fa-fw fa-list"></i> List rooms</a>
             </li>
             <li>
-              <a href=" "><i class="fa fa-fw fa-plus"></i> Add new room</a>
+              <a href="/managementSystem/AddNewRoom"><i class="fa fa-fw fa-plus"></i> Add new room</a>
             </li>
           </ul>
         </li>

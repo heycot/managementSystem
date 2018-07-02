@@ -805,7 +805,92 @@ public class UserDao {
 	
 	public int beExistWaitingClass(int user_is, int user_class){
 		int result=0;
+		String sql ="select * from waiting where user_id = ? and class_id =?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			rs = pst.executeQuery();
+			result = rs.getRow();
+			return result;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
 		return result;
+	}
+	
+	
+	public int deleteTrainee(int traineeId) {
+		int kq = 0;
+		
+		String sql = "delete from users where user_id = ?";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, traineeId);
+			kq = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return kq;
+	}
+
+	public int changeStatus(int traineeId, int status) {
+		int kq = 0;
+		
+		String sql = "update users set status = ? where user_id = ?";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, status);
+			pst.setInt(2, traineeId);
+			kq = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return kq;
+	}
+
+	
+	public ArrayList<User> getTrainees(int traineeRoleId) {
+		ArrayList<User> trainees = new ArrayList<>();
+		String sql = "select * from users where role_id = ? order by user_id desc ";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, traineeRoleId);
+			
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				User user = new User(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"), rs.getDate("date_of_birth"), 
+									rs.getString("email"), rs.getDate("created_at"), rs.getInt("role_id"), rs.getInt("gender"), rs.getString("address"), rs.getString("phone"),
+									rs.getString("notification_id"), rs.getString("image"), rs.getInt("status"));
+				trainees.add(user);	
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return trainees;
 	}
 
 }

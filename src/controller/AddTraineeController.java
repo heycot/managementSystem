@@ -83,7 +83,7 @@ public class AddTraineeController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/trainee/index?msg=1");
 			} else {
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", " Can't add trainee. please try again later");
+				request.setAttribute("error", " Can't add trainee. please try again");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/addTrainee.jsp");
 				rd.forward(request, response);
 			}
