@@ -176,6 +176,19 @@ public class UserBo {
 		return userDao.editTrainee(trainee);
 				
 	}
+	
+
+	public int deleteTrainee(int traineeId) {
+		userDao = new UserDao();
+		return userDao.deleteTrainee(traineeId);
+	}
+
+	public int changeStatusTrainee(int traineeId, int status) {
+		userDao = new UserDao();
+		return userDao.changeStatus(traineeId, status);
+	}
+	
+	
 	public ArrayList<ScheduleOfTrainee> getClassOfTrainee(int user_id){
 		userDao = new UserDao();
 		return userDao.getClassesOfTrainee(user_id);
@@ -214,6 +227,11 @@ public class UserBo {
 	public ArrayList<Schedule> getClassOpening() {
 		userDao = new UserDao();
 		return userDao.getClassOpening();
+	}
+
+	public ArrayList<User> getTrainees(int traineeRoleId) {
+		userDao = new UserDao();
+		return userDao.getTrainees(traineeRoleId);
 	}
 }
 

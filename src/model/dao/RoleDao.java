@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Roles;
-
 
 
 public class RoleDao {
@@ -17,21 +17,28 @@ public class RoleDao {
 	private Connection conn;
 	private PreparedStatement pst;
 	private ResultSet rs;
+	private Statement st;
 	
-	public List<Roles> getRoles(){
+	public ArrayList<Roles> getRoles() {
+		ArrayList<Roles> roles = new ArrayList<>();
+		
 		conn = ConnectDBLibrary.getConnection();
-		List<Roles> roles= new ArrayList<>();
-		try{
-			String sql= "select * from roles;";
-			pst= conn.prepareStatement(sql);
-			rs= pst.executeQuery();
-			while(rs.next()){
-				Roles role = new Roles(rs.getInt("role_id"),rs.getString("name"));
+		String sql = "select * from roles";
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				Roles role = new Roles(rs.getInt("role_id"), rs.getString("name"));
 				roles.add(role);
 			}
-		}catch(SQLException e){
-			System.out.println(e);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, st, conn);
 		}
+	
 		return roles;
 	}
 

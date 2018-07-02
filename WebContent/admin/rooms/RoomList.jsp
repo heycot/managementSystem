@@ -1,4 +1,4 @@
-
+<%@page import="model.bean.Rooms"%>
 <%@page import="model.bean.Schedule"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,15 +9,15 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <div class="content-wrapper py-3">
-  <div class="container-fluid">
+  <div class="">
     <div class="">
         <div class="card-header" style="background-color:rgb(212, 237, 218)";>
-            <h2 style="text-align:center;color:green;">Trainer's schedule</h2>
+            <h2 style="text-align:center;color:green;">Room List</h2>
          </div>
          <%
-                  	ArrayList<Schedule> schedule = (ArrayList<Schedule>) request.getAttribute("schedule");
-                  	int k=0;
-                  	int tong = schedule.size();
+                  ArrayList<Rooms> roomlist = (ArrayList<Rooms>) request.getAttribute("roomList");
+         			int k=0;
+         			int tong = roomlist.size();
         	%>
           
         <script type="text/javascript">
@@ -62,10 +62,9 @@
                 }
                 showPage(1);
                 ///** CÃ¡ÂºÂ§n truyÃ¡Â»Ân giÃƒÂ¡ trÃ¡Â»â€¹ vÃƒ o Ã„â€˜ÃƒÂ¢y **///
-                var totalRows = <%= tong%>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹
+                var totalRows = <%= tong%>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ 
                 var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -96,98 +95,32 @@
                   <thead>
                     <tr>
                       <th>No.</th>
-                      <th>Class</th>
-                       <th>Room</th>
-                      <th>Course</th>
-                      <th>Time Of Date</th>
-                      <th>Date Of Week</th>
-                      <th>Hours Learned</th>
-                      <th>Action</th>
-                      <th>Take day off</th>
+                      <th>Name</th>
+                       <th>Capacity</th>
+                      <th>Status</th>
+                   
                     </tr>
                   </thead>
                   <tbody>
                   
                   	<%
-                  	for (Schedule list : schedule){
-                  		k+=1;
-                  		String s="";
-                  	 	String str=list.getDateOfWeek();
-                  	 	String arr[]=str.split(",");
-	                  	 for(int i=0; i<arr.length;i++){
-	                  		 switch(arr[i]){
-	                  		 case "2":
-	                  		 {
-	                  			 s+="Mon";
-	                  			 break;
-	                  		 }
-	                  		 case "3":
-	                  		 {
-	                  			 s+="Tue";
-	                  			break;
-	                  		 }
-	                  		 case "4":
-	                  		 {
-	                  			 s+="Wed";
-	                  			break;
-	                  		 }
-	                  		case "5":
-	                  		 {
-	                  			 s+="Thu";
-	                  			break;
-	                  		 }
-	                  		case "6":
-	                  		 {
-	                  			 s+="Fri";
-	                  			break;
-	                  		 }
-	                  		case "7":
-	                  		 {
-	                  			 s+="Sat";
-	                  			break;
-	                  		 }
-	                  		case "8":
-	                  		 {
-	                  			 s+="Sun";
-	                  			break;
-	                  		 }
-	                  	    default:
-	                  	    {
-	                  	        
-	                  	    }
-	                  		 }
-	                  		if (i< (arr.length-1)) {
-	                 			 s+=", ";
-	                 		 }
-	                 		 else {
-	                 			 s+=".";
-	                 		 }
-                  	 	}
+                  	for (Rooms rooms: roomlist){
+                  		k++;
                   %>
 				   <tr class="contentPage">
-                  <td><%= k %></td>
-                  <td><%= list.getNameclass()%></td>
-                   <td><%= list.getNameroom()%></td>
-                   <td><%= list.getCourse()%></td>
-                   <td><%= list.getTimeOfDate()%></td>
-                   <td><%= s%></td>
-                   <td><%= list.getCountLession()%></td>
-                    <td> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>">List trainee of class </a>
-                  <td>
-                   <select>
-                   <% 
-                   String day=list.getDateOfWeek();
-                  	 	String a[]=day.split(",");
-	                  	 for(int i=0; i<a.length;i++){
-	                  		 %>
-	                  		  
-                   	<option value=""><%=a[i] %></option>
-                   	<%
-                   	}
-	                  	%>
-                   </select>
-                   <button type="submit" class="btn btn-success" style="float: right;">Send</button>
-                  </td>
+				   <td><%=k %></td>
+                  <td><%= rooms.getName() %></td>
+                  <td><%= rooms.getCapacity()%></td>
+                  <%if(rooms.getStatus()==0){
+                	  %>
+                	  <td>Occupied</td>
+                	  <%
+                  } else {
+                	  %>
+                	  <td>Available</td>
+                	  <%
+                  }
+                   %>
                   </tr>
                   <%
                   	}
