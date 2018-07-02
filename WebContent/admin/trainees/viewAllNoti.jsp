@@ -23,7 +23,7 @@
 					<%
 					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
 					%>
-					<li>Notification (<%= list.size()%>)</li>
+					<li class="h"><strong>Notification (<%= list.size()%>)</strong></li>
 					
 					<%
 					for (MyMessages msg : list)  {
@@ -42,7 +42,7 @@
 						}
 
 					%>
-						<a href='/managementSystem/trainee/detailnoti?msg_id=<%= msg.getMsgId() %>'>
+						<a style='text-decoration: none;' href='/managementSystem/trainee/detailnoti?msg_id=<%= msg.getMsgId() %>'>
 						<div class="r1 row">
 				  			<div class="divTitle">
 				  				<label class="title"><%= msg.getTitle() %></label>

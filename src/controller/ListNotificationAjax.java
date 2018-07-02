@@ -47,7 +47,7 @@ public class ListNotificationAjax extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int countrows =0 ;		
 		if (listMsg.size()!=0) {
-			out.print("<li>Notification</> "+" ("+listMsg.size()+")");
+			out.print("<li><strong>Notification"+"   ("+listMsg.size()+")</strong></li> ");
 			
 		
 			for (MyMessages myMessages: listMsg){
@@ -57,7 +57,7 @@ public class ListNotificationAjax extends HttpServlet {
 				}
 				
 				if(myMessages.getStatus()==0){
-					out.print("<li style='background-color: rgb(212, 237, 218)'><a href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%= request.getContextPath()%>/templates/images/img.jpg' alt='Profile Image' /></span>"
+					out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' /></span>"
 							+ "<span>"
 							
 									+ "</span>"
@@ -66,7 +66,7 @@ public class ListNotificationAjax extends HttpServlet {
 											+ " </span></a></li>");
 					}
 				else {
-					out.print("<li><a href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%= request.getContextPath()%>/templates/images/img.jpg' alt='Profile Image' /></span>"
+					out.print("<li><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' />"
 							+ "<span>"
 							
 									+ "</span>"
@@ -79,7 +79,7 @@ public class ListNotificationAjax extends HttpServlet {
 			out.println(" <li>"
 					+ "<div class='text-center'>"
 							+ "<a href='/managementSystem/trainee/listDetailNoti'>"
-							+ "<strong>See All Notification</strong>"
+							+ "<strong style='font-size: 15px;'>See All Notification</strong>"
 							+ " <i class='fa fa-angle-right'></i>"
 									+ "</a>"
 									+ "</div></li>");
