@@ -6,32 +6,10 @@ public class Courses {
 	private String name;
 	private int duration;
 	private int status;
-	private String majorName;
 	
 	// default is keyword, so i change default by kind_of_course
 	// please check it
 	private int kind_of_course;
-
-	
-	public String getMajorName() {
-		return majorName;
-	}
-
-	public void setMajorName(String majorName) {
-		this.majorName = majorName;
-	}
-	
-	public Courses(int courseId, int majorId, String name, int duration, int status, String majorName,
-			int kind_of_course) {
-		super();
-		this.courseId = courseId;
-		this.majorId = majorId;
-		this.name = name;
-		this.duration = duration;
-		this.status = status;
-		this.majorName = majorName;
-		this.kind_of_course = kind_of_course;
-	}
 
 	public Courses(int courseId, int majorId, String name, int duration, int status, int kind_of_course) {
 		super();

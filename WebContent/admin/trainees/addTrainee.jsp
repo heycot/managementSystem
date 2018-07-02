@@ -43,8 +43,8 @@
               
               <div class="col-sm-6" style="float: left">
               	<div class="form-group">
-	              	<label class="required" >UserName</label>&nbsp;<span id="spnNameStatus"></span>
-	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" required/>
+	              	<label class="required" >UserName</label>
+	              	<input class="form-control" id="txtname" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" required/>
               	</div>
               	
               	<div class="form-group">
@@ -121,7 +121,7 @@
 	               <div class="col-sm-4" style="float: left"></div>
 	               
 	             	<div class="col-sm-4" style="float: left">
-	             		<div class="col-sm-2" style="float: left"><input id="btnSubmit" class="btn btn-primary" type="submit" name="submit" value="Add" /></div>
+	             		<div class="col-sm-2" style="float: left"><input class="btn btn-primary" type="submit" name="submit" value="Add" /></div>
 	             		<div class="col-sm-2" style="float: left"><input class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
 	             		<div style="clear: both"></div>	
 	             	</div> 
@@ -218,27 +218,6 @@
       				    else {
       				        return false;
       				    }
-      				}
-      				
-      				$(document).ready(function() {
-      					$('#txtName').blur(function(e) {
-      						var name = $('#txtName').val();
-          					if (validateStrings(name)) {
-      							$('#spnNameStatus').html('');
-      							$('#spnNameStatus').css('color', 'green');
-      						}
-      						else {
-      							$('#spnNameStatus').html('Name of course must be character.');
-      							$('#spnNameStatus').css('color', 'red');
-      							document.getElementById("btnSubmit").disabled = true; 
-      						}
-       					});
-      				});
-      				
-      				function validateStrings(string) {
-      					var pattern = /^[a-zA-Z0-9]+|[\b]+$/;
-
-      					return $.trim(string).match(pattern) ? true : false;
       				}
       			</script>
           </div>

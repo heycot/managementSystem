@@ -58,58 +58,6 @@
     <url-pattern>/trainee/edit</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>IndexTraineeController</servlet-name>
-    <servlet-class>controller.IndexTraineeController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>IndexTraineeController</servlet-name>
-    <url-pattern>/trainee/index</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DeleteTraineeController</servlet-name>
-    <servlet-class>controller.DeleteTraineeController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DeleteTraineeController</servlet-name>
-    <url-pattern>/trainee/del</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>IndexCourseController</servlet-name>
-    <servlet-class>controller.IndexCourseController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>IndexCourseController</servlet-name>
-    <url-pattern>/course/index</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>AddCourseController</servlet-name>
-    <servlet-class>controller.AddCourseController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddCourseController</servlet-name>
-    <url-pattern>/course/add</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>EditCourseController</servlet-name>
-    <servlet-class>controller.EditCourseController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EditCourseController</servlet-name>
-    <url-pattern>/course/edit</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-    <servlet-name>DeleteCourseController</servlet-name>
-    <servlet-class>controller.DeleteCourseController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DeleteCourseController</servlet-name>
-    <url-pattern>/course/del</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
     <servlet-name>AddNewTrainerController</servlet-name>
     <servlet-class>controller.AddNewTrainerController</servlet-class>
   </servlet>

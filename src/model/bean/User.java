@@ -17,16 +17,8 @@ public class User {
 	private String phone;
 	private String notificationId;
 	private String avatar;
-	private int status;
 	private List<Ability> abilities;
 	
-	
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
 	public List<Ability> getAbilities() {
 		return abilities;
 	}
@@ -140,28 +132,6 @@ public class User {
 		this.notificationId = notificationId;
 		this.avatar = avatar;
 	}
-	
-	
-	public User(int userId, String username, String password, String fullname, Date dateOfBirth, String email,
-			Date createdDate, int roleId, int gender, String address, String phone, String notificationId,
-			String avatar, int status) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.fullname = fullname;
-		this.dateOfBirth = dateOfBirth;
-		this.email = email;
-		this.createdDate = createdDate;
-		this.roleId = roleId;
-		this.gender = gender;
-		this.address = address;
-		this.phone = phone;
-		this.notificationId = notificationId;
-		this.avatar = avatar;
-		this.status = status;
-	}
-	
 	@Override
 	public String toString(){
 		return "UserId: " + userId+ "\n"+

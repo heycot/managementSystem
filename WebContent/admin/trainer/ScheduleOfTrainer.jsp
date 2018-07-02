@@ -3,14 +3,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <div class="content-wrapper py-3">
   <div class="container-fluid">
-    <div class="">
+    <div class="card mb-3">
         <div class="card-header" style="background-color:rgb(212, 237, 218)";>
             <h2 style="text-align:center;color:green;">Trainer's schedule</h2>
          </div>
@@ -172,7 +172,7 @@
                    <td><%= list.getTimeOfDate()%></td>
                    <td><%= s%></td>
                    <td><%= list.getCountLession()%></td>
-                    <td> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>">List trainee of class </a>
+                    <td> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>">List trainer of class </a>
                   <td>
                    <select>
                    <% 

@@ -11,32 +11,8 @@ public class Classes {
 	private String dateOfWeek;
 	private int countLession;
 	private int roomId;
-	private String name;
-	private int status;
 	
 	
-	
-	
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public int getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-
 	public int getClassId() {
 		return classId;
 	}
@@ -128,23 +104,6 @@ public class Classes {
 		this.dateOfWeek = dateOfWeek;
 		this.countLession = countLession;
 		this.roomId = roomId;
-	}
-
-	
-
-	public Classes(int classId, int courseId, int trainerId, Date createAt, String timeOfDate, String dateOfWeek,
-			int countLession, int roomId, int status, String name) {
-		super();
-		this.classId = classId;
-		this.courseId = courseId;
-		this.trainerId = trainerId;
-		this.createAt = createAt;
-		this.timeOfDate = timeOfDate;
-		this.dateOfWeek = dateOfWeek;
-		this.countLession = countLession;
-		this.roomId = roomId;
-		this.name = name;
-		this.status = status;
 	}
 
 
