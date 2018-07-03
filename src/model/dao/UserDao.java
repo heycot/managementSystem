@@ -103,63 +103,46 @@ public class UserDao {
 		return user;
 	}
 	
-//	public User getUserByEmail(int userId){
-//		conn= ConnectDBLibrary.getConnection();
-//		User user= new User();
-//		List<Ability> abilities= new ArrayList<>();
-//		try{
-//			String sql= "select u.*, s.name, a.* from users u "
-//					+ " join ability a on u.user_id = a.user_id "
-//					+ " join skills s on s.skill_id= a.skill_id "
-//					+ "where u.user_id=?";
-//			pst = conn.prepareStatement(sql);
-//			pst.setInt(1, userId);
-//			rs = pst.executeQuery();
-//			while(rs.next()){
-//				String userName= rs.getString("username");
-//				String password= rs.getString("password");
-//				String fullName= rs.getString("fullname");
-//				Date dateOfBirth=rs.getDate("date_of_birth");
-//				Date createdAt=rs.getDate("created_at");
-//				int roleId= rs.getInt("role_id");
-//				String email= rs.getString("email");
-//				int gender= rs.getInt("gender");
-//				String address= rs.getString("address");
-//				String phone= rs.getString("phone");
-//				String notificationId= rs.getString("notification_id");
-//				String avatar= rs.getString("image");
-//				
-//				if(roleId !=2 ){
-//					int abilityId= rs.getInt("ability_id");
-//					int skillId= rs.getInt("skill_id");
-//					int experience= rs.getInt("experience");
-//					int courseId= rs.getInt("course_id");
-//					user= new User(userId, userName, password, fullName,
-//							dateOfBirth, email, createdAt, roleId, gender, address, 
-//							phone, notificationId, avatar);
-//					Ability ability= new Ability(abilityId, userId, skillId, experience, courseId);
-//					abilities.add(ability);
-//					user.setAbilities(abilities);
-//				}
-//				else{
-//					user= new User(userId, userName, password, fullName,
-//							dateOfBirth, email, createdAt, roleId, gender, address, 
-//							phone, notificationId, avatar);
-//				}
-//
-//			}
-//			
-//		}catch(SQLException e){
-//			System.out.println(e);
-//		}
-//		return user;
-//	}
+	public User getUserByEmail(String email) {
+		conn = ConnectDBLibrary.getConnection();
+		List<Ability> abilities = new ArrayList<>();
+		User user= new User();
+		try {
+			String sql = "select u.* from users u where u.email=?";
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				int userId= rs.getInt("user_id");
+				String userName = rs.getString("username");
+				String password = rs.getString("password");
+				String fullName = rs.getString("fullname");
+				Date dateOfBirth = rs.getDate("date_of_birth");
+				Date createdAt = rs.getDate("created_at");
+				int roleId = rs.getInt("role_id");
+				int gender = rs.getInt("gender");
+				String address = rs.getString("address");
+				String phone = rs.getString("phone");
+				String notificationId = rs.getString("notification_id");
+				String avatar = rs.getString("image");
+				
+				user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId, gender,
+						address, phone, notificationId, avatar);
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return user;
+	}
 	
 	public int addTrainer(User trainer){
 		conn = ConnectDBLibrary.getConnection();
 		int kq = 0;
 		try{
-			String sql= "insert into users values(0,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql= "insert into users values(0,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, trainer.getUsername());
@@ -174,6 +157,7 @@ public class UserDao {
 			pst.setInt(10, trainer.getRoleId());
 			pst.setString(11, trainer.getNotificationId());
 			pst.setString(12, trainer.getAvatar());
+			pst.setInt(13, 1);
 			
 			kq=pst.executeUpdate();
 			

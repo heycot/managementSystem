@@ -9,17 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import libralies.MD5Library;
 import model.bean.User;
+import model.bo.UserBo;
 
-public class LoginConttroller extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    public LoginConttroller() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
@@ -28,15 +23,20 @@ public class LoginConttroller extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username =  request.getParameter("username");
-		String pass =  request.getParameter("password");
+		UserBo userBo= new UserBo();
+		String email =  request.getParameter("email").trim();
+		User user= userBo.getUserByEmail(email);
 		
-		if(!"".equals(username) && !"".equals(pass) ) {
-			User user = new User();
+		String pass =  MD5Library.md5(request.getParameter("password"));	
+		
+		if(pass.equals(user.getPassword())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			response.sendRedirect(request.getContextPath());
-			return;
+			response.sendRedirect(request.getContextPath()+"/trainer/index");
+		}
+		else{
+			response.sendRedirect(request.getContextPath()+"/login");
+			
 		}
 	}
 

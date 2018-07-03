@@ -96,9 +96,12 @@
               <li>
                 <a href="/managementSystem/trainer/schedule?user_id=9"><i class="fa fa-list" ></i> Check trainer's schedule</a>
               </li>
+              <li>
+                <a href="/managementSystem/trainer/index"><i class="fa fa-list" ></i> List Trainer</a>
+              </li>
               
               <li>
-                <a href=""><i class="fa fa-fw fa-plus"></i> Add trainer</a>
+                <a href="/managementSystem/trainer/add"><i class="fa fa-fw fa-plus"></i> Add trainer</a>
               </li>
             </ul>
           </li>

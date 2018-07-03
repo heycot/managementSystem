@@ -48,11 +48,11 @@ public class EditTrainerController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 		int userID = Integer.parseInt(request.getParameter("user_id"));
 		
-		String userName = request.getParameter("username");
-		String fullName = request.getParameter("fullname");
+		String userName = request.getParameter("username").trim();
+		String fullName = request.getParameter("fullname").trim();
 		int gender = Integer.parseInt(request.getParameter("gender"));
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
+		String address = request.getParameter("address").trim();
+		String phone = request.getParameter("phone").trim();
 		Date dateOfBirth = FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth"));
 
 		int skillId = Integer.parseInt(request.getParameter("skillId"));
@@ -98,7 +98,6 @@ public class EditTrainerController extends HttpServlet {
 			}
 		} 
 		
-		
 		if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
 			System.out.println("check usernmae");
 			request.setAttribute("trainer", trainer);
@@ -106,12 +105,10 @@ public class EditTrainerController extends HttpServlet {
 
 			request.setAttribute("error", " This username is already exists in system");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
-
 		}
 		
-		System.out.println(request.getPart("avatar"));
+		
 		if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {	
-			System.out.println("no avatar new");
 			trainer.setAvatar(trainer.getAvatar());
 
 		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
@@ -122,9 +119,7 @@ public class EditTrainerController extends HttpServlet {
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
 			
 		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
-			trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));
-			System.out.println("=====" + trainer.getAvatar());
-			
+			trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));			
 		}
 		
 		
@@ -141,5 +136,4 @@ public class EditTrainerController extends HttpServlet {
 		
 	}
 }
-
 

@@ -19,15 +19,17 @@
 	            </div>
 	            <div class="formSite">
 	                <div>
-	                    <form class="formLogin form-group" action="<%= request.getContextPath()%>/login" method="post" name="Login_Form" id="add-post1">
+	                    <form class="formLogin form-group" action="<%= request.getContextPath()%>/login" method="post" name="Login_Form" id="login_form">
 	                        <div class="divForm">
 	                             <label id="nameForm" class="nameForm">MANAGEMENT SYSTEM</label>
 	                        </div>
 	                        <div class="divEmail">
-	                            <input type="text" name="email" class="inputEmail" placeholder="Email" required>
+	                            <input type="email" name="email" class="inputEmail" id="txtemail" placeholder="Email">
+	                            <span id="spnEmailStatus"></span>
 	                        </div>
 	                        <div class="divPassword">
-	                            <input type="password" name="password" class="inputPassword" placeholder="Password" required>
+	                            <input type="password" name="password" class="inputPassword" id="txtpassword" placeholder="Password">
+	                            <span id="spnPassStatus"></span>
 	                        </div>
 	                        <div class="button">
 	                            <input type="submit" class="btnLogIn" value="LOG IN">
@@ -39,23 +41,49 @@
 	                </div>
 		       </div>   
 	        </div>
-	        <script type="text/javascript">
-	        $(document).ready(function() {
-				$("#add-post1").validate({
-					// ignore: [],
-					// debug: false,
-					rules: {
-						email:"required",
-						password:"required",
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#login_form").validate({
+					rules : {
+						email : "required",
+						password : "required",
 					},
-					messages: {
-						email:"Please enter email.",
-						password:"Please enter password.",
+					messages : {
+						email : "Please enter email.",
+						password : "Please enter password.",
 					}
 				});
 			});
+			$(document).ready(function(e) {
+				$('#txtemail').blur(function() {
+					var sEmail = $('#txtemail').val();
+					if ($.trim(sEmail).length == 0) {
+						$('#spnEmailStatus').html('Please enter valid email address!');
+						$('#spnEmailStatus').css('color', 'red');
+						document.getElementById("btnSubmit").disabled = true;
+					}
+					if (validateEmail(sEmail)) {
+						$('#spnEmailStatus').html('');
+						$('#spnEmailStatus').css('color', 'green');
+						document.getElementById("btnSubmit").disabled = false;
+					} else {
+						$('#spnEmailStatus').html('Please enter valid email address!');
+						$('#spnEmailStatus').css('color', 'red');
+						document.getElementById("btnSubmit").disabled = true;
+					}
+				});
+			});
+
+			function validateEmail(sEmail) {
+				var filter = /^([A-Za-z]+.[A-Za-z0-9]*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if (filter.test(sEmail)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
 		</script>
-	    </div>
+	</div>
 	</body>
 </html>
 
