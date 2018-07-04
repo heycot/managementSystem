@@ -15,7 +15,7 @@
 <div class="content-wrapper py-3">
   <div class="container-fluid">
         <div class="card mb-3 divNoti">
-       		<div class="alert alert-success">
+       		<div class="alert alert-primary">
 				<strong>Notification</strong>
 			</div>
 			<div class="box-all-noti">
@@ -23,7 +23,6 @@
 					<%
 					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
 					%>
-					<li class="h"><strong>Notification (<%= list.size()%>)</strong></li>
 					
 					<%
 					for (MyMessages msg : list)  {
@@ -42,7 +41,7 @@
 						}
 
 					%>
-						<a style='text-decoration: none;' href='/managementSystem/trainee/detailnoti?msg_id=<%= msg.getMsgId() %>'>
+						
 						<div class="r1 row">
 				  			<div class="divTitle">
 				  				<label class="title"><%= msg.getTitle() %></label>
@@ -57,7 +56,7 @@
 			  					<%= msg.getNotiContent() %>
 			  				</label>
 		  				</div>
-			  			</a>
+		
 					</li>
 					<%
 					}

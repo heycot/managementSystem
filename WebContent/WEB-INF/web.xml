@@ -89,7 +89,6 @@
     <servlet-name>AddCourseController</servlet-name>
     <url-pattern>/course/add</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>EditCourseController</servlet-name>
     <servlet-class>controller.EditCourseController</servlet-class>
@@ -98,8 +97,6 @@
     <servlet-name>EditCourseController</servlet-name>
     <url-pattern>/course/edit</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>DeleteCourseController</servlet-name>
     <servlet-class>controller.DeleteCourseController</servlet-class>
@@ -108,7 +105,6 @@
     <servlet-name>DeleteCourseController</servlet-name>
     <url-pattern>/course/del</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddNewTrainerController</servlet-name>
     <servlet-class>controller.AddNewTrainerController</servlet-class>

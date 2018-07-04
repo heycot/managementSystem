@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,16 @@ public class DetailMessages extends HttpServlet {
 				System.out.println("Change status sucessfull!");
 			}
 		}
+		PrintWriter out = response.getWriter();
+//		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'>");
+//		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>");
+		out.println("<script>"); 
+		out.println("$(document).ready(function(){");
+		out.println("swal('welcome', 'succesfull','abc');");
+		out.println("});");
+		out.println("</script>");
+		
+		
 		request.setAttribute("messages", messages);
 		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/viewOneNoti.jsp");
 		rd.forward(request, response);
