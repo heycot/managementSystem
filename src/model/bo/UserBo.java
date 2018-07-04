@@ -14,6 +14,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.fileLibrary;
 import model.bean.Ability;
+import model.bean.ClassWaiting;
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
@@ -233,5 +234,24 @@ public class UserBo {
 		userDao = new UserDao();
 		return userDao.getTrainees(traineeRoleId);
 	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingOpen(int user_id){
+		userDao = new UserDao();
+		return userDao.getClassWaitingOpenning(user_id);
+	}
+	public boolean checkClassRegisted(int user_id, int class_id){
+		userDao = new UserDao();
+		return userDao.checkTraineeRegisted(user_id, class_id);
+	}
+	public int deleteRegisterClass(int user_id , int class_id){
+		userDao = new UserDao();
+		return userDao.deleteRegisterClass(user_id, class_id);
+	}
+	
+	public int registedClass(int user_id, int class_id){
+		userDao = new UserDao();
+		return userDao.registedClass(user_id, class_id);
+	}
 }
+
 

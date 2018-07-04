@@ -16,6 +16,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
+import model.bean.ClassWaiting;
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
@@ -891,6 +892,108 @@ public class UserDao {
 		}
 		
 		return trainees;
+	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingOpenning(int user_id){
+		ArrayList<ClassWaiting> listClassWaiting = new ArrayList<>();
+		String sql = "SELECT classes.class_id, classes.name, users.fullname, classes.date_of_week, classes.time_of_date, courses.duration FROM mcts.classes inner join courses on courses.course_id = classes.course_id inner join users on users.user_id= classes.trainer_id where classes.status=0";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);			
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				ClassWaiting classWaiting = new ClassWaiting();
+				classWaiting.setClassId(rs.getInt("class_id"));
+				classWaiting.setClassName(rs.getString("name"));
+				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
+				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				classWaiting.setDuration(rs.getInt("duration"));
+				classWaiting.setTrainerName(rs.getString("fullname"));
+				classWaiting.setStatus(0);
+				String sql2 = "select * from waiting where user_id = ? and class_id = ? ";
+				PreparedStatement pst2 = conn.prepareStatement(sql2);
+				pst2.setInt(1, user_id);
+				pst2.setInt(2, rs.getInt("class_id"));
+				ResultSet rs2 = pst2.executeQuery();
+				while (rs2.next()) {
+					classWaiting.setStatus(1);
+				}
+				listClassWaiting.add(classWaiting);			
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return listClassWaiting;
+	}
+	
+	public boolean checkTraineeRegisted(int user_id, int class_id){
+		boolean result = false;
+		String sql = "select * from waiting where user_id = ? and class_id = ? ";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			pst.setInt(2, class_id);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				result = true;		
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return result;
+	}
+	
+	public int deleteRegisterClass(int user_id, int class_id){
+		int result=0;
+		String sql = "delete from waiting where user_id = ? and class_id= ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			pst.setInt(2, class_id);
+			while(pst.execute()) {
+				result =1;	
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return result;
+		
+	}
+	public int registedClass(int user_id, int class_id){
+		int result = 0;
+		String sql = "INSERT INTO waiting (class_id, user_id) VALUES (?,?)";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(2, user_id);
+			pst.setInt(1, class_id);
+			
+			while(pst.execute()) {
+				result =1;	
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error in Register");
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return result;
+		
 	}
 
 }
