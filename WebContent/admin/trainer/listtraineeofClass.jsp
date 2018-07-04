@@ -1,16 +1,16 @@
 
+<%@page import="model.bean.Accessment"%>
+<%@page import="model.bean.Results"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import ="model.bean.Classes"%>;
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %> 
+<%@include file="/templates/inc/dashboard.jsp" %> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
   <script type="text/javascript">
   function abc(a) {
 	  var val = $(a).val();
@@ -28,22 +28,30 @@
 	    selectId = $(this).closest('tr').find('select').first();
   } */
   </script>
-    <div class="">
     	<%
     		String name= (String)request.getAttribute("name");
     		int id = Integer.parseInt((String)request.getAttribute("id"));
     	 	int  result = Integer.parseInt((String)request.getAttribute("assessment"));
     	 	int  check = Integer.parseInt((String)request.getAttribute("check"));
-    	 	
-
     	%>
     	<%
-                
-            ArrayList<User> listUser = (ArrayList<User>) request.getAttribute("listUser");
-    		int tong = listUser.size();
+    		ArrayList<Accessment> listUser;
+             if(check ==1){
+            	 System.out.print("result");
+            	  listUser = (ArrayList<Accessment>) request.getAttribute("listResult");
+             } else {
+            	 System.out.print("users");
+
+            	  listUser = (ArrayList<Accessment>) request.getAttribute("listUser");
+             }
+    	int tong = listUser.size();
+    		
     	%>
-        <div class="alert alert-success" role="alert">
-		  <h3 align="center">List Trainee Of <%=name %> Class </h3>
+  <div class="content-wrapper py-3">
+  <div class="container-fluid" >
+    <div class="card mb-3">
+         <div class="alert alert-primary" >
+		  <strong><%=name %></strong>
 		</div>
 
         <script type="text/javascript">
@@ -88,7 +96,7 @@
                 }
                 showPage(1);
                 ///** Cáº§n truyá»n giÃ¡ trá»‹ vÃ o Ä‘Ã¢y **///
-                var totalRows = <%= tong%>; // Tá»•ng sá»‘ sáº£n pháº©m hiá»ƒn thá»‹
+                var totalRows = <%=tong%>; // Tá»•ng sá»‘ sáº£n pháº©m hiá»ƒn thá»‹
                 var btnPage = 5; // Sá»‘ nÃºt báº¥m hiá»ƒn thá»‹ di chuyá»ƒn trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
 
@@ -125,7 +133,7 @@
                   } 
                   }else{
                 	  %>
-                	  <h5 style="color: red">The class is not finished so you cannot evaluate!</h5>
+                	  <h5 style="color: red">The class hasn't finished yet so you cannot evaluate!</h5>
                  <% 
                  
                   }
@@ -137,12 +145,12 @@
                 <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                       <th>No.</th>
-                       <th width="20%">Username </th>
-                      <th width="20%">Full name  </th>
-                      <th width="20%">Email</th>
-                      <th width="20%">Phone  </th>
-                      <th width="20%">Assessment  </th>
+                       <th style="text-align: center;">No.</th>
+                       <th width="20%" style="text-align: center;">Username </th>
+                      <th  width="20%" style="text-align: center;">Full name  </th>
+                      <th width="20%" style="text-align: center;">Email</th>
+                      <th width="20%" style="text-align: center;">Phone  </th>
+                      <th width="20%" style="text-align: center;">Assessment  </th>
                       
                       
                     </tr>
@@ -150,59 +158,68 @@
                   <tbody>
                   <%
                   	int i=0;
-                  	for (User user : listUser){
+                  System.out.print(listUser.size());
+
+                  	for (Accessment trainer : listUser){
+                  		
                   		i+=1;
                   %>
                   
                   <tr class="contentPage">
                   <td><%= i %></td>
-                  <td><%= user.getUsername() %></td>
-                  <td><%= user.getFullname() %></td>
-            	  <td><%= user.getEmail() %></td>
-                  <td><%= user.getPhone() %></td>
-                  <input type="text" name="user_id" value="<%=user.getUserId() %>" style="display: none;" >
-                 
+                  <td style="text-align: center;"><%= trainer.getUsername() %></td>
+                  <td><%= trainer.getFullname() %></td>
+            	  <td><%= trainer.getEmail() %></td>
+                  <td style="text-align: center;"><%= trainer.getPhone() %></td>
+                  <input type="text" name="user_id" value="<%=trainer.getUserid() %>" style="display: none;" >
                   <% 
                   if(result==1){
-                	  if(check == 1){
-                		   
-                                    	String nameradio = "trainee" + String.valueOf(user.getUserId());
-                                    
+                	 if(check == 1){ 
+                		  String nameradio = "trainee" + String.valueOf(trainer.getUserid());
+                		  					if(trainer.getStatus()==1){
+                		  						%>
+                		  						<td style="text-align: center;">
+                		  						<input type="radio" id="a-<%=trainer.getUserid() %>" name="<%= nameradio %>" checked="checked"  value="<%=trainer.getStatus() %>"  disabled="disabled"> Pass
+          											  <input type="radio" id="b-<%=trainer.getUserid() %>" name="<%= nameradio %>"   value="<%=trainer.getStatus()%>"  disabled="disabled"> Fail 
+											 </td>
+											 <% 
+											 } else {
+												 %>
+												 <td style="text-align: center;">
+	                		  						<input type="radio" id="a-<%=trainer.getUserid() %>" name="<%= nameradio %>"   value="<%=trainer.getStatus() %>"  disabled="disabled"> Pass
+	          											  <input type="radio" id="b-<%=trainer.getUserid() %>" name="<%= nameradio %>" checked="checked"  value="<%=trainer.getStatus()%>"  disabled="disabled"> Fail 
+												  </td>
+												 <% 
+											 }
+                                    		%>	
+						                	 <%
+                                    		
+                                    	
                                     %>
-                   <td>
-					  <input type="radio" id="a-<%=user.getUserId() %>" name="<%= nameradio %>" value="1" disabled="disabled"> Pass
-					  <input type="radio" id="b-<%=user.getUserId() %>" name="<%= nameradio %>" value="0" checked="checked" disabled="disabled"> Fail
-                	 </td>
                 	 <%
-                	  } else {
-                		  String nameradio = "trainee" + String.valueOf(user.getUserId());
+                	    } else {
+                		  String nameradio = "trainee" + String.valueOf(trainer.getUserid()); 
                           
                           %>
-       				 <td>
-					  <input type="radio" id="a-<%=user.getUserId() %>" name="<%= nameradio %>" value="1" > Pass
-					  <input type="radio" id="b-<%=user.getUserId() %>" name="<%= nameradio %>" value="0" checked="checked" > Fail
-      	 				</td>
-      	 				<%
-                	  }
-                  
+       				  <td style="text-align: center;">
+					  <input type="radio" id="a-<%=trainer.getUserid() %>" name="<%= nameradio %>" value="1" > Pass
+					  <input type="radio" id="b-<%=trainer.getUserid() %>" name="<%= nameradio %>" value="0" checked="checked" > Fail
+      	 				</td> 
+      	 			 	<%
+                	  }  
                   } else{
                 	  %>
-                	  <td>
+                	  <td style="text-align: center;">
 					  <input type="radio" name="" value="1" disabled="disabled"> Pass
 					  <input type="radio" name="" value="0" disabled="disabled"> Fail
 				  </td>
-                
-                 
                  <% 
-                 
                   }%>
                   
                   </tr>
                   <%
                   
                   	}
-                  		
-                  
                   %>
                   
                   </tbody>
@@ -212,16 +229,16 @@
                 	if(result==1){
                 		if(check==1){
                 			%>
-                			<button type="submit" class="btn btn-success" style="float: right;" disabled="disabled"><strong>Save</strong></button>
+                			
                 			<% 
                 		} else {
                 			%>
-                			 <button type="submit" class="btn btn-success" style="float: right;"><strong>Save</strong></button>
+                			 <button type="submit" class="btn btn-primary" style="float: right;"><strong>Save</strong></button>
                 			<%
                 		}
                 	} else {
                 		%>
-                		<button type="submit" class="btn btn-success" style="float: right;" disabled="disabled"><strong>Save</strong></button>
+                		<button type="submit" class="btn btn-primary" style="float: right;" disabled="disabled"><strong>Save</strong></button>
                 		<% 
                 	}
                 %>

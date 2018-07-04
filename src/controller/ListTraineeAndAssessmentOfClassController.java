@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.Accessment;
 import model.bean.Classes;
 import model.bean.Results;
 import model.bean.User;
@@ -41,10 +42,12 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBo  userBo = new UserBo();
 		Results result =  new Results();
+		ResultBo resultBo = new ResultBo();
 		
 		int id = Integer.parseInt((String) request.getParameter("class_id"));
 		String name = (String) request.getParameter("name");
-		ArrayList<User> listUser = userBo.getTraineeOfClass(id);
+		ArrayList<Accessment> listUser = userBo.getTraineeClass(id);
+		ArrayList<Accessment> listResult = userBo.getResult(id);
 		
 		boolean clas = userBo.compareDuration(id);
 		int assessment ;
@@ -54,11 +57,16 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		    assessment =0;
 		}
 		int check  = 0;
-		if ( request.getParameter("check") != null) {
+		if ( request.getParameter("check") !=null) {
+			
 			check = Integer.parseInt(request.getParameter("check"));
-		}
+			request.setAttribute("listResult", listResult);
+			
+		} else {
+			
+			request.setAttribute("listUser", listUser);
+			}
 		
-		request.setAttribute("listUser", listUser);
 		request.setAttribute("id", String.valueOf(id));
 		request.setAttribute("name", name);	
 		request.setAttribute("assessment", String.valueOf(assessment));
@@ -82,19 +90,19 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		int resultOfTrainee = 0;
 		
 		int classId = Integer.parseInt(request.getParameter("class_id"));
-		ArrayList<User> trainees = userBo.getTraineeOfClass(classId);
+		ArrayList<Accessment> trainees = userBo.getTraineeClass(classId);
 		request.setAttribute("class_id", classId);
 		String name= classBo.getNameClass(classId);
 		System.out.println(name);
 		request.setAttribute("name", name);	
 		
-		for (User trainee : trainees) {
-			String nametraineeIdRadio =  "trainee" + String.valueOf(trainee.getUserId());
+		for (Accessment trainee : trainees) {
+			String nametraineeIdRadio =  "trainee" + String.valueOf(trainee.getUserid());
 			if (request.getParameter( nametraineeIdRadio ) != null){
 				resultOfTrainee = Integer.parseInt((String) request.getParameter(nametraineeIdRadio));
 				
 				System.out.println(resultOfTrainee);
-				Results result = new Results(0, classId, trainee.getUserId(), resultOfTrainee);
+				Results result = new Results(0, classId, trainee.getUserid(), resultOfTrainee);
 				if ( resultBo.updateResult(result) > 0) {
 					resultInsert++;
 				}	
@@ -104,7 +112,6 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		}
 		if(resultInsert == trainees.size()){
 			check=1;
-			
 			response.sendRedirect(request.getContextPath() + "/trainer/list?class_id=" + classId + "&name=" + name + "&check=" + check);
 			return;
 		} else {

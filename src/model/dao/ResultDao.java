@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Results;
+import model.bean.Schedule;
 
 
 public class ResultDao {
@@ -38,5 +40,26 @@ public class ResultDao {
 		return kq;
 		
 	}	
+	public ArrayList<Results> getResult(int classid){
+		conn=ConnectDBLibrary.getConnection();
+		ArrayList<Results> result = new ArrayList<>();
+		String sql = "SELECT * from results WHERE class_id=?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, classid);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Results list = new Results();
+				list.setStatus(rs.getInt("status"));
+				result.add(list);
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

@@ -14,6 +14,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.fileLibrary;
 import model.bean.Ability;
+import model.bean.Accessment;
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
@@ -232,6 +233,14 @@ public class UserBo {
 	public ArrayList<User> getTrainees(int traineeRoleId) {
 		userDao = new UserDao();
 		return userDao.getTrainees(traineeRoleId);
+	}
+	public ArrayList<Accessment> getResult(int class_id){
+		userDao = new UserDao();
+		return userDao.getResult(class_id);
+	}
+	public ArrayList<Accessment> getTraineeClass(int class_id){
+		userDao = new UserDao();
+		return userDao.getTraineeClass(class_id);
 	}
 }
 

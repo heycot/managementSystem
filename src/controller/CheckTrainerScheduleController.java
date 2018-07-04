@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,18 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.Schedule;
+import model.bean.User;
 import model.bo.UserBo;
+
+
 @WebServlet("/trainer/schedule")
 public class CheckTrainerScheduleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserBo userBo;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CheckTrainerScheduleController() {
         super();
-        userBo = new UserBo();
         // TODO Auto-generated constructor stub
     }
 
@@ -31,10 +33,16 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		UserBo userBo = new UserBo();
 		String user_id = (String) request.getParameter("user_id");
 		int id = Integer.parseInt(user_id);
+		System.out.println(user_id);
+		
 		ArrayList<Schedule> schedule = userBo.getTrainerSchedule(id);
 		request.setAttribute("schedule", schedule);
+		User ur = userBo.getTrainerById(id);
+		request.setAttribute("ur", ur);
+		
 		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
 		rd.forward(request, response);
 	}
