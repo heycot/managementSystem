@@ -47,40 +47,50 @@ public class ListNotificationAjax extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int countrows =0 ;		
 		if (listMsg.size()!=0) {
-			out.print("<li><strong>Notification"+"   ("+listMsg.size()+")</strong></li> ");
+			out.print("<li><strong  style='color: #2e9ade;padding:5px 10px 5px;'>Notification"+"   ("+listMsg.size()+")</strong></li> ");
 			
 		
 			for (MyMessages myMessages: listMsg){
 				countrows++;
-				if (countrows==7) {
+				if (countrows==5) {
 					break;
 				}
+				String content = myMessages.getNotiContent().substring(0, 80);
+				content+="...";
+				
 				
 				if(myMessages.getStatus()==0){
-					out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><span class='image'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' /></span>"
-							+ "<span>"
-							
-									+ "</span>"
-									+ "<span class='message'>"
-											+ myMessages.getNotiContent()
-											+ " </span></a></li>");
+					out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none'>"
+									+ "<span style='font-size:15px; font-weight:bold; color:#343a40;' class='message'>"
+									+ myMessages.getTitle()
+									+ " </span>"
+									+ "<span style='line-height:20px;' class='message'>"
+											+ content
+											+ " </span>"
+											+"<button style='margin-top:5px; float:right;' type='button' name='view' class = 'btn btn-primary view' id='"+myMessages.getMsgId()+"'>Detail</button>" 
+
+											+ "</a>"
+											+ "</li>");
 					}
 				else {
-					out.print("<li><a style='text-decoration:none' href='/managementSystem/trainee/detailnoti?msg_id="+myMessages.getMsgId()+"'><img src='<%="+ request.getContextPath()+"%>/templates/images/img.jpg' alt='' />"
-							+ "<span>"
-							
-									+ "</span>"
-									+ "<span class='message'>"
-											+ myMessages.getNotiContent()
-											+ " </span></a></li>");
+					out.print("<li><a style='text-decoration:none' >"
+									+ "<span style='font-size:15px; font-weight:bold; color:#343a40;' class='message'>"
+									+ myMessages.getTitle()
+									+ " </span>"
+									+ "<span style='line-height:20px;' class='message'>"
+											+ content
+											+ " </span>"
+											+"<button style='margin-top:5px;float:right;'type='button' name='view' class = 'btn btn-primary view' id='"+myMessages.getMsgId()+"'>Detail</button>" 
+
+											+ "</a></li>");
 				}
 				
 			}
 			out.println(" <li>"
 					+ "<div class='text-center'>"
 							+ "<a href='/managementSystem/trainee/listDetailNoti'>"
-							+ "<strong style='font-size: 15px;'>See All Notification</strong>"
-							+ " <i class='fa fa-angle-right'></i>"
+							+ "<strong style='font-size: 15px; color:#2e9ade; '>See All Notification</strong>"
+							+ " <i style='color:#2e9ade' class='fa fa-angle-right'></i>"
 									+ "</a>"
 									+ "</div></li>");
 		
@@ -92,4 +102,3 @@ public class ListNotificationAjax extends HttpServlet {
 
 }
 }
-

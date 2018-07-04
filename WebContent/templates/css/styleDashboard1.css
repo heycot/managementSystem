@@ -81,7 +81,7 @@ a.user-profile {
     border: 1px solid #D9DEE4;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width: 400px;
+    width: 550px;
 }
 
 
@@ -96,10 +96,10 @@ a.user-profile {
 
 ul.msg_list li {
     background: #f7f7f7;
-    padding: 5px;
+    padding: 10px 5px 10px;
     display: -ms-flexbox;
     display: flex;
-    margin: 6px 6px 0;
+    margin: 6px 6px 6px;
     width: 96% !important
 
 }
@@ -116,19 +116,12 @@ ul.msg_list li a:hover {
     color: rgb(21, 87, 36);
 }
 
-ul.msg_list li a .time {
-    font-size: 10px;
-    font-style: italic;
-    font-weight: bold;
-    position: absolute;
-    right: 35px;
-}
 ul.msg_list li a .message {
     display: block !important;
     display: block !important;
     font-size: 13px;
-    margin-top:30px;
     height: 20px;
+    line-height:12px;
     overflow: hidden;
 }
 .dropdown-menu.msg_list span {
@@ -137,4 +130,12 @@ ul.msg_list li a .message {
 
 i{
 	margin-top: 10px;
+}
+.btn-primary{
+	color: white;
+	background: #2e9ade;
+	font-size: 12px;
+	width:70px;
+	border:1px solid white;
+	border-radius: 5px;
 }

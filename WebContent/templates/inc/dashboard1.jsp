@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,20 +25,15 @@
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
- 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
- 	  <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
-  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  	 <script  type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js" ></script>
 	 
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}
-
     .label-info {background-color: #5bc0de;}
     </style>
 
@@ -134,34 +128,6 @@
         </li>
        
         </ul>
-        <script type="text/javascript">
-      jQuery(document).ready(function($){
-        var url = window.location.href;
-          $(".nav-item a").each(function() {
-              if(url == (this.href)) {
-                  $(this).closest("li").addClass("active");
-              }
-          });
-      });
-     </script>
-     <script type="text/javascript">
-   $(document).ready(function()
-   { 
-      //khi nút submit được click
-    $('#btt').click(function(){
-    	
-        //Sử dụng phương thức Ajax.
-        $.ajax({
-              type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
-              url : '/managementSystem/ListNotificationAjax', //gửi dữ liệu sang trang data.php
-              success : function(result)  // Hàm thực thi khi nhận dữ liệu được từ server
-                        { 
-            				$('#result1').html(result);
-                        }
-              });
-        });
-    });
-</script>
      
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
@@ -176,7 +142,7 @@
 		  <li role="presentation" class="dropdown">
 		  	<a  class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                    <i id="btt" class="iconMail fa fa-envelope-o"></i>
-                    <span class="badge bg-green">?</span>
+                    <span style='background: #2e9ade;' class="badge bg-green">?</span>
                   </a>
                   
                   
@@ -202,5 +168,75 @@
         
        </div>
        </nav>
+       <div id="post_modal" class ="modal fade">
+	<div class = "modal-dialog">
+		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
+		</div>
+		
+	</div>
+</div>
 </body>
+  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script type="text/javascript">
+      jQuery(document).ready(function($){
+        var url = window.location.href;
+          $(".nav-item a").each(function() {
+              if(url == (this.href)) {
+                  $(this).closest("li").addClass("active");
+              }
+          });
+      });
+     </script>
+     <script type="text/javascript">
+   $(document).ready(function(){ 
+      //khi nút submit được click
+    $('#btt').click(function(){
+    	
+        //Sử dụng phương thức Ajax.
+        $.ajax({
+              type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
+              url : '/managementSystem/ListNotificationAjax', //gửi dữ liệu sang trang data.php
+              success : function(result)  // Hàm thực thi khi nhận dữ liệu được từ server
+                        { 
+            				$('#result1').html(result);
+                        }
+              });
+        });
+	   $(document).on('click','.view',function(){
+			 var post_id = $(this).attr("id");
+			 fetch_post_data(post_id);
+		});
+		function fetch_post_data(post_id)
+		{	
+			
+			$.ajax({
+				url: '/managementSystem/ShowDetailNotiAjax?post_id=' + post_id,
+				type : 'POST',
+				//data:{post_id:post_id},
+				success:function(data)
+				{
+					$('#post_modal').modal('show');
+					$('#post_detail').html(data);					 
+				}
+			});
+		}
+		
+	});
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

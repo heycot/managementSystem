@@ -1,3 +1,16 @@
-# Compiled class file
-*.class
-*.classpath
+# Binaries
+ *.7z 
+*.dmg 
+*.gz 
+*.iso 
+*.jar 
+*.rar 
+*.tar 
+*.zip 
+*.war 
+*.ear 
+*.sar 
+*.class 
+*.classpath 
+*.project 
+build/

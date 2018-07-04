@@ -12,7 +12,7 @@
 <div class="content-wrapper py-3">
   <div class="container-fluid">
     <div class="card mb-3">
-        <div class="card-header">
+        <div class=" alert alert-primary">
           <i class="fa fa-table"></i>
           Result of Trainee
         </div>

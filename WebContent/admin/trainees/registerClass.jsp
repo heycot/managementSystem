@@ -1,8 +1,11 @@
+<%@page import="model.bean.ClassWaiting"%>
 <%@page import="model.bean.Schedule"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard1.jsp" %>
+<script src="jquery.twbsPagination.min.js"></script>
+<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleRegisterClass.css">
 <style>
 	#add-post .required:after {
@@ -13,13 +16,55 @@
 <div class="content-wrapper py-3">
   <div class="container-fluid">
         <div class="card mb-3 divForm">
-       		<div class="alert alert-success">
+       		<div class="alert alert-primary">
 				<strong>Register Class</strong>
 			</div>
+			<%
+			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("listClassOpening");
+			  int tong = listClassOpening.size();
+			%>
+			<script type="text/javascript">
+            $(function () {
+                var pageSize = 10; // Hiển thị 6 sản phẩm trên 1 trang
+                showPage = function (page) {
+                    $(".contentPage").hide();
+                    $(".contentPage").each(function (n) {
+                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+                            $(this).show();
+                    });
+                }
+                showPage(1);
+                ///** Cần truyền giá trị vào đây **///
+                var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
+                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+                var iTotalPages = Math.ceil(totalRows / pageSize);
+
+                var obj = $('#pagination').twbsPagination({
+                    totalPages: iTotalPages,
+                    visiblePages: btnPage,
+                    onPageClick: function (event, page) {
+                        console.info(page);
+                        showPage(page);
+                    }
+                });
+                console.info(obj.data());
+            });
+        </script>
+         <style>
+            ///** CSS căn id pagination ra giữa màn hình **///
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
 			  
 		  	<div class="form">
 		  		<table>
-				  <tr>
+				  <tr >
 				    <th>No.</th>
 				    <th>Name</th>
 				    <th>Time</th>
@@ -29,97 +74,54 @@
 				    <th>Option</th>
 				  </tr>
 				  <%
-				  ArrayList<Schedule> listClassOpening = (ArrayList<Schedule>)request.getAttribute("listClassOpening");
 				  int count=0;
-				  for (Schedule classOpening : listClassOpening) {
+				  for (ClassWaiting classOpening : listClassOpening) {
 					  count++;
 				  
 				  %>
-				   <tr>
+				   <tr class="contentPage" >
 				    <td class="no"><%= count %></td>
-				    <td class="name"><%= classOpening.getNameclass() %></td>
+				    <td class="name"><%= classOpening.getClassName() %></td>
 				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
 				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
-				    <td class="duration"><%= classOpening.getCountLession() %></td>
-				    <td class="trainer"><%= classOpening.getUsername() %></td>
+				    <td class="duration"><%= classOpening.getDuration()%></td>
+				    <td class="trainer"><%= classOpening.getTrainerName() %></td>
+				    
 				    
 				    <%
 				    
 				    
 				    %>
-				    <form action="/managementSystem/ListClassOpening" method="POST">
 				    <td class="btnRegister">
-				    	<input type="submit"  class="btn" value="Register" >
-				    	<input type="button" class="btn btn1" value="Cancel">
+				    
+				    <%
+				    	if (classOpening.getStatus()==0){
+				    		
+				   %>
+				    		<a href="/managementSystem/SetStatusregisterClassController?user_id=4&class_id=<%= classOpening.getClassId() %>"    class="btn"  onclick="return confirm('Are you sure you want to register this class?')">Register</a>
+				    <%
+				    }
+				    	else {
+				    		%>
+				    	<a href="/managementSystem/SetStatusregisterClassController?user_id=4&class_id=<%= classOpening.getClassId() %>"  class="btn btn1" onclick="return confirm('Are you sure you want to cancel this class?')" >Cancel</a>	
+				    <%		
+				    	}
+				    %>
+				    	
+				    	
 				    </td>
-				    </form>
 				    
 				  </tr>
 				  <%
 					  
 				  }
 				  %>
-				  <tr>
-				    <td class="no">1</td>
-				    <td class="name">English session</td>
-				    <td class="time">1:30-2h30</td>
-				    <td class="date">Mon, Wed, Fri</td>
-				    <td class="duration">30</td>
-				    <td class="trainer">Huong (Hetty) T. Mai</td>
-				    <td class="btnRegister">
-				    	<input type="button" class="btn" value="Register">
-				    	<input type="button" class="btn btn1" value="Cancel">
-				    </td>
-				  </tr>
-				  <tr>
-				    <td class="no">2</td>
-				    <td class="name">English session</td>
-				    <td class="time">1:30-2h30</td>
-				    <td class="date">Mon, Wed, Fri</td>
-				    <td class="duration">30</td>
-				    <td class="trainer">Huong (Hetty) T. Mai</td>
-				    <td class="btnRegister">
-				    	<input type="button" class="btn" value="Register">
-				    	<input type="button" class="btn btn1" value="Cancel">
-				    </td>
-				  </tr>
-				  <tr>
-				    <td class="no">3</td>
-				    <td class="name">English session </td>
-				    <td class="time">1:30-2h30</td>
-				    <td class="date">Mon, Wed, Fri</td>
-				    <td class="duration">30</td>
-				    <td class="trainer">Huong (Hetty) T. Mai</td>
-				    <td class="btnRegister">
-				    	<input type="button" class="btn" value="Register">
-				    	<input type="button" class="btn btn1" value="Cancel">
-				    </td>
-				  </tr>
-				  <tr>
-				    <td class="no">4</td>
-				    <td class="name">English session</td>
-				    <td class="time">1:30-2h30</td>
-				    <td class="date">Mon, Wed, Fri</td>
-				    <td class="duration">30</td>
-				    <td class="trainer">Huong (Hetty) T. Mai</td>
-				    <td class="btnRegister">
-				    	<input type="button" class="btn" value="Register">
-				    	<input type="button" class="btn btn1" value="Cancel">
-				    </td>
-				  </tr>
-				  <tr>
-				    <td class="no">5</td>
-				    <td class="name">English session</td>
-				    <td class="time">1:30-2h30</td>
-				    <td class="date">Mon, Wed, Fri</td>
-				    <td class="duration">30</td>
-				    <td class="trainer">Huong (Hetty) T. Mai</td>
-				    <td class="btnRegister">
-				    	<input type="button" class="btn" value="Register">
-				    	<input type="button" class="btn btn1" value="Cancel">
-				    </td>
-				  </tr>
+				 
 				</table>
+				<div id="pager">
+					<ul id="pagination" class="pagination-sm"></ul>
+				</div>
+				</form>
 		  	</div>
    		</div> 
      
