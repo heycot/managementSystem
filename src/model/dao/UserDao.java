@@ -16,11 +16,8 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
-<<<<<<< HEAD
 import model.bean.Accessment;
-=======
 import model.bean.ClassWaiting;
->>>>>>> ea777cea2f79dcc09cea25f3a484ed7df8d58b31
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
