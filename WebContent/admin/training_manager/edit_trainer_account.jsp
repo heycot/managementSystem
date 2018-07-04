@@ -18,14 +18,23 @@
 		}
 	</style>
 <%@include file="/templates/inc/dashboard1.jsp"%>
-<div class="content-wrapper py-3">
-	<div class="container-fluid">
-		<div class="card mb-3">
-			<div class="card-header" style="background-color: rgb(212, 237, 218);">
-				<h2 style="text-align: center; color: green;">Edit trainer's
-					account</h2>
-			
-			</div>
+
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+}
+
+%>
+<div class="<%= classNameContent%>">
+  <div class="<%= classNameContainer%>">
+    <div  class="card mb-3">
+             <div class="alert alert-primary" > 
+			    <strong>Edit trainer </strong>
+			  </div>
+        <div>
 			<%
 				User trainer = new User();
 				List<Ability> abilities= new ArrayList<>();

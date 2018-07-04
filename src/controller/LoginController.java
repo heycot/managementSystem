@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import libralies.MD5Library;
+import libralies.checkLogin;
 import model.bean.User;
 import model.bo.UserBo;
 
@@ -17,27 +18,61 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
-		rd.forward(request, response);
+		if(checkLogin.checkLogin(request, response)){
+			HttpSession session= request.getSession();
+			User user= (User) session.getAttribute("user");
+			
+			if(checkLogin.checkUserCurrent(request, response) == 1){
+				response.sendRedirect(request.getContextPath()+"/trainer/edit?id="+user.getUserId());	
+			}
+			if(checkLogin.checkUserCurrent(request, response) == 2){
+				response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());	
+			}
+			if(checkLogin.checkUserCurrent(request, response) == 3){
+				response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+			}
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBo userBo= new UserBo();
+		HttpSession session = request.getSession();
+
 		String email =  request.getParameter("email").trim();
 		User user= userBo.getUserByEmail(email);
-		
-		String pass =  MD5Library.md5(request.getParameter("password"));	
-		
-		if(pass.equals(user.getPassword())) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			response.sendRedirect(request.getContextPath()+"/trainer/index");
+		if(user ==  null){
+			session.setAttribute("Error", "Email is incorrect!");
+			response.sendRedirect(request.getContextPath()+"/login");
 		}
 		else{
-			response.sendRedirect(request.getContextPath()+"/login");
+			String pass =  MD5Library.md5(request.getParameter("password"));	
+			
+			if(pass.equals(user.getPassword())) {	
+				session.setAttribute("user", user);
+				if(user.getRoleId()==1){
+					response.sendRedirect(request.getContextPath()+"/trainer/edit?id="+user.getUserId());	
+				}
+				if(user.getRoleId()==2){
+					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());	
+				}
+				if(user.getRoleId()==3){
+					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+				}
+				
+			}
+			else{
+				session.setAttribute("Error", "Password is incorrect!");
+				response.sendRedirect(request.getContextPath()+"/login");
+				
+			}
 			
 		}
+		
+		
 	}
 
 }

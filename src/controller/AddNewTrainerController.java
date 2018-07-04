@@ -9,9 +9,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import libralies.FormatDateLibrary;
 import libralies.MD5Library;
+import libralies.checkLogin;
 import model.bean.Ability;
 import model.bean.User;
 import model.bo.UserBo;
@@ -21,8 +23,19 @@ public class AddNewTrainerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
+		if(checkLogin.checkLogin(request, response) == true ){
+			if (checkLogin.checkUserCurrent(request, response) == 3){
+				request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
+				
+			}else{
+				HttpSession session = request.getSession();
+				User user = (User) session.getAttribute("user");
+				response.sendRedirect(request.getContextPath() + "/trainee/edit?id=" + user.getUserId() );
+				return;
+			}
+		} else {
+			return;
+		}
 		
 	}
 	

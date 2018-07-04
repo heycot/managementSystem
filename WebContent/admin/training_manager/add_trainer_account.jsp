@@ -35,17 +35,31 @@
 							<div>
 								<div class="form-group" class="col-sm-2" style="float: left">
 								<img id="blah"
-									src="<%=request.getContextPath()%>/files/default.jpg" height=200"/>
+									src="<%=request.getContextPath()%>/files/default.jpg"/>
 							</div>
 							<br><br><br>
-							<div class="form-group" class="col-sm-4" style="float: left">
-								<label class="required"><strong>Avatar:</strong> <span
-									style="color: red"> *</span><em style="color: red">(jpg,
-										png, gif)</em> </label> <input class="form-control" id="image" type="file"
-									name="avatar" onchange="readURL(this);" />
-							</div>
-							<div style="clear: both"></div>
-							
+								<div class="form-group" class="col-sm-4" style="float: left">
+									<label class="required"><strong>Avatar:</strong> <span
+										style="color: red"> *</span><em style="color: red">(jpg,
+											png, gif)</em> </label> <input class="form-control" id="image" type="file"
+										name="avatar" onchange="readURL(this);" />
+								</div>
+								<script type="text/javascript">
+									function readURL(input) {
+										if (input.files && input.files[0]) {
+											var reader = new FileReader();
+
+											reader.onload = function(e) {
+												$('#blah').attr('src',
+														e.target.result).width(
+														300);
+											};
+											reader.readAsDataURL(input.files[0]);
+										}
+									}
+								</script>
+
+								<div style="clear: both"></div>
 							</div>
 				
 							<div class="form-group">
