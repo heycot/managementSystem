@@ -44,8 +44,12 @@ public class UserBo {
 	
 	public User getTrainerById(int trainerId){
 		userDao= new UserDao();
-		User trainer= userDao.getUserByID(trainerId);
-		return trainer;
+		return userDao.getUserByID(trainerId);
+		
+	}
+	public User getUserByEmail(String email){
+		userDao= new UserDao();
+		return userDao.getUserByEmail(email);
 	}
 	
 	public int getLastUserId(){
@@ -55,8 +59,7 @@ public class UserBo {
 	
 	public List<User> getUsersByRoleId(int roleId){
 		userDao= new UserDao();
-		List<User> users= userDao.getUsersByRoleId(roleId);
-		return users;
+		return userDao.getUsersByRoleId(roleId);
 	}
 	
 	public List<User> getUsers(){

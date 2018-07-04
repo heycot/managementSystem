@@ -9,9 +9,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import libralies.FormatDateLibrary;
 import libralies.MD5Library;
+import libralies.checkLogin;
 import model.bean.Ability;
 import model.bean.User;
 import model.bo.UserBo;
@@ -21,8 +23,19 @@ public class AddNewTrainerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
+		if(checkLogin.checkLogin(request, response) == true ){
+			if (checkLogin.checkUserCurrent(request, response) == 3){
+				request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
+				
+			}else{
+				HttpSession session = request.getSession();
+				User user = (User) session.getAttribute("user");
+				response.sendRedirect(request.getContextPath() + "/trainee/edit?id=" + user.getUserId() );
+				return;
+			}
+		} else {
+			return;
+		}
 		
 	}
 	
@@ -34,13 +47,14 @@ public class AddNewTrainerController extends HttpServlet {
 		
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 		
-		String email= request.getParameter("email");
-		String userName= request.getParameter("username");
-		String password= MD5Library.md5(request.getParameter("password"));
-		String fullName= request.getParameter("fullname");
+		String email= request.getParameter("email").trim();
+		String userName= request.getParameter("username").trim();
+		String password= MD5Library.md5(request.getParameter("password").trim());
+		String confirmPass= MD5Library.md5(request.getParameter("confirmpass").trim());
+		String fullName= request.getParameter("fullname").trim();
 		int gender= Integer.parseInt(request.getParameter("gender"));
-		String address= request.getParameter("address");
-		String phone= request.getParameter("phone");
+		String address= request.getParameter("address").trim();
+		String phone= request.getParameter("phone").trim();
 		String avatar= request.getParameter("avatar");
 		Date dateOfBirth= FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth"));
 		Date createdDate= FormatDateLibrary.ConvertDateUntilToDateSQL(new java.util.Date());
@@ -49,10 +63,13 @@ public class AddNewTrainerController extends HttpServlet {
 		
 		User trainer = new User(0, userName, password, fullName, dateOfBirth,
 				email, createdDate, 1, gender, address, phone, "", avatar);
-		
 		Ability ability= new Ability(0,userBo.getLastUserId()+1, skillId, experience, 0);
 		
-		if (userBo.checkEmailAlreadyExists(email)) {
+		if(!password.equals(confirmPass)){
+			request.setAttribute("error", "Password is not matching.");
+			request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
+		}
+		else if(userBo.checkEmailAlreadyExists(email)) {
 			request.setAttribute("error", " This email is already exists in system!");
 			request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
 		}
@@ -69,11 +86,11 @@ public class AddNewTrainerController extends HttpServlet {
 			}else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
 				trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));
 			}
-			
+		
 			if (userBo.addTrainer(trainer, ability) > 0) {
 				response.sendRedirect(request.getContextPath() + "/trainer/index");
 			} else {
-				request.setAttribute("error", " Can't add trainee. please try again later");
+				request.setAttribute("error", " Can't add trainer. please try again later");
 				request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
 			}
 

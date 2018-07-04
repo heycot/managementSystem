@@ -26,4 +26,17 @@ public class checkLogin {
 		
 		return true;
 	}
+	
+	public static int checkUserCurrent(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if(user != null ) {
+			return user.getRoleId();
+		}
+		else{
+			return 0;
+		}
+	}
+	
+	
 }
