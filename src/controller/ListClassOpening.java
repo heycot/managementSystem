@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.ws.client.SenderException;
 
+import libralies.CurrentUser;
 import model.bean.ClassWaiting;
 import model.bean.Schedule;
 import model.bo.UserBo;
@@ -38,7 +39,7 @@ public class ListClassOpening extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		int trainee_id = Integer.valueOf((String) request.getParameter("user_id"));				
 		ArrayList<ClassWaiting>  listClassOpening = new ArrayList<>();
 		listClassOpening = userBo.getClassWaitingOpen(trainee_id);

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import libralies.CurrentUser;
 import model.bean.Courses;
-import model.bean.Majors;
+import model.bean.User;
 import model.bo.CourseBo;
 import model.bo.MajorBo;
 
@@ -26,16 +26,26 @@ public class AddCourseController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MajorBo majorBo = new MajorBo();
-		
-		request.setAttribute("majors", majorBo.getMajors());
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/course/add.jsp");
-		rd.forward(request, response);
+		if (CurrentUser.checkLogin(request, response)) {
+			User user = CurrentUser.getUserCurrent(request, response);
+			if (user.getRoleId() == 3) {
+				MajorBo majorBo = new MajorBo();
+				
+				request.setAttribute("majors", majorBo.getMajors());
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/course/add.jsp");
+				rd.forward(request, response);
+				
+			}  else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
+			}
+		} else {
+			return;
+		}
+				
 	}
 
 	/**
@@ -46,7 +56,8 @@ public class AddCourseController extends HttpServlet {
 			CourseBo courseBo = new CourseBo();
 			String message = "";
 			
-			Courses course = new Courses(0, Integer.parseInt(request.getParameter("major")), request.getParameter("name"), Integer.parseInt(request.getParameter("duration")), 1, Integer.parseInt(request.getParameter("kindOfCourse")) );
+			Courses course = new Courses(0, Integer.parseInt(request.getParameter("major").trim()), request.getParameter("name").trim(), Integer.parseInt(request.getParameter("duration")), 1, 
+										Integer.parseInt(request.getParameter("kindOfCourse")) );
 		
 			if ( courseBo.checkValidateCourse(request.getParameter("name"), request.getParameter("major"), request.getParameter("duration"), request.getParameter("kindOfCourse")) == false) {
 
@@ -74,7 +85,8 @@ public class AddCourseController extends HttpServlet {
 		
 		} catch( Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("exception add new course");
+			response.sendRedirect(request.getContextPath() + "/badrequest");
+			return;
 		}
 	}
 	

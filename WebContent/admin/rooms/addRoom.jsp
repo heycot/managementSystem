@@ -6,7 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp"%>
+<%@include file="/templates/inc/dashboard.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,12 +17,11 @@
 <div class="content-wrapper py-3">
 	<div class="container-fluid">
 		<div class="card mb-3">
-		<h3>
-		</h3>
-			<div class="card-header" style="background-color: rgb(212, 237, 218)";>
-				<h2 style="text-align: center; color: green;">Add Rooms</h2>
-			</div>
-			<div>
+        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-book" ></i>
+	    	<strong>Add new room</strong>
+	  	</div>
+	  	</div>
 			  	<%
 				if(request.getAttribute("Error") != null){
 				%>

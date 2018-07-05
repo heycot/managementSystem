@@ -238,7 +238,7 @@ public class UserBo {
 		userDao = new UserDao();
 		return userDao.getTrainees(traineeRoleId);
 	}
-<<<<<<< HEAD
+
 	public ArrayList<Accessment> getResult(int class_id){
 		userDao = new UserDao();
 		return userDao.getResult(class_id);
@@ -246,7 +246,7 @@ public class UserBo {
 	public ArrayList<Accessment> getTraineeClass(int class_id){
 		userDao = new UserDao();
 		return userDao.getTraineeClass(class_id);
-=======
+	}
 	
 	public ArrayList<ClassWaiting> getClassWaitingOpen(int user_id){
 		userDao = new UserDao();
@@ -264,7 +264,6 @@ public class UserBo {
 	public int registedClass(int user_id, int class_id){
 		userDao = new UserDao();
 		return userDao.registedClass(user_id, class_id);
->>>>>>> ea777cea2f79dcc09cea25f3a484ed7df8d58b31
 	}
 }
 

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import libralies.checkLogin;
+import libralies.CurrentUser;
 
 
 public class IndexClassesController extends HttpServlet {
@@ -21,7 +21,7 @@ public class IndexClassesController extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(checkLogin.checkLogin(request, response) == true) {
+		if(CurrentUser.checkLogin(request, response) == true) {
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/classes/index.jsp");
 			rd.forward(request, response);
 		}else {

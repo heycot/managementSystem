@@ -6,14 +6,28 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>  
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+<%@include file="/templates/inc/dashboard.jsp" %>  
+
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class=" alert alert-primary">
-          <i class="fa fa-table"></i>
-          List Trainee Class's
-        </div>
+        <div class=" alert alert-primary"style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-book" ></i>
+          	<strong>Trainees</strong>
+			  </div>
+			  
+			  <div>
         <script type="text/javascript">
             $(document).ready(function(){
                 $(document).on('change', '.checkall, .checkitem', function(){

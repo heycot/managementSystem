@@ -6,18 +6,29 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class="alert alert-primary">
-	    	<strong>LIST COURSE IN SYSTEM </strong>
+        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-book" ></i>
+	    	<strong>Courses</strong>
+	  	</div>
 	  	</div>
 	  <%
 	  String msg = "";
@@ -149,17 +160,25 @@
         <div class="card-body">
           <div class="table-responsive">
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
-                <input style="display: none; margin-left: 10px; margin-bottom: 5px; color: red" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete all">
+	            <div style="margin-left: -15px; margin-bottom: 5px;">
+	            	<div style="float: left">
+	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/course/add" role="button">Add new course</a>
+	        		</div>
+	            	<div style="float: left; margin-left: 15px;" >
+	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
+                	</div>
+                	<div style="clear: both"></div>
+	        	</div>
                 <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th>Name</th>
-                      <th>Major</th>
-                      <th>Duration</th>
-                      <th>Default</th>
-                      <th>Status</th>
-                      <th>Service</th>
+                      <th  style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th  style="text-align: center; font-size: medium;">Name</th>
+                      <th style="text-align: center; font-size: medium;"> Major</th>
+                      <th style="text-align: center; font-size: medium;">Duration</th>
+                      <th style="text-align: center; font-size: medium;">Default</th>
+                      <th style="text-align: center; font-size: medium;">Status</th>
+                      <th style="text-align: center; font-size: medium;">Action</th>
                     </tr>
                   </thead>
                   <tbody >
@@ -167,10 +186,10 @@
                   	for(Courses course : courses){
                   %>	
                   	<tr class="contentPage">
-                      	<td> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
+                      	<td  style="text-align: center;"> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
                      	<td> <a href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><%= course.getName() %></a> </td>
 	                    <td><%= course.getMajorName() %></td>
-	                    <td><%= course.getDuration()%></td>
+	                    <td style="text-align: center;"><%= course.getDuration()%></td>
 	                    <%
 	                    String kind = "";
 	                    if (course.getKind_of_course() == 1) {
@@ -179,21 +198,21 @@
 	                    	kind = "False";
 	                    }
 	                    %>
-	                    <td><%= kind %></td>
+	                    <td style="text-align: center;"><%= kind %></td>
 	                    <%
 	                    if (course.getStatus() == 1){
 	                    	%>	
-		                    <td id="status<%= course.getCourseId()%>"><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id="status<%= course.getCourseId()%>"  style='text-align: center;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
 		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= course.getCourseId()%>"><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="status<%= course.getCourseId()%>" style='text-align: center;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
 		                    <%
 	                    }
 	                    %>
-                    	<td>
-                        <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit"></i></a>
-                        <a style="margin-left: 20px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash"></i></a>
+                    	<td  style="text-align: center;">
+                        <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:24px;color:red"></i></a>
                      	</td>
                     </tr>
                   <%	

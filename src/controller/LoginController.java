@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import libralies.MD5Library;
-import libralies.checkLogin;
+import libralies.CurrentUser;
 import model.bean.User;
 import model.bo.UserBo;
 
@@ -18,7 +18,10 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(checkLogin.checkLogin(request, response)){
+		//if(checkLogin.checkLogin(request, response) == false){
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
+			rd.forward(request, response);
+		/*}else {
 			HttpSession session= request.getSession();
 			User user= (User) session.getAttribute("user");
 			
@@ -31,10 +34,7 @@ public class LoginController extends HttpServlet {
 			if(checkLogin.checkUserCurrent(request, response) == 3){
 				response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
 			}
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
-			rd.forward(request, response);
-		}
+		} */
 	}
 
 	
@@ -50,6 +50,7 @@ public class LoginController extends HttpServlet {
 		}
 		else{
 			String pass =  MD5Library.md5(request.getParameter("password"));	
+			System.out.println(pass);
 			
 			if(pass.equals(user.getPassword())) {	
 				session.setAttribute("user", user);

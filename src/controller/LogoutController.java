@@ -1,30 +1,23 @@
 package controller;
 
 import java.io.IOException;
-
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import libralies.CurrentUser;
-import model.bean.Schedule;
 import model.bean.User;
-import model.bo.UserBo;
 
 
-@WebServlet("/trainer/schedule")
-public class CheckTrainerScheduleController extends HttpServlet {
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckTrainerScheduleController() {
+    public LogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,25 +26,14 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (CurrentUser.checkLogin(request, response)) {
-			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 1) {
-				UserBo userBo = new UserBo();
-				String user_id = (String) request.getParameter("user_id");
-				int id = Integer.parseInt(user_id);
-				System.out.println(user_id);
-				
-				ArrayList<Schedule> schedule = userBo.getTrainerSchedule(id);
-				request.setAttribute("schedule", schedule);
-				User ur = userBo.getTrainerById(id);
-				request.setAttribute("ur", ur);
-				
-				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
-				rd.forward(request, response);
-			} else {
-				
-			}
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if( user == null) {
+			response.sendRedirect(request.getContextPath() + "/login");
+			return;
 		} else {
+			session.removeAttribute(user.getUsername());
+			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
 	}

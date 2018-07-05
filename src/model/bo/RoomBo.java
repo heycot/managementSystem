@@ -8,12 +8,23 @@ import model.dao.RoomDao;
 
 public class RoomBo {
 	
-	RoomDao roomDao;
+RoomDao roomDao;
 	
 	public void addRooms(Rooms rooms){
 		RoomDao roomDao = new RoomDao();
 		
 		roomDao.addRoom(rooms);
+	}
+	
+	public void editRooms(Rooms rooms){
+		RoomDao roomDao = new RoomDao();
+		
+		roomDao.editRoom(rooms);
+	}
+	
+	public Rooms getOneRoom(int roomId){
+		roomDao = new RoomDao();
+		return roomDao.getOneRoom(roomId);
 	}
 	
 	public boolean checkRoomnameAlreadyExistsEdit(String name) {
@@ -27,8 +38,8 @@ public class RoomBo {
 		}
 		return false;
 	}
-	public ArrayList<Rooms> getRoomList(){
+	public ArrayList<Rooms> getRooms(){
 		roomDao = new RoomDao();
-		return roomDao.getRoomList();
+		return roomDao.getRooms();
 	}
 }

@@ -3,19 +3,31 @@
 <%@page import ="model.bean.ScheduleOfTrainee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class=" alert alert-primary">
-          <i class="fa fa-table"></i>
-          Result of Trainee
-        </div>
+        <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Result of Trainee</strong>
+			  </div>
+		<div>
            <%
                 
                   	ArrayList<Results> listResults = (ArrayList<Results>) request.getAttribute("listResults");

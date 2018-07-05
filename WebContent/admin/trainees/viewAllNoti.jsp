@@ -4,20 +4,32 @@
 <%@page import="libralies.FormatDateLibrary"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>
+<%@include file="/templates/inc/dashboard.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleAllNoti.css">
 <style>
 	#add-post .required:after {
 	content:"*";color:red;
 	}
 </style>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3 divNoti">
-       		<div class="alert alert-primary">
-				<strong>Notification</strong>
-			</div>
+       		<div class="alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Notification</strong>
+			  </div>
+		<div>
 			<div class="box-all-noti">
 				<ul class="list-noti">
 					<%

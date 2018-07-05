@@ -7,14 +7,27 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp"%>
-<div class="content-wrapper py-3">
-	<div class="container-fluid">
+<%@include file="/templates/inc/dashboard.jsp"%>
+
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
 		<div class="card mb-3">
-			<div class="card-header" style="background-color: rgb(212, 237, 218)";>
-				<h2 style="text-align: center; color: green;">Add trainer's
-					account</h2>
-			</div>
+			<div class="card-header alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+			    <strong>&nbsp;Add trainer's account </strong>
+			  </div>
+			  
 			<div>
 			  	<%
 				if(request.getAttribute("error") != null){
@@ -150,9 +163,9 @@
 					</div>
 					<div class="row">
 						<div class="col-md-5"></div>
-						<input class="btn btn-success btn-lg" type="submit" name="submit"
+						<input class="btn btn-primary btn-lg" type="submit" name="submit"
 							id="btnSubmit" value="Add" style="margin-right: 0.5em;" /> <input
-							class="btn btn-default btn-lg" type="reset" value="Reset" />
+							class="btn btn-secondary btn-lg" type="reset" value="Reset" />
 					</div>
 					<div style="margin-bottom: 10%"></div>
 				</div>

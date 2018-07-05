@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import libralies.CurrentUser;
 import model.bean.Roles;
 import model.bean.User;
 import model.bo.RoleBo;
@@ -27,21 +28,32 @@ public class IndexTraineeController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserBo userBo = new UserBo();
-		RoleBo roleBo = new RoleBo();
 		
-		ArrayList<Roles> roles = roleBo.getRoles();
-		int traineeRoleId = 0;
-		for (Roles roles2 : roles) {
-			if("trainee".equalsIgnoreCase(roles2.getName())) {
-				traineeRoleId = roles2.getRoleId();
-			}
-		}
+		if (CurrentUser.checkLogin(request, response) ) {
+			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 3) {
 
-		request.setAttribute("trainees", userBo.getTrainees(traineeRoleId));
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/index.jsp");
-		rd.forward(request, response);
-		
+				UserBo userBo = new UserBo();
+				RoleBo roleBo = new RoleBo();
+				
+				ArrayList<Roles> roles = roleBo.getRoles();
+				int traineeRoleId = 0;
+				for (Roles roles2 : roles) {
+					if("trainee".equalsIgnoreCase(roles2.getName())) {
+						traineeRoleId = roles2.getRoleId();
+					}
+				}
+
+				request.setAttribute("trainees", userBo.getTrainees(traineeRoleId));
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/index.jsp");
+				rd.forward(request, response);
+				
+			} else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
+			}
+		} else {
+			return;
+		}
 	}
 
 	
@@ -61,6 +73,7 @@ public class IndexTraineeController extends HttpServlet {
 		} catch( Exception e) {
 			System.out.println(e.getMessage());
 			response.sendRedirect(request.getContextPath() + "/trainee/index?msg=0");
+			return;
 		}
 	}
 

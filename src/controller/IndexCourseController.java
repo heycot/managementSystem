@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import libralies.CurrentUser;
 import model.bo.CourseBo;
 import model.bo.UserBo;
 
@@ -29,12 +30,24 @@ public class IndexCourseController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CourseBo courseBo = new CourseBo();
-		
-		request.setAttribute("courses", courseBo.getCourses());
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/course/index.jsp");
-		rd.forward(request, response);
+		if (CurrentUser.checkLogin(request, response) ) {
+			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 3) {
+
+
+				CourseBo courseBo = new CourseBo();
+				
+				request.setAttribute("courses", courseBo.getCourses());
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/course/index.jsp");
+				rd.forward(request, response);
+				
+			} else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
+			}
+		} else {
+			return;
+		}
 	}
 
 	/**
@@ -55,7 +68,8 @@ public class IndexCourseController extends HttpServlet {
 			}
 		} catch( Exception e) {
 			System.out.println(e.getMessage());
-			response.sendRedirect(request.getContextPath() + "/trainee/index?msg=0");
+			response.sendRedirect(request.getContextPath() + "/course/index?msg=0");
+			return;
 		}
 	}
 

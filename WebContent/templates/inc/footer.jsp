@@ -11,7 +11,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bạn Có Muốn Đăng Xuất?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Do you want to logout?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- Bootstrap core JavaScript -->
     
     <script src="<%= request.getContextPath()%>/templates/vendor/popper/popper.min.js"></script>
@@ -37,12 +37,7 @@
     <script src="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
 	<script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <!-- Custom scripts for this template -->
-    <script src="<%= request.getContextPath()%>/templates/js/sb-admin.min.js"></script>
+    <script src="<%= request.getContextPath()%>/templates/admin/js/sb-admin.min.js"></script>
 	
-  </body>
-<script type="text/javascript">
-       	 var motaeditor = CKEDITOR.replace('motaeditor');
-       	 
-       	var chitieteditor = CKEDITOR.replace('chitieteditor');
-		</script>
+  </body>	
 </html>

@@ -12,6 +12,8 @@ import model.bean.Rooms;
 
 public class RoomDao {
 
+RoomDao roomDao;
+	
 	private Connection conn;
 	private Statement st;
 	private PreparedStatement pst;
@@ -38,7 +40,57 @@ public class RoomDao {
 		return kq;
 		
 	}
-
+	
+	public Rooms getOneRoom(int roomId) {
+		int kq = 0;
+		conn = ConnectDBLibrary.getConnection();
+		Rooms oneroom = new Rooms();
+		try{
+			String sql = "select * from rooms where room_id = ?";
+			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, roomId);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				oneroom.setRoomId(roomId);
+				oneroom.setName(rs.getString(2));
+				oneroom.setCapacity(rs.getInt(3));
+				oneroom.setStatus(rs.getInt(4));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return oneroom;
+	}
+	
+	public int editRoom(Rooms rooms) {
+		int kq = 0;
+		conn = ConnectDBLibrary.getConnection();
+		try{
+			String sql = "UPDATE rooms SET name = ?, capacity = ?, status = ? WHERE room_id=?";
+			
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, rooms.getName());
+			pst.setInt(2, rooms.getCapacity());
+			pst.setInt(3, rooms.getStatus());
+			pst.setInt(4, rooms.getRoomId());
+			
+			kq = pst.executeUpdate();
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return kq;
+		
+	}
+			
+	
 	public ArrayList<Rooms> getRooms() {
 		ArrayList<Rooms> listRooms = new ArrayList<Rooms>();
 		String sql = "SELECT * from rooms";
@@ -59,27 +111,5 @@ public class RoomDao {
 		}
 		return listRooms;
 		
-	}
-	
-	public ArrayList<Rooms> getRoomList(){
-		ArrayList<Rooms> roomlist = new ArrayList<Rooms>();
-		try{
-			conn = ConnectDBLibrary.getConnection();
-			String sql = "SELECT name, capacity, status from rooms";
-			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
-			
-			while (rs.next()){
-				Rooms room = new Rooms();
-				room.setName(rs.getString("name"));
-				room.setCapacity(rs.getInt("capacity"));
-				room.setStatus(rs.getInt("status"));
-				
-				roomlist.add(room);				
-			}
-		}catch (Exception e){
-			
-		}
-		return roomlist;
 	}
 }

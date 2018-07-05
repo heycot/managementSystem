@@ -3,7 +3,7 @@
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>
+<%@include file="/templates/inc/dashboard.jsp" %>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleRegisterClass.css">
@@ -12,13 +12,25 @@
 	content:"*";color:red;
 	}
 </style>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3 divForm">
-       		<div class="alert alert-primary">
-				<strong>Register Class</strong>
-			</div>
+       		<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Register Class</strong>
+			  </div>
+			  <div>
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("listClassOpening");
 			  int tong = listClassOpening.size();

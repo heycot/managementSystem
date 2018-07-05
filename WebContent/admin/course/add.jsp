@@ -24,12 +24,23 @@
 		majors = (ArrayList<Majors>)request.getAttribute("majors");
 	}
 %>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3">
-             <div class="alert alert-success">
-			    <strong>ADD NEW COURSE</strong>
+             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-book" ></i>
+			    <strong>Add new course</strong>
 			  </div>
 			  
 			  <div>
@@ -55,7 +66,7 @@
 	              	<%
 	              		for (Majors major : majors) {
 	              		%> 
-	              		<optionvalue="<%= major.getMajorId()%>"><%= major.getName()%></option>
+	              		<option value="<%= major.getMajorId()%>"><%= major.getName()%></option>
 	              		<%
 	              		}
 	              	%>
@@ -64,12 +75,12 @@
 	              	
 	              	<div class="form-group">
 		              	<label class="required" >Name</label>&nbsp;<span id="spnNameStatus"></span>
-		              	<input class="form-control" id="txtName" pattern="^[A-Za-z_-][A-Za-z0-9_-]*$" type="text" name="name" value="<%= course.getName()%>" placeholder="Coursesname" required/>
+		              	<input class="form-control" id="txtName" pattern="^[A-Za-z_-][A-Za-z0-9_-]*$" type="text" name="name" value="<%= course.getName()%>" placeholder="Coursesname" />
 	              	</div>
 	              	
 	              	<div class="form-group">
 		              	<label class="required" >Duration</label>&nbsp;<span id="spnDurationStatus"></span>
-		              	<input class="form-control" type="text" id="txtDuration" name="duration" value="<%= course.getDuration()%>" placeholder="duration" required/>
+		              	<input class="form-control" type="number" min="1" max="1000" id="txtDuration" name="duration" value="<%= course.getDuration()%>" placeholder="duration" />
 	              	</div>
 	              	
 	              	<div class="form-group">
@@ -84,8 +95,8 @@
 		               <div class="col-sm-4" style="float: left"></div>
 		               
 		             	<div class="col-sm-4" style="float: left">
-		             		<div class="col-sm-2" style="float: left"><input id="btnSubmit" class="btn btn-primary" type="submit" name="submit" value="Add" /></div>
-		             		<div class="col-sm-2" style="float: left"><input class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
+		             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size:20px; height:auto; margin-bottom:10px;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Add" /></div>
+		             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size:18px; height:auto; margin-bottom:10px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
 		             		<div style="clear: both"></div>	
 		             	</div> 
 		             	
@@ -105,25 +116,57 @@
       				$(document).ready(function() {
       					$("#add-post").validate({
       						rules: {
-      							name:"required",
-                                kindOfCourse:"required",
+      							name:{
+      								required: true,
+      							},
+                                kindOfCourse:{
+                                	required: true,
+                                },
+                                duration:{
+                                	required: true,
+                                },
+                                
       						},
       						messages: {
-      							name:"This feild is required",
-                                kindOfCourse:"This feild is required",
+      							name:{
+      								required: "Name of course is required",
+      							},
+                                kindOfCourse:{
+                                	required: "Kind of course is required",
+                                },
+                                duration:{
+                                	required: "Duration of course is required",
+                                }
       						}
       					});
       				});
       				
-      				$(document).ready(function() {
+      				/* $(document).ready(function() {
       					$('#txtDuration').blur(function(e) {
           					if (checkDuration()) {
       							$('#spnDurationStatus').html('');
       							 $('#spnDurationStatus').css('color', 'green');
       						}
       						else {
-      							$('#spnDurationStatus').html('Duration number must be digits.');
+      							$('#spnDurationStatus').html('The duration must be a positive number.');
       							$('#spnDurationStatus').css('color', 'red');
+      							document.getElementById("btnSubmit").disabled = true; 
+      						}
+       					});
+      				}); */
+      				
+      				
+      				$(document).ready(function() {
+      					$('#txtName').blur(function(e) {
+      						var name = $('#txtName').val();
+          					if (validateName(name)) {
+      							$('#spnNameStatus').html('');
+      							$('#spnNameStatus').css('color', 'green');
+      						}
+      						else {
+      							$('#spnNameStatus').html('Name of course must be character.');
+      							$('#spnNameStatus').css('color', 'red');
+      							document.getElementById("btnSubmit").disabled = true; 
       						}
        					});
       				});
@@ -139,27 +182,15 @@
       					}
       				}   
       				
-      				$(document).ready(function() {
-      					$('#txtName').blur(function(e) {
-      						var name = $('#txtName').val();
-          					if (validateStrings(name)) {
-      							$('#spnNameStatus').html('');
-      							$('#spnNameStatus').css('color', 'green');
-      						}
-      						else {
-      							$('#spnNameStatus').html('Name of course must be character.');
-      							$('#spnNameStatus').css('color', 'red');
-      							document.getElementById("btnSubmit").disabled = true; 
-      						}
-       					});
-      				});
-      				
-      				function validateStrings(string) {
-      					var pattern = /^[a-zA-Z0-9]+|[\b]+$/;
+      				function validateName(string) {
+      					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
 
       					return $.trim(string).match(pattern) ? true : false;
       				}
       			</script>
+        <div class="card-footer small text-muted">
+          Updated yesterday at 11:59 PM
+        </div>
           </div>
         </div>
       </div>

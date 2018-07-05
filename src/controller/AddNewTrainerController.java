@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import libralies.FormatDateLibrary;
 import libralies.MD5Library;
-import libralies.checkLogin;
+import libralies.CurrentUser;
 import model.bean.Ability;
 import model.bean.User;
+import model.bo.MajorBo;
 import model.bo.UserBo;
 
 @MultipartConfig
@@ -23,14 +25,17 @@ public class AddNewTrainerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(checkLogin.checkLogin(request, response) == true ){
-			if (checkLogin.checkUserCurrent(request, response) == 3){
+		
+		if (CurrentUser.checkLogin(request, response)) {
+			User user = CurrentUser.getUserCurrent(request, response);
+			if (user.getRoleId() == 3) {
 				request.getRequestDispatcher("/admin/training_manager/add_trainer_account.jsp").forward(request, response);
 				
-			}else{
-				HttpSession session = request.getSession();
-				User user = (User) session.getAttribute("user");
-				response.sendRedirect(request.getContextPath() + "/trainee/edit?id=" + user.getUserId() );
+			} else if (user.getRoleId() == 2) {
+				response.sendRedirect(request.getContextPath() + "/trainee/edit?id=" + user.getUserId());
+				return;
+			} else {
+				response.sendRedirect(request.getContextPath() + "/trainer/edit?id=" + user.getUserId());
 				return;
 			}
 		} else {

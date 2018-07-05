@@ -16,11 +16,8 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
-<<<<<<< HEAD
 import model.bean.Accessment;
-=======
 import model.bean.ClassWaiting;
->>>>>>> ea777cea2f79dcc09cea25f3a484ed7df8d58b31
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
@@ -307,11 +304,10 @@ public class UserDao {
 		
 		return trainee;
 	}
-
 	public int editTrainee(User trainee) {
 		int kq = 0;
 		
-		String sql = "update users set fullname = ?, address = ?, gender = ?, phone = ?, date_of_birth = ?, password = ?, image = ?";
+		String sql = "update users set fullname = ?, address = ?, gender = ?, phone = ?, date_of_birth = ?, password = ?, image = ?, username = ? where user_id = ?";
 		conn = ConnectDBLibrary.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
@@ -323,12 +319,16 @@ public class UserDao {
 			pst.setDate(5, trainee.getDateOfBirth());
 			pst.setString(6, trainee.getPassword());
 			pst.setString(7, trainee.getAvatar());
+			pst.setString(8, trainee.getUsername());
+			pst.setInt(9, trainee.getUserId());
 			
 			kq = pst.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
 		}
 		
 		

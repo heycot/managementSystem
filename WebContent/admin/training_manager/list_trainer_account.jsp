@@ -12,13 +12,25 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class="alert alert-success">
-	    <strong>List trainer in system </strong>
-	  </div>
+        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-users" ></i>
+		    <strong>Trainers</strong>
+		  </div>
+		<div> 
 	  
 		<%
 		List<User> trainers = new ArrayList<User>();
@@ -100,8 +112,15 @@
         <div class="card-body">
           <div class="table-responsive">
             <form action=""  method="post">
-                <input style="display: none; margin-left: 10px; margin-bottom: 5px; color: red" id="deleteall" type="submit" value="Delete">
-                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <div style="margin-left: -15px; margin-bottom: 5px;">
+	            	<div style="float: left" >
+	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+	        		</div>
+	            	<div style="float: left; margin-left: 15px;">
+	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+                	</div>
+                	<div style="clear: both"></div>
+	        	</div><table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
                       <th width="10%">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
