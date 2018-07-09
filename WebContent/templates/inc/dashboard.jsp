@@ -12,7 +12,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bootcamp management system</title>
+    <title>BOOTCAMP MANAGEMENT SYSTEM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainee" style="font-size:  larger;">
                   <i class="fa fa-fw fa-users"></i>&nbsp;
                   <span class="nav-link-text">
-                    Trainees</span>
+                    Trainee</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="trainee">
                   <li>
@@ -95,7 +95,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainer" style="font-size:  larger;">
                   <i class="fa fa-fw fa-users" ></i>&nbsp;
                   <span class="nav-link-text">
-                    Trainers</span>
+                    Trainer</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="trainer">
                   <li>
@@ -110,7 +110,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#class" style="font-size:  larger;">
                   <i class="fa fa-fw fa-object-group"></i>&nbsp;
                   <span class="nav-link-text">
-                    Classes</span>
+                    Class</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="class">
                   <li>
@@ -126,7 +126,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#course" style="font-size:  larger;">
                   <i class="fa fa-fw fa-book"></i>&nbsp;
                   <span class="nav-link-text">
-                    Courses</span>
+                    Course</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="course">
                   <li>
@@ -141,7 +141,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#room" style="font-size:  larger;">
                   <i class="fa fa-home" ></i>&nbsp;
                   <span class="nav-link-text">
-                    Rooms</span>
+                    Room</span>
               </a>
               <ul class="sidenav-second-level collapse" id="room">
                 <li>
@@ -154,7 +154,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
                   <i class="fa fa-calculator" ></i>&nbsp;
                   <span class="nav-link-text">
-                    Statistics</span>
+                    Statistic</span>
               </a>
               <ul class="sidenav-second-level collapse" id="statistical">
                 <li>
