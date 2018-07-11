@@ -18,26 +18,39 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//if(checkLogin.checkLogin(request, response) == false){
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
-			rd.forward(request, response);
-		/*}else {
-			HttpSession session= request.getSession();
+			HttpSession session = request.getSession();
 			User user= (User) session.getAttribute("user");
 			
-			if(checkLogin.checkUserCurrent(request, response) == 1){
-				response.sendRedirect(request.getContextPath()+"/trainer/edit?id="+user.getUserId());	
+			String message ="";
+			if(request.getParameter("msg") != null){
+				message= request.getParameter("msg");
 			}
-			if(checkLogin.checkUserCurrent(request, response) == 2){
-				response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());	
+			
+			if(user == null ){
+				if(!message.equals("")){
+					request.setAttribute("msg", message);
+					RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
+					rd.forward(request, response);	
+				}
+				else{
+					RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
+					rd.forward(request, response);
+				}
+					
 			}
-			if(checkLogin.checkUserCurrent(request, response) == 3){
-				response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+			else{
+				if(user.getRoleId()==1){
+					response.sendRedirect(request.getContextPath()+"/trainer/edit?id="+user.getUserId());	
+				}
+				if(user.getRoleId()==2){
+					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());	
+				}
+				if(user.getRoleId()==3){
+					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+				}
 			}
-		} */
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBo userBo= new UserBo();
 		HttpSession session = request.getSession();
@@ -50,7 +63,6 @@ public class LoginController extends HttpServlet {
 		}
 		else{
 			String pass =  MD5Library.md5(request.getParameter("password"));	
-			System.out.println(pass);
 			
 			if(pass.equals(user.getPassword())) {	
 				session.setAttribute("user", user);
