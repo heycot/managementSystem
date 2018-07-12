@@ -31,10 +31,10 @@ public class EditTrainerController extends HttpServlet {
 
 		int userId = Integer.parseInt(request.getParameter("id"));
 		User trainer = userBo.getTrainerById(userId);
-		List<Ability> abilities = abilityBo.getAbilitiesByUserId(userId);
+		Ability ability = abilityBo.getAbilityByUserId(userId);
 
 		request.setAttribute("trainer", trainer);
-		request.setAttribute("abilities", abilities);
+		request.setAttribute("ability", ability);
 
 		request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
 	}
@@ -67,22 +67,15 @@ public class EditTrainerController extends HttpServlet {
 		trainer.setDateOfBirth(dateOfBirth);
 		
 
-		List<Ability> abilities = abilityBo.getAbilitiesByUserId(userID);
-
-		if (abilities != null & experience !=0) {
-			boolean isExistingId = false;
-			for (Ability ability : abilities) {
-				if (ability.getSkillId() == skillId) {
-					ability.setExperience(experience);
-					abilityBo.editTrainerAbility(ability);
-					isExistingId = true;
-					break;
-				}
-			}
-			if (!isExistingId) {
-				Ability ability = new Ability(0, userID, skillId, experience, 0);
-				abilityBo.addTrainerAbility(ability);
-			}
+		Ability ability = abilityBo.getAbilityByUserId(userID);
+		if (ability.getSkillId() == skillId) {
+				ability.setExperience(experience);
+				abilityBo.editTrainerAbility(ability);
+		}
+		else{
+			ability.setSkillId(skillId);
+			ability.setExperience(experience);
+			abilityBo.editTrainerAbility(ability);		
 		}
 		
 		if ( !"".equals(request.getParameter("oldpass"))) { 
@@ -92,7 +85,7 @@ public class EditTrainerController extends HttpServlet {
 			} else {
 				request.setAttribute("error", " This current password is incorrect!");
 				request.setAttribute("trainer", trainer);
-				request.setAttribute("abilities", abilities);	
+				request.setAttribute("ability", ability);	
 				request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
 				
 			}
@@ -101,7 +94,7 @@ public class EditTrainerController extends HttpServlet {
 		if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
 			System.out.println("check usernmae");
 			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
+			request.setAttribute("ability", ability);
 
 			request.setAttribute("error", " This username is already exists in system");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
@@ -113,7 +106,7 @@ public class EditTrainerController extends HttpServlet {
 
 		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
 			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
+			request.setAttribute("ability", ability);
 
 			request.setAttribute("error", " Please add file jpg, png, gif");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
@@ -127,7 +120,7 @@ public class EditTrainerController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
 		} else {
 			request.setAttribute("trainer", trainer);
-			request.setAttribute("abilities", abilities);
+			request.setAttribute("ability", ability);
 
 			request.setAttribute("error", " Can't edit trainer. Please try again later!");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);

@@ -37,15 +37,14 @@ public class AbilityDao {
 	public void editTrainerAbility(Ability ability){
 		conn= ConnectDBLibrary.getConnection();
 		try{
-			String sql= "update ability set experience=? , course_id=? "
-					+ " where user_id =? and skill_id=? ;";
+			String sql= "update ability set skill_id=?, experience=? , course_id=? "
+					+ " where user_id =?;";
 			pst=conn.prepareStatement(sql);
 			
-
-			pst.setInt(1, ability.getExperience());
-			pst.setInt(2, ability.getCourseId());
-			pst.setInt(3, ability.getUserId());
-			pst.setInt(4, ability.getSkillId());
+			pst.setInt(1, ability.getSkillId());
+			pst.setInt(2, ability.getExperience());
+			pst.setInt(3, ability.getCourseId());
+			pst.setInt(4, ability.getUserId());
 			
 			pst.executeUpdate();
 		}
@@ -54,9 +53,9 @@ public class AbilityDao {
 		}
 	}
 	
-	public List<Ability> getAbilityByUserID(int userId){
+	public Ability getAbilityByUserID(int userId){
 		conn = ConnectDBLibrary.getConnection();
-		List<Ability> abilities= new ArrayList<>();
+		Ability ability= new Ability();
 		try{
 			String sql= "select * from ability where user_id=?";
 			pst=conn.prepareStatement(sql);
@@ -64,15 +63,14 @@ public class AbilityDao {
 			pst.setInt(1, userId);
 			rs= pst.executeQuery();
 			while(rs.next()){
-				Ability ability= new Ability(rs.getInt("ability_id"), rs.getInt("user_id"), 
+				ability= new Ability(rs.getInt("ability_id"), rs.getInt("user_id"), 
 						rs.getInt("skill_id"), rs.getInt("experience"), rs.getInt("course_id"));
-				abilities.add(ability);
 			}
 			
 		}catch(SQLException e){
 			System.out.println(e);
 		}
-		return abilities;
+		return ability;
 		
 	}
 	

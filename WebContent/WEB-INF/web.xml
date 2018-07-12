@@ -130,6 +130,14 @@
     <url-pattern>/trainer/edit</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>DeleteTrainerController</servlet-name>
+    <servlet-class>controller.DeleteTrainerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteTrainerController</servlet-name>
+    <url-pattern>/trainer/del</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Error400Controller</servlet-name>
     <servlet-class>controller.Error400Controller</servlet-class>
   </servlet>
@@ -145,5 +153,4 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-
 </web-app>

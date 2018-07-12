@@ -7,7 +7,7 @@ import model.dao.AbilityDao;
 
 public class AbilityBo {
 	AbilityDao abilityDao= new AbilityDao();
-	public List<Ability> getAbilitiesByUserId(int userId){
+	public Ability getAbilityByUserId(int userId){
 		return abilityDao.getAbilityByUserID(userId);
 	}
 	
