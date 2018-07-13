@@ -28,6 +28,15 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
+User trainer = new User();
+Ability ability= new Ability();
+SkillBo skillBo = new SkillBo();
+if (request.getAttribute("trainer") != null) {
+	trainer = (User) request.getAttribute("trainer");
+}
+if (request.getAttribute("ability") != null) {
+	ability = (Ability) request.getAttribute("ability");
+}
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
@@ -35,20 +44,11 @@ if( user.getRoleId() == 3) {
     <div  class="card mb-3">
              <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;NgocNam </strong>
+			    <strong>&nbsp;<%=trainer.getUsername() %> </strong>
 			  </div>
 			  
 			  <div> 
 			<%
-				User trainer = new User();
-				List<Ability> abilities= new ArrayList<>();
-				SkillBo skillBo = new SkillBo();
-				if (request.getAttribute("trainer") != null) {
-					trainer = (User) request.getAttribute("trainer");
-				}
-				if (request.getAttribute("abilities") != null) {
-					abilities = (List<Ability>) request.getAttribute("abilities");
-				}
 				if(request.getAttribute("error") != null){
 			%>
 			<div class="alert alert-danger">
@@ -183,7 +183,7 @@ if( user.getRoleId() == 3) {
 							</div>
 
 							<div class="form-group">
-								<label for="usr"><strong>Abilities:</strong></label>
+								<label for="usr"><strong>Ability:</strong></label>
 								<table class="table table-bordered" id="abilityTable">
 									<thead>
 										<tr>
@@ -203,30 +203,13 @@ if( user.getRoleId() == 3) {
 											<input type="number" name="experience" value="0"
 												placeholder="Experience Year" id="exp" style="width: 12em; margin-top: 5px;" min="0" max="50" />
 											</td>
-											<%-- <td>Add/Edit Ability: <select class="form-group" name="skillId" id="ability" style="width: 8em;">
-												<%
-													List<Skills> skills = skillBo.getSkills();
-													for (Skills skill : skills) {
-												%>
-												<option value="<%=skill.getSkillId()%>"><%=skill.getName()%></option>
-												<%
-													}
-												%>
-											</select>
-											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" style="width: 10em;" min="0" max="50" /></td>
-										</tr> --%>
+											
 									</thead>
 									<tbody>
-										<%
-											for (Ability ability : abilities) {
-										%>
 										<tr>
 											<td><%=skillBo.getSkillById(ability.getSkillId())%></td>
 											<td><%=ability.getExperience()%></td>
-										<%
-											}
-										%>
+							
 										</tr>
 									</tbody>
 								</table>
@@ -257,15 +240,12 @@ if( user.getRoleId() == 3) {
       							username:"required",
                                 oldpass:{
                                 	required: true,
-                                	minlength: 6,
                                 },
                                 newpass:{
                                 	required: true,
-                                	minlength: 6,
                                 },
                                 confirmpass:{
                                 	required: true,
-                                	minlength: 6,
                                 	equalTo: "#newpass"
                                 },
                                 fullname:"required",
@@ -276,15 +256,15 @@ if( user.getRoleId() == 3) {
       							username:"Username is required!",
                                 oldpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 },
                                 newpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 },
                                 confirmpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 	equalTo: "Password does not matching!"
                                 },
                                 fullname:"Fullname is required!",
@@ -414,7 +394,7 @@ if( user.getRoleId() == 3) {
         						document.getElementById("btnSubmit").disabled = false; 
       						}
       						else {
-      							$('#spnPasswordStatus').html('Password have minimum eight characters, at least one letter, one number and one special character!');
+      							$('#spnPasswordStatus').html('Password have minimum 8 characters, at least one letter, one number and one special character!');
       							$('#spnPasswordStatus').css('color', 'red');
         						document.getElementById("btnSubmit").disabled = true; 
       						}

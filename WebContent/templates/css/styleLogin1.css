@@ -115,12 +115,12 @@ body, html{
     text-align: center;
 }
 
-.forgotPass{
+#forgotPass{
     font-size: 190%;
     color: white;
     font-family: Arial, sans-serif; 
-    margin-top: 5%;
     font-weight: bold;
+    text-decoration: none;
 }
 
 a:hover{
@@ -243,12 +243,12 @@ body, html{
     text-align: center;
 }
 
-.forgotPass{
+#forgotPass{
     font-size: 150%;
     color: white;
     font-family: Arial, sans-serif; 
-    margin-top: 5%;
     font-weight: bold;
+    text-decoration: none;
 }
 
 a:hover{
@@ -348,11 +348,11 @@ a:hover{
 	    text-align: center;
 	}
 	
-	.forgotPass{
+	#forgotPass{
 	    font-size: 120%;
 	    color: rgb(138, 138, 138);
 	    font-family: Arial, sans-serif; 
-	    margin-top: 5%;
+	    text-decoration: none;
 
 	}
 	
@@ -458,10 +458,11 @@ a:hover{
 	    text-align: center;
 	}
 
-	.forgotPass{
+	#forgotPass{
 	    font-size: 110%;
 	    color: rgb(139, 139, 139);
 	    font-family: Arial, sans-serif; 
+	    text-decoration: none;
 	}
 }
 
@@ -563,9 +564,10 @@ a:hover{
 	    text-align: center;
 	}
 
-	.forgotPass{
+	#forgotPass{
 	    font-size: 110%;
 	    color: rgb(139, 139, 139);
-	    font-family: Arial, sans-serif; 
+	    font-family: Arial, sans-serif;
+	    text-decoration: none; 
 	}
 }

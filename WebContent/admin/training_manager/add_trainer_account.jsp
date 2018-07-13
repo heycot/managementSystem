@@ -91,13 +91,13 @@ if( user.getRoleId() == 3) {
 							<div class="form-group">
 								<label class="required"><strong>Password&nbsp;:</strong>:
 								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPassStatus"></span></label> 
-								<input class="form-control" id="txtpassword" type="password" name="password" placeholder="Password" />
+								<span id="spnPasswordStatus"></span></label> 
+								<input class="form-control" id="password" type="password" name="password" placeholder="Password" />
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Confirm password&nbsp;:</strong>:
 								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPassStatus"></span></label> 
+								<span id="spnPasswordStatus"></span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
 									placeholder="Confirm Password" /><span id='message'></span>
@@ -331,30 +331,21 @@ if( user.getRoleId() == 3) {
 		});
 	});
 
-	$(document)
-			.ready(
-					function() {
-						$('#txtpassword')
-								.blur(
-										function(e) {
-											var pass = $('#txtpassword').val();
-											if (validatePassword(pass)) {
-												$('#spnPassStatus').html('');
-												$('#spnPassStatus').css(
-														'color', 'green');
-												document
-														.getElementById("btnSubmit").disabled = false;
-											} else {
-												$('#spnPassStatus')
-														.html(
-																'Password have minimum eight characters, at least one letter, one number and one special character!');
-												$('#spnPassStatus').css(
-														'color', 'red');
-												document
-														.getElementById("btnSubmit").disabled = true;
-											}
-										});
-					});
+	$(document).ready(function() {
+			$('#password').blur(function(e) {
+				var pass= $('#password').val();
+				if (validatePassword(pass)) {
+					$('#spnPasswordStatus').html('');
+					$('#spnPasswordStatus').css('color', 'green');
+				document.getElementById("btnSubmit").disabled = false; 
+				}
+				else {
+					$('#spnPasswordStatus').html('Password have minimum 8 characters, at least one letter, one number and one special character!');
+					$('#spnPasswordStatus').css('color', 'red');
+				document.getElementById("btnSubmit").disabled = true; 
+				}
+			});
+		});
 
 	function validateStrings(string) {
 		//var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
@@ -363,20 +354,20 @@ if( user.getRoleId() == 3) {
 	}
 
 	function validateFullName(string) {
-		var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
-		//var pattern = /^[a-zA-Z]+$/;
-		return $.trim(string).match(pattern) ? true : false;
-	}
-
-	function validatePassword(password) {
-		var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-		return $.trim(password).match(pattern) ? true : false;
-	}
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
+			//var pattern = /^[a-zA-Z]+$/;
+			return $.trim(string).match(pattern) ? true : false;
+		}
 
 	function validateAddress(string) {
-		var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
-		return $.trim(string).match(pattern) ? true : false;
-	}
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
+			return $.trim(string).match(pattern) ? true : false;
+		}
+		
+		function validatePassword(password){
+			var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+			return $.trim(password).match(pattern) ? true : false;
+		}
 </script>
 
 </body>
