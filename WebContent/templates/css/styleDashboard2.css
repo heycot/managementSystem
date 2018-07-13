@@ -142,11 +142,29 @@ ul.msg_list li a .message {
 .btn-primary{
 	color: white;
 	background: #2e9ade;
-	font-size: 18px;
 	width:100px;
 	height: 40px;
 	border:1px solid white;
 	border-radius: 5px;
 }
 
-@media only screen and (max-width: 1381px){}
+@media only screen and (min-width: 2500px){
+	.nav1{
+		font-size:150%;
+	}
+	.user-profile{
+		font-size:140%;
+	}
+	.mainNav{
+		height:60px;
+	}
+	.iconMail{
+	margin-top:8px;
+	font-size:20px;
+	}
+	.badge{
+	margin-top:2px;
+	font-size:100px;
+	}
+	
+}

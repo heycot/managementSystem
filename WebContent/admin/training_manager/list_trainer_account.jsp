@@ -4,7 +4,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard2.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
 
         <!-- JS tạo nút bấm di chuyển trang start -->
         <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
@@ -153,9 +154,14 @@ if( user.getRoleId() == 3) {
                   <%
                   	for(User trainer : trainers){
                   %>	
+<%-- <<<<<<< HEAD
                   	<tr>
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainer<%= trainer.getUserId()%>" value="<%=trainer.getUserId() %>" class="checkitem" id="chkitem"> </td>
                       	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
+======= --%>
+                  	<tr class="contentPage">
+                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
+                      	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
                      	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
@@ -174,7 +180,7 @@ if( user.getRoleId() == 3) {
 	                    %>
 	                    <td   style="text-align: center; vertical-align: middle;">
                         <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a  style="margin-left: 10px" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
+                        <a  class="iconDel" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
                      	</td>
                     </tr>
                   <%	

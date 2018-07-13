@@ -64,14 +64,13 @@ if (request.getAttribute("ability") != null) {
 									value="<%=trainer.getUserId() %>" name="user_id"/><br>
 							<div class="form-group">
 								<div>
-									<div class="form-group" class="col-sm-2" style="float: left">
+									<div class="form-group" class="col-sm-2" style="float: left; padding-right:20px;">
 										<img id="blah"
 											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
-											alt="your image" height="200"/>
-									</div>		
-									<br><br><br>				
+											alt="your image" width="120" height="150" />
+									</div>					
 									<div class="form-group" class="col-sm-4" style="float: left">
-										<label class="required"><strong>Avatar:</strong><em
+										<label class="required">Avatar:<em
 											style="color: red">(jpg, png, gif)</em> </label>
 											 <input
 											class="form-control" id="image" type="file" name="avatar"
@@ -87,7 +86,7 @@ if (request.getAttribute("ability") != null) {
 											reader.onload = function(e) {
 												$('#blah').attr('src',
 														e.target.result).width(
-														200);
+														120);
 											};
 
 											reader
@@ -96,27 +95,28 @@ if (request.getAttribute("ability") != null) {
 									}
 								</script>
 							</div>
-							<div class="form-group">
-								<label for="usr"><strong>Email:</strong>&nbsp;<span id="spnEmailStatus"></span></label> <input
+							<div class="form-group" style="margin-top:-10px;">
+								<label for="usr">Email<span
+									style="color: red"> *</span>&nbsp;<span id="spnEmailStatus"></span></label> <input
 									type="email" class="form-control" id="txtemail"
 									value="<%=trainer.getEmail()%>" name="email"/>
 							</div>
 
 							<div class="form-group">
-								<label for="usr"><strong>User name:</strong><span
+								<label for="usr">UserName<span
 									style="color: red"> *</span>&nbsp;<span id="spnUserNameStatus"></span></label> <input
 									type="text" class="form-control" id="txtusername"
 									value="<%=trainer.getUsername() %>" name="username" />
 							</div>
 							<div class="form-group">
-								<label for="usr"><strong>Full Name:</strong><span
+								<label for="usr">FullName<span
 									style="color: red"> *</span>&nbsp;<span id="spnFullNameStatus"></span></label> <input type="text"
 									class="form-control" id="txtfullname" name="fullname"
 									value="<%=trainer.getFullname() %>"/>
 							</div>
 							
 							<div class="form-group">
-			              	  <label class="required" ><strong>Gender:</strong><span
+			              	  <label class="required" >Gender<span
 									style="color: red"> *</span></label> <br>
 			              	  <%
 			              	  String male = "", female = "", other = "";
@@ -135,40 +135,41 @@ if (request.getAttribute("ability") != null) {
 			              	
 				              	
 		              	</div>
-
-						</div>
-						<div class="col-md-6">
-						<br>
-						<div class="form-group">
-								<label for="usr"><strong>Date Of Birth:</strong><span
+		              	<div class="form-group">
+								<label for="usr">Birthday<span
 									style="color: red"> *</span></label> <input type="date"
 									class="form-control" id="usr" name="dateOfBirth"
 									value="<%=trainer.getDateOfBirth() %>" />
 							</div>
+
+						</div>
+						<div class="col-md-6">
+						<br>
+						
 							<div class="form-group">
-								<label for="usr"><strong>Created Date:</strong><span
+								<label for="usr">CreatedDate:<span
 									style="color: red"> *</span></label> <input type="date"
 									class="form-control" id="usr" name="created_date"
 									value="<%=trainer.getCreatedDate()%>" disabled/>
 							</div>
 							<div class="form-group">
-								<label for="usr"><strong>Address:</strong><span
+								<label for="usr">Address<span
 									style="color: red"> *</span>&nbsp;<span id="spnAddressStatus"></span></label> <input type="text"
 									class="form-control" id="address" name="address"
 									value="<%=trainer.getAddress() %>"  />
 							</div>
 							
 							<div class="form-group">
-								<label for="usr"><strong>Phone Number:</strong><span
+								<label for="usr">Phone<span
 									style="color: red"> *</span>&nbsp;<span id="spnPhoneStatus"></span></label> <input type="text"
 									class="form-control" id="txtphone" name="phone"
 									value="<%=trainer.getPhone() %>" />
 							</div>
 
 
-							<div class="form-group">
+							<div class="form-group" style="margin-top:-5px;">
 
-								<label for="usr"><strong>Password:</strong>&nbsp;<span
+								<label for="usr">Password:&nbsp;<span
 									id="spnPasswordStatus"></span></label> <input type="button"
 									value="Click here to change" onclick="changePass();"> <br>
 								<input style="display: none;" type="password"
@@ -183,12 +184,14 @@ if (request.getAttribute("ability") != null) {
 							</div>
 
 							<div class="form-group">
+
 								<label for="usr"><strong>Ability:</strong></label>
+
 								<table class="table table-bordered" id="abilityTable">
 									<thead>
 										<tr>
-											<td><strong>Skill:</strong><br>
-											<select class="form-group" name="skillId" id="ability" style="width: 12em;margin-top: 5px;">
+											<td style="text-align:center;">Skill:<br>
+											<select class="form-group" name="skillId" id="ability" style="text-align:center;width: 12em;margin-top: 5px;">
 												<%
 													List<Skills> skills = skillBo.getSkills();
 													for (Skills skill : skills) {
@@ -199,9 +202,9 @@ if (request.getAttribute("ability") != null) {
 												%>
 											</select>
 											</td>
-											<td><strong>Experience:</strong><br>
+											<td style="text-align:center;">Experience:<br>
 											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" style="width: 12em; margin-top: 5px;" min="0" max="50" />
+												placeholder="Experience Year" id="exp" style="text-align:center;width: 12em; margin-top: 5px;" min="0" max="50" />
 											</td>
 											
 									</thead>
@@ -222,10 +225,9 @@ if (request.getAttribute("ability") != null) {
 					</div>
 					<br>
 					<br>
-					<div class="row">
-						<div class="col-md-5"></div>
-							<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update" style="margin-right: 0.5em;"/>
-							<input class="btn btn-secondary btn-lg" type="reset" value="Reset" />
+					<div class="" style="text-align:center; ">
+						<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update" style="height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
+						<input class="btn btn-secondary btn-lg" type="reset" value="Reset"  style="border:1px solid white;height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
 					</div>
 					</div>
 			</form>
@@ -438,7 +440,9 @@ if (request.getAttribute("ability") != null) {
       			</script>
 			
 		</div>
-	
+	<div class="card-footer small text-muted">
+          Updated yesterday at 11:59 PM
+        </div>
 	
 </div>
 

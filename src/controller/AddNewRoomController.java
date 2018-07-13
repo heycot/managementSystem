@@ -41,19 +41,11 @@ public class AddNewRoomController extends HttpServlet {
 		if (roomBo.checkRoomNameAlreadyExists(request.getParameter("name"))) {
 
 			HttpSession session = request.getSession();
-			session.setAttribute("room", room);
-			session.setAttribute("Error", "This username is already exists in system");
-
 			response.sendRedirect(request.getContextPath() + "/room?msg=1");
-//			response.sendRedirect(request.getContextPath() + "/room");
 			return;
 		} else {
 			roomBo.addRooms(room);
-			HttpSession session = request.getSession();
-			session.setAttribute("room", room);
-			session.setAttribute("abc", "Adding room successfully");
 			response.sendRedirect(request.getContextPath() + "/room?msg=2");
-//			response.sendRedirect(request.getContextPath() + "/room");
 			return;
 		}
 
