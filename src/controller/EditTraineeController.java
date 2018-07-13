@@ -115,6 +115,9 @@ public class EditTraineeController extends HttpServlet {
 				rd.forward(request, response);
 
 			} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
+				if(userBo.deleteAvatarOfuser(trainee.getAvatar(), request)) {
+					
+				}
 
 				trainee.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));
 			}

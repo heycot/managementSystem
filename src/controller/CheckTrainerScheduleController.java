@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import libralies.CurrentUser;
+import model.bean.Rooms;
 import model.bean.Schedule;
 import model.bean.User;
+import model.bo.RoomBo;
 import model.bo.UserBo;
 
 
@@ -37,6 +39,7 @@ public class CheckTrainerScheduleController extends HttpServlet {
 		if (CurrentUser.checkLogin(request, response)) {
 			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 1) {
 				UserBo userBo = new UserBo();
+				RoomBo roomBo = new RoomBo();
 				String user_id = (String) request.getParameter("user_id");
 				int id = Integer.parseInt(user_id);
 				System.out.println(user_id);
@@ -45,6 +48,8 @@ public class CheckTrainerScheduleController extends HttpServlet {
 				request.setAttribute("schedule", schedule);
 				User ur = userBo.getTrainerById(id);
 				request.setAttribute("ur", ur);
+				ArrayList<Rooms> rooms = roomBo.getRooms();
+				request.setAttribute("rooms", rooms);
 				
 				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
 				rd.forward(request, response);

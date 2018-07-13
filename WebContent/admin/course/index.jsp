@@ -22,10 +22,10 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
+<div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+        <div class="alert alert-primary" style="font-size: larger; margin-bottom: -5px;"> 
              <i class="fa fa-fw fa-book" ></i>
 	    	<strong>Courses</strong>
 	  	</div>
@@ -172,10 +172,10 @@ if( user.getRoleId() == 3) {
                 <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th  style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th  style="text-align: center; font-size: medium;">Name</th>
-                      <th style="text-align: center; font-size: medium;"> Major</th>
-                      <th style="text-align: center; font-size: medium;">Duration</th>
+                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; font-size: medium;">Name</th>
+                      <th style="text-align: center; font-size: medium;">Major</th>
+                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
                       <th style="text-align: center; font-size: medium;">Default</th>
                       <th style="text-align: center; font-size: medium;">Status</th>
                       <th style="text-align: center; font-size: medium;">Action</th>
@@ -186,10 +186,10 @@ if( user.getRoleId() == 3) {
                   	for(Courses course : courses){
                   %>	
                   	<tr class="contentPage">
-                      	<td  style="text-align: center;"> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
-                     	<td> <a href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><%= course.getName() %></a> </td>
-	                    <td><%= course.getMajorName() %></td>
-	                    <td style="text-align: center;"><%= course.getDuration()%></td>
+                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
+                     	<td  style="vertical-align: middle;"> <a href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><%= course.getName() %></a> </td>
+	                    <td  style="vertical-align: middle;"><%= course.getMajorName() %></td>
+	                    <td  style="text-align: center; vertical-align: middle;"><%= course.getDuration()%></td>
 	                    <%
 	                    String kind = "";
 	                    if (course.getKind_of_course() == 1) {
@@ -198,21 +198,21 @@ if( user.getRoleId() == 3) {
 	                    	kind = "False";
 	                    }
 	                    %>
-	                    <td style="text-align: center;"><%= kind %></td>
+	                    <td  style="text-align: center; vertical-align: middle;"><%= kind %></td>
 	                    <%
 	                    if (course.getStatus() == 1){
 	                    	%>	
-		                    <td id="status<%= course.getCourseId()%>"  style='text-align: center;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id="status<%= course.getCourseId()%>"  style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
 		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= course.getCourseId()%>" style='text-align: center;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="status<%= course.getCourseId()%>" style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
 		                    <%
 	                    }
 	                    %>
-                    	<td  style="text-align: center;">
-                        <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit" style="font-size:24px"></i></a>
-                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:24px;color:red"></i></a>
+                    	<td  style="text-align: center; vertical-align: middle;">
+                        <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
+                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
                      	</td>
                     </tr>
                   <%	

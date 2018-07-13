@@ -52,9 +52,10 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
 
 				User user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId,
-						gender, address, phone, notificationId, avatar);
+						gender, address, phone, notificationId, avatar, status);
 
 				users.add(user);
 			}
@@ -590,7 +591,7 @@ public class UserDao {
 		String sql = " SELECT classes.name as classname,rooms.name as roomname, courses.name as coursename, trainer_id,classes.class_id, classes.created_at, time_of_date, date_of_week ,count_lesson, courses.duration, fullname, username FROM classes "
 					+ "INNER JOIN courses ON courses.course_id = classes.course_id "
 					+ "INNER JOIN users ON users.user_id = classes.trainer_id "
-					+ "INNER JOIN rooms ON rooms.room_id = classes.room_id  WHERE  classes.trainer_id = ? ";
+					+ "INNER JOIN rooms ON rooms.room_id = classes.room_id  WHERE  classes.trainer_id = ? and classes.status = 1";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, user_id);

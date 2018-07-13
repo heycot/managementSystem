@@ -18,5 +18,9 @@ public class ClassesBo {
 		return classDao.getNameClass(classId);
 		
 	}
+	public int updateStatusClass(int Class){
+		ClassesDao classDao = new ClassesDao();
+		return classDao.updateStatusClass(Class);
+	}
 
 }

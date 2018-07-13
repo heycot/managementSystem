@@ -1,8 +1,7 @@
 
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import ="model.bean.Classes"%>;
-%>
+<%@page import ="model.bean.Classes"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
