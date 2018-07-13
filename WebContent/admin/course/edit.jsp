@@ -62,7 +62,8 @@ if( user.getRoleId() == 3) {
               	
               	<div class="col-sm-10"  style="float: left">
               		<div class="form-group">
-	              	<label class="required" >Major</label>
+	              	<label class="required" >Major &nbsp;</label>
+	              	<br>
 	              	<select name="major">
 	              	<%
 	              		for (Majors major : majors) {
@@ -81,7 +82,7 @@ if( user.getRoleId() == 3) {
 	              	</div>
 	              	
 	              	<div class="form-group">
-		              	<label class="required" >Duration</label>&nbsp;<span id="spnDurationStatus"></span>
+		              	<label class="required" >Duration (hours)</label>&nbsp;<span id="spnDurationStatus"></span>
 		              	<input class="form-control" type="number" min="1" max="1000" id="txtDuration" name="duration" value="<%= course.getDuration()%>" placeholder="duration" required/>
 	              	</div>
 	              	
@@ -97,8 +98,8 @@ if( user.getRoleId() == 3) {
 	               <div class="col-sm-4" style="float: left"></div>
 	               
 	             	<div class="col-sm-4" style="float: left">
-	             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size:20px; height:auto; margin-bottom:10px;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" /></div>
-	             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size:18px; height:auto; margin-bottom:10px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
+	             		<div style="float: left"><input style="width:auto; font-size:20px; height:auto; margin-bottom:10px;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" /></div>
+	             		<div style="float: left; margin-left: 20px;"><input style="width:auto; font-size:18px; height:auto; margin-bottom:10px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
 	             		<div style="clear: both"></div>	
 	             	</div> 
 	             	

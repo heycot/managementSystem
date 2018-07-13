@@ -18,8 +18,8 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3">
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
+    <div  class="card mb-3" >
+             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
              <i class="fa fa-fw fa-users" ></i>
 			    <strong>Trainees </strong>
 			  </div>
@@ -160,7 +160,7 @@ if( user.getRoleId() == 3) {
                 <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; font-size: medium;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center; font-size: medium;">Avatar</th>
                       <th style="text-align: center; font-size: medium;">UserName</th>
                       <th style="text-align: center; font-size: medium;">FullName</th>
@@ -176,27 +176,27 @@ if( user.getRoleId() == 3) {
                   	for(User trainee : trainees){
                   %>	
                   	<tr class="contentPage">
-                      	<td style="text-align: center;"> <input type="checkbox" name="trainee<%= trainee.getUserId()%>" value="<%= trainee.getUserId()%>" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center;"><img alt="<%= trainee.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainee.getAvatar()%>" class="img-circle" width="190" height="140"></td>
-                     	<td style="text-align: center;"> <a href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><%= trainee.getUsername()%></a> </td>
-	                    <td><%= trainee.getFullname() %></td>
-	                    <td style="text-align: center;"><%= trainee.getEmail()%></td>
-	                    <td style="text-align: center;"><%= trainee.getPhone()%></td>
-	                    <td style="text-align: center;"><%= trainee.getAddress() %></td>
+                      	<td   style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainee.getUserId()%>" value="<%= trainee.getUserId()%>" class="checkitem" id="chkitem"> </td>
+                      	<td  style="text-align: center; vertical-align: middle;"><img alt="<%= trainee.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainee.getAvatar()%>" class="img-circle" width="190" height="140"></td>
+                     	<td  style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><%= trainee.getUsername()%></a> </td>
+	                    <td   style=" vertical-align: middle;"><%= trainee.getFullname() %></td>
+	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getEmail()%></td>
+	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getPhone()%></td>
+	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getAddress() %></td>
 	                    <%
 	                    if (trainee.getStatus() == 1){
 	                    	%>	
-		                    <td id="status<%= trainee.getUserId()%>"  style='text-align:center;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainee.getUserId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id="status<%= trainee.getUserId()%>"    style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainee.getUserId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
 		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= trainee.getUserId()%>"  style='text-align:center;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainee.getUserId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="status<%= trainee.getUserId()%>"   style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainee.getUserId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
 		                    <%
 	                    }
 	                    %>
-                    	<td style="text-align: center;">
-                        <a href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><i class="fa fa-edit" style="font-size:24px"></i></a>
-                        <a  style="margin-left: 10px" href="<%= request.getContextPath()%>/trainee/del?id=<%= trainee.getUserId()%>" onclick="return confirm('Do you want to delete trainee : <%= trainee.getUsername()%>?')"><i class="fa fa-trash" style="font-size:24px;color:red"></i></a>
+                    	<td   style="text-align: center; vertical-align: middle;">
+                        <a href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
+                        <a  style="margin-left: 10px" href="<%= request.getContextPath()%>/trainee/del?id=<%= trainee.getUserId()%>" onclick="return confirm('Do you want to delete trainee : <%= trainee.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
                      	</td>
                     </tr>
                   <%	

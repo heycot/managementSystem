@@ -35,7 +35,7 @@ if( user.getRoleId() == 3) {
     <div  class="card mb-3">
              <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;Edit trainer </strong>
+			    <strong>&nbsp;NgocNam </strong>
 			  </div>
 			  
 			  <div> 

@@ -1,4 +1,3 @@
-
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import ="model.bean.Classes"%>

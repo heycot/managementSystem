@@ -128,6 +128,16 @@ public class UserBo {
 		}
 	}
 	
+	public boolean deleteAvatarOfuser(String fileName, HttpServletRequest request) {
+		if (!fileName.isEmpty()) {
+			String filePath = request.getServletContext().getRealPath("/files") + File.separator + fileName;
+			File file = new File( filePath);
+			file.delete();
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean checkUsernameAlreadyExists(String username) {
 		userDao = new UserDao();
 		ArrayList<User> users = userDao.getUsers();

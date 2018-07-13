@@ -59,6 +59,23 @@ public class ClassesDao {
 		}
 		return classname;
 	}
+	public int updateStatusClass(int Class){
+		int kq = 0;
+		conn= ConnectDBLibrary.getConnection();
+		String sql = "update classes set status = 2 where class_id=?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, Class);
+			kq = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return kq;
+	}
 	
 
 }

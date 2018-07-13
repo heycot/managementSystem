@@ -89,15 +89,16 @@ if( user.getRoleId() == 3) {
 							</div>
 
 							<div class="form-group">
-								<label class="required"><strong>Password:</strong>:<span
-									style="color: red"> *</span>&nbsp;<span
-									id="spnPassStatus"></span></label> <input class="form-control"
-									id="txtpassword" type="password" name="password"
-									placeholder="Password" />
+								<label class="required"><strong>Password&nbsp;:</strong>:
+								<span style="color: red"> *</span>&nbsp;
+								<span id="spnPassStatus"></span></label> 
+								<input class="form-control" id="txtpassword" type="password" name="password" placeholder="Password" />
 							</div>
 							<div class="form-group">
-								<label class="required"><strong>Confirm
-										Password:</strong>:<span style="color: red"> *</span></label> <input class="form-control"
+								<label class="required"><strong>Confirm password&nbsp;:</strong>:
+								<span style="color: red"> *</span>&nbsp;
+								<span id="spnPassStatus"></span></label> 
+								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
 									placeholder="Confirm Password" /><span id='message'></span>
 							</div>

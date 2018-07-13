@@ -1,13 +1,14 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import libralies.CurrentUser;
 import model.bean.Roles;
@@ -37,10 +38,17 @@ public class DeleteTraineeController extends HttpServlet {
 					if(request.getParameter("id") != null) {
 						traineeId = Integer.parseInt(request.getParameter("id"));
 					}
+					User trainee = userBo.getTraineeById(traineeId);
+					String fileName = trainee.getAvatar();
+					if (userBo.deleteAvatarOfuser(fileName, request)) {
 					
-					if ( userBo.deleteTrainee(traineeId) > 0) {
-						response.sendRedirect( request.getContextPath() + "/trainee/index?msg=3");
-						return;
+						if ( userBo.deleteTrainee(traineeId) > 0) {
+							response.sendRedirect( request.getContextPath() + "/trainee/index?msg=3");
+							return;
+						} else {
+							response.sendRedirect( request.getContextPath() + "/trainee/index?msg=0");
+							return;
+						}
 					} else {
 						response.sendRedirect( request.getContextPath() + "/trainee/index?msg=0");
 						return;
@@ -77,13 +85,14 @@ public class DeleteTraineeController extends HttpServlet {
 			int result = 0;
 			ArrayList<User> trainees = userBo.getTrainees(traineeRoleId);
 			for (User user : trainees) {
-				if ( request.getParameter("trainee" + user.getUserId()) != null) {    
-					if ( userBo.deleteTrainee(user.getUserId()) > 0) {
-						result++;
+				if ( request.getParameter("trainee" + user.getUserId()) != null) {   
+					if (userBo.deleteAvatarOfuser(user.getAvatar(), request)) {
+						if ( userBo.deleteTrainee(user.getUserId()) > 0) {
+							result++;
+						}
 					}
 				}
 			}
-			
 			
 			if (result > 0) {
 				response.sendRedirect( request.getContextPath() + "/trainee/index?msg=4");
