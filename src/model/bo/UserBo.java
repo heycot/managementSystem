@@ -265,6 +265,16 @@ public class UserBo {
 		userDao = new UserDao();
 		return userDao.registedClass(user_id, class_id);
 	}
+	
+	public ArrayList<ClassWaiting> getClassCanRegisterOfTrainee(int trainee_id){
+		userDao = new UserDao();
+		return userDao.getClassCanRegisterOfTrainee(trainee_id);
+	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingStartOfTrainee(int trainee_id){
+		userDao = new UserDao();
+		return userDao.getClassWaitingStartOfTrainee(trainee_id);
+	}
 }
 
 

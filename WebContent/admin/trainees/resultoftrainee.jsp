@@ -25,7 +25,7 @@ if( user.getRoleId() == 3) {
     <div class="card mb-3">
         <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-             <strong>Result of Trainee</strong>
+             <strong>Your Results</strong>
 			  </div>
 		<div>
            <%
@@ -96,12 +96,12 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive">
             <form action=""  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table id="myTable" class="table table-bordered" width="50%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                       <th>No.</th>
-                      <th >Class Name  </th>
-                      <th >Result </th>
+                       <th style="text-align: center;" >No.</th>
+                      <th style="text-align: center;" >Class Name  </th>
+                      <th style="text-align: center;" >Result </th>
                    
                       
                     </tr>
@@ -116,15 +116,15 @@ if( user.getRoleId() == 3) {
                   			 res = "Pass";
                   		}
                   		else {
-                  			res = "Fail";
+                  			res = "Failed";
                   		}
                   %>
                   
                   <tr class="contentPage">
-                  <td><%= i %></td>
-                  <td><%= results.getClassName()%></td>
+                  <td style="text-align: center;" width="5%"><%= i %></td>
+                  <td style="text-align: center;"width="20%"><%= results.getClassName()%></td>
                   
-                  <td><%= res%></td>
+                  <td style="text-align: center;" width="20%"><%= res%></td>
                   
                   </tr>
                   <%

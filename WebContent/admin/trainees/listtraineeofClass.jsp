@@ -1,9 +1,7 @@
 
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import ="model.bean.Classes"%>;
-%>
-
+<%@page import ="model.bean.Classes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
@@ -62,12 +60,14 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive">
             <form action=""  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table class="table table-bordered" width="50%" id="dataTable" cellspacing="0">
+                <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
                        <th style="text-align: center;" width="5%" >No.</th>
-                      <th style="text-align: center;" width="40%">Full name  </th>
-                      <th style="text-align: center;" width="40%">Phone  </th>
+                       <th style="text-align: center;" width="20%">Username  </th>
+                      <th style="text-align: center;" width="20%">Full name  </th>
+                      <th style="text-align: center;" width="20%">Email </th>
+                      <th style="text-align: center;" width="20%">Phone  </th>
                       
                       
                     </tr>
@@ -83,7 +83,10 @@ if( user.getRoleId() == 3) {
                   
                   <tr>
                   <td style="text-align: center;" ><%= i %></td>
+                  <td style="text-align: center;" ><%= trainee.getUsername()%></td>
+                  
                   <td style="text-align: center;" ><%= trainee.getFullname() %></td>
+                  <td style="text-align: center;" ><%= trainee.getEmail() %></td>
             
                   <td style="text-align: center;" ><%= trainee.getPhone() %></td>
                  </tr>
