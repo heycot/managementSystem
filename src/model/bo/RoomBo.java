@@ -4,11 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 
 import model.bean.Rooms;
+import model.bean.User;
 import model.dao.RoomDao;
+import model.dao.UserDao;
 
 public class RoomBo {
 	
 RoomDao roomDao;
+
 	
 	public void addRooms(Rooms rooms){
 		RoomDao roomDao = new RoomDao();
@@ -27,7 +30,7 @@ RoomDao roomDao;
 		return roomDao.getOneRoom(roomId);
 	}
 	
-	public boolean checkRoomnameAlreadyExistsEdit(String name) {
+	public boolean checkRoomNameAlreadyExists(String name) {
 		roomDao = new RoomDao();
 		ArrayList<Rooms> rooms = roomDao.getRooms();
 		
@@ -41,5 +44,17 @@ RoomDao roomDao;
 	public ArrayList<Rooms> getRooms(){
 		roomDao = new RoomDao();
 		return roomDao.getRooms();
+	}
+	
+	public boolean checkRoomNameAlreadyExistsEdit(String roomName, int roomId) {
+		roomDao = new RoomDao();
+		ArrayList<Rooms> rooms = roomDao.getRooms();
+		
+		for (Rooms room: rooms) {
+			if(room.getRoomId() != roomId && room.getName().equals(roomName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
