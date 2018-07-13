@@ -1,9 +1,8 @@
-
 <%@page import="model.bean.Accessment"%>
 <%@page import="model.bean.Results"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import ="model.bean.Classes"%>;
+<%@page import ="model.bean.Classes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
@@ -250,9 +249,7 @@ if( user.getRoleId() == 3) {
                 			<%
                 		}
                 	} else {
-                		%>
-                		<button type="submit" class="btn btn-primary" style="float: right;" disabled="disabled"><strong>Save</strong></button>
-                		<% 
+                		
                 	}
                 %>
                 

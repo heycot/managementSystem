@@ -1,4 +1,8 @@
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="model.bean.Rooms"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Schedule"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,7 +17,9 @@
   <%
    	ArrayList<Schedule> schedule = (ArrayList<Schedule>) request.getAttribute("schedule");
    	int k=0;
+   	String dayOfWeek2="";
    	int tong = schedule.size();
+   	int classid_choose=0;
    	User ur = (User) request.getAttribute("ur");
 %>
 <%
@@ -106,7 +112,7 @@ if( user.getRoleId() == 3) {
         </style>
         <div class="card-body">
           <div class="table-responsive">
-            <form action=""  method="post">
+          
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                 <table id="myTable" class="table table-bordered" width="100%"  cellspacing="0">
                   <thead>
@@ -115,112 +121,328 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center;">Class</th>
                        <th style="text-align: center;">Room</th>
                       <th style="text-align: center;">Course</th>
-                      <th style="text-align: center;">Time Of Date</th>
+                      <th style="text-align: center;">Time</th>
                       <th style="text-align: center;">Date Of Week</th>
-                      <th style="text-align: center;">Hours Taught</th>
-                      <th style="text-align: center;">Duration</th>
+                      <th style="text-align: center;">Taught Hours </th>
+                      <th style="text-align: center;">Duration (Hours)</th>
                       <th style="text-align: center;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                   
                   	<%
+                  	String FORMAT = "EEE,d MMM yyyy";
+		          	DateFormat formater = new SimpleDateFormat(FORMAT);
+		          	Date date = new Date();
+		        	System.out.println(formater.format(date));
+		        	String s1 = formater.format(date);
+		        	String s2[] = s1.split(",");
+		        	String s3 ="";
+		        	System.out.println(s2[0]);
+		        	String arr1[] = s2[1].split(" ");
+		        	switch(s2[0]){
+            		 
+            		 case "Mon":
+            		 {
+            			 s3+="2";
+            			 break;
+            		 }
+            		 case "Tue":
+            		 {
+            			 s3+="3";
+            			break;
+            		 }
+            		 case "Wed":
+            		 {
+            			 s3+="4";
+            			break;
+            		 }
+            		case "Thu":
+            		 {
+            			 s3+="5";
+            			break;
+            		 }
+            		case "Fri":
+            		 {
+            			 s3+="6";
+            			break;
+            		 }
+            		case "Sat":
+            		 {
+            			 s3+="7";
+            			break;
+            		 }
+            		case "Sun":
+            		 {
+            			 s3+="8";
+            			break;
+            		 }
+            	    default:
+            	    {
+            	        
+            	    }
+            		 }
                   	for (Schedule list : schedule){
                   		k+=1;
                   		String s="";
                   	 	String str=list.getDateOfWeek();
                   	 	String arr[]=str.split(",");
 	                  	 for(int i=0; i<arr.length;i++){
-	                  		 switch(arr[i]){
-	                  		 case "2":
-	                  		 {
-	                  			 s+="Mon";
-	                  			 break;
-	                  		 }
-	                  		 case "3":
-	                  		 {
-	                  			 s+="Tue";
-	                  			break;
-	                  		 }
-	                  		 case "4":
-	                  		 {
-	                  			 s+="Wed";
-	                  			break;
-	                  		 }
-	                  		case "5":
-	                  		 {
-	                  			 s+="Thu";
-	                  			break;
-	                  		 }
-	                  		case "6":
-	                  		 {
-	                  			 s+="Fri";
-	                  			break;
-	                  		 }
-	                  		case "7":
-	                  		 {
-	                  			 s+="Sat";
-	                  			break;
-	                  		 }
-	                  		case "8":
-	                  		 {
-	                  			 s+="Sun";
-	                  			break;
-	                  		 }
-	                  	    default:
-	                  	    {
-	                  	        
-	                  	    }
-	                  		 }
-	                  		if (i< (arr.length-1)) {
+	                  		if(i==(arr.length-1)){
+	               			 s+=" and ";
+	               		 }
+	                 		 switch(arr[i]){
+	                 		 
+	                 		 case "2":
+	                 		 {
+	                 			 s+="Mon";
+	                 			 break;
+	                 		 }
+	                 		 case "3":
+	                 		 {
+	                 			 s+="Tue";
+	                 			break;
+	                 		 }
+	                 		 case "4":
+	                 		 {
+	                 			 s+="Wed";
+	                 			break;
+	                 		 }
+	                 		case "5":
+	                 		 {
+	                 			 s+="Thu";
+	                 			break;
+	                 		 }
+	                 		case "6":
+	                 		 {
+	                 			 s+="Fri";
+	                 			break;
+	                 		 }
+	                 		case "7":
+	                 		 {
+	                 			 s+="Sat";
+	                 			break;
+	                 		 }
+	                 		case "8":
+	                 		 {
+	                 			 s+="Sun";
+	                 			break;
+	                 		 }
+	                 	    default:
+	                 	    {
+	                 	        
+	                 	    }
+	                 		 }
+	                 		 if (i< (arr.length-2)) {
 	                 			 s+=", ";
 	                 		 }
-	                 		 else {
-	                 			 s+=".";
-	                 		 }
+	                 		if (i == (arr.length-1)) {
+	                			 s+="";
+	                		 }
                   	 	}
                   %>
 				   <tr class="contentPage">
-                  <td align="center"><%= k %></td>
-                  <td ><%= list.getNameclass()%></td>
-                   <td align="center"><%= list.getNameroom()%></td>
-                   <td ><%= list.getCourse()%></td>
-                   <td align="center"><%= list.getTimeOfDate()%></td>
-                   <td ><%= s%></td>
-                   <td align="center"><%= list.getCountLession()%></td>
-                   <td align="center"><%= list.getDuration() %></td>
-                    <td align="center"> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-eye" style="font-size:24px; text-decoration: none;"></a>
-                   <button  type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#myModal<%=k%>">Send</button>
+                  <td style="text-align: center; vertical-align: middle;"><%= k %></td>
+                  <td  vertical-align: middle;"><%= list.getNameclass()%></td>
+                   <td style="text-align: center; vertical-align: middle;"><%= list.getNameroom()%></td>
+                   <td style=" vertical-align: middle;"><%= list.getCourse()%></td>
+                   <td style="text-align: center; vertical-align: middle;"><%= list.getTimeOfDate()%></td>
+                   <td style="text-align: center; vertical-align: middle;"><%= s%></td>
+                   <td style="text-align: center; vertical-align: middle;"><%= list.getCountLession()%></td>
+                   <td style="text-align: center; vertical-align: middle;"><%= list.getDuration() %></td>
+                    <td style="text-align: center; vertical-align: middle;"> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;"></a>
+                   <button  type="button" class="btn btn-link"  style="text-align: center; vertical-align: middle; font-size: 20px" data-toggle="modal" data-target="#myModal<%=k%>"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                   </button>
                    <div class="modal fade" id="myModal<%=k %>" role="dialog">
 						    <div class="modal-dialog ">
 						      <div class="modal-content">
 						        <div class="modal-header; alert alert-primary">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">Request take a day off</h4>
+						          <h4 class="modal-title">Requesting a day off for <%= list.getNameclass()%></h4>
 						        </div>
 						        <div class="modal-body">
 						          <table border="0px">
+						           <form action="" method="post"> 
+						           
+						         
 						          <tr>
-						          <th>Day of week</th>
+						          <th>Day off</th>
 						          <td>
-						          <form action="/action_page.php" method="get">
-									  <input type="checkbox" name="2" value="2"> 2<br>
-									  <input type="checkbox" name="3" value="3" checked> 3<br>
-									  <input type="checkbox" name="4" value="4" checked> 4<br>
-									  <input type="checkbox" name="5" value="5" checked> 5<br>
-									  <input type="checkbox" name="6" value="6" checked> 6<br>
-									  <input type="checkbox" name="7" value="7" checked> 7<br>
-									  <input type="checkbox" name="8" value="8" checked> 8<br>
-									</form>
+						          
+						          		
+						          			<%
+						          			
+						          		String []dayoff={"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+						          		for(int j=0; j<arr.length; j++){
+						          		String b = arr[j];
+						          		int b1 =Integer.parseInt((String)b);
+						          		int s4 =Integer.parseInt((String)s3);
+						          		if(b1==s4){
+						          		%>
+										  <input style="float: left;" type="radio" name="dayoff" value="<%=b %>"> <%=s2[0]+", "+s2[1] %><br>
+										  <% 
+										 } else {
+											 if(b1>s4){
+												 int kq = b1-s4;
+												 int day =Integer.parseInt((String)arr1[0]);
+												 day = day + kq;
+												 String dayOfWeek ="";
+												 String day1 =  String.valueOf(day);
+												
+												 for(int c = 0; c<dayoff.length; c++){
+													 if(s2[0].equals(dayoff[c])){
+														  dayOfWeek = dayoff[c+kq];
+													 }
+												 }
+												 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
+												 %>
+												  <input style="float: left;" type="radio" name="dayoff" value="<%=dayOfWeek %>"> <%=day1 %><br>
+												  <%
+											 }else {
+													 int kq = b1 - s4;
+													 int kq1 = kq +7;
+													 int day =Integer.parseInt((String)arr1[0]);
+													 day = day + kq1;
+													 String dayOfWeek ="";
+													 String day1 =  String.valueOf(day);
+													
+													 for(int c = 0; c<dayoff.length; c++){
+														 if(s2[0].equals(dayoff[c])){
+															  dayOfWeek = dayoff[c+kq];
+														 }
+													 }
+													 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
+													 %>
+													  <input style="float: left;" type="radio" name="dayoff" value="<%=dayOfWeek %>"> <%=day1 %><br>
+													  <%
+											 }
+										 }
+						          		%>
+										
+						          		<% 
+						          	}
+						          %>
+						          </td>
+						           <input type="hidden" value="<%=list.getClassid()%>" id="classId">
+						          <%-- <%
+						          	 classid_choose = list.getClassid();
+						          	System.out.println(classid_choose);
+						          %> --%>
+						          <script type="text/javascript">
+					    function takeDayOff (){
+					    	<%-- var dayinstead = $("#dayinstead"+<%=dayOfWeek2%>).val(); --%>
+					    	var dayinstead= $('input[name="dayinstead"]:checked').val();
+					    	var class_id = $('#classId').val();
+					    	alert(class_id);
+					        $.ajax({
+					              type : 'POST', 
+					              url : '/managementSystem/trainer/RequestTakeDayOf?class_id='+class_id+"&dayinstead="+dayinstead, 
+					              success : function(result)  
+					                        { 
+					            				alert(result);
+					                        }
+					              });
+					        }
+					</script>
+						          </tr>
+						          </tr>
+						          
+						          
+						          <tr>
+						          <th>Day instead</th>
+						          <td>
+						         
+						          	<%
+						          	String []dayoff2={"2", "3", "4", "5", "6", "7", "8"};
+						          	String []dayoff3={"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+						          	for(int t=0; t<dayoff2.length; t++){
+						          		String c = dayoff2[t];
+						          		int c1 =Integer.parseInt((String)c);
+						          		int s5 =Integer.parseInt((String)s3);
+						          		
+						          		if(c1==s5){
+						          			dayOfWeek2 = s2[0];
+						          			%>
+											  <input style="float: left;" type="radio" name="dayinstead" value="<%=s2[0] %>"> <%=s2[0]+", "+s2[1] %><br>
+											  <% 
+						          		}else {
+											 if(c1>s5){
+												 int kq = c1-s5;
+												 int day2 =Integer.parseInt((String)arr1[0]);
+												 day2 = day2 + kq;
+												 dayOfWeek2 ="";
+												 String day3 =  String.valueOf(day2);
+												
+												 for(int d = 0; d<dayoff3.length; d++){
+													 if(s2[0].equals(dayoff3[d])){
+														  dayOfWeek2 = dayoff3[d+kq];
+													 }
+												 }
+												 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
+												 %>
+												  <input style="float: left; " type="radio" name="dayinstead" value="<%=dayOfWeek2 %>"> <%=day3 %><br>
+												  <%
+											 }else {
+													 int kq = c1 -s5;
+													 int kq1 = kq +7;
+													 int day2 =Integer.parseInt((String)arr1[0]);
+													 day2 = day2 + kq1;
+													 dayOfWeek2 ="";
+													 String day3 =  String.valueOf(day2);
+													
+													 for(int d = 0; d<dayoff3.length; d++){
+														 if(s2[0].equals(dayoff3[d])){
+															  dayOfWeek2 = dayoff3[d+kq];
+														 }
+													 }
+													 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
+													 %>
+													  <input style="float: left; " type="radio" name="dayinstead" value="<%=dayOfWeek2 %>"> <%=day3 %><br>
+													  <%
+											 }
+						          		}
+						          	%>
+									  
+								
+									<%
+									}
+									%>
 									</td>
 						          </tr>
 						          <tr>
-						          <th>Class</th>
-						          <td><%= list.getNameclass()%></td>
+						          	<th colspan="2">
+						          	<button id="bttcheck" onclick="takeDayOff();" style="float: right;" class=" btn btn-primary">Check</button>
+						          	</th>
+						          </tr>
+						          </form>
+						          
+						          <tr>
+						          <th>Time</th>
+						          <td>
+						          <select style="float: left;width:145px" >
+						          <option value="">7:00-9:00</option>
+						          <option value="">9:00-11:00</option>
+									  
+									</select>
+						          </td>
 						          </tr>
 						          <tr>
 						          <th>Room</th>
-						          <td><%= list.getNameroom()%></td>
+						         
+						          <td>
+						          	 <select style="float: left; ">
+						          	 <%-- <option value="nameroom"><%= list.getNameroom()%></option> --%>
+						          	  <%
+						          	
+						          	ArrayList<Rooms> rooms =(ArrayList<Rooms>)request.getAttribute("rooms");
+						          	for(Rooms ar: rooms){
+						          	%>	
+									  <option value="nameroom"><%= ar.getName()%></option>
+						          <%
+						          }
+						          %>
+						          </select> 
+						          </td>
 						          </tr>
 						          <tr>
 						          <th colspan="2"><label>Content</label><textarea rows="5" cols="45"></textarea></th>
@@ -229,8 +451,9 @@ if( user.getRoleId() == 3) {
 						          </table>
 						        </div>
 						        <div class="modal-footer">
-						          <button type="button" class="btn btn-default; alert alert-primary" data-dismiss="modal">Close</button>
-						          <button type="button" class="btn btn-default; alert alert-primary" >OK</button>
+						         <button type="button" class="btn btn-default; btn btn-primary" >Submit</button>
+						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px">Close</button>
+						         
 						        </div>
 						      </div>
 						    </div>
@@ -245,8 +468,10 @@ if( user.getRoleId() == 3) {
                 <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
-            </form>
-          </div>
+						
+
+
+					</div>
         </div>
         <div class="card-footer small text-muted">
           Updated yesterday at 11:59 PM
