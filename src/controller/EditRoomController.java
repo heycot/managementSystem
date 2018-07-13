@@ -46,7 +46,7 @@ public class EditRoomController extends HttpServlet {
 		room.setCapacity( Integer.parseInt(request.getParameter("capacity")));
 		room.setStatus(Integer.parseInt(request.getParameter("status")));
 		
-		if (roomBo.checkRoomnameAlreadyExistsEdit(request.getParameter("name"))) {
+		if (roomBo.checkRoomNameAlreadyExists(request.getParameter("name"))) {
 			
 			request.setAttribute("room", room);
 			request.setAttribute("ErrorEdit", " This username is already exists in system");

@@ -38,7 +38,7 @@ public class AddNewRoomController extends HttpServlet {
 				Integer.parseInt(request.getParameter("status")));
 
 		RoomBo roomBo = new RoomBo();
-		if (roomBo.checkRoomnameAlreadyExistsEdit(request.getParameter("name"))) {
+		if (roomBo.checkRoomNameAlreadyExists(request.getParameter("name"))) {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("room", room);
