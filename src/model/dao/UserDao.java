@@ -52,9 +52,10 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
 
 				User user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId,
-						gender, address, phone, notificationId, avatar);
+						gender, address, phone, notificationId, avatar, status);
 
 				users.add(user);
 			}

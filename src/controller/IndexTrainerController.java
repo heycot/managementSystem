@@ -24,5 +24,9 @@ public class IndexTrainerController extends HttpServlet {
 		request.setAttribute("trainers", trainers);
 		request.getRequestDispatcher("/admin/training_manager/list_trainer_account.jsp").forward(request, response);
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }

@@ -26,12 +26,53 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 5px;"> 
              <i class="fa fa-fw fa-users" ></i>
 		    <strong>Trainers</strong>
 		  </div>
 		<div> 
-	  
+	  <%
+	  String msg = "";
+	  if(request.getParameter("msg") != null){
+		  boolean check = false;
+		  int msgInt = Integer.parseInt((String)request.getParameter("msg"));
+		  switch(msgInt) {
+		  case 1: {
+			  check = true;
+			  msg = "You added the trainer successfully"; break;
+		  }
+		  case 2:{
+			  check = true;
+			  msg = "You edit the trainer successfully"; break;
+		  }
+		  case 3:{
+			  check = true;
+			  msg = "You deleted the trainer successfully"; break;
+		  }
+		  case 4:{
+			  check = true;
+			  msg  = "You deleted trainers successfully"; break;
+		  }
+		  case 0:{
+			  check = false;
+			  msg  = "Error! System have some problems. Please try again"; break;
+		  }
+		  }
+		   if( check == false){
+		  %>
+        	<div class="alert alert-danger">
+		    	<strong> <%= msg%> </strong>
+		  	</div>
+		  <%
+		  } else {
+			  %>
+	        	<div class="alert alert-success">
+			    	<strong> <%= msg%> </strong>
+			  	</div>
+			  <%
+		  }
+	  }
+	  %>
 		<%
 		List<User> trainers = new ArrayList<User>();
 		int total = 0;
@@ -73,7 +114,7 @@ if( user.getRoleId() == 3) {
         
         <script type="text/javascript">
             $(function () {
-                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+                var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
                     $(".contentPage").each(function (n) {
@@ -114,7 +155,7 @@ if( user.getRoleId() == 3) {
             <form action=""  method="post">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
-	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
@@ -123,14 +164,15 @@ if( user.getRoleId() == 3) {
 	        	</div><table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th width="10%">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th>Avatar</th>
-                      <th>UserName</th>
-                      <th>FullName</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Address</th>
-                      <th width="10%">Service</th>
+                      <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; vertical-align: middle;">Avatar</th>
+                      <th style="text-align: center; vertical-align: middle;">UserName</th>
+                      <th style="text-align: center; vertical-align: middle;">FullName</th>
+                      <th style="text-align: center; vertical-align: middle;">Email</th>
+                      <th style="text-align: center; vertical-align: middle;">Phone</th>
+                      <th style="text-align: center; vertical-align: middle;">Address</th>
+                      <th style="text-align: center; vertical-align: middle;">Status</th>
+                      <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
                   </thead>
                   <tbody >
@@ -138,16 +180,27 @@ if( user.getRoleId() == 3) {
                   	for(User trainer : trainers){
                   %>	
                   	<tr class="contentPage">
-                      	<td> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>" width="250px"></td>
-                     	<td> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
-	                    <td><%= trainer.getFullname() %></td>
-	                    <td><%= trainer.getEmail()%></td>
-	                    <td><%= trainer.getPhone()%></td>
-	                    <td><%= trainer.getAddress() %></td>
-                    	<td>
-                        <a style="display:block" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit"></i>Edit</a>
-                        <a style="display:block" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Bạn có muốn xóa danh mục này?')"><i class="fa fa-trash"></i>Delete</a>
+                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
+                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
+                     	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getAddress() %></td>
+	                    <%
+	                    if (trainer.getStatus() == 1){
+	                    	%>	
+		                    <td id="status<%= trainer.getUserId()%>"    style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <%
+	                    } else {
+	                    	%>	
+		                    <td  id="status<%= trainer.getUserId()%>"   style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <%
+	                    }
+	                    %>
+	                    <td   style="text-align: center; vertical-align: middle;">
+                        <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
+                        <a  style="margin-left: 10px" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
                      	</td>
                     </tr>
                   <%	
