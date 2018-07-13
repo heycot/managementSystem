@@ -19,12 +19,7 @@ import model.bo.MajorBo;
 @WebServlet("/major")
 public class ListMajor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    public ListMajor() {
-        super();
-       
-    }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MajorBo majorBo = new MajorBo();
