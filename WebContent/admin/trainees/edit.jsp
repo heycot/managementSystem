@@ -30,7 +30,7 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3">
+        <div class="card mb-3" style="height:650px;">
              <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
 			    <strong>&nbsp;<%= trainee.getUsername()%> </strong>
@@ -53,15 +53,15 @@ if( user.getRoleId() == 3) {
               
               <div class="col-sm-6" style="float: left">
               	<div >
-              		<div class="form-group" class="col-sm-2" style="float: left">
-	              	<img alt="" src="<%= request.getContextPath()%>/files/<%= trainee.getAvatar()%>" width="250px">
+              		<div class="form-group" class="col-sm-2" style="float: left; padding-right:20px;">
+	              	<img alt="" src="<%= request.getContextPath()%>/files/<%= trainee.getAvatar()%>" width="120px" height="150px">
 	              	
 	              	</div>
 	              	
-	              	<div class="form-group" class="col-sm-4" style="float: left; margin-left: 1.25rem;">
+	              	<div class="form-group" class="col-sm-4" style="float: left; height:157px; ">
 		              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
 		              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
-	    				<img id="blah" src="#" alt="your image" />
+	    				<img style="margin-top:5px;" id="blah" src="#" alt="" />
 	    				<script type="text/javascript">
 	    				function readURL(input) {
 	    			        if (input.files && input.files[0]) {
@@ -70,8 +70,8 @@ if( user.getRoleId() == 3) {
 	    			            reader.onload = function (e) {
 	    			                $('#blah')
 	    			                    .attr('src', e.target.result)
-	    			                    .width(150)
-	    			                    .height(100);
+	    			                    .width(80)
+	    			                    .height(65);
 	    			            };
 	
 	    			            reader.readAsDataURL(input.files[0]);
@@ -88,7 +88,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Fullname</label>&nbsp;<span id="spnFullNameStatus"></span>
+	              	<label class="required" >FullName</label>&nbsp;<span id="spnFullNameStatus"></span>
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
               	</div>
               	
@@ -98,9 +98,6 @@ if( user.getRoleId() == 3) {
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
               	</div>
               	
-              </div>
-              
-              <div class="col-sm-6" style="float: right">
               	<div class="form-group">
 	              	  <label class="required" >Gender</label> <br>
 	              	  <%
@@ -121,6 +118,9 @@ if( user.getRoleId() == 3) {
 		              	
               	</div>
               	
+              </div>
+              
+              <div class="col-sm-6" style="float: right">
               	
               	<div class="form-group">
 	              	<label class="required" >Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
@@ -138,24 +138,30 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-                    		
-                   <label for="usr"><strong>Password:</strong></label>&nbsp;<span id="spnPassStatus"></span>
-                  <input type="button" value="Click here to change" onclick="changePass();"> <br>
-                   <input style="display: none" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
+	              	<label class="" >Password:</label>&nbsp;<span id="spnPassStatus"></span>
+	              	<br>
+              		<input type="button" value="Click here to change" onclick="changePass();" style="height:40px;"> <br>
+              		<label style="display: none;margin-left:-10px; border:1px solid white;"  class="form-control" id ="lbfill"  name="">Please fill out these fields:</label> 
+                   <br>
+                   <input style="display: none; margin-top:-23px;" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="newpass"  name="newpass" placeholder="New password" />
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="confirmpass"  name="confirmpass" placeholder="Confirm new password" />
                   </div>
-                   
+              	</div>
+              	
+              	
                    <script type="text/javascript">
      				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
+							document.getElementById("lbfill").style.display = "block";
 							document.getElementById("oldpass").style.display = "block";
 							document.getElementById("newpass").style.display = "block";
 							document.getElementById("confirmpass").style.display = "block";
 						}
 						else{
+							document.getElementById("lbfill").style.display = "none";
 							document.getElementById("oldpass").style.display = "none";
 							document.getElementById("newpass").style.display = "none";
 							document.getElementById("confirmpass").style.display = "none";
@@ -169,17 +175,11 @@ if( user.getRoleId() == 3) {
               <div style="clear: both"></div>
               <div class="error" ></div>
                
-              <div>
-	               <div class="col-sm-4" style="float: left"></div>
-	               
-	             	<div class="col-sm-4" style="float: left">
-	             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size: 18px; height:auto; margin-bottom:10px;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" /></div>
-	             		<div class="col-sm-2" style="float: left"><input style="width:auto; font-size:17px; height:auto; margin-bottom:10px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
-	             		<div style="clear: both"></div>	
-	             	</div> 
-	             	
-	               <div class="col-sm-4" style="float: right"></div>
-	               <div style="clear: both"></div>
+              <div style="text-align:center;">
+             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
+             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
+              </div> 
+	          <div style="clear: both"></div>
               </div>
               
               <div style="margin-bottom: 5%"></div>

@@ -6,7 +6,7 @@
 <%@page import ="model.bean.Classes"%>;
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %> 
+<%@include file="/templates/inc/dashboard2.jsp" %> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>

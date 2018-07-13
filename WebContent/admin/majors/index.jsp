@@ -2,8 +2,9 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard2.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
@@ -207,11 +208,11 @@ if( user.getRoleId() == 3) {
 								   <td style="text-align: center; vertical-align: middle;">
 				                   		<button type="button" class="btn btn-link" name="editMajor" style="" data-toggle="modal"
 				                    			data-target="#editModal<%=list.getMajorId()%>">
-				                    	<i class="fa fa-edit" style="font-size:20px; margin-bottom: 10px !important; "></i>
+				                    	<i class="fa fa-edit" style="font-size:20px;  vertical-align:middle;"></i>
 			                    		</button>
 				                    	<a 	href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
 				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor" >
-					                    	<i class="fa fa-trash" style="font-size:20px; margin-bottom: 10px !important; "></i>
+					                    	<i class="fa fa-trash" style="color:rgb(220, 53, 69) ;font-size:20px; vertical-align:middle;"></i>
 				                    	</a>
 				                   </td>          
 			                   </tr>

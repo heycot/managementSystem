@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
 <script src="jquery.twbsPagination.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
@@ -162,7 +162,7 @@ if( user.getRoleId() == 3) {
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
-	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/course/add" role="button">Add new course</a>
+	            	<a style="width:auto; font-size:15px; height:auto; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/course/add" role="button">Add new course</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
@@ -212,7 +212,7 @@ if( user.getRoleId() == 3) {
 	                    %>
                     	<td  style="text-align: center; vertical-align: middle;">
                         <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
+                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
                      	</td>
                     </tr>
                   <%	

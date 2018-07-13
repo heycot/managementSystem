@@ -165,8 +165,8 @@ if( user.getRoleId() == 3) {
 					<div class="row">
 						<div class="col-md-5"></div>
 						<input class="btn btn-primary btn-lg" type="submit" name="submit"
-							id="btnSubmit" value="Add" style="margin-right: 0.5em;" /> <input
-							class="btn btn-secondary btn-lg" type="reset" value="Reset" />
+							id="btnSubmit" value="Add" style="width:100px; font-size:17px;height:40px; padding:5px; text-align:center;margin-right:10px;" /> <input
+							class="btn btn-secondary btn-lg" type="reset" value="Reset" style="font-size:17px;border:1px solid white;width:100px; height:40px; padding:5px; text-align:center;" />
 					</div>
 					<div style="margin-bottom: 10%"></div>
 				</div>
