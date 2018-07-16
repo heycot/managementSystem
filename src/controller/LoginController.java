@@ -61,6 +61,10 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("Error", "Email is incorrect!");
 			response.sendRedirect(request.getContextPath()+"/login");
 		}
+		else if(user.getStatus() == 0){
+			session.setAttribute("Error", "Your account is disabled!");
+			response.sendRedirect(request.getContextPath()+"/login");
+		}
 		else{
 			String pass =  MD5Library.md5(request.getParameter("password"));	
 			

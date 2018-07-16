@@ -91,9 +91,11 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
+
 
 				user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId, gender,
-						address, phone, notificationId, avatar);
+						address, phone, notificationId, avatar,status);
 
 			}
 
@@ -128,9 +130,11 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
+
 				
 				user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId, gender,
-						address, phone, notificationId, avatar);
+						address, phone, notificationId, avatar,status);
 			}
 		} catch (SQLException e) {
 			System.out.println(e);

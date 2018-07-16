@@ -34,11 +34,11 @@
 						</div>
 						<div class="divEmail">
 							<input type="text" name="email" class="inputEmail" id="txtemail"
-								placeholder="Email" required><br><span id="spnEmailStatus"></span>
+								placeholder="Email" ><br><span id="spnEmailStatus"></span>
 						</div>
 						<div class="divPassword">
 							<input type="password" name="password" class="inputPassword" id="txtpassword"
-								placeholder="Password" required><br><span id="spnPasswordStatus"></span>
+								placeholder="Password" ><br><span id="spnPasswordStatus"></span>
 						</div>
 						<div class="button">
 							<input type="submit" class="btnLogIn" id="btnLogin" value="LOG IN">
@@ -60,8 +60,7 @@
 										</div>
 									<div class="modal-body">
 											<div class="form-group">
-												<label>Please enter email to send a code via email.
-													your account.</label> <input type="email" class="form-control"
+												<label>Please enter email to send a code via email.</label> <input type="email" class="form-control"
 													id="emailForgot" name="emailForgot" placehoder="Email" /><br><span id="spnEmailForgotStatus"></span>
 											</div>
 											<button type="button" class="btn btn-primary" id="btnForgot" onclick="sendEmail();">Send</button>

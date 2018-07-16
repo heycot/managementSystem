@@ -99,7 +99,7 @@ if (request.getAttribute("ability") != null) {
 								<label for="usr">Email<span
 									style="color: red"> *</span>&nbsp;<span id="spnEmailStatus"></span></label> <input
 									type="email" class="form-control" id="txtemail"
-									value="<%=trainer.getEmail()%>" name="email"/>
+									value="<%=trainer.getEmail()%>" name="email" disabled/>
 							</div>
 
 							<div class="form-group">
@@ -135,22 +135,14 @@ if (request.getAttribute("ability") != null) {
 			              	
 				              	
 		              	</div>
-		              	<div class="form-group">
+						</div>
+						<div class="col-md-6">
+						<br>
+							<div class="form-group">
 								<label for="usr">Birthday<span
 									style="color: red"> *</span></label> <input type="date"
 									class="form-control" id="usr" name="dateOfBirth"
 									value="<%=trainer.getDateOfBirth() %>" />
-							</div>
-
-						</div>
-						<div class="col-md-6">
-						<br>
-						
-							<div class="form-group">
-								<label for="usr">CreatedDate:<span
-									style="color: red"> *</span></label> <input type="date"
-									class="form-control" id="usr" name="created_date"
-									value="<%=trainer.getCreatedDate()%>" disabled/>
 							</div>
 							<div class="form-group">
 								<label for="usr">Address<span
