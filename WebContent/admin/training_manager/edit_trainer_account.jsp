@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bo.SkillBo"%>
 <%@page import="model.bean.Ability"%>
@@ -37,7 +38,8 @@ if (request.getAttribute("trainer") != null) {
 if (request.getAttribute("ability") != null) {
 	ability = (Ability) request.getAttribute("ability");
 }
-
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -141,7 +143,7 @@ if (request.getAttribute("ability") != null) {
 							<div class="form-group">
 								<label for="usr">Birthday<span
 									style="color: red"> *</span></label> <input type="date"
-									class="form-control" id="usr" name="dateOfBirth"
+									class="form-control" id="usr" name="dateOfBirth" max="<%=dateMax%>"
 									value="<%=trainer.getDateOfBirth() %>" />
 							</div>
 							<div class="form-group">

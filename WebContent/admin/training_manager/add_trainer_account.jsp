@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bo.SkillBo"%>
 <%@page import="model.bean.Roles"%>
@@ -19,6 +20,8 @@ if( user.getRoleId() == 3) {
 	styleContent = "";
 }
 
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -52,8 +55,7 @@ if( user.getRoleId() == 3) {
 							</div>
 							<br><br><br>
 								<div class="form-group" class="col-sm-4" style="float: left">
-									<label class="required"><strong>Avatar:</strong> <span
-										style="color: red"> *</span><em style="color: red">(jpg,
+									<label class="required"><strong>Avatar:</strong><em style="color: red">(jpg,
 											png, gif)</em> </label> <input class="form-control" id="image" type="file"
 										name="avatar" onchange="readURL(this);" />
 								</div>
@@ -77,30 +79,31 @@ if( user.getRoleId() == 3) {
 				
 							<div class="form-group">
 								<label class="required"><strong>Email:</strong><span
-									style="color: red"> *</span> &nbsp;<span id="spnEmailStatus"></span></label>
+									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtemail" type="text"
 									name="email" placeholder="Email" />
+									<span id="spnEmailStatus"></span>
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Username:</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnUserNameStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtusername" type="text"
 									name="username" placeholder="Username" />
+									<span id="spnUserNameStatus"></span>
 							</div>
 
 							<div class="form-group">
-								<label class="required"><strong>Password&nbsp;:</strong>:
-								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPasswordStatus"></span></label> 
+								<label class="required"><strong>Password:</strong>:
+								<span style="color: red"> *</span></label> 
 								<input class="form-control" id="password" type="password" name="password" placeholder="Password" />
+								<span id="spnPasswordStatus"></span>
 							</div>
 							<div class="form-group">
-								<label class="required"><strong>Confirm password&nbsp;:</strong>:
-								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPasswordStatus"></span></label> 
+								<label class="required"><strong>Confirm password:</strong>
+								<span style="color: red"> *</span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
-									placeholder="Confirm Password" /><span id='message'></span>
+									placeholder="Confirm Password" /><span id="spnPasswordStatus"></span>
 							</div>
 
 						</div>
@@ -108,9 +111,10 @@ if( user.getRoleId() == 3) {
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="required"><strong>Full Name:</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnFullNameStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtfullname" type="text"
 									name="fullname" placeholder="Fullname" />
+									<span id="spnFullNameStatus"></span>
 							</div>
 
 							<div class="form-group">
@@ -122,22 +126,25 @@ if( user.getRoleId() == 3) {
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Address</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnAddressStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"
 									name="address" value="" placeholder="Address" />
+									<span id="spnAddressStatus"></span>
 							</div>
 
 							<div class="form-group">
 								<label class="required"><strong>Phone Number:</strong><span
-									style="color: red"> *</span> &nbsp;<span id="spnPhoneStatus"></label>
+									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtphone" type="text"
 									name="phone" placeholder="Phone" />
+									<span id="spnPhoneStatus"></span>
 							</div>
+							
 
 							<div class="form-group">
 								<label class="required"><strong>Day of Birth:</strong><span
 									style="color: red"> *</span></label> <input class="form-control"
-									id="txtname" type="date" name="dateOfBirth"
+									id="txtname" type="date" name="dateOfBirth" value="<%=dateMax%>" max="<%=dateMax%>"
 									placeholder="Birthday" />
 							</div>
 

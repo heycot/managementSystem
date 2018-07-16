@@ -1,4 +1,3 @@
-
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -27,7 +26,6 @@
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
- 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
@@ -36,8 +34,9 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	        <!-- JS tạo nút bấm di chuyển trang start -->
-	 
+	
+	 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+		 
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}

@@ -34,11 +34,11 @@
 						</div>
 						<div class="divEmail">
 							<input type="text" name="email" class="inputEmail" id="txtemail"
-								placeholder="Email" ><br><span id="spnEmailStatus"></span>
+								placeholder="Email" required><br><span id="spnEmailStatus"></span>
 						</div>
 						<div class="divPassword">
 							<input type="password" name="password" class="inputPassword" id="txtpassword"
-								placeholder="Password" ><br><span id="spnPasswordStatus"></span>
+								placeholder="Password" required><br><span id="spnPasswordStatus"></span>
 						</div>
 						<div class="button">
 							<input type="submit" class="btnLogIn" id="btnLogin" value="LOG IN">
@@ -54,14 +54,14 @@
 								<div class="modal-dialog">
 									<!-- Modal content-->
 									<div class="modal-content">
-										<div class="modal-header">
+										<div class="modal-header alert-success">
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">Forgot password?</h4>
+											<h3 class="modal-title"><strong>Forgot password?</strong></h3>
 										</div>
 									<div class="modal-body">
 											<div class="form-group">
-												<label>Please enter email to send a code via email.</label> <input type="email" class="form-control"
-													id="emailForgot" name="emailForgot" placehoder="Email" /><br><span id="spnEmailForgotStatus"></span>
+												<label><h4><strong>Please enter email to send a code via email.</strong></h4></label> <input type="email" class="form-control"
+													id="emailForgot" name="emailForgot" placehoder="Email" /><span id="spnEmailForgotStatus"></span>
 											</div>
 											<button type="button" class="btn btn-primary" id="btnForgot" onclick="sendEmail();">Send</button>
 											<button type="button" class="btn btn-default"
@@ -75,27 +75,14 @@
 		</div>
 		
 		<script type="text/javascript">
-	        $(document).ready(function() {
-				$("#add-post1").validate({
-					// ignore: [],
-					// debug: false,
-					rules: {
-						email:"required",
-						password:"required",
-					},
-					messages: {
-						email:"Please enter email.",
-						password:"Please enter password.",
-					}
-				});
-			});
 	        
 	        $(document).ready(function(e) {
 				    $('#txtemail').blur(function() {
 				        var sEmail = $('#txtemail').val();
 				        if ($.trim(sEmail).length == 0) {
-							$('#spnEmailStatus').html('Please enter valid email address!');
-							 $('#spnEmailStatus').css('color', 'red');
+							$('#spnEmailStatus').html('<h4><strong>Please enter valid email address!</strong></h4>');
+							 $('#spnEmailStatus').css('color', 'white');
+							 $('#txtemail').css('border-color', 'red');
 						document.getElementById("btnLogin").disabled = true; 
 				        }
 				        if (validateEmail(sEmail)) {
@@ -104,8 +91,9 @@
  						document.getElementById("btnLogin").disabled = false; 
 				        }
 				        else {
-							$('#spnEmailStatus').html('Please enter valid email address!');
-						 $('#spnEmailStatus').css('color', 'red');
+							$('#spnEmailStatus').html('<h4><strong>Please enter valid email address!</strong></h4>');
+						 $('#spnEmailStatus').css('color', 'white');
+						 $('#txtemail').css('border-color', 'red');
 						document.getElementById("btnLogin").disabled = true; 
 				        }
 				    });
@@ -120,8 +108,9 @@
 						document.getElementById("btnLogin").disabled = false; 
 						}
 						else {
-							$('#spnPasswordStatus').html('Password have minimum eight characters, at least one letter, one number and one special character!');
-							$('#spnPasswordStatus').css('color', 'red');
+							$('#spnPasswordStatus').html('<h4><strong>Password have minimum eight characters, at least one letter, one number and one special character!</h4></strong>');
+							$('#spnPasswordStatus').css('color', 'white');
+							$('#txtpassword').css('border-color', 'red');
 						document.getElementById("btnLogin").disabled = true; 
 						}
 					});
@@ -132,7 +121,10 @@
 			        var sEmail = $('#emailForgot').val();
 			        if ($.trim(sEmail).length == 0) {
 						$('#spnEmailForgotStatus').html('Please enter valid email address!');
+						$('#spnEmailForgotStatus').css('font-size', '24');
+						$('#spnEmailForgotStatus').css('font-weight', '600');
 						 $('#spnEmailForgotStatus').css('color', 'red');
+						 $('#emailForgot').css('border-color', 'red');
 					document.getElementById("btnForgot").disabled = true; 
 			        }
 			        if (validateEmail(sEmail)) {
@@ -142,7 +134,10 @@
 			        }
 			        else {
 						$('#spnEmailForgotStatus').html('Please enter valid email address!');
+						$('#spnEmailForgotStatus').css('font-size', '24');
+						$('#spnEmailForgotStatus').css('font-weight', '600');
 					 $('#spnEmailForgotStatus').css('color', 'red');
+					 $('#emailForgot').css('border-color', 'red');
 					document.getElementById("btnForgot").disabled = true; 
 			        }
 			    });

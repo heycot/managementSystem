@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.jni.Local;
 
 import libralies.FormatDateLibrary;
 import libralies.MD5Library;
@@ -22,6 +25,7 @@ import model.bo.UserBo;
 @MultipartConfig
 public class EditTrainerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -54,7 +58,6 @@ public class EditTrainerController extends HttpServlet {
 		String address = request.getParameter("address").trim();
 		String phone = request.getParameter("phone").trim();
 		Date dateOfBirth = FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth"));
-
 		int skillId = Integer.parseInt(request.getParameter("skillId"));
 		int experience = Integer.parseInt(request.getParameter("experience"));
 
@@ -68,15 +71,6 @@ public class EditTrainerController extends HttpServlet {
 		
 
 		Ability ability = abilityBo.getAbilityByUserId(userID);
-		if (ability.getSkillId() == skillId) {
-				ability.setExperience(experience);
-				abilityBo.editTrainerAbility(ability);
-		}
-		else{
-			ability.setSkillId(skillId);
-			ability.setExperience(experience);
-			abilityBo.editTrainerAbility(ability);		
-		}
 		
 		if ( !"".equals(request.getParameter("oldpass"))) { 
 			
@@ -87,11 +81,9 @@ public class EditTrainerController extends HttpServlet {
 				request.setAttribute("trainer", trainer);
 				request.setAttribute("ability", ability);	
 				request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
-				
 			}
-		} 
-		
-		if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
+		}
+		else if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
 			System.out.println("check usernmae");
 			request.setAttribute("trainer", trainer);
 			request.setAttribute("ability", ability);
@@ -99,9 +91,7 @@ public class EditTrainerController extends HttpServlet {
 			request.setAttribute("error", " This username is already exists in system");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
 		}
-		
-		
-		if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {	
+		else if(userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 0) {	
 			trainer.setAvatar(trainer.getAvatar());
 
 		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 1) {
@@ -116,7 +106,16 @@ public class EditTrainerController extends HttpServlet {
 		}
 		
 		
-		if (userBo.editTrainer(trainer) > 0) {
+		else if(userBo.editTrainer(trainer) > 0) {
+			if (ability.getSkillId() == skillId) {
+					ability.setExperience(experience);
+					abilityBo.editTrainerAbility(ability);
+			}
+			else{
+				ability.setSkillId(skillId);
+				ability.setExperience(experience);
+				abilityBo.editTrainerAbility(ability);		
+			}
 			response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
 		} else {
 			request.setAttribute("trainer", trainer);

@@ -49,7 +49,7 @@ body, html{
 .formLogin{
     background-color: transparent;
     vertical-align: center;
-    margin-top:10%;
+    margin-top:5%;
 }
 
 .divForm{
@@ -64,7 +64,7 @@ body, html{
 
 .divEmail{
     text-align: center;
-    margin-top: 8%;
+    margin-top: 2%;
 }
 
 .divPassword{
@@ -73,7 +73,7 @@ body, html{
 } 
 
 .inputEmail{
-    border: 3px solid white;
+    border: 1px solid white;
     border-radius: 52px;
     height: 100px;
     width: 80%;
@@ -84,7 +84,7 @@ body, html{
 }
 
 .inputPassword{
-    border: 3px solid white;
+    border: 1px solid white;
     border-radius: 52px;
     height: 100px;
     width: 80%;
