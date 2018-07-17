@@ -54,8 +54,8 @@ public class DeleteSkillsController extends HttpServlet {
 			List<Skills> skills = skillBo.getSkills();
 			
 			for(Skills skill: skills){
-				String skillId = (String.valueOf(skill.getSkillId()));
-				if(skillId.equals(request.getParameter("skill"+skill.getSkillId()))){
+				String skillid = (String.valueOf(skill.getSkillId()));
+				if(skillid.equals(request.getParameter("skill"+skill.getSkillId()))){
 					skillBo.deleteSkills(skill.getSkillId());
 						result++;
 					}
