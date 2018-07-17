@@ -50,6 +50,11 @@ public class SkillBo {
 		SkillDao skillDao = new SkillDao();
 		skillDao.editSkill(skills);
 	}
+	
+	public int deleteSkills(int skillId){
+		skillDao = new SkillDao();
+		return skillDao.deleteSkill(skillId);
+	}
 
 	
 }

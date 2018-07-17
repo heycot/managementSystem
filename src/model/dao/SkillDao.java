@@ -23,11 +23,11 @@ public class SkillDao {
 		List<Skills> skills= new ArrayList<>();
 		conn= ConnectDBLibrary.getConnection();
 		try{
-			String sql= "select skill_id, name, course_id from skills";
+			String sql= "select skill_id, name, major_id from skills";
 			pst= conn.prepareStatement(sql);
 			rs= pst.executeQuery();
 			while(rs.next()){
-				Skills skill= new Skills(rs.getInt("skill_id"), rs.getString("name"), rs.getInt("course_id"));
+				Skills skill= new Skills(rs.getInt("skill_id"), rs.getString("name"), rs.getInt("major_id"));
 				skills.add(skill);
 			}
 		}
@@ -64,7 +64,7 @@ public class SkillDao {
 			
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, skills.getName());
-			pst.setInt(2, skills.getcourseId());
+			pst.setInt(2, skills.getmajorId());
 			
 			kq = pst.executeUpdate();
 		}
@@ -81,7 +81,7 @@ public class SkillDao {
 		conn = ConnectDBLibrary.getConnection();
 		Skills oneSkill = new Skills();
 		try{
-			String sql = "select name, course_id from skills where skill_id=?";
+			String sql = "select name, major_id from skills where skill_id=?";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, skillId);
@@ -89,7 +89,7 @@ public class SkillDao {
 			while (rs.next()){
 				oneSkill.setSkillId(skillId);
 				oneSkill.setName(rs.getString(1));
-				oneSkill.setCourseId(rs.getInt(2));
+				oneSkill.setmajorId(rs.getInt(2));
 			}
 			
 		}catch (SQLException e) {
@@ -104,11 +104,11 @@ public class SkillDao {
 		int kq = 0;
 		conn = ConnectDBLibrary.getConnection();
 		try{
-			String sql = "update skills set name=?, course_id=? where skill_id=?";
+			String sql = "update skills set name=?, major_id=? where skill_id=?";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, skills.getName());
-			pst.setInt(2, skills.getcourseId());
+			pst.setInt(2, skills.getmajorId());
 			pst.setInt(3, skills.getSkillId());
 			
 			kq = pst.executeUpdate();
@@ -123,4 +123,21 @@ public class SkillDao {
 		
 	}
 	
+	public int deleteSkill(int skillId){
+		int kq = 0;
+		
+		String sql = "delete from skills where skill_id = ?";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try{
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, skillId);
+			kq = pst.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return kq;
+	}
 }

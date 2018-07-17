@@ -1,7 +1,7 @@
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bean.Majors"%>
 <%@page import="model.bean.Courses"%>
-
+<%@page import="model.bo.MajorBo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -48,14 +48,19 @@ int tong = skill.size();
              <i class="fa fa-fw fa-graduation-cap" ></i>
              	<strong>Skills List</strong>
 			  </div>	
-			  <%       	String msg = "";
+			  <%       	
+String msg = "";
 if(request.getParameter("msg") != null){
 	boolean check1 = false;
 	int msgInt = Integer.parseInt((String)request.getParameter("msg"));
 	switch(msgInt){
+	case 0:{
+		  check1 = false;
+		  msg  = "Error! System have some problems. Please try again"; break;
+	  }
 	case 1: {
 		check1 = false;
-		msg = "This skill is already exists in system"; break;
+		msg = "This skill has already existed in system"; break;
 	}
 	case 2: {
 		check1 = true;
@@ -65,6 +70,10 @@ if(request.getParameter("msg") != null){
 		check1 = true;
 		msg = "You edited the skill successfully"; break;
 	}
+	case 4:{
+		  check1 = true;
+		  msg  = "You deleted skills successfully"; break;
+	  }
 	}
 	if (check1 == false){
 		%>
@@ -84,16 +93,17 @@ if(request.getParameter("msg") != null){
 	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
 	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new skill</button>
 	        		</div>
+	        		<form action="<%=request.getContextPath()%>/DeleteSkills" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
-                	</div>
+	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these skills?')" id="deleteall" type="submit" value="Delete skills">
+                	</div></form>
                 	<div style="clear: both"></div>
 	        	</div>
 	
 	        	<table id="myTable" class="table-bordered" style="width: 100%;">
                   <thead>
                     <tr style="height:50px;">
-                      <th style="text-align: center;">No.</th>
+                      <th style="text-align: center;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center;">Name</th>
                       <th style="text-align: center;">Action</th>
                     </tr>
@@ -104,15 +114,24 @@ if(request.getParameter("msg") != null){
                 	  k++;
                   %>
 				   <tr class="contentPage" style="">
-				   <td style="text-align: center; vertical-align: middle;width=20%" ><%=k %></td>
-                  <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
+				   <td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="skill<%=list.getSkillId()%>" value="<%= list.getSkillId()%>" class="checkitem" id="chkitem"> </td>
+				   <%-- <td style="text-align: center; vertical-align: middle;width=20%" ><%=k %></td> --%>
+              	  <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
 				  <td style="text-align: center; vertical-align: middle;">
                    <button type="button" class="btn btn-link" name="editSkill" style="" data-toggle="modal"
-                    data-target="#editModal<%=list.getSkillId()%>"><i class="fa fa-edit" style="font-size:16px; margin-bottom: 10px !important; "></i></button>
-<%--                    <a style="display:block" href="<%= request.getContextPath()%>/trainer/del?id=<%= list.getSkillId()%>" onclick="return confirm('Bạn có muốn xóa danh mục này?')"><i class="fa fa-trash"></i></a>
- --%>                   </td>
-                            
+                   data-target="#editModal<%=list.getSkillId()%>"><i class="fa fa-edit" style="font-size:16px; margin-bottom: 10px !important; "></i></button>
+                   <%-- <button type="button" class="btn btn-link" name="deleteSkill" style="" data-toggle="modal"
+                   data-target="#deleteModal<%=list.getSkillId()%>"><i class="fa fa-trash" style="font-size:16px; color:red; margin-bottom: 10px !important; "
+                   onclick="return confirm('Do you want to delete course: <%= list.getName()%>?')"></i></button> --%>
+<%--                    <a style="margin-left: 10px" href="<%= request.getContextPath()%>/DeleteSkills?id=<%= list.getSkillId()%>" onclick="return confirm('Do you want to delete the <%= list.getName()%> skill?')"><i class="fa fa-trash" style="font-size:17px;color:red; margin-top:23px"></i></a>
+ --%>                  </td>
                    </tr>
+<!-- Delete skill -->
+<div class="deleteModal<%=list.getSkillId() %>" role="dialog">
+<div class="modal-dialog">
+
+</div>
+</div>
 <!-- Edit list -->
                   <div class="modal fade" id="editModal<%=list.getSkillId()%>" role="dialog">
 						<div class="modal-dialog">
@@ -126,88 +145,65 @@ if(request.getParameter("msg") != null){
 									<div class="container">
 										 <div><strong>Major:</strong>
 										  <ul class="nav nav-tabs">
-										  <%
-										  
-										  	List<Majors> listMajorCheck = (List<Majors>) request.getAttribute("listMajors");
-										  	int courseIdCheck = list.getcourseId(); 
-										  	int majorIdOfCourseIdCheck = 0;
-										  	 for(Majors majorCheck:  listMajorCheck){
-										  		List<Courses> listCourseOfmajorCheck= (List<Courses>) request.getAttribute("listCourse"+ majorCheck.getName())  ;
-										  		for(Courses courseCheck: listCourseOfmajorCheck){
-										  			if(courseIdCheck==courseCheck.getCourseId()){
-										  				majorIdOfCourseIdCheck = majorCheck.getMajorId();
-										  				System.out.println("This is majorId of Course:"+majorIdOfCourseIdCheck);
-										  				break;
-										  			}
-										  		}
-										  		}
-										  %>
-										  
-										  <%
-										  List<Majors> listMajor = (List<Majors>) request.getAttribute("listMajors");
-										  for(Majors major: listMajor){
-											  if(major.getMajorId()== majorIdOfCourseIdCheck){
-												  System.out.println("Da tim ra duoc major cua ccourese :"+ major.getMajorId());
+										   <%
+										   List<Majors> checkID = (List<Majors>) request.getAttribute("listMajors");
+										   for(Majors checkId: checkID){
+											  if(checkId.getMajorId()== list.getmajorId()){
+												  //System.out.println("Da tim ra duoc major cua ccourese :"+ major.getMajorId());
 												  %>
-											  <li ><a data-toggle="tab" href="#<%=major.getName() %><%= list.getSkillId() %>"   ><button  class="btn btn-primary"  font-size:15px; margin-left: 9.5em;"><%= major.getName() %></button></a></li>
-											  
-											 <% }
-											  else { %>
-											  <li><a data-toggle="tab" href="#<%=major.getName() %><%= list.getSkillId() %>" ><button  class="btn btn-primary"  font-size:15px; margin-left: 9.5em;"><%= major.getName() %></button></a></li>
-											  
+												  <input type="radio" name="majorId" value="<%=list.getmajorId()%>" checked><%=checkId.getName()%><br>
+											 <% 
+											  }
+											  else { 
+											  %>
+												  <input type="radio" name="majorId" value="<%=list.getmajorId()%>"><%=checkId.getName()%><br>											  
 											<%	  
 											  }
 										  }
 										  %>
-										  </ul>
+										  </ul> 
 										</div>
-										  <div class="tab-content">
-										   <%
-										   for(Majors ma: listMajor){
-										   %>
-										  
-										   <div id="<%= ma.getName() %><%= list.getSkillId() %>" class="tab-pane fade" >
-										      <%
-											List<Courses> list1 = (List<Courses>) request.getAttribute("listCourse"+ ma.getName())  ;
-										      %>
-										      <div  ><strong>Courses of <%=ma.getName() %> :</strong></div>
-										      <% 
-										      for(Courses cou : list1){
-										    	  
-										    	  if(list.getcourseId()== cou.getCourseId()){
-										    		  
-										    		  %>
-										    		  <input type="radio" name="courseId" value="<%= cou.getCourseId() %>" checked> <%=cou.getName() %><br>
-										    	  <% 
-										    	  }
-										    	  else {
-										    		  %>
-										    		  <input type="radio" name="courseId" value="<%= cou.getCourseId() %>"> <%=cou.getName() %><br>
-										    	  <% 
-										    	  }
-										      }
-										      %>
-										    </div>
-										    <% } %>
-										 
-										  </div>
 										<br>
 										<div class="form-group">
 											<label class="required"><strong>Skill Name:</strong><span
-												style="color: red"> *</span>&nbsp;<span id="spnNameStatus"></span></label>
-											<input class="form-control" id="roomname" type="text"
+												style="color: red"> *</span></label>
+											<input class="form-control" id="roomname<%=list.getSkillId()%>" type="text"
 												name="name" maxlength="20" value="<%=list.getName()%>"
 												placeholder="Skill Name" required />
+												<span id="spnNameStatus<%=list.getSkillId()%>"></span>
 										</div>
-										
-										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit">Save Skill</button>
+										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit<%=list.getSkillId()%>">Save Skill</button>
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									</form>
 									</div>
 								</div>
 							</div>
-						</div>
-									<%
+						</div> 
+						<script type="text/javascript">
+/* validation for edit */
+							$(document).ready(function() {
+		      					$('#roomname<%=list.getSkillId()%>').blur(function(e) {
+		      						var name = $('#roomname<%=list.getSkillId()%>').val();
+		          					if (validateStrings(name)) {
+		      							$('#spnNameStatus<%=list.getSkillId()%>').html('');
+		      							$('#spnNameStatus<%=list.getSkillId()%>').css('color', 'green');
+		      							document.getElementById("btnSubmit<%=list.getSkillId()%>").disabled = false; 
+		      						}
+		      						else {
+		      							$('#spnNameStatus<%=list.getSkillId()%>').html('Skill Name just contains letters and " + . # ""');
+		      							$('#spnNameStatus<%=list.getSkillId()%>').css('color', 'red');
+		      							document.getElementById("btnSubmit<%=list.getSkillId()%>").disabled = true; 
+		      						}
+		       					});
+		      				});
+
+							function validateStrings(string) {
+		      					var pattern = /^[^0-9`~<>@%&\*\$\{\}\[\]\(\)\=?\|\;_^!]+$/;
+
+		      					return $.trim(string).match(pattern) ? true : false;
+		      				}
+				</script>
+					<%
                   	}
                   %>
                   </tbody>
@@ -227,46 +223,28 @@ if(request.getParameter("msg") != null){
 									<form id="add-post1" action="/managementSystem/AddNewSkillController" method="POST">
 										<div class="container" >
 										 <div><strong>Major:<span style="color: red"> *</span></strong>
-										  <ul class="nav nav-tabs">
-										  <%
-										  List<Majors> listMajor1 = (List<Majors>) request.getAttribute("listMajors");
-										  for(Majors major1: listMajor1){
-											  %>
-											  <a data-toggle="tab" href="#<%=major1.getName() %>Add" ><button  class="btn btn-primary"  font-size:15px; margin-left: 9.5em;"><%= major1.getName() %></button></a>
-											  <%
-										  }
-										  %>
-										  </ul>
+										 <select class="form-group" name="majorId" id="major" style="width: 12em;margin-top: 5px;">
+												<%
+												MajorBo majorBo = new MajorBo();	
+												List<Majors> listMajor1 = majorBo.getMajors();
+													for (Majors listmajor : listMajor1) {
+												%>
+												<option value="<%=listmajor.getMajorId()%>"><%=listmajor.getName()%></option>
+												<%
+													}
+												%>
+											</select>
 										</div>
-										  <div class="tab-content">
-										   <%
-										   for(Majors ma: listMajor1){
-										   %>
 										  
-										   <div id="<%= ma.getName() %>Add" class="tab-pane fade"><br>
-										      <%
-											List<Courses> list = (List<Courses>)request.getAttribute("listCourse"+ ma.getName())  ;
-										      %>
-										      <div "><strong>Courses of <%=ma.getName() %> :</strong></div>
-										      <% 
-										      for(Courses cou : list){
-										    	  %>
-										    	  <label><input type="radio" name="courseId" value="<%= cou.getCourseId() %>" required> <%=cou.getName() %></label><br>
-										    	  <%
-										      }
-										     %>
-										    </div> 
-										    
-										    <% } %>
-										 
-										  </div>
 										<br>
 										<div class="form-group">
 											<label class="required"><strong>Skill Name:</strong><span
-												style="color: red"> *</span>&nbsp;<span id="spnNameStatus1"></span></label>
-											<input class="form-control" id="roomname1" type="text"
+												style="color: red"> *</span></label>
+											<input class="form-control" id="roomname" type="text"
 												name="name" placeholder="Skill Name" maxlength="25" required />
+												&nbsp;<span id="spnNameStatus"></span>
 										</div>
+											
 										<button type="submit" class="btn btn-primary" id="btnSubmit"
 										 style="width:auto; font-size:15px; margin-left: 9em;">Add Skill</button>
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -277,6 +255,31 @@ if(request.getParameter("msg") != null){
 							</div>
 						</div>
 					</div>
+					<script type="text/javascript">
+	/* Validation for add */					
+							$(document).ready(function() {
+		      					$('#roomname').blur(function(e) {
+		      						var name = $('#roomname').val();
+		          					if (validateStrings(name)) {
+		      							$('#spnNameStatus').html('');
+		      							$('#spnNameStatus').css('color', 'green');
+		      							document.getElementById("btnSubmit").disabled = false; 
+		      						}
+		      						else {
+		      							$('#spnNameStatus').html('Skill Name just contains letters and " + . # ""');
+		      							$('#spnNameStatus').css('color', 'red');
+		      							document.getElementById("btnSubmit").disabled = true; 
+		      						}
+		       					});
+		      				});
+
+							function validateStrings(string) {
+		      					var pattern1 = /^[^0-9`~<>@%&\*\$\{\}\[\]\(\)\=?\|\;_^!]+$/;
+
+		      					return $.trim(string).match(pattern1) ? true : false;
+		      				}
+				</script>
+<!-- Pagination -->				
 	<script type="text/javascript">
             $(function () {
                 var pageSize = 10; // // Hiển thị 10 sản phẩm trên 1 trang
@@ -303,30 +306,37 @@ if(request.getParameter("msg") != null){
                 console.info(obj.data());
             });
         </script>
-        <script type="text/javascript">
-						
-							$(document).ready(function() {
-		      					$('#roomname1').blur(function(e) {
-		      						var name = $('#roomname1').val();
-		          					if (validateStrings(name)) {
-		      							$('#spnNameStatus1').html('');
-		      							$('#spnNameStatus1').css('color', 'green');
-		      							document.getElementById("btnSubmit").disabled = false; 
-		      						}
-		      						else {
-		      							$('#spnNameStatus1').html('Skill Name just contains letters and " + . # ""');
-		      							$('#spnNameStatus1').css('color', 'red');
-		      							document.getElementById("btnSubmit").disabled = true; 
-		      						}
-		       					});
-		      				});
-
-							function validateStrings(string) {
-		      					var pattern = /^[^0-9`~<>@%&\*\$\{\}\[\]\(\)\=?\|\;_!]+$/;
-
-		      					return $.trim(string).match(pattern) ? true : false;
-		      				}
-				</script>
+<!-- Delete all -->
+				<script type="text/javascript">
+            $(document).ready(function(){
+                $(document).on('change', '.checkall, .checkitem', function(){
+                    var $_this = $(this);
+                    document.getElementById("deleteall").style.display = "block";
+                    if($_this.hasClass('checkall')){
+                        $('.checkitem').prop('checked', $_this.prop('checked'));
+                    }else{
+                        var $_checkedall = true;
+                        $('.checkitem').each(function(){
+                            if(!$(this).is(':checked')){
+                                $_checkedall = false;
+                            }
+                            $('.checkall').prop('checked', $_checkedall);
+                        });
+                    }
+                    var $_uncheckedall = true;
+                    $('.checkitem').each(function(){
+                        if($(this).is(':checked')){
+                            $_uncheckedall = false;
+                        }
+                        if($_uncheckedall){
+                            document.getElementById("deleteall").style.display = "none";
+                        }else{
+                            document.getElementById("deleteall").style.display = "block";
+                        }
+                    });
+                });
+            });
+        </script>
         </div>
         </div>
        </div>  
