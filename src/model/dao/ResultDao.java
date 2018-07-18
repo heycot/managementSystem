@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
@@ -60,6 +61,85 @@ public class ResultDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public int numberOfResultOfCourse(int course_id, int status_result){
+		int count = 0;
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT count(*) FROM results r inner join classes c on r.class_id = c.class_id where c.course_id = ? and r.status = ? ";
+			pst= conn.prepareStatement(sql);
+			pst.setInt(1, course_id);
+			pst.setInt(2, status_result);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("count(*)");
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return count;
+	}
+	public List<Results> getResultsOfCourse(int course_id, int status_result){
+		List<Results> list = new ArrayList<>();
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT r.* FROM results r inner join classes c on r.class_id = c.class_id where c.course_id = ? and r.status = ? ";
+			pst= conn.prepareStatement(sql);
+			pst.setInt(1, course_id);
+			pst.setInt(2, status_result);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int resultId = rs.getInt("result_id");
+				int classId = rs.getInt("class_id");
+				int userId = rs.getInt("user_id");
+				int status = rs.getInt("status");
+				Results result= new Results(resultId, classId, userId, status);
+				list.add(result);
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return list;
+	}
+	
+	public List<Results> getResultsOfCourseByYear(int course_id, int status_result, String year){
+		List<Results> list = new ArrayList<>();
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT r.* FROM results r"
+					+ " inner join classes c on r.class_id = c.class_id"
+					+ " inner join users u on r.user_id = u.user_id "
+					+ " where c.course_id = ? and r.status = ? and substring_index(u.created_at,'-',1) = ?";
+			pst= conn.prepareStatement(sql);
+			pst.setInt(1, course_id);
+			pst.setInt(2, status_result);
+			pst.setString(3, year);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				int resultId = rs.getInt("result_id");
+				int classId = rs.getInt("class_id");
+				int userId = rs.getInt("user_id");
+				int status = rs.getInt("status");
+				Results result= new Results(resultId, classId, userId, status);
+				list.add(result);
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return list;
 	}
 
 }

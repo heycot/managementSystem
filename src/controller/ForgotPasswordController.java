@@ -24,15 +24,10 @@ public class ForgotPasswordController extends HttpServlet {
 		UserBo userBo= new UserBo();
 		
 		String email = request.getParameter("id");
-		 System.out.println(email);
-
 		
 		 String hashCode= request.getParameter("hashcode");
-		 System.out.println(hashCode);
-
 		 
 		 User user= userBo.getUserByEmail(email);
-		 System.out.println(MD5Library.md5(user.getPassword()));
 		 
 		 if(hashCode.equals(MD5Library.md5(user.getPassword()))){
 			 String tempPass= MD5Library.getRandomPwd();
@@ -74,7 +69,7 @@ public class ForgotPasswordController extends HttpServlet {
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
-			out.println("System sent a link to you email.");
+			out.println("System sent a link to your email.");
 		}
 		else{
 			out.println("Your email is not exist.");

@@ -1298,6 +1298,27 @@ public class UserDao {
 		
 	}
 	
+	public int getNumberOfTraineesByYear(String year){
+		int count = 0;
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT count(*) FROM mcts.users where substring_index(created_at,'-',1) = ?;";
+			pst= conn.prepareStatement(sql);
+			pst.setString(1, year);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("count(*)");
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return count;
+	}
+	
 	
 
 }

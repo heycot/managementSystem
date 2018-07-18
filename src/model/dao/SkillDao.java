@@ -23,7 +23,7 @@ public class SkillDao {
 		List<Skills> skills= new ArrayList<>();
 		conn= ConnectDBLibrary.getConnection();
 		try{
-			String sql= "select skill_id, name, major_id from skills";
+			String sql= "select skill_id, name, major_id from skills where skill_status = 1";
 			pst= conn.prepareStatement(sql);
 			rs= pst.executeQuery();
 			while(rs.next()){
