@@ -343,5 +343,10 @@ public class ClassesDao {
 		return times;
 	}
 
+	public int updateStatusClass(int class1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }
