@@ -31,8 +31,8 @@ public class EditSkillController extends HttpServlet {
 		
 		int skillId = Integer.parseInt(request.getParameter("id"));
 		Skills skill = skillBo.getOneSkill(skillId);
-		int majorId =  Integer.parseInt(request.getParameter("majorId"));
-		skill.setmajorId(majorId);
+		int status = Integer.parseInt(request.getParameter("status"));
+		skill.setStatus(status);
 		String nameSkill = request.getParameter("name");
 		
 		if(nameSkill.equals(skill.getName())){

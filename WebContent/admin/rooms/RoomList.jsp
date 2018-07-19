@@ -15,9 +15,7 @@
             }
         </style>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <%
 String classNameContent = "" ;
@@ -37,15 +35,12 @@ if( user.getRoleId() == 3) {
              <i class="fa fa-fw fa-home" ></i>
              	<strong>Room List</strong>
 			  </div>	
-			 
-			  
          
          <%			int check=0;
                   	ArrayList<Rooms> roomlist = (ArrayList<Rooms>) request.getAttribute("roomList");
          		
          			int k=0;
          			int tong = roomlist.size();
-        	
         	
         	String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -54,7 +49,7 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check1 = false;
-			  msg = "This username is already exists in system"; break;
+			  msg = "This room name has already existed in the system"; break;
 		  }
 		  case 2:{
 			  check1 = true;
@@ -88,9 +83,7 @@ if( user.getRoleId() == 3) {
 		  }
 	  }
 	  %>
-        	
-
-       
+        
 <!-- Show room -->			  	
 
         <div class="card-body" >
@@ -138,7 +131,7 @@ if( user.getRoleId() == 3) {
                    %>  
                   <td style="text-align: center; vertical-align: middle;">
                    <button type="button" class="btn btn-link" name="editRoom" style="" data-toggle="modal"
-                    data-target="#editModal<%=rooms.getRoomId()%>"><i class="fa fa-edit" style="font-size:16px; margin-bottom: 10px !important; "></i></button>
+                    data-target="#editModal<%=rooms.getRoomId()%>"><i class="fa fa-edit" style="font-size:16px; margin-top: 1px !important; "></i></button>
                    
                    </td>
                    
@@ -156,10 +149,10 @@ if( user.getRoleId() == 3) {
 									<form id="add-post2" action="/managementSystem/EditRoomController?id=<%=rooms.getRoomId()%>" method="POST">
 										<div class="form-group">
 											<label class="required"><strong>Room Name:</strong><span
-												style="color: red"> *</span>&nbsp;<span id="spnNameStatus"></span></label>
-											<input class="form-control" id="roomname" type="text"
+												style="color: red"> *</span>&nbsp;</label>
+											<input class="form-control" id="roomname<%=rooms.getRoomId()%>" type="text"
 												name="name" value="<%=rooms.getName()%>"
-												placeholder="Room Name" required />
+												placeholder="Room Name" required /> <span id="spnNameStatus<%=rooms.getRoomId()%>"></span>
 										</div>
 										<div class="form-group">
 											<label class="required"><strong>Capacity:</strong><span
@@ -188,9 +181,33 @@ if( user.getRoleId() == 3) {
 												}
 											%>
 										</div>
-										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit">Save Room</button>
+										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit<%=rooms.getRoomId()%>">Save Room</button>
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									</form>
+	<script type="text/javascript">
+							
+							$(document).ready(function() {
+		      					$('#roomname<%=rooms.getRoomId()%>').blur(function(e) {
+		      						var name = $('#roomname<%=rooms.getRoomId()%>').val();
+		          					if (validateStrings(name)) {
+		      							$('#spnNameStatus<%=rooms.getRoomId()%>').html('');
+		      							$('#spnNameStatus<%=rooms.getRoomId()%>').css('color', 'green');
+		      							document.getElementById("btnSubmit<%=rooms.getRoomId()%>").disabled = false; 
+		      						}
+		      						else {
+		      							$('#spnNameStatus<%=rooms.getRoomId()%>').html('Room Name just allow upper, lower letter and number');
+		      							$('#spnNameStatus<%=rooms.getRoomId()%>').css('color', 'red');
+		      							document.getElementById("btnSubmit<%=rooms.getRoomId()%>").disabled = true; 
+		      						}
+		       					});
+		      				});
+
+							function validateStrings(string) {
+		      					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_^!]+$/;
+
+		      					return $.trim(string).match(pattern) ? true : false;
+		      				}
+							</script>
 								</div>
 							</div>
 						</div>
@@ -219,9 +236,9 @@ if( user.getRoleId() == 3) {
 										method="POST">
 										<div class="form-group">
 											<label class="required"><strong>Room Name:</strong><span
-												style="color: red"> *</span>&nbsp;<span id="spnNameStatus1"></span></label>
-											<input class="form-control" id="roomname1" type="text"
-												name="name" placeholder="Room Name" required />
+												style="color: red"> *</span>&nbsp;</label>
+											<input class="form-control" id="roomname" type="text"
+												name="name" placeholder="Room Name" required /> <span id="spnNameStatus"></span>
 										</div>
 										<div class="form-group">
 											<label class="required"><strong>Capacity:</strong><span
@@ -245,10 +262,6 @@ if( user.getRoleId() == 3) {
 					</div>
 			</div>
 			<script type="text/javascript">
-							/* var input = document.getElementById('roomname');
-							input.oninvalid = function(event) {
-							    event.target.setCustomValidity('Room Name does not allow to contain special characters.');
-							} */
 							
 							$(document).ready(function() {
 		      					$('#roomname').blur(function(e) {
@@ -266,31 +279,15 @@ if( user.getRoleId() == 3) {
 		       					});
 		      				});
 
-							$(document).ready(function() {
-		      					$('#roomname1').blur(function(e) {
-		      						var name = $('#roomname1').val();
-		          					if (validateStrings(name)) {
-		      							$('#spnNameStatus1').html('');
-		      							$('#spnNameStatus1').css('color', 'green');
-		      							document.getElementById("btnSubmit").disabled = false; 
-		      						}
-		      						else {
-		      							$('#spnNameStatus').html('Room Name just allow upper, lower letter and number');
-		      							$('#spnNameStatus').css('color', 'red');
-		      							document.getElementById("btnSubmit").disabled = true; 
-		      						}
-		       					});
-		      				});
-
 							function validateStrings(string) {
-		      					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
+		      					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_^!]+$/;
 
 		      					return $.trim(string).match(pattern) ? true : false;
 		      				}
 							</script>
 							
 					<div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
+          
         </div>
         <script type="text/javascript">
             $(document).ready(function(){

@@ -48,8 +48,7 @@ public class DeleteSkillsController extends HttpServlet {
 			SkillBo skillBo = new SkillBo();
 			
 			int result = 0;
-			//boolean check = false;
-			//String name = "";
+			
 			
 			List<Skills> skills = skillBo.getSkills();
 			
@@ -59,11 +58,7 @@ public class DeleteSkillsController extends HttpServlet {
 					skillBo.deleteSkills(skill.getSkillId());
 						result++;
 					}
-					/*else if (skillBo.deleteSkills(skill.getSkillId()) == -1){
-						name += skill.getName() + " ";
-						check = true;
-					}*/
-				
+					
 			}
 			
 			/*if(check == true){
