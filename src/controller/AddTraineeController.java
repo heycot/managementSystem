@@ -58,14 +58,14 @@ public class AddTraineeController extends HttpServlet {
 			if (userBo.checkUsernameAlreadyExists(request.getParameter("username"))) {
 
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", " This username is already exists in system");
+				request.setAttribute("error", " This username has already existed in the system");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/addTrainee.jsp");
 				rd.forward(request, response);
 
 			} else if (userBo.checkEmailAlreadyExists(request.getParameter("email"))) {
 
 				request.setAttribute("trainee", trainee);
-				request.setAttribute("error", " This email is already exists in system");
+				request.setAttribute("error", " This email has already existed in the system");
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/addTrainee.jsp");
 				rd.forward(request, response);
 

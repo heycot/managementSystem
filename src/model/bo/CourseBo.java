@@ -79,4 +79,9 @@ public class CourseBo {
 		}
 	}
 
+	public ArrayList<Courses> getCoursesAnable() {
+		CourseDao courseDao = new CourseDao();
+		return courseDao.getCoursesAnable();
+	}
+
 }

@@ -275,6 +275,11 @@ public class UserBo {
 		userDao = new UserDao();
 		return userDao.registedClass(user_id, class_id);
 	}
+
+	public ArrayList<User> getTrainers() {
+		userDao = new UserDao();
+		return userDao.getTrainers();
+	}
 }
 
 

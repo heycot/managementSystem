@@ -18,7 +18,7 @@ public class User {
 	private String notificationId;
 	private String avatar;
 	private int status;
-	private List<Ability> abilities;
+	private Ability abilities;
 	
 	
 	public int getStatus() {
@@ -27,10 +27,10 @@ public class User {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public List<Ability> getAbilities() {
+	public Ability getAbilities() {
 		return abilities;
 	}
-	public void setAbilities(List<Ability> abilities) {
+	public void setAbilities(Ability abilities) {
 		this.abilities = abilities;
 	}
 	public String getUsername() {

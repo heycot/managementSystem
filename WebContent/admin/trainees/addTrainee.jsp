@@ -84,18 +84,21 @@ if( user.getRoleId() == 3) {
               	</div>
               
               	<div class="form-group">
-	              	<label class="required" >Username</label>&nbsp;<span id="spnNameStatus"></span>
+	              	<label class="required" >Username</label>&nbsp;
 	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" />
+	              	<span id="spnNameStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Password</label>&nbsp;<span id="spnPassStatus"></span>
+	              	<label class="required" >Password</label>&nbsp;
 	              	<input class="form-control" id="txtPassword" type="password" name="password" value="" placeholder="Password" />
+	              	<span id="spnPassStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Fullname</label>&nbsp;<span id="spnFullNameStatus"></span>
+	              	<label class="required" >Fullname</label>&nbsp;
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
+	              	<span id="spnFullNameStatus"></span>
               	</div>
               	
               	
@@ -112,13 +115,15 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Address</label>&nbsp;<span id="spnAddressStatus"></span>
+	              	<label class="required" >Address</label>&nbsp;
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
+	              	<span id="spnAddressStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
+	              	<label class="required" >Phone</label>&nbsp;
 	              	<input class="form-control" id="txtPhone" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" />
+	              	<span id="spnPhoneStatus"></span>
               	</div>
               	
               	<div class="form-group">
@@ -127,8 +132,9 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Email</label>&nbsp;<span id="spnEmailStatus"></span>
+	              	<label class="required" >Email</label>&nbsp;
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" />
+	              	<span id="spnEmailStatus"></span>
               	</div>
               	
               </div> 

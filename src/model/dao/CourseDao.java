@@ -156,4 +156,29 @@ public class CourseDao {
 		return kq;
 	}
 
+	public ArrayList<Courses> getCoursesAnable() {
+		ArrayList<Courses> courses = new ArrayList<>();
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql = "select course_id, majors.major_id as major_id, duration, courses.status, courses.name , courses.kind, majors.name as major_name from courses " + 
+						"inner join majors on courses.major_id = majors.major_id where courses.status = 1 order by courses.course_id desc";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Courses course = new Courses(rs.getInt("course_id"), rs.getInt("major_id"), rs.getString("name"), rs.getInt("duration"), rs.getInt("status"), 
+								rs.getString("major_name"), rs.getInt("kind"));
+				courses.add(course);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		
+		return courses;
+	}
+
 }
