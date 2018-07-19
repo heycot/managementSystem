@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Courses;
@@ -154,6 +155,28 @@ public class CourseDao {
 		}
 		
 		return kq;
+	}
+	
+// Kenton
+	public List<Courses> getListCourseNameByMajor(int majorId){
+		List<Courses> courses = new ArrayList<>();
+		conn = ConnectDBLibrary.getConnection();
+		try{
+			String sql = "select course_id, name from courses where major_id=?";
+			pst= conn.prepareStatement(sql);
+			pst.setInt(1, majorId);
+			rs= pst.executeQuery();
+			while(rs.next()){
+				Courses list = new Courses();
+				list.setCourseId(rs.getInt("course_id"));
+				list.setName(rs.getString("name"));
+				courses.add(list);
+			}
+		}
+		catch (SQLException e){
+			System.out.println(e.getMessage());
+		}
+		return courses;
 	}
 
 	public ArrayList<Courses> getCoursesAnable() {

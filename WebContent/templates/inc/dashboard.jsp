@@ -151,6 +151,19 @@
               </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
+                  <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Skills</span>
+              </a>
+              <ul class="sidenav-second-level collapse" id="skill">
+                <li>
+                  <a href="<%= request.getContextPath()%>/Skills"><i class="fa fa-fw fa-list"></i> List skills</a>
+                </li>
+               
+              </ul>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
                   <i class="fa fa-calculator" ></i>&nbsp;
                   <span class="nav-link-text">

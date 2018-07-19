@@ -1,6 +1,7 @@
 package model.bo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.bean.Classes;
 import model.bean.Courses;
@@ -73,10 +74,14 @@ public class CourseBo {
 		if (classese.size() <= 0 ) {
 			return -1;
 		} else {
-
 			CourseDao courseDao = new CourseDao();
 			return courseDao.edleteCourse(courseId);
 		}
+	}
+// Kenton
+	public List<Courses> getCourseByMajor(int majorId){
+		CourseDao coursedao = new CourseDao();
+		return coursedao.getListCourseNameByMajor(majorId);
 	}
 
 	public ArrayList<Courses> getCoursesAnable() {

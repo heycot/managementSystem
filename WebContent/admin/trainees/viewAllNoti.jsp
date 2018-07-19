@@ -25,13 +25,17 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
         <div class="card mb-3 divNoti">
-       		<div class="alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-             <strong>Notification</strong>
-			  </div>
+       		
 		<div>
-			<div class="box-all-noti">
-				<ul class="list-noti">
+			<div class="box-all-noti" style="margin-left:auto; margin-right:auto;">
+				<ul class="list-noti" style="width:50%; ">
+				
+					<li>
+						<div class="alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+				             <i class="fa fa-fw fa-user" ></i>
+				             <strong>Notification</strong>
+						</div>	
+					</li>
 					<%
 					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
 					%>
@@ -46,7 +50,8 @@ if( user.getRoleId() == 3) {
 						}
 						else {
 							%>
-						<li class="noti1 noti" >	
+						<li class="noti1 noti" >
+						
 					<%		
 						
 							

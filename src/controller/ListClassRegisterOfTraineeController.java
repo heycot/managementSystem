@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,21 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import libralies.CurrentUser;
-import model.bean.Rooms;
-import model.bean.Schedule;
+import model.bean.ClassWaiting;
 import model.bean.User;
-import model.bo.RoomBo;
 import model.bo.UserBo;
 
-
-@WebServlet("/trainer/schedule")
-public class CheckTrainerScheduleController extends HttpServlet {
+/**
+ * Servlet implementation class ListClassRegisterOfTraineeController
+ */
+@WebServlet("/trainee/list/classcanregister")
+public class ListClassRegisterOfTraineeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckTrainerScheduleController() {
+    public ListClassRegisterOfTraineeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +35,24 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (CurrentUser.checkLogin(request, response)) {
-			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 1) {
+			User user = CurrentUser.getUserCurrent(request, response);
+			if (user.getRoleId() == 2) {
+				
 				UserBo userBo = new UserBo();
-				RoomBo roomBo = new RoomBo();
-				String user_id = (String) request.getParameter("user_id");
-				int id = Integer.parseInt(user_id);
-				System.out.println(user_id);
-				
-				ArrayList<Schedule> schedule = userBo.getTrainerSchedule(id);
-				request.setAttribute("schedule", schedule);
-				User ur = userBo.getTrainerById(id);
-				request.setAttribute("ur", ur);
-				ArrayList<Rooms> rooms = roomBo.getRooms();
-				request.setAttribute("rooms", rooms);
-				
-				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
+				ArrayList<ClassWaiting> list = userBo.getClassCanRegisterOfTrainee(user.getUserId());
+				request.setAttribute("list", list);				
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/registerClass.jsp");
 				rd.forward(request, response);
-			} else {
 				
+			}  else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
 			}
 		} else {
 			return;
 		}
+		
 	}
 
 	/**

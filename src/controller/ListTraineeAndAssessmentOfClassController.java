@@ -15,6 +15,7 @@ import model.bean.Classes;
 import model.bean.Results;
 import model.bean.User;
 import model.bo.ClassesBo;
+import model.bo.LearningBo;
 import model.bo.ResultBo;
 import model.bo.UserBo;
 
@@ -84,6 +85,7 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		
 		ResultBo resultBo = new ResultBo();
 		ClassesBo classBo = new ClassesBo();
+		LearningBo learningBo = new LearningBo();
 		UserBo  userBo = new UserBo();
 		int resultInsert = 0;
 		int check;
@@ -112,6 +114,8 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		}
 		if(resultInsert == trainees.size()){
 			check=1;
+			learningBo.deleteClass(classId);
+			classBo.updateStatusClass(classId);
 			response.sendRedirect(request.getContextPath() + "/trainer/list?class_id=" + classId + "&name=" + name + "&check=" + check);
 			return;
 		} else {

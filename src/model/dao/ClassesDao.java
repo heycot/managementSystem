@@ -61,6 +61,7 @@ public class ClassesDao {
 		return classname;
 	}
 
+
 	public ArrayList<Classes> getClassese() {
 		ArrayList<Classes> classes = new ArrayList<>();
 		
@@ -239,7 +240,6 @@ public class ClassesDao {
 			pst.setInt(1, classId);
 			pst.setInt(2, integer);
 			kq = pst.executeUpdate();
-					
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -343,10 +343,5 @@ public class ClassesDao {
 		return times;
 	}
 
-	public boolean checkTimeAlreadyInRoom(int roomId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 }

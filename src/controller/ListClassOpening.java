@@ -9,12 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sun.xml.internal.ws.client.SenderException;
 
 import libralies.CurrentUser;
 import model.bean.ClassWaiting;
 import model.bean.Schedule;
+import model.bean.User;
 import model.bo.UserBo;
 import model.dao.UserDao;
 
@@ -39,8 +41,11 @@ public class ListClassOpening extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int trainee_id = Integer.valueOf((String) request.getParameter("user_id"));				
+		
+		HttpSession session = request.getSession();
+		User trainee = (User) session.getAttribute("user");
+//		int trainee_id = Integer.valueOf((String) request.getParameter("user_id"));	
+		int trainee_id = trainee.getUserId();
 		ArrayList<ClassWaiting>  listClassOpening = new ArrayList<>();
 		listClassOpening = userBo.getClassWaitingOpen(trainee_id);
 		request.setAttribute("listClassOpening", listClassOpening);

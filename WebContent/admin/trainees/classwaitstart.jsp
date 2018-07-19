@@ -28,19 +28,12 @@ if( user.getRoleId() == 3) {
         <div class="card mb-3 divForm">
        		<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-             <strong>Register Class</strong>
+             <strong>Registered Class </strong>
 			  </div>
 			  <div>
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
 			  int tong = listClassOpening.size();
-			  if (tong==0){
-				 %>
-				 <div class="alert alert-danger">
-		    	<strong> No Class to register </strong>
-		  		</div>
-				 <% 
-			  }
 			%>
 			<script type="text/javascript">
             $(function () {
@@ -82,11 +75,8 @@ if( user.getRoleId() == 3) {
         </style>
 			  
 		  	<div class="form">
-		  		<table>
-		  		<%
-		  		if(tong !=0){
-		  			%>
-		  			<tr >
+		  		<table >
+				  <tr >
 				    <th>No.</th>
 				    <th>Name</th>
 				    <th>Time</th>
@@ -95,9 +85,8 @@ if( user.getRoleId() == 3) {
 				    <th>Trainer</th>
 				    <th>Option</th>
 				  </tr>
-		  			<% 
-		  		}
-		  		%>
+				  <tbody id ="tableshowclass">
+				  
 				  
 				  <%
 				  int count=0;
@@ -119,17 +108,15 @@ if( user.getRoleId() == 3) {
 				    
 				    %>
 				    <td class="btnRegister">
-				    	<button  type="button" name="register" class = "btn btn-primary register" id="<%= classOpening.getClassId() %>" >Register</button>		
-				    		    	
-				    	
-				    </td>
+						<button  type="button" name="cancel" class = "btncancel btn-danger cancel" id="<%= classOpening.getClassId() %>" >Cancel</button>		
+					</td>
 				    
 				  </tr>
 				  <%
 					  
 				  }
 				  %>
-				 
+				 </tbody>
 				</table>
 				<div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
@@ -145,27 +132,24 @@ if( user.getRoleId() == 3) {
 	</div>
 </div>
      <script type="text/javascript">
-   $(document).ready(function(){ 
-   
-	   $(document).on('click','.register',function(){
-			 var classOpening_id = $(this).attr("id");
-			 regiterClass(classOpening_id);
+     	$(document).ready(function(){
+	   $(document).on('click','.cancel',function(){
+		   
+			 var classWaiting_id = $(this).attr("id");
+			 cancelClass(classWaiting_id);
 		});
-		function regiterClass(classOpening_id)
-		{	
-			if(confirm("Are you sure register class?")){
-				$.ajax({
-					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + classOpening_id,
-					type : 'POST',
-					//data:{post_id:post_id},
-					success:function(data)
-					{
-						
-						$('#post_modal_noti').modal('show');
-						$('#post_detail_noti').html(data);					 
-					}
-				});
-			}
+		function cancelClass(classOpening_id)
+		{	if (confirm('Are you sure you want to cancel this?')) {
+			$.ajax({
+				url: '/managementSystem/trainee/cancelClass?classOpening_id=' + classOpening_id,
+				type : 'POST',
+				success:function(result)
+				{	
+					document.getElementById("tableshowclass").innerHTML = "";
+					$('#tableshowclass').html(result);					 
+				}
+			});
+		}
 			
 		}
 		
