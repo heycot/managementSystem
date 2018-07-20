@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bo.SkillBo"%>
 <%@page import="model.bean.Roles"%>
@@ -19,6 +20,8 @@ if( user.getRoleId() == 3) {
 	styleContent = "";
 }
 
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -52,8 +55,7 @@ if( user.getRoleId() == 3) {
 							</div>
 							<br><br><br>
 								<div class="form-group" class="col-sm-4" style="float: left">
-									<label class="required"><strong>Avatar:</strong> <span
-										style="color: red"> *</span><em style="color: red">(jpg,
+									<label class="required"><strong>Avatar:</strong><em style="color: red">(jpg,
 											png, gif)</em> </label> <input class="form-control" id="image" type="file"
 										name="avatar" onchange="readURL(this);" />
 								</div>
@@ -77,30 +79,31 @@ if( user.getRoleId() == 3) {
 				
 							<div class="form-group">
 								<label class="required"><strong>Email:</strong><span
-									style="color: red"> *</span> &nbsp;<span id="spnEmailStatus"></span></label>
+									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtemail" type="text"
 									name="email" placeholder="Email" />
+									<span id="spnEmailStatus"></span>
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Username:</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnUserNameStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtusername" type="text"
 									name="username" placeholder="Username" />
+									<span id="spnUserNameStatus"></span>
 							</div>
 
 							<div class="form-group">
-								<label class="required"><strong>Password&nbsp;:</strong>:
-								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPassStatus"></span></label> 
-								<input class="form-control" id="txtpassword" type="password" name="password" placeholder="Password" />
+								<label class="required"><strong>Password:</strong>:
+								<span style="color: red"> *</span></label> 
+								<input class="form-control" id="password" type="password" name="password" placeholder="Password" />
+								<span id="spnPasswordStatus"></span>
 							</div>
 							<div class="form-group">
-								<label class="required"><strong>Confirm password&nbsp;:</strong>:
-								<span style="color: red"> *</span>&nbsp;
-								<span id="spnPassStatus"></span></label> 
+								<label class="required"><strong>Confirm password:</strong>
+								<span style="color: red"> *</span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
-									placeholder="Confirm Password" /><span id='message'></span>
+									placeholder="Confirm Password" /><span id="spnPasswordStatus"></span>
 							</div>
 
 						</div>
@@ -108,9 +111,10 @@ if( user.getRoleId() == 3) {
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="required"><strong>Full Name:</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnFullNameStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtfullname" type="text"
 									name="fullname" placeholder="Fullname" />
+									<span id="spnFullNameStatus"></span>
 							</div>
 
 							<div class="form-group">
@@ -122,22 +126,25 @@ if( user.getRoleId() == 3) {
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Address</strong><span
-									style="color: red"> *</span>&nbsp;<span id="spnAddressStatus"></span></label>
+									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"
 									name="address" value="" placeholder="Address" />
+									<span id="spnAddressStatus"></span>
 							</div>
 
 							<div class="form-group">
 								<label class="required"><strong>Phone Number:</strong><span
-									style="color: red"> *</span> &nbsp;<span id="spnPhoneStatus"></label>
+									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtphone" type="text"
 									name="phone" placeholder="Phone" />
+									<span id="spnPhoneStatus"></span>
 							</div>
+							
 
 							<div class="form-group">
 								<label class="required"><strong>Day of Birth:</strong><span
 									style="color: red"> *</span></label> <input class="form-control"
-									id="txtname" type="date" name="dateOfBirth"
+									id="txtname" type="date" name="dateOfBirth" value="<%=dateMax%>" max="<%=dateMax%>"
 									placeholder="Birthday" />
 							</div>
 
@@ -165,8 +172,8 @@ if( user.getRoleId() == 3) {
 					<div class="row">
 						<div class="col-md-5"></div>
 						<input class="btn btn-primary btn-lg" type="submit" name="submit"
-							id="btnSubmit" value="Add" style="margin-right: 0.5em;" /> <input
-							class="btn btn-secondary btn-lg" type="reset" value="Reset" />
+							id="btnSubmit" value="Add" style="width:100px; font-size:17px;height:40px; padding:5px; text-align:center;margin-right:10px;" /> <input
+							class="btn btn-secondary btn-lg" type="reset" value="Reset" style="font-size:17px;border:1px solid white;width:100px; height:40px; padding:5px; text-align:center;" />
 					</div>
 					<div style="margin-bottom: 10%"></div>
 				</div>
@@ -331,30 +338,21 @@ if( user.getRoleId() == 3) {
 		});
 	});
 
-	$(document)
-			.ready(
-					function() {
-						$('#txtpassword')
-								.blur(
-										function(e) {
-											var pass = $('#txtpassword').val();
-											if (validatePassword(pass)) {
-												$('#spnPassStatus').html('');
-												$('#spnPassStatus').css(
-														'color', 'green');
-												document
-														.getElementById("btnSubmit").disabled = false;
-											} else {
-												$('#spnPassStatus')
-														.html(
-																'Password have minimum eight characters, at least one letter, one number and one special character!');
-												$('#spnPassStatus').css(
-														'color', 'red');
-												document
-														.getElementById("btnSubmit").disabled = true;
-											}
-										});
-					});
+	$(document).ready(function() {
+			$('#password').blur(function(e) {
+				var pass= $('#password').val();
+				if (validatePassword(pass)) {
+					$('#spnPasswordStatus').html('');
+					$('#spnPasswordStatus').css('color', 'green');
+				document.getElementById("btnSubmit").disabled = false; 
+				}
+				else {
+					$('#spnPasswordStatus').html('Password have minimum 8 characters, at least one letter, one number and one special character!');
+					$('#spnPasswordStatus').css('color', 'red');
+				document.getElementById("btnSubmit").disabled = true; 
+				}
+			});
+		});
 
 	function validateStrings(string) {
 		//var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
@@ -363,20 +361,20 @@ if( user.getRoleId() == 3) {
 	}
 
 	function validateFullName(string) {
-		var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
-		//var pattern = /^[a-zA-Z]+$/;
-		return $.trim(string).match(pattern) ? true : false;
-	}
-
-	function validatePassword(password) {
-		var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-		return $.trim(password).match(pattern) ? true : false;
-	}
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
+			//var pattern = /^[a-zA-Z]+$/;
+			return $.trim(string).match(pattern) ? true : false;
+		}
 
 	function validateAddress(string) {
-		var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
-		return $.trim(string).match(pattern) ? true : false;
-	}
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
+			return $.trim(string).match(pattern) ? true : false;
+		}
+		
+		function validatePassword(password){
+			var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+			return $.trim(password).match(pattern) ? true : false;
+		}
 </script>
 
 </body>

@@ -8,6 +8,15 @@ public class ScheduleOfTrainee {
 	private String dateofweek;
 	private int countLession;
 	private String nameRoom;
+	private int duration;
+	private int status;
+	
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
 	public String getNameClass() {
 		return nameClass;
 	}
@@ -65,6 +74,38 @@ public class ScheduleOfTrainee {
 		this.countLession = countLession;
 		this.nameRoom = nameRoom;
 	}
+	public ScheduleOfTrainee(int classid, String nameClass, String nameTrainer, String timeofday, String dateofweek,
+			int countLession, String nameRoom, int duration) {
+		super();
+		this.classid = classid;
+		this.nameClass = nameClass;
+		this.nameTrainer = nameTrainer;
+		this.timeofday = timeofday;
+		this.dateofweek = dateofweek;
+		this.countLession = countLession;
+		this.nameRoom = nameRoom;
+		this.duration = duration;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public ScheduleOfTrainee(int classid, String nameClass, String nameTrainer, String timeofday, String dateofweek,
+			int countLession, String nameRoom, int duration, int status) {
+		super();
+		this.classid = classid;
+		this.nameClass = nameClass;
+		this.nameTrainer = nameTrainer;
+		this.timeofday = timeofday;
+		this.dateofweek = dateofweek;
+		this.countLession = countLession;
+		this.nameRoom = nameRoom;
+		this.duration = duration;
+		this.status = status;
+	}
+	
 	
 
 

@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
   <servlet>
     <servlet-name>IndexClassesController</servlet-name>
     <servlet-class>controller.IndexClassesController</servlet-class>
@@ -128,6 +129,14 @@
   <servlet-mapping>
     <servlet-name>EditTrainerController</servlet-name>
     <url-pattern>/trainer/edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteTrainerController</servlet-name>
+    <servlet-class>controller.DeleteTrainerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteTrainerController</servlet-name>
+    <url-pattern>/trainer/del</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Error400Controller</servlet-name>

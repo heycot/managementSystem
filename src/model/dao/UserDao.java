@@ -91,9 +91,11 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
+
 
 				user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId, gender,
-						address, phone, notificationId, avatar);
+						address, phone, notificationId, avatar,status);
 
 			}
 
@@ -128,9 +130,11 @@ public class UserDao {
 				String phone = rs.getString("phone");
 				String notificationId = rs.getString("notification_id");
 				String avatar = rs.getString("image");
+				int status = rs.getInt("status");
+
 				
 				user = new User(userId, userName, password, fullName, dateOfBirth, email, createdAt, roleId, gender,
-						address, phone, notificationId, avatar);
+						address, phone, notificationId, avatar,status);
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -462,7 +466,7 @@ public class UserDao {
 			conn = ConnectDBLibrary.getConnection();
 			System.out.println("Connect 2!");
 			
-			String sql = "SELECT classes.class_id, classes.name, trainer_id ,time_of_date, date_of_week , count_lesson, room_id FROM learning  INNER JOIN classes on learning.class_id = classes.class_id INNER JOIN users ON users.user_id = learning.user_id WHERE learning.user_id = ?";
+			String sql = "SELECT classes.class_id, classes.name, trainer_id ,time_of_date, date_of_week , count_lesson, room_id , classes.course_id FROM learning  INNER JOIN classes on learning.class_id = classes.class_id INNER JOIN users ON users.user_id = learning.user_id WHERE learning.user_id = ?";
 			System.out.println(sql);
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, user_id);
@@ -491,6 +495,28 @@ public class UserDao {
 				} catch (Exception e) {
 					scheduleOfTrainee.setNameTrainer(String.valueOf(idTrainer));
 				}
+				
+				int idCourse = rs.getInt(8);
+				int duration = 4;
+				scheduleOfTrainee.setDuration(duration);
+
+				try {
+					String sql3 = "Select duration, status from courses where course_id = ?";
+					System.out.println(sql3);
+					PreparedStatement pst3 = conn.prepareStatement(sql3);
+					pst3.setInt(1, idCourse);
+					ResultSet rs3 = pst3.executeQuery();
+					
+					if (rs3.next()) {
+						duration= rs3.getInt(1);
+						scheduleOfTrainee.setDuration(duration);
+					}
+						
+					
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				
 				int idRoom = rs.getInt(7);
 				String nameRoom ="";
 				scheduleOfTrainee.setNameRoom(String.valueOf(idRoom));
@@ -521,7 +547,12 @@ public class UserDao {
 				String s =""; 
           	 	String arr[] =str.split(",");
               	 for(int i=0; i<arr.length;i++){
+              		 
+              		if(i==(arr.length-1)){
+            			 s+=" and ";
+            		 }
               		 switch(arr[i]){
+              		 
               		 case "2":
               		 {
               			 s+="Mon";
@@ -562,12 +593,11 @@ public class UserDao {
               	        
               	    }
               		 }
-              		 if (i< (arr.length-1)) {
-              			 s+=",";
+              		 if (i< (arr.length-2)) {
+              			 s+=", ";
               		 }
-              		 else {
-              			 s+=".";
-              		 }
+              		
+//              	
           	 	}
 				scheduleOfTrainee.setDateofweek(s);
 				
@@ -779,9 +809,69 @@ public class UserDao {
 				classOpen.setClassid(rs.getInt(1));
 				classOpen.setNameclass(rs.getString(2));
 				classOpen.setUsername(rs.getString(3));
-				classOpen.setDateOfWeek(rs.getString(4));
 				classOpen.setTimeOfDate(rs.getString(5));
 				classOpen.setCountLession(rs.getInt(6));
+				
+				String str = rs.getString(4);
+				System.out.println(str);
+				String s =""; 
+          	 	String arr[] =str.split(",");
+              	 for(int i=0; i<arr.length;i++){
+              		 
+              		if(i==(arr.length-1)){
+            			 s+=" and ";
+            		 }
+              		 switch(arr[i]){
+              		 
+              		 case "2":
+              		 {
+              			 s+="Mon";
+              			 break;
+              		 }
+              		 case "3":
+              		 {
+              			 s+="Tue";
+              			break;
+              		 }
+              		 case "4":
+              		 {
+              			 s+="Wed";
+              			break;
+              		 }
+              		case "5":
+              		 {
+              			 s+="Thu";
+              			break;
+              		 }
+              		case "6":
+              		 {
+              			 s+="Fri";
+              			break;
+              		 }
+              		case "7":
+              		 {
+              			 s+="Sat";
+              			break;
+              		 }
+              		case "8":
+              		 {
+              			 s+="Sun";
+              			break;
+              		 }
+              	    default:
+              	    {
+              	        
+              	    }
+              		 }
+              		 if (i< (arr.length-2)) {
+              			 s+=", ";
+              		 }
+              		
+//              	
+          	 	}
+              	 System.out.println(s);
+              	 classOpen.setDateOfWeek(s);
+				
 				listClassOpening.add(classOpen);
 			}
 			
@@ -962,7 +1052,66 @@ public class UserDao {
 				classWaiting.setClassId(rs.getInt("class_id"));
 				classWaiting.setClassName(rs.getString("name"));
 				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
-				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				
+				String str = rs.getString("date_of_week");
+				System.out.println(str);
+				String s =""; 
+          	 	String arr[] =str.split(",");
+              	 for(int i=0; i<arr.length;i++){
+              		 
+              		if(i==(arr.length-1)){
+            			 s+=" and ";
+            		 }
+              		 switch(arr[i]){
+              		 
+              		 case "2":
+              		 {
+              			 s+="Mon";
+              			 break;
+              		 }
+              		 case "3":
+              		 {
+              			 s+="Tue";
+              			break;
+              		 }
+              		 case "4":
+              		 {
+              			 s+="Wed";
+              			break;
+              		 }
+              		case "5":
+              		 {
+              			 s+="Thu";
+              			break;
+              		 }
+              		case "6":
+              		 {
+              			 s+="Fri";
+              			break;
+              		 }
+              		case "7":
+              		 {
+              			 s+="Sat";
+              			break;
+              		 }
+              		case "8":
+              		 {
+              			 s+="Sun";
+              			break;
+              		 }
+              	    default:
+              	    {
+              	        
+              	    }
+              		 }
+              		 if (i< (arr.length-2)) {
+              			 s+=", ";
+              		 }
+              		
+//              	
+          	 	}
+              	 System.out.println(s);
+              	 classWaiting.setDateOfWeek(s);
 				classWaiting.setDuration(rs.getInt("duration"));
 				classWaiting.setTrainerName(rs.getString("fullname"));
 				classWaiting.setStatus(0);
@@ -1013,7 +1162,7 @@ public class UserDao {
 		String sql = "delete from waiting where user_id = ? and class_id= ?";
 		conn = ConnectDBLibrary.getConnection();
 		try {
-			pst = conn.prepareStatement(sql);
+			pst = conn.prepareStatement(sql); 
 			pst.setInt(1, user_id);
 			pst.setInt(2, class_id);
 			while(pst.execute()) {
@@ -1037,10 +1186,7 @@ public class UserDao {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(2, user_id);
 			pst.setInt(1, class_id);
-			
-			while(pst.execute()) {
-				result =1;	
-			}
+			result = pst.executeUpdate();
 			
 		} catch (SQLException e) {
 			System.out.println("Error in Register");
@@ -1051,5 +1197,128 @@ public class UserDao {
 		return result;
 		
 	}
+	
+	public ArrayList<ClassWaiting> getClassCanRegisterOfTrainee(int trainee_id){
+		ArrayList<ClassWaiting> list = new ArrayList<>();
+		String sql = "SELECT classes.class_id, classes.name, classes.date_of_week, classes.time_of_date, courses.duration, classes.trainer_id FROM mcts.classes inner join courses on classes.course_id = courses.course_id where class_id != all (select class_id from waiting where user_id = ? ) and class_id != all (select class_id from learning where user_id = ? ) and courses.status = 0 ;";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, trainee_id);
+			pst.setInt(2, trainee_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				ClassWaiting classWaiting= new ClassWaiting();
+				classWaiting.setClassId(rs.getInt("class_id"));
+				classWaiting.setClassName(rs.getString("name"));
+				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
+				classWaiting.setDuration(rs.getInt("duration"));
+				
+				int idTrainer = rs.getInt("trainer_id");
+				String fullnameTrainer ="";
+
+				
+				try {
+					String sql1 = "Select fullname from users where user_id = ?";
+					System.out.println(sql1);
+					PreparedStatement pst1 = conn.prepareStatement(sql1);
+					pst1.setInt(1, idTrainer);
+					ResultSet rs1 = pst1.executeQuery();
+					if (rs1.next()) {
+						fullnameTrainer = rs1.getString(1);
+						classWaiting.setTrainerName(fullnameTrainer);
+					}
+						
+					
+				} catch (Exception e) {
+					classWaiting.setTrainerName(String.valueOf(idTrainer));
+				}
+				list.add(classWaiting);
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error in Register");
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return list;
+		
+	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingStartOfTrainee(int trainee_id){
+		ArrayList<ClassWaiting> list = new ArrayList<>();
+		String sql = "SELECT classes.class_id, classes.name, classes.date_of_week, classes.time_of_date, courses.duration, classes.trainer_id FROM mcts.classes inner join courses on classes.course_id = courses.course_id  inner join waiting on classes.class_id = waiting.class_id where waiting.user_id = ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, trainee_id);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				ClassWaiting classWaiting= new ClassWaiting();
+				classWaiting.setClassId(rs.getInt("class_id"));
+				classWaiting.setClassName(rs.getString("name"));
+				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
+				classWaiting.setDuration(rs.getInt("duration"));
+				
+				int idTrainer = rs.getInt("trainer_id");
+				String fullnameTrainer ="";
+
+				
+				try {
+					String sql1 = "Select fullname from users where user_id = ?";
+					System.out.println(sql1);
+					PreparedStatement pst1 = conn.prepareStatement(sql1);
+					pst1.setInt(1, idTrainer);
+					ResultSet rs1 = pst1.executeQuery();
+					if (rs1.next()) {
+						fullnameTrainer = rs1.getString(1);
+						classWaiting.setTrainerName(fullnameTrainer);
+					}
+						
+					
+				} catch (Exception e) {
+					classWaiting.setTrainerName(String.valueOf(idTrainer));
+				}
+				list.add(classWaiting);
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error in List");
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return list;
+		
+	}
+	
+	public int getNumberOfTraineesByYear(String year){
+		int count = 0;
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT count(*) FROM mcts.users where substring_index(created_at,'-',1) = ?;";
+			pst= conn.prepareStatement(sql);
+			pst.setString(1, year);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("count(*)");
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return count;
+	}
+	
+	
 
 }

@@ -4,14 +4,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard2.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+        
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -82,6 +81,7 @@ if( user.getRoleId() == 3) {
 		}
 		%>
         <script type="text/javascript">
+        
             $(document).ready(function(){
                 $(document).on('change', '.checkall, .checkitem', function(){
                     var $_this = $(this);
@@ -112,34 +112,8 @@ if( user.getRoleId() == 3) {
             });
         </script>
         
-        <script type="text/javascript">
-            $(function () {
-                var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
-                showPage = function (page) {
-                    $(".contentPage").hide();
-                    $(".contentPage").each(function (n) {
-                        if (n >= pageSize * (page - 1) && n < pageSize * page)
-                            $(this).show();
-                    });
-                }
-                showPage(1);
-                ///** Cần truyền giá trị vào đây **///
-                var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
-                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
-                var iTotalPages = Math.ceil(totalRows / pageSize);
-
-                var obj = $('#pagination').twbsPagination({
-                    totalPages: iTotalPages,
-                    visiblePages: btnPage,
-                    onPageClick: function (event, page) {
-                        console.info(page);
-                        showPage(page);
-                    }
-                });
-                console.info(obj.data());
-            });
-        </script>
-         <style>
+        
+         <!-- <style>
             ///** CSS căn id pagination ra giữa màn hình **///
             #pagination {
                 display: flex;
@@ -149,10 +123,10 @@ if( user.getRoleId() == 3) {
                 justify-content: center;
                 -webkit-justify-content: center;
             }
-        </style>
+        </style> -->
         <div class="card-body">
           <div class="table-responsive">
-            <form action=""  method="post">
+            <form action="<%=request.getContextPath() %>/trainer/del"  method="post">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
 	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
@@ -161,7 +135,8 @@ if( user.getRoleId() == 3) {
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
                 	<div style="clear: both"></div>
-	        	</div><table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+	        	</div>
+	        	<table  id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
                       <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -179,9 +154,14 @@ if( user.getRoleId() == 3) {
                   <%
                   	for(User trainer : trainers){
                   %>	
+<%-- <<<<<<< HEAD
+                  	<tr>
+                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainer<%= trainer.getUserId()%>" value="<%=trainer.getUserId() %>" class="checkitem" id="chkitem"> </td>
+                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
+======= --%>
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
+                      	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
                      	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
@@ -200,7 +180,7 @@ if( user.getRoleId() == 3) {
 	                    %>
 	                    <td   style="text-align: center; vertical-align: middle;">
                         <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a  style="margin-left: 10px" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
+                        <a  class="iconDel" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
                      	</td>
                     </tr>
                   <%	
@@ -208,10 +188,75 @@ if( user.getRoleId() == 3) {
                   %>
                   </tbody>
                 </table>
+                <script type="text/javascript">
                 
-                <div id="pager">
+                $(document).ready( function () {
+                    var table = $('#dataTable').DataTable({
+                        "order": [[ 0, "asc" ]],
+                        "language": {
+                            "lengthMenu": "Show _MENU_ users",
+                            "zeroRecords": "No data",
+                            "infoEmpty": "No data found",
+                            "paginate": {
+                                "first":      "First",
+                                "last":       "Last",
+                                "next":       "Next",
+                                "previous":   "Previous"
+                            },
+                        }
+                    })
+                });
+                    <%-- $(function () {
+                        var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
+                        showPage = function (page) {
+                            $(".contentPage").hide();
+                            $(".contentPage").each(function (n) {
+                                if (n >= pageSize * (page - 1) && n < pageSize * page)
+                                    $(this).show();
+                            });
+                        }
+                        showPage(1);
+                        ///** Cần truyền giá trị vào đây **///
+                        var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
+                        var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+                        var iTotalPages = Math.ceil(totalRows / pageSize);
+
+                        var obj = $('#pagination').twbsPagination({
+                            totalPages: iTotalPages,
+                            visiblePages: btnPage,
+                            onPageClick: function (event, page) {
+                                console.info(page);
+                                showPage(page);
+                            }
+                        });
+                        console.info(obj.data());
+                    }); --%>
+              
+                function changeStatus(id, status){
+            		$.ajax({
+            			url: '<%=request.getContextPath()%>/trainer/index',
+            			type: 'POST',
+            			cache: false,
+            			data: {
+            				//Dữ liệu gửi đi
+            				trainerId: id,
+            				status : status
+            			},
+            			success: function(data){
+            				// Xử lý thành công
+            				$('#status' + id).html(data);
+            			},
+            			error: function (){
+            			// Xử lý nếu có lỗi
+            				alert('fail');
+            			}
+            		});
+            	}
+                </script>
+                
+                <!-- <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
-				</div>
+				</div> -->
             </form>
           </div>
         </div>

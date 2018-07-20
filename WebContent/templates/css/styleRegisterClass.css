@@ -26,6 +26,12 @@ th, .no, .time, .date, .duration, .trainer, .btnRegister{
 	font-size: 12px;
 	width:70px;
 }
+.btncancel{
+	color: white;
+	background:#ba2e2e;
+	font-size: 12px;
+	width:70px;
+}
 
 .btn1{
 	color: rgb(52, 58, 64);

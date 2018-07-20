@@ -1,4 +1,3 @@
-
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,31 +19,24 @@
     <!-- Custom fonts for this template -->
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
- 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    
-	<script src="jquery.twbsPagination.min.js"></script>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
+
 	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	        <!-- JS tạo nút bấm di chuyển trang start -->
-	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-	 
+	
+	 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+		 
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}
@@ -68,7 +60,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 41px;">
+            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 41px; min-width:250px; max-width:250px;">
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="<%= request.getContextPath()%>/">
                   <img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" class="img-thumbnail" alt="Cinque Terre" width="220">
@@ -106,6 +98,21 @@
                   </li>
                 </ul>
               </li>
+              
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="major">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#major" style="font-size:  larger;">
+                  <i class="fa fa-briefcase" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Major</span>
+              	</a>
+              <ul class="sidenav-second-level collapse" id="major">
+                <li>
+                  <a href="<%= request.getContextPath()%>/major"><i class="fa fa-fw fa-list"></i> List majors</a>
+                </li>
+               
+              </ul>
+            </li>
+              
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#class" style="font-size:  larger;">
                   <i class="fa fa-fw fa-object-group"></i>&nbsp;
@@ -146,6 +153,19 @@
               <ul class="sidenav-second-level collapse" id="room">
                 <li>
                   <a href="<%= request.getContextPath()%>/room"><i class="fa fa-fw fa-list"></i> List rooms</a>
+                </li>
+               
+              </ul>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
+                  <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Skills</span>
+              </a>
+              <ul class="sidenav-second-level collapse" id="skill">
+                <li>
+                  <a href="<%= request.getContextPath()%>/Skills"><i class="fa fa-fw fa-list"></i> List skills</a>
                 </li>
                
               </ul>
@@ -266,7 +286,7 @@
                 
           <li class="nav-item nav-item1">
           	<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 10px; width: 25px;">
-                <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" alt="<%= user.getUsername()%>" ><%= user.getUsername()%>
+                <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" ><%= user.getUsername()%>
             </a>
             <ul class="dropdown-menu menu_user pull-right">
 				    <%
@@ -280,7 +300,9 @@
 				    <%
 				    }
 				    %>
-                    <li><a href="<%= request.getContextPath()%>/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
+                    <li><a  href="<%= request.getContextPath()%>/logout"><i style="margin-top:10px;" class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
             </ul>
           </li>
           <div id="maincontent">

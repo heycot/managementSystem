@@ -32,8 +32,15 @@ if( user.getRoleId() == 3) {
 			  </div>
 			  <div>
 			<%
-			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("listClassOpening");
+			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
 			  int tong = listClassOpening.size();
+			  if (tong==0){
+				 %>
+				 <div class="alert alert-danger">
+		    	<strong> No Class to register </strong>
+		  		</div>
+				 <% 
+			  }
 			%>
 			<script type="text/javascript">
             $(function () {
@@ -76,15 +83,22 @@ if( user.getRoleId() == 3) {
 			  
 		  	<div class="form">
 		  		<table>
-				  <tr >
+		  		<%
+		  		if(tong !=0){
+		  			%>
+		  			<tr >
 				    <th>No.</th>
 				    <th>Name</th>
 				    <th>Time</th>
-				    <th>Date</th>
+				    <th>Date Of Week</th>
 				    <th>Duration</th>
 				    <th>Trainer</th>
 				    <th>Option</th>
 				  </tr>
+		  			<% 
+		  		}
+		  		%>
+				  
 				  <%
 				  int count=0;
 				  for (ClassWaiting classOpening : listClassOpening) {
@@ -105,21 +119,8 @@ if( user.getRoleId() == 3) {
 				    
 				    %>
 				    <td class="btnRegister">
-				    
-				    <%
-				    	if (classOpening.getStatus()==0){
-				    		
-				   %>
-				    		<a href="/managementSystem/SetStatusregisterClassController?user_id=4&class_id=<%= classOpening.getClassId() %>"    class="btn"  onclick="return confirm('Are you sure you want to register this class?')">Register</a>
-				    <%
-				    }
-				    	else {
-				    		%>
-				    	<a href="/managementSystem/SetStatusregisterClassController?user_id=4&class_id=<%= classOpening.getClassId() %>"  class="btn btn1" onclick="return confirm('Are you sure you want to cancel this class?')" >Cancel</a>	
-				    <%		
-				    	}
-				    %>
-				    	
+				    	<button  type="button" name="register" class = "btn btn-primary register" id="<%= classOpening.getClassId() %>" >Register</button>		
+				    		    	
 				    	
 				    </td>
 				    
@@ -141,6 +142,40 @@ if( user.getRoleId() == 3) {
         <div style="clear: both"></div>
         <div class="error" ></div>
         <div style="margin-bottom: 10%"></div>
+	</div>
+</div>
+     <script type="text/javascript">
+   $(document).ready(function(){ 
+   
+	   $(document).on('click','.register',function(){
+			 var classOpening_id = $(this).attr("id");
+			 regiterClass(classOpening_id);
+		});
+		function regiterClass(classOpening_id)
+		{	
+			if(confirm("Are you sure register class?")){
+				$.ajax({
+					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + classOpening_id,
+					type : 'POST',
+					//data:{post_id:post_id},
+					success:function(data)
+					{
+						
+						$('#post_modal_noti').modal('show');
+						$('#post_detail_noti').html(data);					 
+					}
+				});
+			}
+			
+		}
+		
+	});
+</script>
+<div id="post_modal_noti" class ="modal fade">
+		<div class = "modal-dialog">
+		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail_noti">
+		</div>
+		
 	</div>
 </div>
 <%@include file="/templates/inc/footer.jsp" %> 

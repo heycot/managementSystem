@@ -2,13 +2,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard2.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
 <div class="content-wrapper py-3">
   <div class="container-fluid">
     <div class="card mb-3">
-        <div class="card-header">
+        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;">
           <i class="fa fa-table"></i>
-          Bảng danh sach lop
+          <strong>Classes</strong>
         </div>
         <script type="text/javascript">
             $(document).ready(function(){
@@ -47,9 +48,12 @@
                 <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th width="20%">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th>Name</th>
-                      <th width="20%">Service</th>
+                      <th style="text-align:center; font-size: medium;" >
+                      Delete All
+                      <input style="display: inline-block; margin-left: 15px;vertical-align: middle; margin-top: -3px;" 
+			                      				type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; font-size: medium;">Name</th>
+					<th style="text-align: center; font-size: medium;">Action</th>
                     </tr>
                   </thead>
                   <tbody>

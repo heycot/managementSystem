@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,8 +62,13 @@ public class AddNewTrainerController extends HttpServlet {
 		String address= request.getParameter("address").trim();
 		String phone= request.getParameter("phone").trim();
 		String avatar= request.getParameter("avatar");
+		
+		
 		Date dateOfBirth= FormatDateLibrary.ConvertStringToDateSQL(request.getParameter("dateOfBirth"));
+		
 		Date createdDate= FormatDateLibrary.ConvertDateUntilToDateSQL(new java.util.Date());
+		
+		
 		int skillId=Integer.parseInt(request.getParameter("skillId"));
 		int experience = Integer.parseInt(request.getParameter("experience"));
 		

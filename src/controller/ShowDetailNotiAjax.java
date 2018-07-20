@@ -32,6 +32,11 @@ public class ShowDetailNotiAjax extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int post_id = Integer.valueOf((String) request.getParameter("post_id"));
 		MyMessages messages = userBo.getMessageDetail(post_id);
+		if(messages.getStatus()== 0){
+			if(userBo.changeStatusOfMessages(post_id)>=1){
+				System.out.println("Change status sucessfull!");
+			}
+		}
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println("<div class='alert alert-primary'>");
 		printWriter.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>"+ messages.getTitle()+"</h4>");
