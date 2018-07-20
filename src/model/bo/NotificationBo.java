@@ -1,6 +1,6 @@
 package model.bo;
-
 import model.bean.Classes;
+import model.bean.RequestTakDayOff;
 import model.bean.User;
 import model.dao.NotificationDao;
 
@@ -14,5 +14,18 @@ public class NotificationBo {
 		notificationDao = new NotificationDao();
 		return notificationDao.addRequestTakeaDayOff(dateoff, datechange, timechange, classes, trainer, room_id);
 	}
-
+	public int addNotiRequestBeApproveSendToTrainer(RequestTakDayOff dayOff){
+		notificationDao = new NotificationDao();
+		return notificationDao.addNotiRequestBeApproveSendToTrainer(dayOff);
+	}
+	
+	public int addNotiRequestTakeDateOffToTraineeOffClass(RequestTakDayOff dayOff){
+		notificationDao = new NotificationDao();
+		return notificationDao.addNotiRequestTakeDateOffToTraineeOffClass(dayOff);
+	}
+	
+	public int changeStatusAllMessagesOfUser(int user_id){
+		notificationDao = new NotificationDao();
+		return notificationDao.changeStatusAllMessagesOfUser(user_id);
+}
 }

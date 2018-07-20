@@ -30,12 +30,11 @@
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	
-	 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 		 
     <style type="text/css">
       .hiden{display:none}
@@ -170,6 +169,19 @@
                
               </ul>
             </li>
+             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#request" style="font-size:  larger;">
+                  <i class="fa fa-paper-plane" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Requestions</span>
+              </a>
+              <ul class="sidenav-second-level collapse" id="request">
+                <li>
+                  <a href="<%= request.getContextPath()%>/admin/requestTakeDateOff"><i class="fa fa-fw fa-list"></i> List Requestions</a>
+                </li>
+               
+              </ul>
+		</li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
                   <i class="fa fa-calculator" ></i>&nbsp;
@@ -208,9 +220,11 @@
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				      <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Registion</a></li>
-				    <%
+				        <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
+					 <%
 				    } 
 				    %>
 		    </ul>

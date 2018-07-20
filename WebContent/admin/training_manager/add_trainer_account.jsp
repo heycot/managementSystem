@@ -361,7 +361,7 @@ String dateMax= date.toString();
 	}
 
 	function validateFullName(string) {
-			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9(\s)]+$/;
 			//var pattern = /^[a-zA-Z]+$/;
 			return $.trim(string).match(pattern) ? true : false;
 		}

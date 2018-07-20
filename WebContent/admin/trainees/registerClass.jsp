@@ -21,7 +21,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -57,7 +56,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -105,7 +103,7 @@ if( user.getRoleId() == 3) {
 					  count++;
 				  
 				  %>
-				   <tr class="contentPage" >
+				   <tr class="contentPage" id="row<%= classOpening.getClassId()%>">
 				    <td class="no"><%= count %></td>
 				    <td class="name"><%= classOpening.getClassName() %></td>
 				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
@@ -118,10 +116,11 @@ if( user.getRoleId() == 3) {
 				    
 				    
 				    %>
-				    <td class="btnRegister">
-				    	<button  type="button" name="register" class = "btn btn-primary register" id="<%= classOpening.getClassId() %>" >Register</button>		
-				    		    	
-				    	
+				    <td class="btnRegisister" style="text-align: center;" >
+				    	<button  type="button" name="register" class = "btn btn-danger register"  style="border-color: #e7c6c9;
+background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
+						
+				    		
 				    </td>
 				    
 				  </tr>
@@ -150,6 +149,11 @@ if( user.getRoleId() == 3) {
 	   $(document).on('click','.register',function(){
 			 var classOpening_id = $(this).attr("id");
 			 regiterClass(classOpening_id);
+			 var rowid= "row"+classOpening_id;
+			 alert(rowid);
+			 var link = document.getElementById(rowid);
+			 link.style.display = 'none'; //or
+			 link.style.visibility = 'hidden';
 		});
 		function regiterClass(classOpening_id)
 		{	
@@ -168,6 +172,27 @@ if( user.getRoleId() == 3) {
 			}
 			
 		}
+		
+		function registerClassIcon(class_id){
+			alert("now");
+			if(confirm("Are you sure register class?")){
+				$.ajax({
+					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + class_id,
+					type : 'POST',
+					//data:{post_id:post_id},
+					success:function(data)
+					{
+						
+						$('#post_modal_noti').modal('show');
+						$('#post_detail_noti').html(data);					 
+					}
+				});
+			}
+			
+			
+		}
+		
+		
 		
 	});
 </script>

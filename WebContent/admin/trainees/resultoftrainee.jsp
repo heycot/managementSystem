@@ -18,7 +18,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -79,7 +78,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,

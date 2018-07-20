@@ -20,7 +20,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -56,7 +55,6 @@ if( user.getRoleId() == 3) {
 						
 							
 						}
-
 					%>
 						
 						<div class="r1 row">

@@ -21,19 +21,25 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
         <div class="card mb-3 divForm">
        		<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-             <strong>Registered Class </strong>
+             <strong>Waiting Class </strong>
 			  </div>
 			  <div>
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
 			  int tong = listClassOpening.size();
+			  if (tong==0){
+					 %>
+					 <div class="alert alert-danger">
+			    	<strong> No Waiting Class </strong>
+			  		</div>
+					 <% 
+				  }
 			%>
 			<script type="text/javascript">
             $(function () {
@@ -50,7 +56,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -76,6 +81,10 @@ if( user.getRoleId() == 3) {
 			  
 		  	<div class="form">
 		  		<table >
+		  		<%
+		  		if(tong!=0){
+		
+		  		%>
 				  <tr >
 				    <th>No.</th>
 				    <th>Name</th>
@@ -85,6 +94,10 @@ if( user.getRoleId() == 3) {
 				    <th>Trainer</th>
 				    <th>Option</th>
 				  </tr>
+				  
+				  <%
+				  }
+				  %>
 				  <tbody id ="tableshowclass">
 				  
 				  
@@ -107,8 +120,9 @@ if( user.getRoleId() == 3) {
 				    
 				    
 				    %>
-				    <td class="btnRegister">
-						<button  type="button" name="cancel" class = "btncancel btn-danger cancel" id="<%= classOpening.getClassId() %>" >Cancel</button>		
+				    <td class="btnRegister" >
+						<button  type="button" name="cancel" class = "btn btn-danger cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
+background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>		
 					</td>
 				    
 				  </tr>
@@ -133,8 +147,7 @@ if( user.getRoleId() == 3) {
 </div>
      <script type="text/javascript">
      	$(document).ready(function(){
-	   $(document).on('click','.cancel',function(){
-		   
+	   $(document).on('click','.cancel',function(){  
 			 var classWaiting_id = $(this).attr("id");
 			 cancelClass(classWaiting_id);
 		});

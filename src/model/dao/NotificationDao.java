@@ -1,16 +1,19 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 import libralies.ConnectDBLibrary;
 import libralies.FormatDateLibrary;
 import model.bean.Classes;
+import model.bean.RequestTakDayOff;
 import model.bean.User;
+import model.dao.UserDao;
+
 public class NotificationDao {
 
 	private Connection conn;
@@ -113,6 +116,143 @@ public class NotificationDao {
 		}
 		return kq;
 	}
+	public int addNotiRequestBeApproveSendToTrainer(RequestTakDayOff dayOff){
+		int result = 0;
+		String title = "Notice about The  your Request Take Date Off is approved.";
+		String content = "";
+		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
+		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ ", on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+". \n We inform to know and do it on time "; ;
+		Date dateCurrent = 	FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
+				//FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
+		try {
+			conn = ConnectDBLibrary.getConnection();
+			String sql = "insert into notification(content,title, createdDate) values(?,?, ?)";
+			pst =  conn.prepareStatement(sql);
+			pst.setString(1, content);
+			pst.setString(2, title);
+			pst.setDate(3, (java.sql.Date) dateCurrent);
+			result = pst.executeUpdate();
+			String sql1 = "select * from notification order by id desc limit 1";
+			pst = conn.prepareStatement(sql1);
+			ResultSet result1 = pst.executeQuery();
+			int notification_id =0;
+			while(result1.next()){
+				notification_id = result1.getInt("id");
+			}
+			if(notification_id!=0){
+				String sql2 = "insert into messages(user_id,noti_id, status) values(?,?, ?)";
+				pst = conn.prepareStatement(sql2);
+				pst.setInt(1, dayOff.getTrainer_id());
+				pst.setInt(2, notification_id);
+				pst.setInt(3, 0);
+				int result2 = pst.executeUpdate();
+				if (result2 > 0) {
+					System.out.println("Add messages send trainer of take day off successfull");
+					
+				}
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return result;
+	}
+	
+	public int addNotiRequestTakeDateOffToTraineeOffClass(RequestTakDayOff dayOff){
+		int result = 0;
+		String title = "Notice about Take Date Off : " + dayOff.getClass_name();
+		String content = "";
+		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
+		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ " ,on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+".\n We inform  you to know and do it on time."; ;
+		Date dateCurrent = 	FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
+				//FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
+		try {
+			conn = ConnectDBLibrary.getConnection();
+			String sql = "insert into notification(content,title, createdDate) values(?,?, ?)";
+			pst =  conn.prepareStatement(sql);
+			pst.setString(1, content);
+			pst.setString(2, title);
+			pst.setDate(3, (java.sql.Date) dateCurrent);
+			result = pst.executeUpdate();
+			String sql1 = "select * from notification order by id desc limit 1";
+			pst = conn.prepareStatement(sql1);
+			ResultSet result1 = pst.executeQuery();
+			int notification_id =0;
+			while(result1.next()){
+				notification_id = result1.getInt("id");
+			}
+			if(notification_id!=0){
+				UserDao userDao = new UserDao();
+
+				ArrayList<User> listTraineeOfClass =  userDao.getTraineeOfClass(dayOff.getClass_id());
+				
+				for(User trainee: listTraineeOfClass){
+					String sql2 = "insert into messages(user_id,noti_id, status) values(?,?, ?)";
+					pst = conn.prepareStatement(sql2);
+					pst.setInt(1, trainee.getUserId());
+					pst.setInt(2, notification_id);
+					pst.setInt(3, 0);
+					int kq = pst.executeUpdate();
+					if (kq > 0) {
+						System.out.println("Add messages send trainer of take day off successfull");
+					
+				}
+				
+			}
+			
+		}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return result;
+	}
+
+	public int addMessage(int user_id, int notification_id){
+		int kq=0;
+		try {
+			conn = ConnectDBLibrary.getConnection();
+			String sql2 = "insert into messages(user_id,noti_id, status) values(?,?, ?)";
+			pst = conn.prepareStatement(sql2);
+			pst.setInt(1, user_id);
+			pst.setInt(2, notification_id);
+			pst.setInt(3, 0);
+			 kq = pst.executeUpdate();
+			if (kq > 0) {
+				System.out.println("Add messages send trainer of take day off successfull");
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return kq;
+	} 
+	public int changeStatusAllMessagesOfUser(int user_id){
+		int nu=0;		
+		conn=ConnectDBLibrary.getConnection();
+		String sql = "UPDATE messages SET status = 1 WHERE user_id = ?";
+		System.out.println(sql);
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			nu = pst.executeUpdate();
+			System.out.println(nu);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return nu;		
+}
 
 
 }

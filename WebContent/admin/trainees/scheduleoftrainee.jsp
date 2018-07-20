@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import ="model.bean.ScheduleOfTrainee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,7 +17,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -78,7 +76,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -116,6 +113,8 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center;" >Date Of Week </th>
                       <th style="text-align: center;" >Learned Hours</th>
                       <th style="text-align: center;" >Duration</th>
+                      <th style="text-align: center;" >Default</th>
+                      
                       <th style="text-align: center;" >Action</th>
                       
                     </tr>
@@ -137,7 +136,16 @@ if( user.getRoleId() == 3) {
                   <td ><%= sched.getDateofweek()%></td> 
                   <td style="text-align: center;vertical-align: middle; "  ><%= sched.getCountLession() %>
                   <td style="text-align: center; vertical-align: middle;"  ><%= sched.getDuration() %>
-                  
+                  <%
+                  if (sched.getStatus()==1){
+                	  %> 
+                	<td style="text-align: center; vertical-align: middle;"  >Yes</td>
+                 <%
+                  } else {
+                 %>
+                	  <td style="text-align: center; vertical-align: middle;"  >No</td>
+                 <% }
+                  %>
             
                   <td style="text-align:center; vertical-align: middle;"> <a href="/managementSystem/trainee/list?class_id=<%= sched.getClassid() %>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;">  </a></td>
                   </tr>

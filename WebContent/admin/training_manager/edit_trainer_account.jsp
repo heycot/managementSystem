@@ -19,6 +19,7 @@
 		}
 	</style>
 <%@include file="/templates/inc/dashboard.jsp"%>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 
 <%
 String classNameContent = "" ;
