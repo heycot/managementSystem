@@ -15,7 +15,17 @@
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 
   <%
+  	
+  	String  success = "";
+	if((session.getAttribute("success"))!=null){
+		success = (String)session.getAttribute("success") ;
+	}else{
+		
+	}
+	System.out.println("aaaaa"+success);
    	ArrayList<Schedule> schedule = (ArrayList<Schedule>) request.getAttribute("schedule");
+  	int user_id = Integer.parseInt((String)request.getAttribute("user_id"));
+  	
    	int k=0;
    	String dayOfWeek2="";
    	int tong = schedule.size();
@@ -73,6 +83,49 @@ if( user.getRoleId() == 3) {
             });
         </script>
         <script type="text/javascript">
+        
+        
+     
+   
+        
+        function open1234(classaction) {
+        	var class_id = classaction.id;
+        	var dayinstead= $('input[name="dayinstead"]:checked').val();
+			$.ajax({
+	              type : 'POST', 
+	              url : '/managementSystem/trainer/RequestTakeDayOf?class_id='+class_id+"&dayinstead="+dayinstead, 
+	              success : function(result)  
+	                        { 
+	            				$('.selectTime').html(result);
+	                        }
+	              });
+		}
+        	function handleClick() {
+       		 	var dayinstead= $('input[name="dayinstead"]:checked').val();
+			$.ajax({
+		          type : 'POST', 
+	              url : '/managementSystem/trainer/RequestTakeDayOf?dayinstead='+dayinstead, 
+	              success : function(result)  
+	                        { 
+	            				$('.selectTime').html(result);
+	                        }
+	              });
+		}
+        function myCheckRoom(select) {
+        	var selectId = select.id;
+        	
+			var x = document.getElementById(selectId).value;
+			var dayinstead= $('input[name="dayinstead"]:checked').val();
+			$.ajax({
+	              type : 'GET', 
+	              url : '/managementSystem/trainer/GetRoomFreeController?time='+x+"&dayinstead="+dayinstead, 
+	              success : function(result)  
+	                        { 
+	            	  
+	            				$('.selectRoom').html(result);
+	                        }
+	              });
+		}
             $(function () {
                 var pageSize = 10; // HiÃ¡Â»Æ’n thÃ¡Â»â€¹ 6 sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m trÃƒÂªn 1 trang
                 showPage = function (page) {
@@ -84,7 +137,7 @@ if( user.getRoleId() == 3) {
                 }
                 showPage(1);
                 ///** CÃ¡ÂºÂ§n truyÃ¡Â»Ân giÃƒÂ¡ trÃ¡Â»â€¹ vÃƒ o Ã„â€˜ÃƒÂ¢y **///
-                var totalRows = <%= tong%>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹
+                var totalRows = <%= tong %>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹
                 var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
 
@@ -111,6 +164,16 @@ if( user.getRoleId() == 3) {
             }
         </style>
         <div class="card-body">
+        <%
+        	if(success.equals("1")){
+        		%>
+        		<h5 style="color: red">Send the announcement success!</h5>
+        		<% 
+        		request.getSession().removeAttribute("success"); 
+        	}else{
+        		
+        	}
+        %>   
           <div class="table-responsive">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
@@ -253,21 +316,22 @@ if( user.getRoleId() == 3) {
                     <td style="text-align: center; vertical-align: middle;"> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;"></a>
                    <button  type="button" class="btn btn-link"  style="text-align: center; vertical-align: middle; font-size: 20px" data-toggle="modal" data-target="#myModal<%=k%>"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                    </button>
-                   <div class="modal fade" id="myModal<%=k %>" role="dialog">
-						    <div class="modal-dialog ">
+                   <div class="modal fade" id="myModal<%=k %>" role="dialog" style="text-align: center;">
+						    <div class="modal-dialog " style="text-align: center;">
 						      <div class="modal-content">
 						        <div class="modal-header; alert alert-primary">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
 						          <h4 class="modal-title">Requesting a day off for <%= list.getNameclass()%></h4>
 						        </div>
+						         <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
 						          <table border="0px">
-						           <form action="" method="post"> 
+						          
 						           
 						         
 						          <tr>
 						          <th>Day off</th>
-						          <td>
+						          <td >
 						          
 						          		
 						          			<%
@@ -279,7 +343,7 @@ if( user.getRoleId() == 3) {
 						          		int s4 =Integer.parseInt((String)s3);
 						          		if(b1==s4){
 						          		%>
-										  <input style="float: left;" type="radio" name="dayoff" value="<%=b %>"> <%=s2[0]+", "+s2[1] %><br>
+										  <input style="  float: left;" type="radio" name="dayoff" value="<%=s2[0]+", "+s2[1] %>"><span style="margin-right: 120px"><%=s2[0]+", "+s2[1] %></span> <br>
 										  <% 
 										 } else {
 											 if(b1>s4){
@@ -296,7 +360,7 @@ if( user.getRoleId() == 3) {
 												 }
 												 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 												 %>
-												  <input style="float: left;" type="radio" name="dayoff" value="<%=dayOfWeek %>"> <%=day1 %><br>
+												  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"> <span style="margin-right: 120px"><%=day1 %></span><br>
 												  <%
 											 }else {
 													 int kq = b1 - s4;
@@ -313,7 +377,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 													 %>
-													  <input style="float: left;" type="radio" name="dayoff" value="<%=dayOfWeek %>"> <%=day1 %><br>
+													  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"><span style="margin-right: 120px"> <%=day1 %></span><br>
 													  <%
 											 }
 										 }
@@ -323,31 +387,18 @@ if( user.getRoleId() == 3) {
 						          	}
 						          %>
 						          </td>
-						           <input type="hidden" value="<%=list.getClassid()%>" id="classId">
+						           <input type="hidden" class="class_id"  name="classId" value="<%=list.getClassid()%>" id="classId<%= list.getClassid()%>">
+						            <input type="hidden" name="userId" value="<%=user_id%>" ">
+						             <input type="hidden" name="classname" value="<%=list.getNameclass()%>" ">
 						          <%-- <%
 						          	 classid_choose = list.getClassid();
 						          	System.out.println(classid_choose);
 						          %> --%>
-						          <script type="text/javascript">
-					    function takeDayOff (){
-					    	<%-- var dayinstead = $("#dayinstead"+<%=dayOfWeek2%>).val(); --%>
-					    	var dayinstead= $('input[name="dayinstead"]:checked').val();
-					    	var class_id = $('#classId').val();
-					    	alert(class_id);
-					        $.ajax({
-					              type : 'POST', 
-					              url : '/managementSystem/trainer/RequestTakeDayOf?class_id='+class_id+"&dayinstead="+dayinstead, 
-					              success : function(result)  
-					                        { 
-					            				alert(result);
-					                        }
-					              });
-					        }
-					</script>
+						          
 						          </tr>
 						          </tr>
 						          
-						          
+						           <!-- <form  name="myForm" >  -->
 						          <tr>
 						          <th>Day instead</th>
 						          <td>
@@ -363,7 +414,7 @@ if( user.getRoleId() == 3) {
 						          		if(c1==s5){
 						          			dayOfWeek2 = s2[0];
 						          			%>
-											  <input style="float: left;" type="radio" name="dayinstead" value="<%=s2[0] %>"> <%=s2[0]+", "+s2[1] %><br>
+											  <input style="float: left;" type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=s2[0]+", "+s2[1] %>-<%=list.getClassid()%>"> <span style="margin-right: 120px"><%=s2[0]+", "+s2[1] %></span><br>
 											  <% 
 						          		}else {
 											 if(c1>s5){
@@ -380,7 +431,7 @@ if( user.getRoleId() == 3) {
 												 }
 												 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
 												 %>
-												  <input style="float: left; " type="radio" name="dayinstead" value="<%=dayOfWeek2 %>"> <%=day3 %><br>
+												  <input style="float: left; " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="margin-right: 120px"> <%=day3 %></span><br>
 												  <%
 											 }else {
 													 int kq = c1 -s5;
@@ -397,7 +448,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
 													 %>
-													  <input style="float: left; " type="radio" name="dayinstead" value="<%=dayOfWeek2 %>"> <%=day3 %><br>
+													  <input style="float: left; " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="margin-right: 120px"><%=day3 %></span><br>
 													  <%
 											 }
 						          		}
@@ -409,19 +460,41 @@ if( user.getRoleId() == 3) {
 									%>
 									</td>
 						          </tr>
-						          <tr>
+						        <%--  <tr>
 						          	<th colspan="2">
-						          	<button id="bttcheck" onclick="takeDayOff();" style="float: right;" class=" btn btn-primary">Check</button>
+						          	
+						          	<input class=" btn btn-primary" style="float: right;" type="button" onclick="open1234(this);" id="<%= list.getClassid() %>" value="Check">
 						          	</th>
-						          </tr>
-						          </form>
-						          
+						          </tr>  
+						          </form>  --%> 
+	 					         
+	 					         <label id="choiceLabel"></label>
+<!-- <script>
+(function (){
+    var radios = document.getElementsByName('dayinstead');
+    console.log(radios);
+    for(var i = 0; i < radios.length; i++){
+        radios[i].onclick = function(){
+            var dayinstead = (document.getElementById('choiceLabel').innerText = this.value);
+            alert(dayinstead);
+            $.ajax({
+                type : 'POST', 
+                url : '/managementSystem/trainer/RequestTakeDayOf?dayinstead='+dayinstead, 
+                success : function(result)  
+                          { 
+              				$('.selectTime').html(result);
+                          }
+                });
+        }
+    }
+    
+})();
+</script> -->
+	 					         
 						          <tr>
 						          <th>Time</th>
 						          <td>
-						          <select style="float: left;width:145px" >
-						          <option value="">7:00-9:00</option>
-						          <option value="">9:00-11:00</option>
+						          <select  class="selectTime" name="time" id = "Select<%= list.getClassid() %>" onchange="myCheckRoom(this)" style="float: left;width:145px" >
 									  
 									</select>
 						          </td>
@@ -430,39 +503,52 @@ if( user.getRoleId() == 3) {
 						          <th>Room</th>
 						         
 						          <td>
-						          	 <select style="float: left; ">
+						          	 <select  class="selectRoom" name="room" style="float: left;width:145px ">
 						          	 <%-- <option value="nameroom"><%= list.getNameroom()%></option> --%>
 						          	  <%
 						          	
-						          	ArrayList<Rooms> rooms =(ArrayList<Rooms>)request.getAttribute("rooms");
-						          	for(Rooms ar: rooms){
+						          	
 						          	%>	
-									  <option value="nameroom"><%= ar.getName()%></option>
 						          <%
-						          }
 						          %>
 						          </select> 
 						          </td>
 						          </tr>
 						          <tr>
-						          <th colspan="2"><label>Content</label><textarea rows="5" cols="45"></textarea></th>
+						          <th>Content</th>
+						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="30"></textarea></td>
 						          </tr>
 						          
 						          </table>
 						        </div>
 						        <div class="modal-footer">
-						         <button type="button" class="btn btn-default; btn btn-primary" >Submit</button>
-						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px">Close</button>
+						         <button type="submit" class="btn btn-default; btn btn-primary" >Submit</button>
+						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px; margin-right: 30px" >Close</button>
 						         
 						        </div>
+						        </form>
 						      </div>
 						    </div>
 						  </div>
+						               <!--  <script>
+    var rad = document.myForm.dayinstead;
+    var prev = null;
+    for(var i = 0; i < rad.length; i++) {
+        rad[i].onclick = function() {
+            (prev)? console.log(prev.value):null;
+            if(this !== prev) {
+                prev = this;
+            }
+           alert(this.value);
+        };
+    }
+</script>  -->
                   </td>
                   </tr>
                   <%
                   	}
                   %>
+      
                   </tbody>
                 </table>
                 <div id="pager">
@@ -479,4 +565,9 @@ if( user.getRoleId() == 3) {
       </div>
     </div>
   </div>
+  <script >
+  
+						
+					       
+					        </script>
 <%@include file="/templates/inc/footer.jsp" %> 

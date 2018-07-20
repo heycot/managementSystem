@@ -41,6 +41,7 @@ public class CheckTrainerScheduleController extends HttpServlet {
 				UserBo userBo = new UserBo();
 				RoomBo roomBo = new RoomBo();
 				String user_id = (String) request.getParameter("user_id");
+				request.setAttribute("user_id", user_id);
 				int id = Integer.parseInt(user_id);
 				System.out.println(user_id);
 				
@@ -50,6 +51,12 @@ public class CheckTrainerScheduleController extends HttpServlet {
 				request.setAttribute("ur", ur);
 				ArrayList<Rooms> rooms = roomBo.getRooms();
 				request.setAttribute("rooms", rooms);
+				/*if(request.getParameter("success")!=null){
+					String success =(String)request.getParameter("success");
+					request.setAttribute("success", success);
+				}else{
+					
+				}*/
 				
 				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
 				rd.forward(request, response);
@@ -66,7 +73,6 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
-
 }

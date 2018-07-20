@@ -3,6 +3,7 @@ package model.bo;
 import java.util.ArrayList;
 
 import model.bean.Classes;
+import model.bean.Rooms;
 import model.bean.TimeLearning;
 import model.bean.User;
 import model.dao.LearningDao;
@@ -29,5 +30,9 @@ public class LearningBo {
 	public ArrayList<TimeLearning> getTimeFreeOfClassInDay(Classes classes, String date){
 		learningDao = new LearningDao();
 		return learningDao.getTimeFreeOfClassInDay(classes, date);
+	}
+	public ArrayList<Rooms> getRoomFreeInTime(String time , String date){
+		learningDao = new LearningDao();
+		return learningDao.getRoomFreeInTime(time, date);
 	}
 }
