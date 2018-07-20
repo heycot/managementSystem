@@ -11,6 +11,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -167,6 +169,19 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
                 	</div>
+                	<div style="float: right; margin-right: 15px;">
+                	<input id="myInput" type="text" placeholder="Search..">
+                	</div>
+					<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
                 	<div style="clear: both"></div>
 	        	</div>
                 <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
@@ -181,7 +196,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; font-size: medium;">Action</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody  id="myTBody">
                   <%
                   	for(Courses course : courses){
                   %>	

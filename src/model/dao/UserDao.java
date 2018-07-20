@@ -1321,4 +1321,32 @@ public class UserDao {
 	
 	
 
+	public ArrayList<User> getTrainers() {
+		ArrayList<User> trainers = new ArrayList<>();
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql = "SELECT users.*, ability.ability_id, ability.skill_id as id_skill, ability.experience as ex, ability.course_id as c_id " +
+						"FROM users left join ability on users.user_id = ability.user_id where users.role_id = 1;";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while ( rs.next()) {
+				User trainer = new User(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"), rs.getDate("date_of_birth"), 
+						rs.getString("email"), rs.getDate("created_at"), rs.getInt("role_id"), rs.getInt("gender"), rs.getString("address"), rs.getString("phone"),
+						rs.getString("notification_id"), rs.getString("image"), rs.getInt("status"));
+				Ability ability = new Ability(rs.getInt("ability_id"), rs.getInt("user_id"), rs.getInt("id_skill") , rs.getInt("ex"), rs.getInt("c_id"));
+				trainer.setAbility(ability);
+						
+				trainers.add(trainer);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return trainers;
+	}
+
 }

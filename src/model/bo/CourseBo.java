@@ -84,4 +84,9 @@ public class CourseBo {
 		return coursedao.getListCourseNameByMajor(majorId);
 	}
 
+	public ArrayList<Courses> getCoursesAnable() {
+		CourseDao courseDao = new CourseDao();
+		return courseDao.getCoursesAnable();
+	}
+
 }

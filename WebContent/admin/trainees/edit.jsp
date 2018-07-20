@@ -83,19 +83,23 @@ if( user.getRoleId() == 3) {
               	</div>
               
               	<div class="form-group">
-	              	<label class="required" >UserName</label>&nbsp;<span id="spnNameStatus"></span>
+	              	<label class="required" >UserName</label>&nbsp;
 	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username"  />
+	              	<span id="spnNameStatus"></span>
               	</div>
               	
               	<div class="form-group">
 	              	<label class="required" >FullName</label>&nbsp;<span id="spnFullNameStatus"></span>
+
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
+	              	<span id="spnFullNameStatus"></span>
               	</div>
               	
               	
               	<div class="form-group">
-	              	<label class="required" >Address</label>&nbsp;<span id="spnAddressStatus"></span>
+	              	<label class="required" >Address</label>&nbsp;
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
+	              	<span id="spnAddressStatus"></span>
               	</div>
               	
               	<div class="form-group">
@@ -123,8 +127,9 @@ if( user.getRoleId() == 3) {
               <div class="col-sm-6" style="float: right">
               	
               	<div class="form-group">
-	              	<label class="required" >Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
+	              	<label class="required" >Phone</label>&nbsp;
 	              	<input class="form-control" id="txtPhone" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" />
+	              	<span id="spnPhoneStatus"></span>
               	</div>
               	
               	<div class="form-group">
@@ -133,21 +138,32 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Email</label>&nbsp;<span id="spnEmailStatus"></span>
+	              	<label class="required" >Email</label>&nbsp;
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email"  disabled="disabled"/>
+	              	<span id="spnEmailStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="" >Password:</label>&nbsp;<span id="spnPassStatus"></span>
+
+	<!--               	<label class="" >Password:</label>&nbsp;<span id="spnPassStatus"></span>
 	              	<br>
               		<input type="button" value="Click here to change" onclick="changePass();" style="height:40px;"> <br>
               		<label style="display: none;margin-left:-10px; border:1px solid white;"  class="form-control" id ="lbfill"  name="">Please fill out these fields:</label> 
                    <br>
                    <input style="display: none; margin-top:-23px;" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
+ -->
+                    		
+                   <label for="usr"><strong>Password:</strong></label>&nbsp;
+                  <input type="button" value="Click here to change" onclick="changePass();"> <br>
+                   <input style="display: none" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
+                   <span id="spnPassStatus"></span>
+
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="newpass"  name="newpass" placeholder="New password" />
+                   <span id="spnPassStatus"></span>
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="confirmpass"  name="confirmpass" placeholder="Confirm new password" />
+                   <span id="spnPassStatus"></span>
                   </div>
               	</div>
               	
