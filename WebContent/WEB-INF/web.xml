@@ -137,7 +137,6 @@
     <servlet-name>Error400Controller</servlet-name>
     <url-pattern>/badrequest</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>LogoutController</servlet-name>
     <servlet-class>controller.LogoutController</servlet-class>
@@ -146,6 +145,4 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>
