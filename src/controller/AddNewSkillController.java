@@ -28,8 +28,8 @@ public class AddNewSkillController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SkillBo skillBo = new SkillBo();
-		int courseId = Integer.parseInt(request.getParameter("courseId"));
-		Skills skill = new Skills(0, request.getParameter("name"), courseId);
+		int majorId = Integer.parseInt(request.getParameter("majorId"));
+		Skills skill = new Skills(0, request.getParameter("name"), majorId, Integer.parseInt(request.getParameter("status")));
 		
 		
 		

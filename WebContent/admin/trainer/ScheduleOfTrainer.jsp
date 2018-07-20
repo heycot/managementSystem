@@ -167,7 +167,7 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<h5 style="color: red">Send the announcement success!</h5>
+        		<h5 style="color: red">Send the announcement successfully!</h5>
         		<% 
         		request.getSession().removeAttribute("success"); 
         	}else{

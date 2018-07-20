@@ -31,6 +31,11 @@ public class SkillBo {
 		}
 		return false;
 	}
+	
+	public List<Skills> getSkillAll(){
+		return skillDao.getSkillAll();
+	}
+
 	public Skills getOneSkill(int skillId){
 		skillDao = new SkillDao();
 		return skillDao.getOneSkill(skillId);
@@ -49,6 +54,11 @@ public class SkillBo {
 	public void editSkills(Skills skills){
 		SkillDao skillDao = new SkillDao();
 		skillDao.editSkill(skills);
+	}
+	
+	public int deleteSkills(int skillId){
+		skillDao = new SkillDao();
+		return skillDao.deleteSkill(skillId);
 	}
 
 	

@@ -36,11 +36,11 @@ public class ShowSkillsController extends HttpServlet {
 		request.setAttribute("skill", skill);
 		List<Majors> listMajors = majorBo.getMajors();
 		request.setAttribute("listMajors", listMajors);
-		CourseBo courseBo = new CourseBo();
+		/*CourseBo courseBo = new CourseBo();
 		for (Majors major :listMajors){
 			List<Courses> list = courseBo.getCourseByMajor(major.getMajorId());
 			request.setAttribute("listCourse"+ major.getName() , list);
-		}
+		}*/
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/skills/skills.jsp");
 		rd.forward(request, response);
 	}

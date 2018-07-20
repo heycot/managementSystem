@@ -161,7 +161,7 @@
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
                   <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
                   <span class="nav-link-text">
-                    Skills</span>
+                    Skill</span>
               </a>
               <ul class="sidenav-second-level collapse" id="skill">
                 <li>
