@@ -27,21 +27,21 @@
 			</div>
 			<div class="formSite">
 				<div>
-					<form id="add-post1" class="formLogin form-group"
+					<form id="idLoginForm" class="formLogin form-group"
 						name="Login_Form" > 
 						<div class="divForm">
 							<label id="nameForm" class="nameForm">MANAGEMENT SYSTEM</label>
 						</div>
 						<div class="divEmail">
 							<input type="text" name="email" class="inputEmail" id="txtemail"
-								placeholder="Email" required="required"><br><span id="spnEmailStatus"></span>
+								placeholder="Email" ><br><span id="spnEmailStatus"></span>
 						</div>
 						<div class="divPassword">
 							<input type="password" name="password" class="inputPassword" id="txtpassword"
 								placeholder="Password" ><br><span id="spnPasswordStatus"></span>
 						</div>
 						<div class="button">
-							<button type="button" class="btnLogIn" id="btnLogin" onclick="login();">LOG IN</button>
+							<button type="submit" class="btnLogIn" id="btnLogin">LOG IN</button>
 						</div>
 					</form>
 					<div class="divForgot">
@@ -74,8 +74,8 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		$(document).ready(function() {
-			$("#add-post1").validate({
+		/* $(document).ready(function() {
+			$("#idLoginForm").validate({
 				rules : {
 					email :{
 						required: true,
@@ -94,30 +94,22 @@
 				}
 			});
 		});
-		
-	        
+		 */
 	        $(document).ready(function(e) {
 				    $('#txtemail').blur(function() {
 				        var sEmail = $('#txtemail').val();
-				        if ($.trim(sEmail).length == 0) {
-							$('#spnEmailStatus').html('<h4><strong>Please enter email address!</strong></h4>');
-							$('#spnEmailStatus').css('color', 'white');
-							$('#txtemail').css('border-color', 'red');
-							$('#txtemail').css('border-width', '1px');
-						document.getElementById("btnLogin").disabled = true; 
-				        }
 				        if (validateEmail(sEmail)) {
 							$('#spnEmailStatus').html('');
 							$('#txtemail').css('border-color', 'transparent');
 						 	$('#spnEmailStatus').css('color', 'green');
- 						document.getElementById("btnLogin").disabled = false; 
+ 							document.getElementById("btnLogin").disabled = false; 
 				        }
 				        else {
 							$('#spnEmailStatus').html('<h4><strong>Please enter valid email address!</strong></h4>');
 						 	$('#spnEmailStatus').css('color', 'white');
 						 	$('#txtemail').css('border-color', 'red');
 							$('#txtemail').css('border-width', '1px');
-						document.getElementById("btnLogin").disabled = true; 
+							document.getElementById("btnLogin").disabled = true; 
 				        }
 				    });
 				});
@@ -144,14 +136,7 @@
 	        $(document).ready(function(e) {
 			    $('#emailForgot').blur(function() {
 			        var sEmail = $('#emailForgot').val();
-			        if ($.trim(sEmail).length == 0) {
-						$('#spnEmailForgotStatus').html('Please enter email address!');
-						$('#spnEmailForgotStatus').css('font-size', '24');
-						$('#spnEmailForgotStatus').css('font-weight', '600');
-						 $('#spnEmailForgotStatus').css('color', 'red');
-						 $('#emailForgot').css('border-color', 'red');
-					document.getElementById("btnForgot").disabled = true; 
-			        }
+			        
 			        if (validateEmail(sEmail)) {
 						$('#spnEmailForgotStatus').html('');
 					 $('#spnEmailForgotStatus').css('color', 'green');
@@ -185,38 +170,60 @@
 
 			function sendEmail() {
 				var email= $("#emailForgot").val();
-				$.ajax({
-					type : 'POST',
-					url : '/managementSystem/forgotpassword?emailForgot=' + email,
-					success : function(data) {
-						alert(data);
-					}
-				});
+				if ($.trim(email).length === 0) {
+					$('#spnEmailForgotStatus').html('Please enter email address!');
+					$('#spnEmailForgotStatus').css('font-size', '24');
+					$('#spnEmailForgotStatus').css('font-weight', '600');
+					$('#spnEmailForgotStatus').css('color', 'red');
+					$('#emailForgot').css('border-color', 'red');
+					document.getElementById("btnForgot").disabled = true; 
+		        }
+				else{
+					$.ajax({
+						type : 'POST',
+						url : '/managementSystem/forgotpassword?emailForgot=' + email,
+						success : function(data) {
+							alert(data);
+						}
+					});
+				}
 			}
 			
-			function login() {
-				var email= $("#txtemail").val();
-				var pass= document.getElementById("txtpassword").value;
-				$.ajax({
-					type : 'POST',
-					url : '/managementSystem/login?email=' + email + '&password=' + pass,
-					success : function(data) {
-						if(data == 1){
-							alert('Email is incorrect!');
-						}
-						else if(data == 2){
-							alert('Your account is disabled!');
-						}
-						else if(data == 3){
-							alert('Password is incorrect!');
-						}
-						else{
-							window.location.href = data;
-						}
-						
+			$(document).ready(function() {
+				$("#idLoginForm").submit(function(e) {
+					if ($.trim($('#txtemail').val()).length === 0) {
+						$('#spnEmailStatus').html('<h4><strong>Please enter email address!</strong></h4>');
+						$('#spnEmailStatus').css('color', 'white');
+						$('#txtemail').css('border-color', 'red');
+						$('#txtemail').css('border-width', '1px');
+						document.getElementById("btnLogin").disabled = true; 
+			        }
+					else{
+						$.ajax({
+					           type: "POST",
+					           url: "/managementSystem/login",
+					           data: $("#idLoginForm").serialize(), // serializes the form's elements.
+					           success: function(data)
+					           {
+					        	   if(data == 1){
+										alert('Email is incorrect!');
+									}
+									else if(data == 2){
+										alert('Your account is disabled!');
+									}
+									else if(data == 3){
+										alert('Password is incorrect!');
+									}
+									else{
+										window.location.href = data;
+									}
+					           }
+					     });
 					}
+				    
+				    e.preventDefault(); // avoid to execute the actual submit of the form.
 				});
-			}
+			});
 		</script>
 	</div>
 	</body>

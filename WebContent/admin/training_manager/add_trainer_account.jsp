@@ -1,4 +1,3 @@
-
 <%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bo.SkillBo"%>
@@ -9,6 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp"%>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
 
 <%
 String classNameContent = "" ;
@@ -203,11 +204,9 @@ String dateMax= date.toString();
 				username : "required",
 				password : {
 					required : true,
-					minlength : 6,
 				},
 				confirmpass : {
 					required : true,
-					minlength : 6,
 					equalTo : "#password"
 				},
 				fullname : "required",
@@ -218,11 +217,9 @@ String dateMax= date.toString();
 				username : "Username is required!",
 				password : {
 					required : "Password is required!",
-					minlength : "Password must be at least 6 characters!",
 				},
 				confirmpass : {
 					required : "Password is required!",
-					minlength : "Password must be at least 6 characters!",
 					equalTo : "Password does not matching!"
 				},
 				fullname : "Fullname is required!",
