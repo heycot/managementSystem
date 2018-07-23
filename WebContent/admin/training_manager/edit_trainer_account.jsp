@@ -1,4 +1,4 @@
-
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.Skills"%>
 <%@page import="model.bo.SkillBo"%>
 <%@page import="model.bean.Ability"%>
@@ -28,27 +28,28 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
+User trainer = new User();
+Ability ability= new Ability();
+SkillBo skillBo = new SkillBo();
+if (request.getAttribute("trainer") != null) {
+	trainer = (User) request.getAttribute("trainer");
+}
+if (request.getAttribute("ability") != null) {
+	ability = (Ability) request.getAttribute("ability");
+}
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
     <div  class="card mb-3">
              <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;NgocNam </strong>
+			    <strong>&nbsp;<%=trainer.getUsername() %> </strong>
 			  </div>
 			  
 			  <div> 
 			<%
-				User trainer = new User();
-				List<Ability> abilities= new ArrayList<>();
-				SkillBo skillBo = new SkillBo();
-				if (request.getAttribute("trainer") != null) {
-					trainer = (User) request.getAttribute("trainer");
-				}
-				if (request.getAttribute("abilities") != null) {
-					abilities = (List<Ability>) request.getAttribute("abilities");
-				}
 				if(request.getAttribute("error") != null){
 			%>
 			<div class="alert alert-danger">
@@ -64,14 +65,13 @@ if( user.getRoleId() == 3) {
 									value="<%=trainer.getUserId() %>" name="user_id"/><br>
 							<div class="form-group">
 								<div>
-									<div class="form-group" class="col-sm-2" style="float: left">
+									<div class="form-group" class="col-sm-2" style="float: left; padding-right:20px;">
 										<img id="blah"
 											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
-											alt="your image" height="200"/>
-									</div>		
-									<br><br><br>				
+											alt="your image" width="120" height="150" />
+									</div>					
 									<div class="form-group" class="col-sm-4" style="float: left">
-										<label class="required"><strong>Avatar:</strong><em
+										<label class="required">Avatar:<em
 											style="color: red">(jpg, png, gif)</em> </label>
 											 <input
 											class="form-control" id="image" type="file" name="avatar"
@@ -83,40 +83,39 @@ if( user.getRoleId() == 3) {
 									function readURL(input) {
 										if (input.files && input.files[0]) {
 											var reader = new FileReader();
-
 											reader.onload = function(e) {
 												$('#blah').attr('src',
 														e.target.result).width(
-														200);
+														120);
 											};
-
 											reader
 													.readAsDataURL(input.files[0]);
 										}
 									}
 								</script>
 							</div>
-							<div class="form-group">
-								<label for="usr"><strong>Email:</strong>&nbsp;<span id="spnEmailStatus"></span></label> <input
+							<div class="form-group" style="margin-top:-10px;">
+								<label for="usr">Email<span
+									style="color: red"> *</span>&nbsp;<span id="spnEmailStatus"></span></label> <input
 									type="email" class="form-control" id="txtemail"
-									value="<%=trainer.getEmail()%>" name="email"/>
+									value="<%=trainer.getEmail()%>" name="email" disabled/>
 							</div>
 
 							<div class="form-group">
-								<label for="usr"><strong>User name:</strong><span
+								<label for="usr">UserName<span
 									style="color: red"> *</span>&nbsp;<span id="spnUserNameStatus"></span></label> <input
 									type="text" class="form-control" id="txtusername"
 									value="<%=trainer.getUsername() %>" name="username" />
 							</div>
 							<div class="form-group">
-								<label for="usr"><strong>Full Name:</strong><span
+								<label for="usr">FullName<span
 									style="color: red"> *</span>&nbsp;<span id="spnFullNameStatus"></span></label> <input type="text"
 									class="form-control" id="txtfullname" name="fullname"
 									value="<%=trainer.getFullname() %>"/>
 							</div>
 							
 							<div class="form-group">
-			              	  <label class="required" ><strong>Gender:</strong><span
+			              	  <label class="required" >Gender<span
 									style="color: red"> *</span></label> <br>
 			              	  <%
 			              	  String male = "", female = "", other = "";
@@ -135,40 +134,33 @@ if( user.getRoleId() == 3) {
 			              	
 				              	
 		              	</div>
-
 						</div>
 						<div class="col-md-6">
 						<br>
-						<div class="form-group">
-								<label for="usr"><strong>Date Of Birth:</strong><span
+							<div class="form-group">
+								<label for="usr">Birthday<span
 									style="color: red"> *</span></label> <input type="date"
-									class="form-control" id="usr" name="dateOfBirth"
+									class="form-control" id="usr" name="dateOfBirth" max="<%=dateMax%>"
 									value="<%=trainer.getDateOfBirth() %>" />
 							</div>
 							<div class="form-group">
-								<label for="usr"><strong>Created Date:</strong><span
-									style="color: red"> *</span></label> <input type="date"
-									class="form-control" id="usr" name="created_date"
-									value="<%=trainer.getCreatedDate()%>" disabled/>
-							</div>
-							<div class="form-group">
-								<label for="usr"><strong>Address:</strong><span
+								<label for="usr">Address<span
 									style="color: red"> *</span>&nbsp;<span id="spnAddressStatus"></span></label> <input type="text"
 									class="form-control" id="address" name="address"
 									value="<%=trainer.getAddress() %>"  />
 							</div>
 							
 							<div class="form-group">
-								<label for="usr"><strong>Phone Number:</strong><span
+								<label for="usr">Phone<span
 									style="color: red"> *</span>&nbsp;<span id="spnPhoneStatus"></span></label> <input type="text"
 									class="form-control" id="txtphone" name="phone"
 									value="<%=trainer.getPhone() %>" />
 							</div>
 
 
-							<div class="form-group">
+							<div class="form-group" style="margin-top:-5px;">
 
-								<label for="usr"><strong>Password:</strong>&nbsp;<span
+								<label for="usr">Password:&nbsp;<span
 									id="spnPasswordStatus"></span></label> <input type="button"
 									value="Click here to change" onclick="changePass();"> <br>
 								<input style="display: none;" type="password"
@@ -183,12 +175,14 @@ if( user.getRoleId() == 3) {
 							</div>
 
 							<div class="form-group">
-								<label for="usr"><strong>Abilities:</strong></label>
+
+								<label for="usr"><strong>Ability:</strong></label>
+
 								<table class="table table-bordered" id="abilityTable">
 									<thead>
 										<tr>
-											<td><strong>Skill:</strong><br>
-											<select class="form-group" name="skillId" id="ability" style="width: 12em;margin-top: 5px;">
+											<td style="text-align:center;">Skill:<br>
+											<select class="form-group" name="skillId" id="ability" style="text-align:center;width: 12em;margin-top: 5px;">
 												<%
 													List<Skills> skills = skillBo.getSkills();
 													for (Skills skill : skills) {
@@ -199,34 +193,17 @@ if( user.getRoleId() == 3) {
 												%>
 											</select>
 											</td>
-											<td><strong>Experience:</strong><br>
+											<td style="text-align:center;">Experience:<br>
 											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" style="width: 12em; margin-top: 5px;" min="0" max="50" />
+												placeholder="Experience Year" id="exp" style="text-align:center;width: 12em; margin-top: 5px;" min="0" max="50" />
 											</td>
-											<%-- <td>Add/Edit Ability: <select class="form-group" name="skillId" id="ability" style="width: 8em;">
-												<%
-													List<Skills> skills = skillBo.getSkills();
-													for (Skills skill : skills) {
-												%>
-												<option value="<%=skill.getSkillId()%>"><%=skill.getName()%></option>
-												<%
-													}
-												%>
-											</select>
-											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" style="width: 10em;" min="0" max="50" /></td>
-										</tr> --%>
+											
 									</thead>
 									<tbody>
-										<%
-											for (Ability ability : abilities) {
-										%>
 										<tr>
 											<td><%=skillBo.getSkillById(ability.getSkillId())%></td>
 											<td><%=ability.getExperience()%></td>
-										<%
-											}
-										%>
+							
 										</tr>
 									</tbody>
 								</table>
@@ -239,10 +216,9 @@ if( user.getRoleId() == 3) {
 					</div>
 					<br>
 					<br>
-					<div class="row">
-						<div class="col-md-5"></div>
-							<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update" style="margin-right: 0.5em;"/>
-							<input class="btn btn-secondary btn-lg" type="reset" value="Reset" />
+					<div class="" style="text-align:center; ">
+						<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update" style="height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
+						<input class="btn btn-secondary btn-lg" type="reset" value="Reset"  style="border:1px solid white;height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
 					</div>
 					</div>
 			</form>
@@ -257,15 +233,12 @@ if( user.getRoleId() == 3) {
       							username:"required",
                                 oldpass:{
                                 	required: true,
-                                	minlength: 6,
                                 },
                                 newpass:{
                                 	required: true,
-                                	minlength: 6,
                                 },
                                 confirmpass:{
                                 	required: true,
-                                	minlength: 6,
                                 	equalTo: "#newpass"
                                 },
                                 fullname:"required",
@@ -276,15 +249,15 @@ if( user.getRoleId() == 3) {
       							username:"Username is required!",
                                 oldpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 },
                                 newpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 },
                                 confirmpass:{
                                 	required: "Password is required!",
-                                	minlength: "Password must be at least 6 characters!",
+                                	minlength: "Password must be at least 8 characters!",
                                 	equalTo: "Password does not matching!"
                                 },
                                 fullname:"Fullname is required!",
@@ -346,7 +319,6 @@ if( user.getRoleId() == 3) {
       				        }
       				    });
       				});
-
       				function validateEmail(sEmail) {
       				    var filter = /^([A-Za-z]+.[A-Za-z0-9]*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
       				    if (filter.test(sEmail)) {
@@ -414,7 +386,7 @@ if( user.getRoleId() == 3) {
         						document.getElementById("btnSubmit").disabled = false; 
       						}
       						else {
-      							$('#spnPasswordStatus').html('Password have minimum eight characters, at least one letter, one number and one special character!');
+      							$('#spnPasswordStatus').html('Password have minimum 8 characters, at least one letter, one number and one special character!');
       							$('#spnPasswordStatus').css('color', 'red');
         						document.getElementById("btnSubmit").disabled = true; 
       						}
@@ -442,7 +414,6 @@ if( user.getRoleId() == 3) {
       					var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
       					return $.trim(password).match(pattern) ? true : false;
       				}
-
       				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
 							document.getElementById("oldpass").style.display = "block";
@@ -458,8 +429,12 @@ if( user.getRoleId() == 3) {
       			</script>
 			
 		</div>
-	
+	<div class="card-footer small text-muted">
+          Updated yesterday at 11:59 PM
+        </div>
 	
 </div>
 
 <%@include file="/templates/inc/footer.jsp"%>
+
+   

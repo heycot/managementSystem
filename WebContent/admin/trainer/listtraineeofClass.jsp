@@ -139,13 +139,17 @@ if( user.getRoleId() == 3) {
                   if(result==1){
                 	  if(check == 1){
                 		  %>
-                		  <h5 style="color: red">Finish trainee evaluation!</h5>
+                		  <div class="alert alert-danger">
+                		  <Strong>Finish trainee evaluation!</Strong>>
+                		  </div>
                 		  <% 
                 	
                   } 
                   }else{
                 	  %>
-                	  <h5 style="color: red">The class hasn't finished yet so you cannot evaluate!</h5>
+                	  <div class="alert alert-danger">
+                	  <Strong style="color: red;">The class hasn't finished yet so you cannot evaluate!</Strong>
+                	  </div>
                  <% 
                  
                   }
