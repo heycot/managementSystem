@@ -134,7 +134,6 @@ if( user.getRoleId() == 3) {
                 -webkit-justify-content: center;
             }
         </style>
-        <div class="card-body">
         <% 
                   if(result==1){
                 	  if(check == 1){
@@ -154,6 +153,8 @@ if( user.getRoleId() == 3) {
                  
                   }
                   %>
+        <div class="card-body">
+        
           <div class="table-responsive">
             <form action="/managementSystem/trainer/list"  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">

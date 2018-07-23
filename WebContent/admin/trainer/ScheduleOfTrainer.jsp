@@ -163,7 +163,6 @@ if( user.getRoleId() == 3) {
                 -webkit-justify-content: center;
             }
         </style>
-        <div class="card-body">
         <%
         	if(success.equals("1")){
         		%>
@@ -176,6 +175,8 @@ if( user.getRoleId() == 3) {
         		
         	}
         %>   
+        <div class="card-body">
+        
           <div class="table-responsive">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
