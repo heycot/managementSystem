@@ -8,12 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.ConnectionPoolDataSource;
-
-import com.mysql.fabric.xmlrpc.base.Array;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.sun.org.apache.regexp.internal.recompile;
-
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
 import model.bean.Accessment;
@@ -22,7 +16,6 @@ import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
-import model.bean.Skills;
 import model.bean.User;
 
 public class UserDao {
@@ -33,7 +26,6 @@ public class UserDao {
 	public List<User> getUsersByRoleId(int roleId){
 		conn = ConnectDBLibrary.getConnection();
 		List<User> users = new ArrayList<>();
-		List<Ability> abilities = new ArrayList<>();
 		try {
 			String sql = "select u.* from users u where u.role_id = ? order by u.user_id DESC";
 			pst = conn.prepareStatement(sql);
@@ -72,7 +64,6 @@ public class UserDao {
 	public User getUserByID(int userId) {
 		conn = ConnectDBLibrary.getConnection();
 		User user = new User();
-		List<Ability> abilities = new ArrayList<>();
 		try {
 			String sql = "select u.* from users u where u.user_id=?";
 			pst = conn.prepareStatement(sql);
@@ -110,7 +101,6 @@ public class UserDao {
 	
 	public User getUserByEmail(String email) {
 		conn = ConnectDBLibrary.getConnection();
-		List<Ability> abilities = new ArrayList<>();
 		User user= new User();
 		try {
 			String sql = "select u.* from users u where u.email=?";

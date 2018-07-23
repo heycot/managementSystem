@@ -1,7 +1,5 @@
 package model.bo;
 
-import java.util.List;
-
 import model.bean.Ability;
 import model.dao.AbilityDao;
 

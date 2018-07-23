@@ -19,7 +19,7 @@
 	
 	<body id="loginPage">
 	    <div class="wrapper" id="home">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="logoSite">
 				<img
 					src="<%= request.getContextPath()%>/templates/images/enclave_logo.png"
@@ -30,7 +30,7 @@
 					<form id="idLoginForm" class="formLogin form-group"
 						name="Login_Form" > 
 						<div class="divForm">
-							<label id="nameForm" class="nameForm">MANAGEMENT SYSTEM</label>
+							<label id="nameForm" class="nameForm">BOOTCAMP MANAGEMENT SYSTEM</label>
 						</div>
 						<div class="divEmail">
 							<input type="text" name="email" class="inputEmail" id="txtemail"
