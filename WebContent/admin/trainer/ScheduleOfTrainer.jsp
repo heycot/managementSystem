@@ -167,7 +167,9 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<h5 style="color: red">Send the announcement success!</h5>
+        		<div class="alert alert-danger">
+        		<Strong style="color: green">Send the request successfully!</Strong>
+        		</div>
         		<% 
         		request.getSession().removeAttribute("success"); 
         	}else{
@@ -325,7 +327,7 @@ if( user.getRoleId() == 3) {
 						        </div>
 						         <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
-						          <table border="0px">
+						          <table  border="0px" style="width: 465px">
 						          
 						           
 						         
@@ -516,7 +518,7 @@ if( user.getRoleId() == 3) {
 						          </tr>
 						          <tr>
 						          <th>Content</th>
-						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="30"></textarea></td>
+						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="35"></textarea></td>
 						          </tr>
 						          
 						          </table>
