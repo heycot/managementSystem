@@ -4,13 +4,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard2.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-
-        <!-- JS tạo nút bấm di chuyển trang start -->
-        <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
         
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -154,11 +150,7 @@ if( user.getRoleId() == 3) {
                   <%
                   	for(User trainer : trainers){
                   %>	
-<%-- <<<<<<< HEAD
-                  	<tr>
-                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainer<%= trainer.getUserId()%>" value="<%=trainer.getUserId() %>" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
-======= --%>
+
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
                       	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
@@ -265,5 +257,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

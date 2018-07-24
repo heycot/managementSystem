@@ -118,11 +118,9 @@ if( user.getRoleId() == 3) {
 					  <input type="radio" name="gender" value="0" <%= male%>> Male <br>
 					  <input type="radio" name="gender" value="1" <%= female%>> Female <br>
 					  <input type="radio" name="gender" value="2" <%= other%> > Other <br>
-	              	
-		              	
               	</div>
-              	
               </div>
+      
               
               <div class="col-sm-6" style="float: right">
               	
@@ -184,9 +182,6 @@ if( user.getRoleId() == 3) {
 						}
 					}
                    </script>
-              	
-      			
-              </div> 
               
               <div style="clear: both"></div>
               <div class="error" ></div>
@@ -196,7 +191,6 @@ if( user.getRoleId() == 3) {
              		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
               </div> 
 	          <div style="clear: both"></div>
-              </div>
               
               <div style="margin-bottom: 5%"></div>
               </form> 
