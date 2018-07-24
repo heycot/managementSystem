@@ -85,13 +85,11 @@ String dateMax= date.toString();
 									function readURL(input) {
 										if (input.files && input.files[0]) {
 											var reader = new FileReader();
-
 											reader.onload = function(e) {
 												$('#blah').attr('src',
 														e.target.result).width(
 														120);
 											};
-
 											reader
 													.readAsDataURL(input.files[0]);
 										}
@@ -323,7 +321,6 @@ String dateMax= date.toString();
       				        }
       				    });
       				});
-
       				function validateEmail(sEmail) {
       				    var filter = /^([A-Za-z]+.[A-Za-z0-9]*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
       				    if (filter.test(sEmail)) {
@@ -419,7 +416,6 @@ String dateMax= date.toString();
       					var pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
       					return $.trim(password).match(pattern) ? true : false;
       				}
-
       				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
 							document.getElementById("oldpass").style.display = "block";
@@ -442,3 +438,5 @@ String dateMax= date.toString();
 </div>
 
 <%@include file="/templates/inc/footer.jsp"%>
+
+   
