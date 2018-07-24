@@ -43,34 +43,37 @@
 						<div class="button">
 							<button type="submit" class="btnLogIn" id="btnLogin">LOG IN</button>
 						</div>
-					</form>
-					<div class="divForgot">
+						<div class="divForgot">
 							<button type="button" class="btn btn-link btn-lg" id="forgotPass"
 								data-toggle="modal" data-target="#forgotModal">Forgot Password?</button>
 								<a href="http://localhost:8080/managementSystem/forgotpassword?id=||"></a>
 
-							<!-- Modal -->
+<!-- Modal -->
 							<div id="forgotModal" class="modal fade" role="dialog">
 								<div class="modal-dialog">
-									<!-- Modal content-->
+								
+<!-- Modal content-->									
 									<div class="modal-content">
 										<div class="modal-header alert-success">
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h3 class="modal-title"><strong>Forgot password?</strong></h3>
+											<label class="modal-title"><strong>Forgot password?</strong></label>
 										</div>
 									<div class="modal-body">
 											<div class="form-group">
-												<label><h4><strong>Please enter email to send a code via email.</strong></h4></label> <input type="email" class="form-control"
+												<label class="lb1">Please enter email to send a code via email.</label> 
+												<input type="email" class="form-control ipemail"
 													id="emailForgot" name="emailForgot" placeholder="Email" /><span id="spnEmailForgotStatus"></span>
 											</div>
-											<button type="button" class="btn btn-primary" id="btnForgot" onclick="sendEmail();">Send</button>
-											<button type="button" class="btn btn-default"
+											<button type="button" class="btn btn-primary btn1" id="btnForgot" onclick="sendEmail();">Send</button>
+											<button type="button" class="btn btn-default btn1"
 												data-dismiss="modal">Close</button>
 									</div>
 								</div>
 							</div>
 						</div>
 				</div>
+					</form>
+					
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -105,7 +108,7 @@
  							document.getElementById("btnLogin").disabled = false; 
 				        }
 				        else {
-							$('#spnEmailStatus').html('<h4><strong>Please enter valid email address!</strong></h4>');
+							$('#spnEmailStatus').html('<label class="lb_vali">Please enter valid email address!</label>');
 						 	$('#spnEmailStatus').css('color', 'white');
 						 	$('#txtemail').css('border-color', 'red');
 							$('#txtemail').css('border-width', '1px');
@@ -124,7 +127,7 @@
 						document.getElementById("btnLogin").disabled = false; 
 					}
 					else {
-						$('#spnPasswordStatus').html('<h4><strong>Password have minimum eight characters, at least one letter, one number and one special character!</h4></strong>');
+						$('#spnPasswordStatus').html('<label class="lb_vali">Password have minimum eight characters, at least one letter, one number and one special character!</label>');
 						$('#spnPasswordStatus').css('color', 'white');
 						$('#txtpassword').css('border-color', 'red');
 						$('#txtpassword').css('border-width', '1px');
@@ -146,7 +149,7 @@
 			        else {
 						$('#spnEmailForgotStatus').html('Please enter valid email address!');
 						$('#spnEmailForgotStatus').css('font-size', '24');
-						$('#spnEmailForgotStatus').css('font-weight', '600');
+						$('#spnEmailForgotStatus').css('font-weight', '500');
 					 $('#spnEmailForgotStatus').css('color', 'red');
 					 $('#emailForgot').css('border-color', 'red');
 					document.getElementById("btnForgot").disabled = true; 
@@ -173,7 +176,7 @@
 				if ($.trim(email).length === 0) {
 					$('#spnEmailForgotStatus').html('Please enter email address!');
 					$('#spnEmailForgotStatus').css('font-size', '24');
-					$('#spnEmailForgotStatus').css('font-weight', '600');
+					$('#spnEmailForgotStatus').css('font-weight', '500');
 					$('#spnEmailForgotStatus').css('color', 'red');
 					$('#emailForgot').css('border-color', 'red');
 					document.getElementById("btnForgot").disabled = true; 
@@ -192,12 +195,13 @@
 			$(document).ready(function() {
 				$("#idLoginForm").submit(function(e) {
 					if ($.trim($('#txtemail').val()).length === 0) {
-						$('#spnEmailStatus').html('<h4><strong>Please enter email address!</strong></h4>');
+						$('#spnEmailStatus').html('<label class="lb_vali">Please enter email address!</label>');
 						$('#spnEmailStatus').css('color', 'white');
 						$('#txtemail').css('border-color', 'red');
 						$('#txtemail').css('border-width', '1px');
 						document.getElementById("btnLogin").disabled = true; 
 			        }
+					
 					else{
 						$.ajax({
 					           type: "POST",

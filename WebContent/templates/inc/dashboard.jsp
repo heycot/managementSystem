@@ -30,10 +30,10 @@
 
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
 		 
     <style type="text/css">
@@ -53,149 +53,82 @@
     if (user.getRoleId() == 3) {
     	%>
     	<!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-          <a class="navbar-brand" href="">BOOTCAMP MANAGEMENT SYSTEM</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="border-bottom: 1px solid #D9DEE4;background: rgb(237, 237, 237); height:74px;box-shadow:1px 1px rgb(229,229,229);">
+          <a class="navbar-brand" href="<%= request.getContextPath()%>/" style="margin-top:0px;margin-left:17px;">
+          	<img src="<%=request.getContextPath()%>/templates/images/enclave_logo.png" class="imglogo"/>
+          </a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 41px; min-width:250px; max-width:250px;">
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="<%= request.getContextPath()%>/">
-                  <img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" class="img-thumbnail" alt="Cinque Terre" width="220">
-                </a>
-              </li>
-
+            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 74px; min-width:250px; max-width:250px; background:white; padding:20px 20px;">
+          
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainee" style="font-size:  larger;">
-                  <i class="fa fa-fw fa-users"></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-fw fa-users" style="margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainee</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="trainee">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainee/index"><i class="fa fa-fw fa-list"></i> List Trainees</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainee/add"><i class="fa fa-fw fa-plus"></i> Add New Trainee</a>
-                  </li>
-                </ul>
               </li>
 
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainer" style="font-size:  larger;">
-                  <i class="fa fa-fw fa-users" ></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px; ">
+                  <i class="fa fa-fw fa-users" style="margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainer</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="trainer">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainer/index"><i class="fa fa-fw fa-list"></i> List Trainers</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainer/add"><i class="fa fa-fw fa-plus"></i> Add New Trainer</a>
-                  </li>
-                </ul>
               </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="major">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#major" style="font-size:  larger;">
-                  <i class="fa fa-briefcase" ></i>&nbsp;
-                  <span class="nav-link-text">
+                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-briefcase" style="margin-left:3px; margin-right: 11px;"></i>&nbsp;
+                  <span class="nav-link-text" style="margin-left: 2px;">
                     Major</span>
               	</a>
-              <ul class="sidenav-second-level collapse" id="major">
-                <li>
-                  <a href="<%= request.getContextPath()%>/major"><i class="fa fa-fw fa-list"></i> List majors</a>
-                </li>
-               
-              </ul>
             </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#class" style="font-size:  larger;">
-                  <i class="fa fa-fw fa-object-group"></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Class</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="class">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/classes/index"><i class="fa fa-fw fa-list"></i> List Classes</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/classes/add"><i class="fa fa-fw fa-plus"></i> Add New Class</a>
-                  </li>
-                </ul>
             </li>
             
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#course" style="font-size:  larger;">
-                  <i class="fa fa-fw fa-book"></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="course">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/course/index"><i class="fa fa-fw fa-list"></i> List Courses</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/course/add"><i class="fa fa-fw fa-plus"></i> Add New Course</a>
-                  </li>
-                </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#room" style="font-size:  larger;">
-                  <i class="fa fa-home" ></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="room">
-                <li>
-                  <a href="<%= request.getContextPath()%>/room"><i class="fa fa-fw fa-list"></i> List rooms</a>
-                </li>
-               
-              </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
-                  <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="skill">
-                <li>
-                  <a href="<%= request.getContextPath()%>/Skills"><i class="fa fa-fw fa-list"></i> List skills</a>
-                </li>
-               
-              </ul>
             </li>
              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#request" style="font-size:  larger;">
-                  <i class="fa fa-paper-plane" ></i>&nbsp;
-                  <span class="nav-link-text">
-                    Requestions</span>
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size: 17px; font-family: Poppins;">
+                  <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px; "></i>&nbsp;
+                  <span class="nav-link-text" style="margin-left:4px;">
+                    Request</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="request">
-                <li>
-                  <a href="<%= request.getContextPath()%>/admin/requestTakeDateOff"><i class="fa fa-fw fa-list"></i> List Requestions</a>
-                </li>
-               
-              </ul>
 		</li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
-                  <i class="fa fa-calculator" ></i>&nbsp;
-                  <span class="nav-link-text">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px; font-family: 'Poppins';">
+                  <i class="fa fa-calculator" style="margin-left:4px; font-size:14px;margin-right: 11px;" ></i>&nbsp;
+                  <span class="nav-link-text" style="margin-left:4px; ">
                     Statistic</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="statistical">
-                <li>
-                  <a href="<%= request.getContextPath()%>/statistical/trainee"><i class="fa fa-fw fa-calculator"></i> Trainees</a>
-                </li>
-                <li>
-                  <a href="<%= request.getContextPath()%>/statistical/result"><i class="fa fa-fw fa-calculator"></i> Class's Quality</a>
-                </li>
-              </ul>
             </li>
             </ul>
      <%
@@ -263,7 +196,7 @@
 	</script>
      
         <ul class="navbar-nav sidenav-toggler" <%= styleTogglerBar%> >
-          <li class="nav-item">
+          <li class="nav-item" style="background:white; border:1px solid rgb(241, 241, 241);">
             <a class="nav-link text-center" id="sidenavToggler">
               <i class="fa fa-fw fa-angle-left"></i>
             </a>
@@ -302,7 +235,7 @@
           	<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 10px; width: 25px;">
                 <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" ><%= user.getUsername()%>
             </a>
-            <ul class="dropdown-menu menu_user pull-right">
+            <ul class="dropdown-menu menu_user pull-right" style="margin-top:0;">
 				    <%
 				    if(user.getRoleId() == 1) {
 				    %>

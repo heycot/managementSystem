@@ -1,4 +1,31 @@
+body{
+	font-family: 'Poppins';
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.625;
+	background:rgb(229, 229, 229);
+}
+.navbar-light .navbar-nav .nav-link{
+	color:#555;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+	color:#4272d7 !important;
+}
+.navbar-light .navbar-nav .nav-link:active{
+	color:#4272d7;
+}
+#mainNav .navbar-collapse .navbar-sidenav li.active a{
+	color:#555;
+	background:white;
+}
 
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed::after {
+    color: white;
+}
+.imglogo{
+	height: 51px;
+	width: 173px;
+}
 .wrapper{
 	display: flex;
 	width: 100%;
@@ -8,15 +35,15 @@
 	margin-left: -250px;
 }
 
-
 a.user-profile {
-    color: white !important; 
+    color: rgb(52, 58, 64) !important; 
 }
 .user-profile img {
     width: 29px;
     height: 29px;
     border-radius: 50%;
-    margin-right: 10px
+    margin-right: 10px;
+    border: 1px solid rgb(123, 123, 123);
 }
 
 .nav-item1{
@@ -44,7 +71,7 @@ a.user-profile {
 }
 
 .iconMail{
-	color: white !important;
+	color: rgb(52, 58, 64) !important;
 	width: 20px;
 	vertical-align: middle;
 }
