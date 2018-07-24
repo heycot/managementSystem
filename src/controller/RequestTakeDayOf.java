@@ -113,7 +113,7 @@ public class RequestTakeDayOf extends HttpServlet {
 						
 		}
 		else {
-			out.println("No Select");
+			out.println("No select");
 		}
 		
 		
