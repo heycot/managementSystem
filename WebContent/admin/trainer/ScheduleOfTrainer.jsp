@@ -1,4 +1,3 @@
-
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -41,7 +40,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -140,7 +138,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong %>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹
                 var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -163,17 +160,20 @@ if( user.getRoleId() == 3) {
                 -webkit-justify-content: center;
             }
         </style>
-        <div class="card-body">
         <%
         	if(success.equals("1")){
         		%>
-        		<h5 style="color: red">Send the announcement successfully!</h5>
+        		<div class="alert alert-danger">
+        		<Strong style="color: green">Send the request successfully!</Strong>
+        		</div>
         		<% 
         		request.getSession().removeAttribute("success"); 
         	}else{
         		
         	}
         %>   
+        <div class="card-body">
+        
           <div class="table-responsive">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
@@ -306,7 +306,7 @@ if( user.getRoleId() == 3) {
                   %>
 				   <tr class="contentPage">
                   <td style="text-align: center; vertical-align: middle;"><%= k %></td>
-                  <td  vertical-align: middle;"><%= list.getNameclass()%></td>
+                  <td  style="text-align: center; vertical-align: middle;"><%= list.getNameclass()%></td>
                    <td style="text-align: center; vertical-align: middle;"><%= list.getNameroom()%></td>
                    <td style=" vertical-align: middle;"><%= list.getCourse()%></td>
                    <td style="text-align: center; vertical-align: middle;"><%= list.getTimeOfDate()%></td>
@@ -325,7 +325,7 @@ if( user.getRoleId() == 3) {
 						        </div>
 						         <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
-						          <table border="0px">
+						          <table  border="0px" style="width: 465px">
 						          
 						           
 						         
@@ -350,23 +350,21 @@ if( user.getRoleId() == 3) {
 												 int kq = b1-s4;
 												 int day =Integer.parseInt((String)arr1[0]);
 												 day = day + kq;
-												 String dayOfWeek ="";
-												 String day1 =  String.valueOf(day);
-												
-												 for(int c = 0; c<dayoff.length; c++){
-													 if(s2[0].equals(dayoff[c])){
-														  dayOfWeek = dayoff[c+kq];
+												 if(day>31){
+													 day = day-31;
+													 String dayOfWeek ="";
+													 String day1 =  String.valueOf(day);
+													
+													 for(int c = 0; c<dayoff.length; c++){
+														 if(s2[0].equals(dayoff[c])){
+															  dayOfWeek = dayoff[c+kq];
+														 }
 													 }
-												 }
-												 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
-												 %>
-												  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"> <span style="margin-right: 120px"><%=day1 %></span><br>
-												  <%
-											 }else {
-													 int kq = b1 - s4;
-													 int kq1 = kq +7;
-													 int day =Integer.parseInt((String)arr1[0]);
-													 day = day + kq1;
+													 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
+													 %>
+													  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"> <span style="margin-right: 120px"><%=day1 %></span><br>
+													  <%
+												 }else{
 													 String dayOfWeek ="";
 													 String day1 =  String.valueOf(day);
 													
@@ -377,8 +375,46 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 													 %>
+													  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"> <span style="margin-right: 120px"><%=day1 %></span><br>
+													  <%
+												 }
+												
+												 
+											 }else {
+													 int kq = b1 - s4;
+													 int kq1 = kq +7;
+													 int day =Integer.parseInt((String)arr1[0]);
+													 day = day + kq1;
+													 if(day>31){
+														 day = day-31;
+														 String dayOfWeek ="";
+														 String day1 =  String.valueOf(day);
+														
+														 for(int c = 0; c<dayoff.length; c++){
+															 if(s2[0].equals(dayoff[c])){
+																  dayOfWeek = dayoff[c+kq];
+															 }
+														 }
+														 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
+														 %>
 													  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"><span style="margin-right: 120px"> <%=day1 %></span><br>
 													  <%
+													 }else{
+														 String dayOfWeek ="";
+														 String day1 =  String.valueOf(day);
+														
+														 for(int c = 0; c<dayoff.length; c++){
+															 if(s2[0].equals(dayoff[c])){
+																  dayOfWeek = dayoff[c+kq];
+															 }
+														 }
+														 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
+														 %>
+														  <input style="float: left;" type="radio" name="dayoff" value="<%=day1 %>"><span style="margin-right: 120px"> <%=day1 %></span><br>
+														  <%
+													 }
+													 
+													 
 											 }
 										 }
 						          		%>
@@ -421,23 +457,21 @@ if( user.getRoleId() == 3) {
 												 int kq = c1-s5;
 												 int day2 =Integer.parseInt((String)arr1[0]);
 												 day2 = day2 + kq;
-												 dayOfWeek2 ="";
-												 String day3 =  String.valueOf(day2);
-												
-												 for(int d = 0; d<dayoff3.length; d++){
-													 if(s2[0].equals(dayoff3[d])){
-														  dayOfWeek2 = dayoff3[d+kq];
+												 if(day2>31){
+													 day2 = day2 -31;
+													 dayOfWeek2 ="";
+													 String day3 =  String.valueOf(day2);
+													
+													 for(int d = 0; d<dayoff3.length; d++){
+														 if(s2[0].equals(dayoff3[d])){
+															  dayOfWeek2 = dayoff3[d+kq];
+														 }
 													 }
-												 }
-												 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
-												 %>
-												  <input style="float: left; " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="margin-right: 120px"> <%=day3 %></span><br>
-												  <%
-											 }else {
-													 int kq = c1 -s5;
-													 int kq1 = kq +7;
-													 int day2 =Integer.parseInt((String)arr1[0]);
-													 day2 = day2 + kq1;
+													 day3=dayOfWeek2 +", "+ day3 +" Aug " +arr1[2];
+													 %>
+													  <input style="float: left; " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="margin-right: 120px"> <%=day3 %></span><br>
+													  <%
+												 }else {
 													 dayOfWeek2 ="";
 													 String day3 =  String.valueOf(day2);
 													
@@ -448,8 +482,44 @@ if( user.getRoleId() == 3) {
 													 }
 													 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
 													 %>
-													  <input style="float: left; " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="margin-right: 120px"><%=day3 %></span><br>
+													  <input style="float: left; " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="margin-right: 120px"> <%=day3 %></span><br>
 													  <%
+												 }
+												 
+											 }else {
+													 int kq = c1 -s5;
+													 int kq1 = kq +7;
+													 int day2 =Integer.parseInt((String)arr1[0]);
+													 day2 = day2 + kq1;
+													 if(day2 > 31){
+														 day2 = day2 -31;
+														 dayOfWeek2 ="";
+														 String day3 =  String.valueOf(day2);
+														
+														 for(int d = 0; d<dayoff3.length; d++){
+															 if(s2[0].equals(dayoff3[d])){
+																  dayOfWeek2 = dayoff3[d+kq];
+															 }
+														 }
+														 day3=dayOfWeek2 +", "+ day3 +" Aug " +arr1[2];
+														 %>
+														  <input style="float: left; " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="margin-right: 120px"><%=day3 %></span><br>
+														  <%
+													 }else {
+														 dayOfWeek2 ="";
+														 String day3 =  String.valueOf(day2);
+														
+														 for(int d = 0; d<dayoff3.length; d++){
+															 if(s2[0].equals(dayoff3[d])){
+																  dayOfWeek2 = dayoff3[d+kq];
+															 }
+														 }
+														 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
+														 %>
+														  <input style="float: left; " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="margin-right: 120px"><%=day3 %></span><br>
+														  <%
+													 }
+													
 											 }
 						          		}
 						          	%>
@@ -516,14 +586,14 @@ if( user.getRoleId() == 3) {
 						          </tr>
 						          <tr>
 						          <th>Content</th>
-						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="30"></textarea></td>
+						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="35"></textarea></td>
 						          </tr>
 						          
 						          </table>
 						        </div>
 						        <div class="modal-footer">
-						         <button type="submit" class="btn btn-default; btn btn-primary" style="font-size: 16px;width:80px;">Submit</button>
-						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 16px;width:80px; margin-right: 30px" >Close</button>
+						         <button type="submit" class="btn btn-default; btn btn-primary" >Submit</button>
+						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px; margin-right: 30px" >Close</button>
 						         
 						        </div>
 						        </form>

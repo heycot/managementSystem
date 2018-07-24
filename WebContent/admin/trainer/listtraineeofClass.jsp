@@ -40,7 +40,6 @@
             	  listUser = (ArrayList<Accessment>) request.getAttribute("listResult");
              } else {
             	 System.out.print("users");
-
             	  listUser = (ArrayList<Accessment>) request.getAttribute("listUser");
              }
     	int tong = listUser.size();
@@ -55,7 +54,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -111,7 +109,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%=tong%>; // Tá»•ng sá»‘ sáº£n pháº©m hiá»ƒn thá»‹
                 var btnPage = 5; // Sá»‘ nÃºt báº¥m hiá»ƒn thá»‹ di chuyá»ƒn trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -134,22 +131,27 @@ if( user.getRoleId() == 3) {
                 -webkit-justify-content: center;
             }
         </style>
-        <div class="card-body">
         <% 
                   if(result==1){
                 	  if(check == 1){
                 		  %>
-                		  <h5 style="color: red">Finish trainee evaluation!</h5>
+                		  <div class="alert alert-danger">
+                		  <Strong>Finish trainee evaluation!</Strong>>
+                		  </div>
                 		  <% 
                 	
                   } 
                   }else{
                 	  %>
-                	  <h5 style="color: red">The class hasn't finished yet so you cannot evaluate!</h5>
+                	  <div class="alert alert-danger">
+                	  <Strong style="color: red;">The class hasn't finished yet so you cannot evaluate!</Strong>
+                	  </div>
                  <% 
                  
                   }
                   %>
+        <div class="card-body">
+        
           <div class="table-responsive">
             <form action="/managementSystem/trainer/list"  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
@@ -171,7 +173,6 @@ if( user.getRoleId() == 3) {
                   <%
                   	int i=0;
                   System.out.print(listUser.size());
-
                   	for (Accessment trainer : listUser){
                   		
                   		i+=1;
