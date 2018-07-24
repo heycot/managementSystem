@@ -51,17 +51,12 @@ public class CheckTrainerScheduleController extends HttpServlet {
 				request.setAttribute("ur", ur);
 				ArrayList<Rooms> rooms = roomBo.getRooms();
 				request.setAttribute("rooms", rooms);
-				/*if(request.getParameter("success")!=null){
-					String success =(String)request.getParameter("success");
-					request.setAttribute("success", success);
-				}else{
-					
-				}*/
 				
 				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
 				rd.forward(request, response);
 			} else {
-				
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login1.jsp");
+				rd.forward(request, response);
 			}
 		} else {
 			return;

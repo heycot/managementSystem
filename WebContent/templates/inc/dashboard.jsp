@@ -1,3 +1,5 @@
+
+
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -202,7 +204,6 @@
        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>  
-      </nav>
       
       <nav class="navbar navbar-default">
 		  <div class="container-fluid">
@@ -224,9 +225,11 @@
 		    </ul>
 		  </div>
 		</nav>
+	
     <%
     }
     %>
+    
         <script type="text/javascript">
       jQuery(document).ready(function($){
         var url = window.location.href;
