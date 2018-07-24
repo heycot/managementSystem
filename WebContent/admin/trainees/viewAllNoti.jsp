@@ -87,4 +87,5 @@ if( user.getRoleId() == 3) {
         <div style="margin-bottom: 10%"></div>
 	</div>
 </div>
+</div>
 <%@include file="/templates/inc/footer.jsp" %> 

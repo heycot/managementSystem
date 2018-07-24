@@ -105,4 +105,5 @@ if( user.getRoleId() == 3) {
       </div>
     </div>
   </div>
+  </div>
 <%@include file="/templates/inc/footer.jsp" %> 

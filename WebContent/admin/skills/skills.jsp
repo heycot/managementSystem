@@ -6,8 +6,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <style>
-            ///** CSS cÃ„Æ’n id pagination ra giÃ¡Â»Â¯a mÃƒ n hÃƒÂ¬nh **///
+<%@include file="/templates/inc/dashboard.jsp" %>  
+<style>
             #pagination {
                 display: flex;
                 display: -webkit-flex; /* Safari 8 */
@@ -16,12 +16,8 @@
                 justify-content: center;
                 -webkit-justify-content: center;
             }
-        </style>
-<%@include file="/templates/inc/dashboard.jsp" %>  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+</style>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -137,7 +133,6 @@ if(request.getParameter("msg") != null){
 <!-- Delete skill -->
 <div class="deleteModal<%=list.getSkillId() %>" role="dialog">
 <div class="modal-dialog">
-
 </div>
 </div>
 <!-- Edit list -->
@@ -205,7 +200,6 @@ if(request.getParameter("msg") != null){
 							</div>
 						</div> 
 						<script type="text/javascript">
-/* validation for edit */
 							$(document).ready(function() {
 		      					$('#roomname<%=list.getSkillId()%>').blur(function(e) {
 		      						var name = $('#roomname<%=list.getSkillId()%>').val();
@@ -370,5 +364,6 @@ if(request.getParameter("msg") != null){
         </div>
         </div>
        </div>  
+      </div>
       </div>
 <%@include file="/templates/inc/footer.jsp" %> 

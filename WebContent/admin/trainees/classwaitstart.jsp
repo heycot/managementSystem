@@ -4,13 +4,19 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleRegisterClass.css">
 <style>
 	#add-post .required:after {
 	content:"*";color:red;
 	}
+	#pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
 </style>
 <%
 String classNameContent = "" ;
@@ -67,17 +73,6 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
 			  
 		  	<div class="form">
 		  		<table >
@@ -135,7 +130,6 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 				<div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
-				</form>
 		  	</div>
    		</div> 
      
@@ -144,6 +138,7 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
         <div class="error" ></div>
         <div style="margin-bottom: 10%"></div>
 	</div>
+</div>
 </div>
      <script type="text/javascript">
      	$(document).ready(function(){

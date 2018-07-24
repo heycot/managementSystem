@@ -98,22 +98,24 @@ String dateMax= date.toString();
 							</div>
 							<div class="form-group" style="margin-top:-10px;">
 								<label for="usr">Email<span
-									style="color: red"> *</span>&nbsp;<span id="spnEmailStatus"></span></label> <input
+									style="color: red"> *</span></label> <input
 									type="email" class="form-control" id="txtemail"
-									value="<%=trainer.getEmail()%>" name="email" disabled/>
+									value="<%=trainer.getEmail()%>" name="email" disabled/>&nbsp;<span id="spnEmailStatus"></span>
 							</div>
 
 							<div class="form-group">
 								<label for="usr">UserName<span
-									style="color: red"> *</span>&nbsp;<span id="spnUserNameStatus"></span></label> <input
+									style="color: red"> *</span></label> <input
 									type="text" class="form-control" id="txtusername"
 									value="<%=trainer.getUsername() %>" name="username" />
+									&nbsp;<span id="spnUserNameStatus"></span>
 							</div>
 							<div class="form-group">
 								<label for="usr">FullName<span
-									style="color: red"> *</span>&nbsp;<span id="spnFullNameStatus"></span></label> <input type="text"
+									style="color: red"> *</span></label> <input type="text"
 									class="form-control" id="txtfullname" name="fullname"
 									value="<%=trainer.getFullname() %>"/>
+									&nbsp;<span id="spnFullNameStatus"></span>
 							</div>
 							
 							<div class="form-group">
@@ -147,23 +149,24 @@ String dateMax= date.toString();
 							</div>
 							<div class="form-group">
 								<label for="usr">Address<span
-									style="color: red"> *</span>&nbsp;<span id="spnAddressStatus"></span></label> <input type="text"
+									style="color: red"> *</span></label> <input type="text"
 									class="form-control" id="address" name="address"
 									value="<%=trainer.getAddress() %>"  />
+									&nbsp;<span id="spnAddressStatus"></span>
 							</div>
 							
 							<div class="form-group">
 								<label for="usr">Phone<span
-									style="color: red"> *</span>&nbsp;<span id="spnPhoneStatus"></span></label> <input type="text"
+									style="color: red"> *</span></label> <input type="text"
 									class="form-control" id="txtphone" name="phone"
 									value="<%=trainer.getPhone() %>" />
+									&nbsp;<span id="spnPhoneStatus"></span>
 							</div>
 
 
 							<div class="form-group" style="margin-top:-5px;">
 
-								<label for="usr">Password:&nbsp;<span
-									id="spnPasswordStatus"></span></label> <input type="button"
+								<label for="usr">Password:</label> <input type="button"
 									value="Click here to change" onclick="changePass();"> <br>
 								<input style="display: none;" type="password"
 									class="form-control" id="oldpass" name="oldpass"
@@ -172,8 +175,8 @@ String dateMax= date.toString();
 									id="newpass" name="newpass" placeholder="New password" value=""/>
 								<input style="display: none;" type="password"
 									class="form-control" id="confirmpass" name="confirmpass"
-									placeholder="Confirm new password" value="" /><span
-									id='message'></span>
+									placeholder="Confirm new password" value="" onkeyup="checkConfirmPass();"/>&nbsp;<span
+									id="spnPasswordStatus"></span>
 							</div>
 
 							<div class="form-group">
@@ -205,16 +208,11 @@ String dateMax= date.toString();
 										<tr>
 											<td><%=skillBo.getSkillById(ability.getSkillId())%></td>
 											<td><%=ability.getExperience()%></td>
-							
 										</tr>
 									</tbody>
 								</table>
-
 							</div>
-
-							
 						</div>
-
 					</div>
 					<br>
 					<br>
@@ -225,7 +223,7 @@ String dateMax= date.toString();
 					</div>
 			</form>
 			<script type="text/javascript">
-      				$(document).ready(function() {
+      				/* $(document).ready(function() {
       					$("#edit-trainer-post").validate({
       						rules: {
       							email:{
@@ -267,7 +265,7 @@ String dateMax= date.toString();
                                 dateOfBirth:"Day of Birth is required!",
       						}
       					});
-      				});
+      				}); */
       				
       				$(document).ready(function() {
       					$('#txtphone').blur(function(e) {
@@ -393,6 +391,19 @@ String dateMax= date.toString();
         						document.getElementById("btnSubmit").disabled = true; 
       						}
        					});
+      					$('#oldpass').blur(function(e) {
+      						var pass= $('#oldpass').val();
+          					if (validatePassword(pass)) {
+          						$('#spnPasswordStatus').html('');
+      							$('#spnPasswordStatus').css('color', 'green');
+        						document.getElementById("btnSubmit").disabled = false; 
+      						}
+      						else {
+      							$('#spnPasswordStatus').html('Password have minimum 8 characters, at least one letter, one number and one special character!');
+      							$('#spnPasswordStatus').css('color', 'red');
+        						document.getElementById("btnSubmit").disabled = true; 
+      						}
+       					});
       				});
       				
       				function validateStrings(string) {
@@ -421,13 +432,29 @@ String dateMax= date.toString();
 							document.getElementById("oldpass").style.display = "block";
 							document.getElementById("newpass").style.display = "block";
 							document.getElementById("confirmpass").style.display = "block";
+							
 						}
 						else{
 							document.getElementById("oldpass").style.display = "none";
 							document.getElementById("newpass").style.display = "none";
 							document.getElementById("confirmpass").style.display = "none";
+							document.getElementById("spnPasswordStatus").style.display = "none";
+							
 						}
 					}
+      				
+      				function checkConfirmPass() {
+      				  if (document.getElementById('newpass').value ==
+      				    document.getElementById('confirmpass').value) {
+      				    document.getElementById('spnPasswordStatus').style.color = 'green';
+      				    document.getElementById('spnPasswordStatus').innerHTML = 'Matching';
+      				  	document.getElementById("btnSubmit").disabled = false; 
+      				  } else {
+      				    document.getElementById('spnPasswordStatus').style.color = 'red';
+      				    document.getElementById('spnPasswordStatus').innerHTML = ' Not matching';
+      				  	document.getElementById("btnSubmit").disabled = true; 
+      				  }
+      				}
       			</script>
 			
 		</div>

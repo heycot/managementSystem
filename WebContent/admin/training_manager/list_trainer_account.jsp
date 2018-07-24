@@ -4,13 +4,19 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard2.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-
-        <!-- JS tạo nút bấm di chuyển trang start -->
-        <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
-        
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <style>
+            ///** CSS căn id pagination ra giữa màn hình **///
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>    
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -111,19 +117,6 @@ if( user.getRoleId() == 3) {
                 });
             });
         </script>
-        
-        
-         <!-- <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style> -->
         <div class="card-body">
           <div class="table-responsive">
             <form action="<%=request.getContextPath() %>/trainer/del"  method="post">
@@ -154,11 +147,7 @@ if( user.getRoleId() == 3) {
                   <%
                   	for(User trainer : trainers){
                   %>	
-<%-- <<<<<<< HEAD
-                  	<tr>
-                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainer<%= trainer.getUserId()%>" value="<%=trainer.getUserId() %>" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="190" height="140"></td>
-======= --%>
+
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
                       	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
@@ -188,49 +177,33 @@ if( user.getRoleId() == 3) {
                   %>
                   </tbody>
                 </table>
-                <script type="text/javascript">
-                
-                $(document).ready( function () {
-                    var table = $('#dataTable').DataTable({
-                        "order": [[ 0, "asc" ]],
-                        "language": {
-                            "lengthMenu": "Show _MENU_ users",
-                            "zeroRecords": "No data",
-                            "infoEmpty": "No data found",
-                            "paginate": {
-                                "first":      "First",
-                                "last":       "Last",
-                                "next":       "Next",
-                                "previous":   "Previous"
-                            },
-                        }
-                    })
-                });
-                    <%-- $(function () {
-                        var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
-                        showPage = function (page) {
-                            $(".contentPage").hide();
-                            $(".contentPage").each(function (n) {
-                                if (n >= pageSize * (page - 1) && n < pageSize * page)
-                                    $(this).show();
-                            });
-                        }
-                        showPage(1);
-                        ///** Cần truyền giá trị vào đây **///
-                        var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
-                        var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
-                        var iTotalPages = Math.ceil(totalRows / pageSize);
-
-                        var obj = $('#pagination').twbsPagination({
-                            totalPages: iTotalPages,
-                            visiblePages: btnPage,
-                            onPageClick: function (event, page) {
-                                console.info(page);
-                                showPage(page);
-                            }
-                        });
-                        console.info(obj.data());
-                    }); --%>
+                <script type="text/javascript">          
+                    $(function () {
+				                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+				                showPage = function (page) {
+				                    $(".contentPage").hide();
+				                    $(".contentPage").each(function (n) {
+				                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+				                            $(this).show();
+				                    });
+				                }
+				                showPage(1);
+				                ///** Cần truyền giá trị vào đây **///
+				                var totalRows = 10;// Tổng số sản phẩm hiển thị
+				                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+				                var iTotalPages = Math.ceil(totalRows / pageSize);
+				
+				                var obj = $('#pagination').twbsPagination({
+				                    totalPages: iTotalPages,
+				                    visiblePages: btnPage,
+				                    onPageClick: function (event, page) {
+				                        console.info(page);
+				                        showPage(page);
+				                    }
+				                });
+				                console.info(obj.data());
+				            });
+                    
               
                 function changeStatus(id, status){
             		$.ajax({
@@ -254,9 +227,9 @@ if( user.getRoleId() == 3) {
             	}
                 </script>
                 
-                <!-- <div id="pager">
+                <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
-				</div> -->
+				</div>
             </form>
           </div>
         </div>
@@ -265,5 +238,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

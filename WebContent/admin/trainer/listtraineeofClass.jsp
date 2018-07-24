@@ -6,10 +6,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+   <style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
   <script type="text/javascript">
   function abc(a) {
 	  var val = $(a).val();
@@ -21,11 +27,6 @@
 	        $(a).prop("disabled", true);
 	    }
 	}
- /*  $('td > input[type="radio"]').on('click', function() {
-	  
-	    var val = $(this).val(),
-	    selectId = $(this).closest('tr').find('select').first();
-  } */
   </script>
     	<%
     		String name= (String)request.getAttribute("name");
@@ -105,7 +106,6 @@ if( user.getRoleId() == 3) {
                     });
                 }
                 showPage(1);
-                ///** Cáº§n truyá»n giÃ¡ trá»‹ vÃ o Ä‘Ã¢y **///
                 var totalRows = <%=tong%>; // Tá»•ng sá»‘ sáº£n pháº©m hiá»ƒn thá»‹
                 var btnPage = 5; // Sá»‘ nÃºt báº¥m hiá»ƒn thá»‹ di chuyá»ƒn trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -120,31 +120,22 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS cÄƒn id pagination ra giá»¯a mÃ n hÃ¬nh **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+
         <% 
                   if(result==1){
                 	  if(check == 1){
                 		  %>
-                		  <div class="alert alert-danger">
-                		  <Strong>Finish trainee evaluation!</Strong>>
+
+                		  <div class="alert alert-success">
+                		  <Strong>Finish trainee evaluation!</Strong>
                 		  </div>
                 		  <% 
-                	
                   } 
                   }else{
                 	  %>
                 	  <div class="alert alert-danger">
-                	  <Strong style="color: red;">The class hasn't finished yet so you cannot evaluate!</Strong>
+
+                	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
                 	  </div>
                  <% 
                  
@@ -160,13 +151,11 @@ if( user.getRoleId() == 3) {
                   <thead>
                     <tr>
                        <th style="text-align: center;">No.</th>
-                       <th width="20%" style="text-align: center;">Username </th>
-                      <th  width="20%" style="text-align: center;">Full name  </th>
+                       <th width="20%" style="text-align: center;">User Name </th>
+                      <th  width="20%" style="text-align: center;">Full Name  </th>
                       <th width="20%" style="text-align: center;">Email</th>
                       <th width="20%" style="text-align: center;">Phone  </th>
                       <th width="20%" style="text-align: center;">Assessment  </th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>
@@ -265,5 +254,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

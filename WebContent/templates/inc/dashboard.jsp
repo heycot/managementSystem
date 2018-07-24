@@ -1,3 +1,5 @@
+
+
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,38 +14,31 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
-
-    <!-- Bootstrap core CSS -->
+    
     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
-
-  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
-  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-		 
-    <style type="text/css">
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
+	<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
+  	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
+	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	
+	<style type="text/css">
       .hiden{display:none}
       .error{color:red}
-
     .label-info {background-color: #5bc0de;}
     </style>
-
-  </head>
+    
+ </head>
 
 <body class="fixed-nav" id="page-top">
 
@@ -230,9 +225,11 @@
 		    </ul>
 		  </div>
 		</nav>
+	
     <%
     }
     %>
+    
         <script type="text/javascript">
       jQuery(document).ready(function($){
         var url = window.location.href;
@@ -314,7 +311,6 @@
 				    <%
 				    }
 				    %>
-
                     <li><a  href="<%= request.getContextPath()%>/logout"><i style="margin-top:10px;" class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 
             </ul>
@@ -325,7 +321,7 @@
         </ul>
        </div>
        </nav>
-</body>
+
      
 
      <script type="text/javascript">
@@ -364,11 +360,10 @@
 		
 	});
 </script>
-</html>
+
 <div id="post_modal" class ="modal fade">
 		<div class = "modal-dialog">
 		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
 		</div>
-		
 	</div>
 </div>

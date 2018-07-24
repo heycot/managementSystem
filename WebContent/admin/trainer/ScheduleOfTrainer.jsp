@@ -8,11 +8,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-
+<style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
   <%
   	
   	String  success = "";
@@ -21,7 +26,6 @@
 	}else{
 		
 	}
-	System.out.println("aaaaa"+success);
    	ArrayList<Schedule> schedule = (ArrayList<Schedule>) request.getAttribute("schedule");
   	int user_id = Integer.parseInt((String)request.getAttribute("user_id"));
   	
@@ -134,7 +138,6 @@ if( user.getRoleId() == 3) {
                     });
                 }
                 showPage(1);
-                ///** CÃ¡ÂºÂ§n truyÃ¡Â»Ân giÃƒÂ¡ trÃ¡Â»â€¹ vÃƒ o Ã„â€˜ÃƒÂ¢y **///
                 var totalRows = <%= tong %>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹
                 var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -149,22 +152,12 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS cÃ„Æ’n id pagination ra giÃ¡Â»Â¯a mÃƒ n hÃƒÂ¬nh **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+
         <%
         	if(success.equals("1")){
         		%>
-        		<div class="alert alert-danger">
-        		<Strong style="color: green">Send the request successfully!</Strong>
+        		<div class="alert alert-success">
+        		<strong>Send the request successfully!</strong>
         		</div>
         		<% 
         		request.getSession().removeAttribute("success"); 
@@ -186,7 +179,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center;">Course</th>
                       <th style="text-align: center;">Time</th>
                       <th style="text-align: center;">Date Of Week</th>
-                      <th style="text-align: center;">Taught Hours </th>
+                      <th style="text-align: center;">Taught Hours</th>
                       <th style="text-align: center;">Duration (Hours)</th>
                       <th style="text-align: center;">Action</th>
                     </tr>
@@ -197,11 +190,9 @@ if( user.getRoleId() == 3) {
                   	String FORMAT = "EEE,d MMM yyyy";
 		          	DateFormat formater = new SimpleDateFormat(FORMAT);
 		          	Date date = new Date();
-		        	System.out.println(formater.format(date));
 		        	String s1 = formater.format(date);
 		        	String s2[] = s1.split(",");
 		        	String s3 ="";
-		        	System.out.println(s2[0]);
 		        	String arr1[] = s2[1].split(" ");
 		        	switch(s2[0]){
             		 
@@ -316,6 +307,7 @@ if( user.getRoleId() == 3) {
                     <td style="text-align: center; vertical-align: middle;"> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;"></a>
                    <button  type="button" class="btn btn-link"  style="text-align: center; vertical-align: middle; font-size: 20px" data-toggle="modal" data-target="#myModal<%=k%>"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                    </button>
+                   
                    <div class="modal fade" id="myModal<%=k %>" role="dialog" style="text-align: center;">
 						    <div class="modal-dialog " style="text-align: center;">
 						      <div class="modal-content">
@@ -323,19 +315,14 @@ if( user.getRoleId() == 3) {
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
 						          <h4 class="modal-title">Requesting a day off for <%= list.getNameclass()%></h4>
 						        </div>
-						         <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
+						        <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
 						          <table  border="0px" style="width: 465px">
-						          
-						           
-						         
+
 						          <tr>
 						          <th>Day off</th>
 						          <td >
-						          
-						          		
 						          			<%
-						          			
 						          		String []dayoff={"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 						          		for(int j=0; j<arr.length; j++){
 						          		String b = arr[j];
@@ -426,15 +413,9 @@ if( user.getRoleId() == 3) {
 						           <input type="hidden" class="class_id"  name="classId" value="<%=list.getClassid()%>" id="classId<%= list.getClassid()%>">
 						            <input type="hidden" name="userId" value="<%=user_id%>" ">
 						             <input type="hidden" name="classname" value="<%=list.getNameclass()%>" ">
-						          <%-- <%
-						          	 classid_choose = list.getClassid();
-						          	System.out.println(classid_choose);
-						          %> --%>
 						          
 						          </tr>
-						          </tr>
 						          
-						           <!-- <form  name="myForm" >  -->
 						          <tr>
 						          <th>Day instead</th>
 						          <td>
@@ -530,36 +511,8 @@ if( user.getRoleId() == 3) {
 									%>
 									</td>
 						          </tr>
-						        <%--  <tr>
-						          	<th colspan="2">
-						          	
-						          	<input class=" btn btn-primary" style="float: right;" type="button" onclick="open1234(this);" id="<%= list.getClassid() %>" value="Check">
-						          	</th>
-						          </tr>  
-						          </form>  --%> 
 	 					         
 	 					         <label id="choiceLabel"></label>
-<!-- <script>
-(function (){
-    var radios = document.getElementsByName('dayinstead');
-    console.log(radios);
-    for(var i = 0; i < radios.length; i++){
-        radios[i].onclick = function(){
-            var dayinstead = (document.getElementById('choiceLabel').innerText = this.value);
-            alert(dayinstead);
-            $.ajax({
-                type : 'POST', 
-                url : '/managementSystem/trainer/RequestTakeDayOf?dayinstead='+dayinstead, 
-                success : function(result)  
-                          { 
-              				$('.selectTime').html(result);
-                          }
-                });
-        }
-    }
-    
-})();
-</script> -->
 	 					         
 						          <tr>
 						          <th>Time</th>
@@ -571,13 +524,9 @@ if( user.getRoleId() == 3) {
 						          </tr>
 						          <tr>
 						          <th>Room</th>
-						         
 						          <td>
 						          	 <select  class="selectRoom" name="room" style="float: left;width:145px ">
-						          	 <%-- <option value="nameroom"><%= list.getNameroom()%></option> --%>
 						          	  <%
-						          	
-						          	
 						          	%>	
 						          <%
 						          %>
@@ -588,31 +537,18 @@ if( user.getRoleId() == 3) {
 						          <th>Content</th>
 						          <td ><textarea name="content" style=" resize: none;" rows="3" cols="35"></textarea></td>
 						          </tr>
-						          
 						          </table>
 						        </div>
 						        <div class="modal-footer">
 						         <button type="submit" class="btn btn-default; btn btn-primary" >Submit</button>
 						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px; margin-right: 30px" >Close</button>
-						         
+
 						        </div>
 						        </form>
 						      </div>
 						    </div>
 						  </div>
-						               <!--  <script>
-    var rad = document.myForm.dayinstead;
-    var prev = null;
-    for(var i = 0; i < rad.length; i++) {
-        rad[i].onclick = function() {
-            (prev)? console.log(prev.value):null;
-            if(this !== prev) {
-                prev = this;
-            }
-           alert(this.value);
-        };
-    }
-</script>  -->
+
                   </td>
                   </tr>
                   <%
@@ -624,9 +560,6 @@ if( user.getRoleId() == 3) {
                 <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
-						
-
-
 					</div>
         </div>
         <div class="card-footer small text-muted">
@@ -635,9 +568,6 @@ if( user.getRoleId() == 3) {
       </div>
     </div>
   </div>
-  <script >
-  
-						
-					       
-					        </script>
+  </div>
+
 <%@include file="/templates/inc/footer.jsp" %> 

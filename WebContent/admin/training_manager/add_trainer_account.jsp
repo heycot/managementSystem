@@ -8,8 +8,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp"%>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-
 
 <%
 String classNameContent = "" ;
@@ -82,21 +80,21 @@ String dateMax= date.toString();
 								<label class="required"><strong>Email:</strong><span
 									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtemail" type="text"
-									name="email" placeholder="Email" />
+									name="email" placeholder="Email" required="required"/>
 									<span id="spnEmailStatus"></span>
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Username:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtusername" type="text"
-									name="username" placeholder="Username" />
+									name="username" placeholder="Username" required="required"/>
 									<span id="spnUserNameStatus"></span>
 							</div>
 
 							<div class="form-group">
-								<label class="required"><strong>Password:</strong>:
+								<label class="required"><strong>Password:</strong>
 								<span style="color: red"> *</span></label> 
-								<input class="form-control" id="password" type="password" name="password" placeholder="Password" />
+								<input class="form-control" id="password" type="password" name="password" placeholder="Password" required="required"/>
 								<span id="spnPasswordStatus"></span>
 							</div>
 							<div class="form-group">
@@ -104,7 +102,7 @@ String dateMax= date.toString();
 								<span style="color: red"> *</span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
-									placeholder="Confirm Password" /><span id="spnPasswordStatus"></span>
+									placeholder="Confirm Password" required="required"/><span id="spnPasswordStatus"></span>
 							</div>
 
 						</div>
@@ -114,22 +112,22 @@ String dateMax= date.toString();
 								<label class="required"><strong>Full Name:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtfullname" type="text"
-									name="fullname" placeholder="Fullname" />
+									name="fullname" placeholder="Fullname" required="required"/>
 									<span id="spnFullNameStatus"></span>
 							</div>
 
 							<div class="form-group">
 								<label class="required"><strong>Gender:</strong><span
 									style="color: red"> *</span></label> <br> <input type="radio"
-									name="gender" value="1"> Male <input type="radio"
-									name="gender" value="2">Female <input type="radio"
-									name="gender" value="0">Other
+									name="gender" value="1" > Male <input type="radio"
+									name="gender" value="2" >Female <input type="radio"
+									name="gender" value="0" >Other
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Address</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"
-									name="address" value="" placeholder="Address" />
+									name="address" value="" placeholder="Address" required="required"/>
 									<span id="spnAddressStatus"></span>
 							</div>
 
@@ -137,7 +135,7 @@ String dateMax= date.toString();
 								<label class="required"><strong>Phone Number:</strong><span
 									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtphone" type="text"
-									name="phone" placeholder="Phone" />
+									name="phone" placeholder="Phone" required="required"/>
 									<span id="spnPhoneStatus"></span>
 							</div>
 							
@@ -146,7 +144,7 @@ String dateMax= date.toString();
 								<label class="required"><strong>Day of Birth:</strong><span
 									style="color: red"> *</span></label> <input class="form-control"
 									id="txtname" type="date" name="dateOfBirth" value="<%=dateMax%>" max="<%=dateMax%>"
-									placeholder="Birthday" />
+									placeholder="Birthday" required="required"/>
 							</div>
 
 
@@ -154,7 +152,7 @@ String dateMax= date.toString();
 								<label class="required"><strong>Ability:</strong><span
 									style="color: red"> *</span></label><br> 
 									<select
-									class="form-inline" name="skillId">
+									class="form-inline" name="skillId" required="required">
 									<%
 							SkillBo skillBo= new SkillBo();
 							List<Skills> skills= skillBo.getSkills();
@@ -164,7 +162,7 @@ String dateMax= date.toString();
 									<%}%>
 								</select> <input class="form-group" id="txtname" type="number"
 									name="experience" placeholder="Experience Year" min="0"
-									max="50" />
+									max="50" required="required"/>
 							</div>
 							<div class="error"></div>
 							<br> <br>
@@ -197,34 +195,14 @@ String dateMax= date.toString();
 	$(document).ready(function() {
 		$("#add-trainer-post").validate({
 			rules : {
-				email : {
-					required : true,
-					email : true
-				},
-				username : "required",
-				password : {
-					required : true,
-				},
 				confirmpass : {
-					required : true,
 					equalTo : "#password"
-				},
-				fullname : "required",
-				address : "required",
-				dateOfBirth : "required",
+				}
 			},
 			messages : {
-				username : "Username is required!",
-				password : {
-					required : "Password is required!",
-				},
 				confirmpass : {
-					required : "Password is required!",
 					equalTo : "Password does not matching!"
-				},
-				fullname : "Fullname is required!",
-				address : "Address is required!",
-				dateOfBirth : "Day of Birth is required!",
+				}
 			}
 		});
 	});
@@ -373,7 +351,9 @@ String dateMax= date.toString();
 			return $.trim(password).match(pattern) ? true : false;
 		}
 </script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 
 </body>
 </html>
+
 <%@include file="/templates/inc/footer.jsp"%>

@@ -3,11 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-
+<style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -87,17 +92,7 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+         
         <div class="card-body">
           <div class="table-responsive">
             <form action=""  method="post">
@@ -165,5 +160,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

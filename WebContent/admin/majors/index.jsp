@@ -5,10 +5,6 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 
 <%
 String classNameContent = "" ;
@@ -154,18 +150,7 @@ if( user.getRoleId() == 3) {
 	            });
 	        </script>
 	        
-<!-- Style Pagination -->
-	        <style>
-	           ///** CSS căn id pagination ra giữa màn hình **///
-	           #pagination {
-	               display: flex;
-	               display: -webkit-flex; /* Safari 8 */
-	               flex-wrap: wrap;
-	               -webkit-flex-wrap: wrap; /* Safari 8 */
-	               justify-content: center;
-	               -webkit-justify-content: center;
-	           }
-	       </style>
+	        
 	       
 <!-- Content -->
 		   <div class="card-body">
