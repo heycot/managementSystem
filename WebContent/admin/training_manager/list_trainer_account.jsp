@@ -6,7 +6,17 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-        
+    <style>
+            ///** CSS căn id pagination ra giữa màn hình **///
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>    
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -107,19 +117,6 @@ if( user.getRoleId() == 3) {
                 });
             });
         </script>
-        
-        
-         <!-- <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style> -->
         <div class="card-body">
           <div class="table-responsive">
             <form action="<%=request.getContextPath() %>/trainer/del"  method="post">
@@ -180,49 +177,33 @@ if( user.getRoleId() == 3) {
                   %>
                   </tbody>
                 </table>
-                <script type="text/javascript">
-                
-                $(document).ready( function () {
-                    var table = $('#dataTable').DataTable({
-                        "order": [[ 0, "asc" ]],
-                        "language": {
-                            "lengthMenu": "Show _MENU_ users",
-                            "zeroRecords": "No data",
-                            "infoEmpty": "No data found",
-                            "paginate": {
-                                "first":      "First",
-                                "last":       "Last",
-                                "next":       "Next",
-                                "previous":   "Previous"
-                            },
-                        }
-                    })
-                });
-                    <%-- $(function () {
-                        var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
-                        showPage = function (page) {
-                            $(".contentPage").hide();
-                            $(".contentPage").each(function (n) {
-                                if (n >= pageSize * (page - 1) && n < pageSize * page)
-                                    $(this).show();
-                            });
-                        }
-                        showPage(1);
-                        ///** Cần truyền giá trị vào đây **///
-                        var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
-                        var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
-                        var iTotalPages = Math.ceil(totalRows / pageSize);
-
-                        var obj = $('#pagination').twbsPagination({
-                            totalPages: iTotalPages,
-                            visiblePages: btnPage,
-                            onPageClick: function (event, page) {
-                                console.info(page);
-                                showPage(page);
-                            }
-                        });
-                        console.info(obj.data());
-                    }); --%>
+                <script type="text/javascript">          
+                    $(function () {
+				                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+				                showPage = function (page) {
+				                    $(".contentPage").hide();
+				                    $(".contentPage").each(function (n) {
+				                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+				                            $(this).show();
+				                    });
+				                }
+				                showPage(1);
+				                ///** Cần truyền giá trị vào đây **///
+				                var totalRows = 10;// Tổng số sản phẩm hiển thị
+				                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+				                var iTotalPages = Math.ceil(totalRows / pageSize);
+				
+				                var obj = $('#pagination').twbsPagination({
+				                    totalPages: iTotalPages,
+				                    visiblePages: btnPage,
+				                    onPageClick: function (event, page) {
+				                        console.info(page);
+				                        showPage(page);
+				                    }
+				                });
+				                console.info(obj.data());
+				            });
+                    
               
                 function changeStatus(id, status){
             		$.ajax({
@@ -246,9 +227,9 @@ if( user.getRoleId() == 3) {
             	}
                 </script>
                 
-                <!-- <div id="pager">
+                <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
-				</div> -->
+				</div>
             </form>
           </div>
         </div>
