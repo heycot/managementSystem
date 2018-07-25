@@ -74,135 +74,78 @@
               </li>
 
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainee" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  larger;">
                   <i class="fa fa-fw fa-users"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainee</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="trainee">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainee/index"><i class="fa fa-fw fa-list"></i> List Trainees</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainee/add"><i class="fa fa-fw fa-plus"></i> Add New Trainee</a>
-                  </li>
-                </ul>
+                
               </li>
 
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#trainer" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainer/index" style="font-size:  larger;">
                   <i class="fa fa-fw fa-users" ></i>&nbsp;
                   <span class="nav-link-text">
                     Trainer</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="trainer">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainer/index"><i class="fa fa-fw fa-list"></i> List Trainers</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/trainer/add"><i class="fa fa-fw fa-plus"></i> Add New Trainer</a>
-                  </li>
-                </ul>
+                
               </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="major">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#major" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  larger;">
                   <i class="fa fa-briefcase" ></i>&nbsp;
                   <span class="nav-link-text">
                     Major</span>
               	</a>
-              <ul class="sidenav-second-level collapse" id="major">
-                <li>
-                  <a href="<%= request.getContextPath()%>/major"><i class="fa fa-fw fa-list"></i> List majors</a>
-                </li>
-               
-              </ul>
             </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#class" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/classes/index" style="font-size:  larger;">
                   <i class="fa fa-fw fa-object-group"></i>&nbsp;
                   <span class="nav-link-text">
                     Class</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="class">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/classes/index"><i class="fa fa-fw fa-list"></i> List Classes</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/classes/add"><i class="fa fa-fw fa-plus"></i> Add New Class</a>
-                  </li>
-                </ul>
             </li>
             
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#course" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course/index" style="font-size:  larger;">
                   <i class="fa fa-fw fa-book"></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="course">
-                  <li>
-                    <a href="<%= request.getContextPath()%>/course/index"><i class="fa fa-fw fa-list"></i> List Courses</a>
-                  </li>
-                  <li>
-                    <a href="<%= request.getContextPath()%>/course/add"><i class="fa fa-fw fa-plus"></i> Add New Course</a>
-                  </li>
-                </ul>
+                
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#room" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/room" style="font-size:  larger;">
                   <i class="fa fa-home" ></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="room">
-                <li>
-                  <a href="<%= request.getContextPath()%>/room"><i class="fa fa-fw fa-list"></i> List rooms</a>
-                </li>
-               
-              </ul>
+              
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/Skills" style="font-size:  larger;">
                   <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="skill">
-                <li>
-                  <a href="<%= request.getContextPath()%>/Skills"><i class="fa fa-fw fa-list"></i> List skills</a>
-                </li>
-               
-              </ul>
+           
             </li>
              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#request" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/admin/requestTakeDateOff" style="font-size:  larger;">
                   <i class="fa fa-paper-plane" ></i>&nbsp;
                   <span class="nav-link-text">
-                    Requestions</span>
+                    Request</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="request">
-                <li>
-                  <a href="<%= request.getContextPath()%>/admin/requestTakeDateOff"><i class="fa fa-fw fa-list"></i> List Requestions</a>
-                </li>
-               
-              </ul>
+              
 		</li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
+                <a class="nav-link nav-link-collapse collapsed" href="#statistical" style="font-size:  larger;">
                   <i class="fa fa-calculator" ></i>&nbsp;
                   <span class="nav-link-text">
                     Statistic</span>
               </a>
-              <ul class="sidenav-second-level collapse" id="statistical">
-                <li>
-                  <a href="<%= request.getContextPath()%>/statistical/trainee"><i class="fa fa-fw fa-calculator"></i> Trainees</a>
-                </li>
-                <li>
-                  <a href="<%= request.getContextPath()%>/statistical/result"><i class="fa fa-fw fa-calculator"></i> Class's Quality</a>
-                </li>
-              </ul>
+              
             </li>
             </ul>
      <%
@@ -283,17 +226,9 @@
 	        $( "#sidenavToggler" ).click(function() {
 	        	  $( "#slide_item" ).toggle( "slow", function() {
 	        	  });
-	        	  /* if(document.getElementById("body-content").style.display = "none") {
-	        		  changeFont();
-	        	  } */
 	        	  
 	        });
-	        
-	       /*  function changeFont() {
-      		  document.getElementById("toggler_contentId").classList.remove('content-wrapper py-3');
-      		  document.getElementById("toggler_contentId").style = 'margin-top:  5px;';
-      		  document.getElementById("toggler_containerId").classList.remove('container-fluid');
-	        } */
+
         });
         </script>
         

@@ -97,7 +97,7 @@ public class RequestTakeDateOffDao {
 	public RequestTakDayOff  getRequestByID(int request_id){
 		RequestTakDayOff requestTakDayOff = new RequestTakDayOff();
 		String sql = "select request_id,requestDayOff.class_id,  classes.name , requestDayOff.trainer_id, users.fullname, date_off, date_change,time_change,"
-				+ " rooms.name, requestDayOff.status ,requestDayOff.note  from requestDayOff inner join classes "
+				+ " rooms.name as nameroom, requestDayOff.status ,requestDayOff.note  from requestDayOff inner join classes "
 				+ "on classes.class_id = requestDayOff.class_id "
 				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id where request_id = ? ;";
 		conn = ConnectDBLibrary.getConnection();
@@ -114,7 +114,7 @@ public class RequestTakeDateOffDao {
 				requestTakDayOff.setDate_off(rs.getString("date_off"));
 				requestTakDayOff.setDate_change(rs.getString("date_change"));
 				requestTakDayOff.setTime_change(rs.getString("time_change"));
-				requestTakDayOff.setRoom_name(rs.getString("name"));
+				requestTakDayOff.setRoom_name(rs.getString("nameroom"));
 				requestTakDayOff.setStatus(rs.getInt("status"));
 				requestTakDayOff.setNote(rs.getString("note"));
 				
