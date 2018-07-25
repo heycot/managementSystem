@@ -36,6 +36,18 @@
       .hiden{display:none}
       .error{color:red}
     .label-info {background-color: #5bc0de;}
+    .col-15 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+    margin-left: 15px
+	}
+
+	.col-50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+	}
     </style>
     
  </head>
@@ -343,6 +355,24 @@
 			 var post_id = $(this).attr("id");
 			 fetch_post_data(post_id);
 		});
+	   $(document).on('click','.aprove',function(){
+		   			 var request_id= $("#request_id").text();
+		   					$.ajax({
+		   						type : 'POST',
+		   						url : '/managementSystem/ApproveRequestOffTrainerAjax?request_id=' + request_id,
+		   						success : function(data) {
+		   
+		   				        	   if(data == 1){
+		   									alert('You have just approved this request!');
+		   									$('#post_modal').modal('hide');
+		   								}
+		   								else if(data == 0){
+		   									alert('Some error. Please approve it again!');
+		   								}
+		   							
+		   						}
+		   					});
+		   		});
 		function fetch_post_data(post_id)
 		{	
 			
@@ -357,13 +387,54 @@
 				}
 			});
 		}
+		function approveRequest() {
+						alert("Yes");
+						var request_id= $("#request_id").text();
+						alert(request_id);
+							$.ajax({
+								type : 'POST',
+								url : '/managementSystem/forgotpassword?emailForgot=' + request_id,
+								success : function(data) {
+									alert(data);
+								}
+							});
+						
+					}
+		
 		
 	});
 </script>
-
-<div id="post_modal" class ="modal fade">
-		<div class = "modal-dialog">
-		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
-		</div>
-	</div>
+<%
+	if(user.getRoleId() == 3){
+		
+%> 
+		<div id="post_modal" class ="modal fade">
+			<div class = "modal-dialog">
+				<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btnForgot" onclick="sendEmail();">Send</button>
+				
+				<button type="button" style=" background:#2e9ade; color: white; " class="btn btn-infor" data-dismiss="modal">Close</button> \
+				</div>	
+				</div>	
+					
+			</div>
+				</div> 
+				
+<%
+	} else{
+%>	
+	<div id="post_modal" class ="modal fade">
+ 		<div class = "modal-dialog">
+ 		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
+ 		</div>
+ 		
+ 	</div>
 </div>
+	</div>
+<%
+	}
+%>		
+
+
+</html>

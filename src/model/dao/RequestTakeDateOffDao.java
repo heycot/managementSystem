@@ -65,7 +65,7 @@ public class RequestTakeDateOffDao {
 		String sql = "select request_id,requestDayOff.class_id,  classes.name, users.fullname, date_off, date_change,time_change,"
 				+ " rooms.name, requestDayOff.status from requestDayOff inner join classes "
 				+ "on classes.class_id = requestDayOff.class_id "
-				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id order by requestDayOff.request_id DESC  ;";
+				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id where requestDayOff.status = 0  order by requestDayOff.request_id DESC  ;";
 		
 		conn = ConnectDBLibrary.getConnection();
 		try {
@@ -97,7 +97,7 @@ public class RequestTakeDateOffDao {
 	public RequestTakDayOff  getRequestByID(int request_id){
 		RequestTakDayOff requestTakDayOff = new RequestTakDayOff();
 		String sql = "select request_id,requestDayOff.class_id,  classes.name , requestDayOff.trainer_id, users.fullname, date_off, date_change,time_change,"
-				+ " rooms.name, requestDayOff.status from requestDayOff inner join classes "
+				+ " rooms.name, requestDayOff.status ,requestDayOff.note  from requestDayOff inner join classes "
 				+ "on classes.class_id = requestDayOff.class_id "
 				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id where request_id = ? ;";
 		conn = ConnectDBLibrary.getConnection();
@@ -116,6 +116,7 @@ public class RequestTakeDateOffDao {
 				requestTakDayOff.setTime_change(rs.getString("time_change"));
 				requestTakDayOff.setRoom_name(rs.getString("name"));
 				requestTakDayOff.setStatus(rs.getInt("status"));
+				requestTakDayOff.setNote(rs.getString("note"));
 				
 			}
 			
@@ -127,5 +128,25 @@ public class RequestTakeDateOffDao {
 		}
 		
 		return requestTakDayOff;
+	}
+	public int getIdOfRequestNearest(){
+		int kq=0;
+		String sql = "select * from requestDayOff order by request_id desc limit 1;";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				return rs.getInt("request_id");
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return kq;
 	}
 }

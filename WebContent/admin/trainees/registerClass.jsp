@@ -83,9 +83,9 @@ if( user.getRoleId() == 3) {
 				    <th>Name</th>
 				    <th>Time</th>
 				    <th>Date Of Week</th>
-				    <th>Duration</th>
+				    <th>Duration (hours)</th>
 				    <th>Trainer</th>
-				    <th>Option</th>
+				    <th>Action</th>
 				  </tr>
 		  			<% 
 		  		}

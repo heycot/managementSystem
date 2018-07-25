@@ -53,7 +53,14 @@ public class ListNotificationAjax extends HttpServlet {
 			if (CurrentUser.getUserCurrent(request, response).getRoleId() !=0 ) {
 				
 				response.setContentType("text/plain");
-				ArrayList<MyMessages> listMsg =  userBo.getMessagesOfTrainee(user.getUserId());
+				ArrayList<MyMessages> listMsg = new ArrayList<>();
+				if (CurrentUser.getUserCurrent(request, response).getRoleId() == 3) {
+					listMsg =  userBo.getMessagesOfAdmin(user.getUserId());
+
+				} else {
+					listMsg =  userBo.getMessagesOfTrainee(user.getUserId());
+
+				}
 				PrintWriter out = response.getWriter();
 				int countrows =0 ;		
 				if (listMsg.size()!=0) {
@@ -65,12 +72,13 @@ public class ListNotificationAjax extends HttpServlet {
 						if (countrows==5) {
 							break;
 						}
-						String content = myMessages.getNotiContent().substring(0,50);
+						String content = myMessages.getNotiContent().substring(0,15);
 						content+="...";
 						
 						
 						if(myMessages.getStatus()==0){
-							out.print("<li style='background-color: rgb(212, 237, 218)'><a style='text-decoration:none'>"
+							out.print("<li style='background-color: rgb(212, 237, 218)'>"
+									+ "<a style='text-decoration:none'>"
 											+ "<span style='font-size:15px; font-weight:bold; color:#343a40;' class='message'>"
 											+ myMessages.getTitle()
 											+ " </span>"
@@ -106,7 +114,7 @@ public class ListNotificationAjax extends HttpServlet {
 				
 				}
 				else {
-					out.println("<li>No Notification</li>");
+					out.println("<li>No New Notification</li>");
 				}
 				
 				

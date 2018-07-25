@@ -51,10 +51,12 @@ public class ListRequestTakeDayOffController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int request_id = Integer.parseInt(request.getParameter("request_id"));
+		PrintWriter out = response.getWriter();
+
 		try {
-			int request_id = Integer.parseInt(request.getParameter("request_id"));
+			request_id = Integer.parseInt(request.getParameter("request_id"));
 			int status = Integer.parseInt(request.getParameter("status"));
-			PrintWriter out = response.getWriter();
 			if (status==1){
 				out.println("<a ><img alt='' src='" + request.getContextPath() + "/templates/images/active.gif'></a>");
 			} else{
@@ -63,10 +65,10 @@ public class ListRequestTakeDayOffController extends HttpServlet {
 				if(kq>0){
 					NotificationBo notificationBo = new NotificationBo();
 					RequestTakDayOff dayOff = new RequestTakDayOff();
-					dayOff = requestTakeDateOffBo.getRequestByID(request_id);
+ 					dayOff = requestTakeDateOffBo.getRequestByID(request_id);
 					int countMessageSendTrainee = notificationBo.addNotiRequestTakeDateOffToTraineeOffClass(dayOff);
 					int countMessageSendTrainer = notificationBo.addNotiRequestBeApproveSendToTrainer(dayOff);
-					out.println("<a ><img alt='' src='" + request.getContextPath() + "/templates/images/active.gif'></a>");
+					out.println("<a  ><i class='fa fa-check' style='font-size:20px; color: #106aef'></i></a>");
 				} else {
 					out.println("<a href='javascript:void(0)' onclick='changeStatus(" + request_id + ", 0);'><img alt='' src='" + request.getContextPath() + "/templates/images/deactive.gif'></a>");
 				}
@@ -74,7 +76,7 @@ public class ListRequestTakeDayOffController extends HttpServlet {
 
 		} catch( Exception e) {
 			System.out.println(e.getMessage());
-			response.sendRedirect(request.getContextPath() + "/admin/requestTakeDateOff?msg=0");
+			out.println("<a href='javascript:void(0)' onclick='changeStatus(" + request_id + ", 0);'><img alt='' src='" + request.getContextPath() + "/templates/images/deactive.gif'></a>");
 			return;
 		}
 	}
