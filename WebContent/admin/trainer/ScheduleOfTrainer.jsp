@@ -540,8 +540,8 @@ if( user.getRoleId() == 3) {
 						          </table>
 						        </div>
 						        <div class="modal-footer">
-						         <button type="submit" class="btn btn-default; btn btn-primary" >Submit</button>
-						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 13px; margin-right: 30px" >Close</button>
+						         <button type="submit" class="btn btn-default; btn btn-primary" style="font-size: 16px; width:80px;" >Submit</button>
+						          <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 16px; width:80px;margin-right: 30px" >Close</button>
 
 						        </div>
 						        </form>
