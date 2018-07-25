@@ -61,7 +61,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="height:900px; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px; min-width:250px; background:white; padding:20px 20px;">
+            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="min-height: 100%; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px;background:white; padding:20px 20px;">
           
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  17px;">
