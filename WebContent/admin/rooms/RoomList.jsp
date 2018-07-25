@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <style>
-            ///** CSS cÃ„Æ’n id pagination ra giÃ¡Â»Â¯a mÃƒ n hÃƒÂ¬nh **///
             #pagination {
                 display: flex;
                 display: -webkit-flex; /* Safari 8 */
@@ -49,7 +48,7 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check1 = false;
-			  msg = "This room name has already existed in the system"; break;
+			  msg = "This room name has already existed in the system!"; break;
 		  }
 		  case 2:{
 			  check1 = true;
@@ -61,11 +60,11 @@ if( user.getRoleId() == 3) {
 		  }
 		  case 4:{
 			  check1 = true;
-			  msg  = "You deleted room successfully"; break;
+			  msg  = "You deleted room successfully!"; break;
 		  }
 		  case 0:{
 			  check1 = false;
-			  msg  = "Error! System have some problems. Please try again"; break;
+			  msg  = "Error! System have some problems. Please try again!"; break;
 		  }
 		  }
 		   if( check1 == false){
@@ -83,9 +82,7 @@ if( user.getRoleId() == 3) {
 		  }
 	  }
 	  %>
-        
 <!-- Show room -->			  	
-
         <div class="card-body" >
           <div class="table-responsive">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
@@ -93,13 +90,11 @@ if( user.getRoleId() == 3) {
 	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
 	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
 	        		</div>
-	            	<form action="<%=request.getContextPath()%>/DeleteRoomController" method="POST">
+	            <form action="<%=request.getContextPath()%>/DeleteRoomController" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
                 	</div>
-                	
                 	<div style="clear: both"></div>
-	        	
 	        	<table id="myTable" class="table-bordered" style="width: 100%;">
                   <thead>
                     <tr style="height:50px;">
@@ -128,7 +123,6 @@ if( user.getRoleId() == 3) {
 				   %>
 				   <td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="room<%=rooms.getRoomId() %>" value="<%=rooms.getRoomId()%>" class="checkitem" id="chkitem"> </td>
 				   <%} %>
-				   <%-- <td style="text-align: center; vertical-align: middle;" ><%=k %></td> --%>
                    <td style="text-align: center; vertical-align: middle;"><%= rooms.getName() %></td>
                    <td style="text-align: center; vertical-align: middle;" ><%= rooms.getCapacity()%></td>
                   <%if(rooms.getStatus()==0){
@@ -144,12 +138,8 @@ if( user.getRoleId() == 3) {
                   <td style="text-align: center; vertical-align: middle;">
                    <button type="button" class="btn btn-link" name="editRoom" style="" data-toggle="modal"
                     data-target="#editModal<%=rooms.getRoomId()%>"><i class="fa fa-edit" style="font-size:16px; margin-top: 1px !important; "></i></button>
-                   
                    </td>
-                   
                   </tr>
-                  </form>
-                  </div>
 <!-- Edit room -->
                   <div class="modal fade" id="editModal<%=rooms.getRoomId()%>" role="dialog">
 						<div class="modal-dialog">
@@ -198,7 +188,6 @@ if( user.getRoleId() == 3) {
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									</form>
 	<script type="text/javascript">
-							
 							$(document).ready(function() {
 		      					$('#roomname<%=rooms.getRoomId()%>').blur(function(e) {
 		      						var name = $('#roomname<%=rooms.getRoomId()%>').val();
@@ -230,11 +219,10 @@ if( user.getRoleId() == 3) {
                   %>
                   </tbody>
                 </table>
+                </form>
                 <div id="pager" style="float:left;">
 					<ul id="pagination" class="pagination-sm pagination"></ul>
 				</div>
-				 
-
 
   <!-- Add Modal -->
 					<div class="modal fade" id="addModal" role="dialog">
@@ -343,7 +331,6 @@ if( user.getRoleId() == 3) {
                     });
                 }
                 showPage(1);
-                ///** CÃ¡ÂºÂ§n truyÃ¡Â»Ân giÃƒÂ¡ trÃ¡Â»â€¹ vÃƒ o Ã„â€˜ÃƒÂ¢y **///
                 var totalRows = <%= tong%>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ 
                 var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -361,5 +348,7 @@ if( user.getRoleId() == 3) {
         </div>
         
        </div>  
+      </div>
+      </div>
       </div>
 <%@include file="/templates/inc/footer.jsp" %> 
