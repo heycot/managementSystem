@@ -81,12 +81,12 @@ if( user.getRoleId() == 3) {
                   
                   <tr>
                   <td style="text-align: center;" ><%= i %></td>
-                  <td style="text-align: center;" ><%= trainee.getUsername()%></td>
+                  <td ><%= trainee.getUsername()%></td>
                   
-                  <td style="text-align: center;" ><%= trainee.getFullname() %></td>
-                  <td style="text-align: center;" ><%= trainee.getEmail() %></td>
+                  <td  ><%= trainee.getFullname() %></td>
+                  <td  ><%= trainee.getEmail() %></td>
             
-                  <td style="text-align: center;" ><%= trainee.getPhone() %></td>
+                  <td ><%= trainee.getPhone() %></td>
                  </tr>
                   <%
                   	}

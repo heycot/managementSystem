@@ -106,8 +106,8 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center;" >Trainer </th>
                       <th style="text-align: center;">Time</th>
                       <th style="text-align: center;" >Date Of Week </th>
-                      <th style="text-align: center;" >Learned Hours</th>
-                      <th style="text-align: center;" >Duration</th>
+                      <th style="text-align: center;" >Learned (hours)</th>
+                      <th style="text-align: center;" >Duration (hours)</th>
                       <th style="text-align: center;" >Default</th>
                       
                       <th style="text-align: center;" >Action</th>

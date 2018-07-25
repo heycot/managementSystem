@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
   <servlet>
     <servlet-name>IndexClassesController</servlet-name>
     <servlet-class>controller.IndexClassesController</servlet-class>
@@ -154,7 +153,7 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>GetFreeTimeInDateController</servlet-name>
     <servlet-class>controller.GetFreeTimeInDateController</servlet-class>
   </servlet>

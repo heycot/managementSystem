@@ -286,6 +286,10 @@ public class UserBo {
 		userDao = new UserDao();
 		return userDao.getClassWaitingStartOfTrainee(trainee_id);
 	}
+	public ArrayList<MyMessages> getMessagesOfAdmin( int user_id){
+				userDao= new UserDao();
+				return userDao.getMessagesOfAdmin(user_id);
+			}
 }
 
 

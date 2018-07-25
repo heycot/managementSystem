@@ -21,35 +21,49 @@ public class NotificationDao {
 	private PreparedStatement pst;
 	private ResultSet rs;
 	
-	public int addNotiTakedayoffS( String dateoff, String datechange,  String timechange ,String room, Classes classes , User trainer, int admin_id){
-
-	// Create notification all of kind: 
-	/*
-	  All type of notification :
-	  +Take day off of trainer: 
-	  		when trainer take day off, System will create notification 
-	  		-														- Thong bao cho management biet 
-	  																- Thong bao cho trainee nghi hoc
-	  																- 	Thong bao cho traineelich hoc bu
-	  		when class open to register -> - Thong bao toi management rang da du so luong de mo
-	  										- Sau khi admin dong y mo de dang ky , thong bao toi trainee bi fail khoa hoc do de trainee dk lai
-	  										- 
-	  																	
-	  																
-	 */
-	//trainer gui toi management de duoc approve 
-
+	public int addNotiTakedayoffS( String dateoff, String datechange,  String timechange ,String room, Classes classes , User trainer, int admin_id, int request_id, String note){
 		int result = 0;
-		String title = "Notice about request day off and replace learning plan";
+		String title = "Request day off and compensation schedule.";
 		String nameTrainer = trainer.getFullname();
 		String nameclasses = classes.getName();
 		String content = "";
-
-		content+= "The announcement of "+nameclasses+" will take day off on " + dateoff+". ";
-		content+="Replace learning plan is " +datechange + ", at "+ timechange+ ", in "+room+". If you approve it. Please check List Request of Trainer " ;
+		
+		content+= "The "+nameclasses+" at " +"<b>"+ dateoff+"</b> will be canceled."+"<br/> ";
+		content+="<label  id='request_id' style='display: none;' >"+request_id+"  </label>";
+		content+="This class will be move to: <br/>";
+		content+="<form>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label><b> Date:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label >"+datechange+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label> <b>Time:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label  >"+timechange+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label  ><b> Room: </b> </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label >"+room+"  </label>";
+		content+="</div></div>";
+		if(note!=""){
+			content+="<div class='row'>";
+			content+="<div class='col-15'>";
+			content+="<label  ><b> Note:</b>  </label>";
+			content+="</div>";
+			content+="<div class='col-50'>";
+			content+="<label >"+note+"  </label>";
+			content+="</div></div>";
+		}
+		content+="</form>";
 		Date dateCurrent = 	FormatDateLibrary.ConvertDateUntilToDateSQL(new java.util.Date());
-
-				//FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
 		
 		try {
 			conn = ConnectDBLibrary.getConnection();
@@ -70,11 +84,12 @@ public class NotificationDao {
 				notification_id = result1.getInt("id");
 			}
 			if(notification_id!=0){
-				String sql2 = "insert into messages(user_id,noti_id, status) values(?,?, ?)";
+				String sql2 = "insert into messages(user_id,noti_id, status, request_id) values(?,?, ?,?)";
 				pst = conn.prepareStatement(sql2);
 				pst.setInt(1, admin_id);
 				pst.setInt(2, notification_id);
 				pst.setInt(3, 0);
+				pst.setInt(4,request_id);
 				int result2 = pst.executeUpdate();
 				if (result2 > 0) {
 					System.out.println("Add messages of take day off successfull");
@@ -90,11 +105,11 @@ public class NotificationDao {
 				
 				return  result;
 	}
-	public int addRequestTakeaDayOff(String dateoff, String datechange,  String timechange , Classes classes , User trainer, int room_id){
+	public int addRequestTakeaDayOff(String dateoff, String datechange,  String timechange , Classes classes , User trainer, int room_id, String note){
 		conn = ConnectDBLibrary.getConnection();
 		int kq = 0;
 		try{
-			String sql= "insert into requestDayOff(class_id, trainer_id, date_off, date_change, time_change, room_id, status) values(?,?,?,?,?,?,?)";
+			String sql= "insert into requestDayOff(class_id, trainer_id, date_off, date_change, time_change, room_id, status, note) values(?,?,?,?,?,?,?,?)";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, classes.getClassId());
@@ -104,6 +119,7 @@ public class NotificationDao {
 			pst.setString(5, timechange);
 			pst.setInt(6, room_id);
 			pst.setInt(7, 0);
+			pst.setString(8, note);
 			
 			kq=pst.executeUpdate();
 			
@@ -118,10 +134,49 @@ public class NotificationDao {
 	}
 	public int addNotiRequestBeApproveSendToTrainer(RequestTakDayOff dayOff){
 		int result = 0;
-		String title = "Notice about The  your Request Take Date Off is approved.";
+		String title = "Your request has been approved.";
+		
 		String content = "";
-		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
-		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ ", on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+". \n We inform to know and do it on time "; ;
+//		
+//		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
+//		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ ", on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+". \n We inform to know and do it on time "; ;
+//		
+		content+= "The "+dayOff.getClass_name()+" at " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
+		content+="This class will be move to: <br/>";
+		content+="<form>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label><b> Date:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label >"+dayOff.getDate_change()+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label> <b>Time:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label  >"+dayOff.getTime_change()+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label  ><b> Room: </b> </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label >"+dayOff.getRoom_name()+"  </label>";
+		content+="</div></div>";
+		String noteOftrainer = dayOff.getNote();
+		if(!noteOftrainer.equals("")){
+			content+="<div class='row'>";
+			content+="<div class='col-15'>";
+			content+="<label  ><b> Note:</b>  </label>";
+			content+="</div>";
+			content+="<div class='col-50'>";
+			content+="<label >"+dayOff.getNote()+"  </label>";
+			content+="</div></div>";
+		}
+		content+="</form>";
+		
 		Date dateCurrent = 	FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
 				//FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
 		try {
@@ -140,11 +195,12 @@ public class NotificationDao {
 				notification_id = result1.getInt("id");
 			}
 			if(notification_id!=0){
-				String sql2 = "insert into messages(user_id,noti_id, status) values(?,?, ?)";
+				String sql2 = "insert into messages(user_id,noti_id, status, request_id) values(?,?, ?,?)";
 				pst = conn.prepareStatement(sql2);
 				pst.setInt(1, dayOff.getTrainer_id());
 				pst.setInt(2, notification_id);
 				pst.setInt(3, 0);
+				pst.setInt(4, dayOff.getRequest_id());
 				int result2 = pst.executeUpdate();
 				if (result2 > 0) {
 					System.out.println("Add messages send trainer of take day off successfull");
@@ -166,10 +222,45 @@ public class NotificationDao {
 	
 	public int addNotiRequestTakeDateOffToTraineeOffClass(RequestTakDayOff dayOff){
 		int result = 0;
-		String title = "Notice about Take Date Off : " + dayOff.getClass_name();
+		String title = "Change schedule learning : " + dayOff.getClass_name();
 		String content = "";
-		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
-		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ " ,on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+".\n We inform  you to know and do it on time."; ;
+		content+= "The "+dayOff.getClass_name()+" at " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
+		content+="This class will be move to: <br/>";
+		content+="<form>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label><b> Date:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label>"+dayOff.getDate_change()+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label> <b>Time:</b>  </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label >"+dayOff.getTime_change()+"  </label>";
+		content+="</div></div>";
+		content+="<div class='row'>";
+		content+="<div class='col-15'>";
+		content+="<label  ><b> Room: </b> </label>";
+		content+="</div>";
+		content+="<div class='col-50'>";
+		content+="<label>"+dayOff.getRoom_name()+"  </label>";
+		content+="</div></div>";
+		String noteOftrainer = dayOff.getNote();
+		if(!noteOftrainer.equals("")){
+			content+="<div class='row'>";
+			content+="<div class='col-15'>";
+			content+="<label  ><b> Note:</b>  </label>";
+			content+="</div>";
+			content+="<div class='col-50'>";
+			content+="<label>"+dayOff.getNote()+"  </label>";
+			content+="</div></div>";
+		}
+		
+		
+		content+="</form>";
 		Date dateCurrent = 	FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
 				//FormatDateLibrary.ConvertDateUntilToDateSQL(new Date());
 		try {

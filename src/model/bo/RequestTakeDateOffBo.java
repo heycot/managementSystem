@@ -21,4 +21,9 @@ public class RequestTakeDateOffBo {
 		requestTakeDateOffDao = new RequestTakeDateOffDao();
 		return requestTakeDateOffDao.getRequestByID(request_id);
 	}
+	public int getIdOfRequestNearest(){
+		requestTakeDateOffDao = new RequestTakeDateOffDao();
+		return requestTakeDateOffDao.getIdOfRequestNearest();
+	}
+	
 }

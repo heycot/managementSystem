@@ -1338,5 +1338,43 @@ public class UserDao {
 		
 		return trainers;
 	}
+	public ArrayList<MyMessages> getMessagesOfAdmin(int user_id){
+				ArrayList<MyMessages> listMessages = new ArrayList<>();
+				conn=ConnectDBLibrary.getConnection();
+				String sql = "select msg_id, messages.user_id, notification.title, messages.noti_id , messages.status , notification.content, notification.createdDate "
+						+ "FROM messages "
+					+ "inner join requestDayOff on requestDayOff.request_id = messages.request_id  "
+						+ "INNER JOIN users on messages.user_id = users.user_id   "
+						+ "INNER JOIN notification ON notification.id = messages.noti_id  "
+						+ "where messages.user_id= ?  and requestDayOff.status = 0 order by messages.msg_id DESC;";
+				try {
+					System.out.println(sql);
+					pst = conn.prepareStatement(sql);
+					pst.setInt(1, user_id);
+					rs = pst.executeQuery();
+				while (rs.next()){
+						MyMessages myMessages = new MyMessages();
+						myMessages.setMsgId(rs.getInt("msg_id"));
+						myMessages.setNotiId(rs.getInt("noti_id"));
+						myMessages.setNotiContent(rs.getString("content"));
+						myMessages.setStatus(rs.getInt("status"));
+						myMessages.setTitle(rs.getString("title"));
+						myMessages.setCreatedDate(rs.getDate("createdDate"));
+						System.out.println(myMessages.getTitle());
+		
+						listMessages.add(myMessages);
+										
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+						
+				
+				}
+				return listMessages;
+				
+				
+				
+			
+		 	}
 
 }
