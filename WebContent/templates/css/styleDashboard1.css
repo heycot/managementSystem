@@ -176,4 +176,23 @@ ul.msg_list li a .message {
 	border-radius: 5px;
 }
 
-@media only screen and (max-width: 1381px){}
+@media only screen and (min-width: 1000px)and (max-width:1100px) {
+	body{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.425;
+	background:rgb(229, 229, 229);
+	}
+	
+	.nav-link{
+		font-size:15px !important;
+	}
+	
+	.navbar-sidenav{
+		min-width:0 !important;
+		max-width:200px !important;
+	}
+	.menu_user{
+		left:84%;
+	}
+}

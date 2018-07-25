@@ -28,12 +28,12 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px; ">
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px; margin-left:190px;">
   <div class="<%= classNameContainer%>">
   
-  <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;margin-left:-23px;"> 
+  <div class="alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;margin-left:-23px;"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong style="font-weight: 400;font-size: 27px;">&nbsp;<%= trainee.getUsername()%> </strong>
+			    <strong style="font-weight: 400;font-size: 21px;">&nbsp;<%= trainee.getUsername()%> </strong>
 			  </div>
 			  
 			  <div>
@@ -47,7 +47,7 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
-        <div class="card mb-3" style="height:650px;margin-top:20px;border-radius: 20px;box-shadow: 2px 2px #c8c5c5;">
+        <div class="card mb-3" style="height:635px;margin-top:20px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
              
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>" method="POST" enctype="multipart/form-data" >
@@ -170,8 +170,8 @@ if( user.getRoleId() == 3) {
               	</div>
               	</form>
               	<div style="text-align:center;margin-top: 30px;">
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
+             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
+             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
               </div> 
               	
               	
@@ -429,9 +429,6 @@ if( user.getRoleId() == 3) {
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
           </div>
         </div>
       </div>

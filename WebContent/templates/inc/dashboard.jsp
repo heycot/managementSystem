@@ -53,7 +53,7 @@
     if (user.getRoleId() == 3) {
     	%>
     	<!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="border-bottom: 1px solid #D9DEE4;background: rgb(237, 237, 237); height:74px;box-shadow:1px 1px rgb(229,229,229);">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="box-shadow: 2px 2px #c8c5c5;border-bottom: 1px solid #D9DEE4;background: rgb(237, 237, 237); height:74px;">
           <a class="navbar-brand" href="<%= request.getContextPath()%>/" style="margin-top:0px;margin-left:17px;">
           	<img src="<%=request.getContextPath()%>/templates/images/enclave_logo.png" class="imglogo"/>
           </a>
@@ -61,10 +61,10 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 74px; min-width:250px; max-width:250px; background:white; padding:20px 20px;">
+            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="height:900px; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px; min-width:250px; background:white; padding:20px 20px;">
           
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  17px;">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainee</span>
@@ -72,7 +72,7 @@
               </li>
 
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px; ">
+                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/trainer/index" style="font-size:  17px; ">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainer</span>
@@ -88,7 +88,7 @@
             </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/classes" style="font-size:  17px;">
                   <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Class</span>
@@ -96,35 +96,35 @@
             </li>
             
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course" style="font-size:  17px;">
                   <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/room" style="font-size:  17px;">
                   <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/Skills" style="font-size:  17px;">
                   <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
             </li>
              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size: 17px; font-family: Poppins;">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/request" style="font-size: 17px; font-family: Poppins;">
                   <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text" style="margin-left:4px;">
                     Request</span>
               </a>
 		</li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px; font-family: 'Poppins';">
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/statistic" style="font-size:  17px; font-family: 'Poppins';">
                   <i class="fa fa-calculator" style="margin-left:4px; font-size:14px;margin-right: 11px;" ></i>&nbsp;
                   <span class="nav-link-text" style="margin-left:4px; ">
                     Statistic</span>
@@ -195,13 +195,7 @@
 	    });
 	</script>
      
-        <ul class="navbar-nav sidenav-toggler" <%= styleTogglerBar%> >
-          <li class="nav-item" style="background:white; border:1px solid rgb(241, 241, 241);">
-            <a class="nav-link text-center" id="sidenavToggler">
-              <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-          </li>
-        </ul>
+
         <script type="text/javascript">
         $(document).ready(function() { 
 	        $( "#sidenavToggler" ).click(function() {
