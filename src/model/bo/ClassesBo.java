@@ -22,7 +22,7 @@ public class ClassesBo {
 	
 	public int updateStatusClass(int Class){
 		ClassesDao classDao = new ClassesDao();
-		return classDao.updateStatusClass(Class);
+		return classDao.changeStatus(Class, 2);
 	}
 
 	public ArrayList<Classes> getClassese() {
