@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import libralies.CurrentUser;
+import model.bean.ClassWaiting;
 import model.bean.Classes;
 import model.bean.ScheduleOfTrainee;
+import model.bean.User;
+import model.bo.ClassWatingBo;
 import model.bo.UserBo;
 
 /**
@@ -36,16 +40,23 @@ public class ScheduleOfTraineeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String user_id = (String) request.getParameter("user_id");
-		int id = Integer.parseInt(user_id);
-		ArrayList<ScheduleOfTrainee> listClass = userBo.getClassOfTrainee(id);
-		request.setAttribute("listClass", listClass);
-		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/scheduleoftrainee.jsp");
-		rd.forward(request, response);
-		
-		
-		
+	
+		if (CurrentUser.checkLogin(request, response)) {
+			User user = CurrentUser.getUserCurrent(request, response);
+			if (user.getRoleId() == 2) {
+				int id = user.getUserId();
+				ArrayList<ScheduleOfTrainee> listClass = userBo.getClassOfTrainee(id);
+				request.setAttribute("listClass", listClass);
+				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/scheduleoftrainee.jsp");
+				rd.forward(request, response);		
+				
+			}  else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
+			}
+		} else {
+			return;
+		}
 		
 	}
 

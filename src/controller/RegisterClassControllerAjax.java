@@ -67,6 +67,7 @@ public class RegisterClassControllerAjax extends HttpServlet {
 					UserBo userBo = new UserBo();
 					if(userBo.registedClass(user.getUserId(), classOpening_id)>0){
 						ClassWaiting classregisted = classWatingBo.getClassWaitingById(classOpening_id);
+						
 						out.println("<div class='alert alert-success'>");
 						out.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>Register Successfull! </h4>");
 						out.print("</div> <div class ='modal-body' >");
@@ -93,4 +94,3 @@ public class RegisterClassControllerAjax extends HttpServlet {
 	}
 
 }
-//SELECT * FROM mcts.classes where class_id != all (select class_id from waiting where user_id =54) ;

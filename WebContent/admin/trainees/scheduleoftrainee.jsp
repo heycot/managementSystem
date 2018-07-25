@@ -1,14 +1,18 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import ="model.bean.ScheduleOfTrainee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-
+<style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -18,7 +22,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -78,7 +81,6 @@ if( user.getRoleId() == 3) {
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -90,17 +92,7 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+         
         <div class="card-body">
           <div class="table-responsive">
             <form action=""  method="post">
@@ -116,6 +108,8 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center;" >Date Of Week </th>
                       <th style="text-align: center;" >Learned Hours</th>
                       <th style="text-align: center;" >Duration</th>
+                      <th style="text-align: center;" >Default</th>
+                      
                       <th style="text-align: center;" >Action</th>
                       
                     </tr>
@@ -137,7 +131,16 @@ if( user.getRoleId() == 3) {
                   <td ><%= sched.getDateofweek()%></td> 
                   <td style="text-align: center;vertical-align: middle; "  ><%= sched.getCountLession() %>
                   <td style="text-align: center; vertical-align: middle;"  ><%= sched.getDuration() %>
-                  
+                  <%
+                  if (sched.getStatus()==1){
+                	  %> 
+                	<td style="text-align: center; vertical-align: middle;"  >Yes</td>
+                 <%
+                  } else {
+                 %>
+                	  <td style="text-align: center; vertical-align: middle;"  >No</td>
+                 <% }
+                  %>
             
                   <td style="text-align:center; vertical-align: middle;"> <a href="/managementSystem/trainee/list?class_id=<%= sched.getClassid() %>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;">  </a></td>
                   </tr>
@@ -157,5 +160,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

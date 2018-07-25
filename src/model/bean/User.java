@@ -1,7 +1,6 @@
 package model.bean;
 
 import java.sql.Date;
-import java.util.List;
 
 public class User {
 	private int userId;
@@ -19,6 +18,7 @@ public class User {
 	private String avatar;
 	private int status;
 	private Ability ability;
+
 	
 	
 	public int getStatus() {
@@ -27,6 +27,7 @@ public class User {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
 	
 	public Ability getAbility() {
 		return ability;

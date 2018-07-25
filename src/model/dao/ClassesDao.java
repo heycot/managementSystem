@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import libralies.ConnectDBLibrary;
 import model.bean.Classes;
+import model.bean.TimeClass;
 
 public class ClassesDao {
 
@@ -59,13 +60,185 @@ public class ClassesDao {
 		}
 		return classname;
 	}
-	public int updateStatusClass(int Class){
-		int kq = 0;
-		conn= ConnectDBLibrary.getConnection();
-		String sql = "update classes set status = 2 where class_id=?";
+
+
+	public ArrayList<Classes> getClassese() {
+		ArrayList<Classes> classes = new ArrayList<>();
+		
+		conn  = ConnectDBLibrary.getConnection();
+		String sql = "select class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
+				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom from classes " +
+				"inner join courses on classes.course_id = courses.course_id  " + 
+				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id";
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setInt(1, Class);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Classes classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
+									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), 0);
+				classes.add(classE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return classes;
+	}
+
+	public ArrayList<Classes> getClasseseWaiting() {
+		ArrayList<Classes> classes = new ArrayList<>();
+		
+		conn  = ConnectDBLibrary.getConnection();
+		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
+				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, count(waiting.user_id) as students from classes " +
+				"inner join courses on classes.course_id = courses.course_id  left join waiting on classes.class_id = waiting.class_id " + 
+				"left join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 0 group by classes.class_id";
+
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Classes classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
+									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("students"));
+				
+				classes.add(classE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return classes;
+	}
+
+	public ArrayList<Classes> getClasseseOpenning() {
+		ArrayList<Classes> classes = new ArrayList<>();
+		
+		conn  = ConnectDBLibrary.getConnection();
+		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
+				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, count(learning.user_id) as students from classes " +
+				"inner join courses on classes.course_id = courses.course_id  left join learning on classes.class_id = learning.class_id " + 
+				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 1 group by classes.class_id";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Classes classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
+									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("students"));
+				classes.add(classE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return classes;
+	}
+
+	public ArrayList<Classes> getClasseseFinished() {
+		ArrayList<Classes> classes = new ArrayList<>();
+		
+		conn  = ConnectDBLibrary.getConnection();
+		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
+				" , courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, " + 
+				" (select count(user_id) from results inner join classes on results.class_id = classes.class_id where results.status = 0)  as students from classes " + 
+				" inner join courses on classes.course_id = courses.course_id  left join results on classes.class_id = results.class_id  " + 
+				" inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 2 group by classes.class_id ";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Classes classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
+									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("students"));
+				classes.add(classE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return classes;
+	}
+
+	public int changeStatus(int classId, int status) {
+		int kq = 0;
+		String sql = "update classes set status = ? where class_id = ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, status);
+			pst.setInt(2, classId);
+			kq = pst.executeUpdate();
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return kq;
+	}
+
+	public ArrayList<Integer> getTraineeWaitingByClass(int classId) {
+		ArrayList<Integer> traineeIds = new ArrayList<>();
+		String sql = "select * from waiting where class_id = ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, classId);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				int traineeId = rs.getInt("user_id");
+				traineeIds.add(traineeId);		
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return traineeIds;
+	}
+
+	public int delTraieeWaitting(int classId) {
+		int kq = 0;
+		String sql = "delete from waiting where class_id = ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, classId);
+			kq = pst.executeUpdate();
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return kq;
+	}
+
+	public int addTraineeLearning(Integer integer, int classId) {
+		int kq = 0;
+		String sql = "insert into learning(class_id, user_id) values(?, ?)";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, classId);
+			pst.setInt(2, integer);
 			kq = pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -77,5 +250,99 @@ public class ClassesDao {
 		return kq;
 	}
 	
+	public ArrayList<TimeClass> getTimeClassAlready(){
+		ArrayList<TimeClass> times = new ArrayList<>();
+		
+		String sql = "select class_id, time_of_date, date_of_week from classes where   status = 1 or status = 0";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				TimeClass time =  new TimeClass(rs.getInt("class_id"), rs.getString("time_of_date"), rs.getString("date_of_week"), 0);
+				times.add(time);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return times;
+	}
+	
+	
+	public ArrayList<TimeClass> getTimeClass(){
+		ArrayList<TimeClass> times = new ArrayList<>();
+		
+		String sql = "select * from timetable";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				TimeClass time =  new TimeClass(rs.getInt("time_id"), rs.getString("time"), 0, rs.getInt("duration"));
+				times.add(time);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return times;
+	}
+	
+	public boolean checkTimeAlready(String time, String day, int roomId) {
+		boolean check = false;
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql  = "select * from classes where time_of_date like '%" + time + "%' and date_of_week like '%" + day + "%' and status = 1 and room_id = ?";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, roomId);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				check = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+				
+		return check;
+		
+	}
+
+	public ArrayList<TimeClass> getTimeClassByDuration(int duration) {
+		ArrayList<TimeClass> times = new ArrayList<>();
+		
+		String sql = "select * from timetable where duration  = ?";
+		conn = ConnectDBLibrary.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, duration);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				TimeClass time =  new TimeClass(rs.getInt("time_id"), rs.getString("time"), 0, rs.getInt("duration"));
+				times.add(time);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return times;
+	}
+
+
 
 }

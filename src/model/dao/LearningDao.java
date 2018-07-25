@@ -105,12 +105,18 @@ public  ArrayList<User> countTraineeConflict(int classId , int class_other){
 	public ArrayList<TimeLearning> getTimeFreeOfClassInDay(Classes classes, String date){
 		
 		ArrayList<TimeLearning> listTimeLearning = new ArrayList<>();
+		conn = ConnectDBLibrary.getConnection();
 		
 		try {
-			String sql = "select time from timetable where time != all (select DISTINCT time_of_date from classes inner join learning on classes.class_id = learning.class_id where date_of_week like '%?%' and  learning.user_id = any (select user_id from learning where class_id =?))";
+			String sql = "select time from timetable where time != all (select DISTINCT time_of_date from classes" 
++ " inner join learning on classes.class_id = learning.class_id where date_of_week like ? and  learning.user_id = all  (select user_id from learning where class_id = ?))  and time != all  (select DISTINCT time_of_date from classes  where date_of_week like ? and  trainer_id = (select trainer_id from classes where class_id = ?)) and duration = ?";
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, date);
+			String chen = "%" +date+"%";
+			pst.setString(1, chen);
 			pst.setInt(2, classes.getClassId());
+			pst.setString(3, chen);
+			pst.setInt(4, classes.getClassId());
+			pst.setInt(5, 2);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				TimeLearning timeLearning = new TimeLearning();
@@ -119,7 +125,7 @@ public  ArrayList<User> countTraineeConflict(int classId , int class_other){
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println(e.getMessage());
 		}
 		finally {
 			ConnectDBLibrary.close(rs, pst, conn);
@@ -138,15 +144,19 @@ public  ArrayList<User> countTraineeConflict(int classId , int class_other){
 	
 	public ArrayList<Rooms> getRoomFreeInTime(String time , String date){
 		ArrayList<Rooms> listRoomFree = new ArrayList<>();
+		conn = ConnectDBLibrary.getConnection();
 		try {
-			String sql = "select room_id from rooms where room_id != all (Select room_id from classes where date_of_week like '%?%' and time_of_date = ?)";
+			String sql = "select room_id, name from rooms where room_id != all (Select room_id from classes where date_of_week like ? and time_of_date = ?) and rooms.status = ?";
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, date);
+			String chen = "%" +date+"%";
+			pst.setString(1, chen);
 			pst.setString(2, time);
+			pst.setInt(3, 1);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Rooms rooms = new Rooms();
 				rooms.setRoomId(rs.getInt("room_id"));
+				rooms.setName(rs.getString("name"));
 				listRoomFree.add(rooms);
 			}
 

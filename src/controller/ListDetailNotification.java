@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import libralies.CurrentUser;
 import model.bean.MyMessages;
+import model.bean.User;
+import model.bo.NotificationBo;
 import model.bo.UserBo;
+import model.dao.NotificationDao;
 
 /**
  * Servlet implementation class ListDetailNotification
@@ -20,33 +24,36 @@ import model.bo.UserBo;
 public class ListDetailNotification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserBo userBo;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private NotificationBo notificationBo; 
     public ListDetailNotification() {
         super();
         userBo =new UserBo();
-        // TODO Auto-generated constructor stub
+        notificationBo = new NotificationBo();
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<MyMessages> list = userBo.getMessagesOfTrainee(4);
+		if (CurrentUser.checkLogin(request, response) ) {
+			if (CurrentUser.getUserCurrent(request, response)!=null) {
+				User user = CurrentUser.getUserCurrent(request, response);
+				
+				int user_id = user.getUserId();
+				ArrayList<MyMessages> list = userBo.getMessagesOfTrainee(user.getUserId());	
+				int countchangeStatus = notificationBo.changeStatusAllMessagesOfUser(user_id);
+				request.setAttribute("list", list);
+				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/viewAllNoti.jsp");
+				rd.forward(request, response);
+			} else {
+				response.sendRedirect(request.getContextPath() + "/badrequest");
+				return;
+			}
+		} else {
+			return;
+		}
 		
-		request.setAttribute("list", list);
-		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainees/viewAllNoti.jsp");
-		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

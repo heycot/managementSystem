@@ -6,11 +6,17 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-<script src="jquery.twbsPagination.min.js"></script>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-        <!-- JS tạo nút bấm di chuyển trang start -->
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<style>
+            ///** CSS căn id pagination ra giữa màn hình **///
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+</style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -146,17 +152,7 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+         
         <div class="card-body">
           <div class="table-responsive">
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
@@ -167,6 +163,19 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
                 	</div>
+                	<div style="float: right; margin-right: 15px;">
+                	<input id="myInput" type="text" placeholder="Search..">
+                	</div>
+					<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
                 	<div style="clear: both"></div>
 	        	</div>
                 <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
@@ -181,7 +190,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; font-size: medium;">Action</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody  id="myTBody">
                   <%
                   	for(Courses course : courses){
                   %>	

@@ -11,39 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.Accessment;
-import model.bean.Classes;
 import model.bean.Results;
-import model.bean.User;
 import model.bo.ClassesBo;
 import model.bo.LearningBo;
 import model.bo.ResultBo;
 import model.bo.UserBo;
 
-/**
- * Servlet implementation class ListTraineeOfClassController
- */
 @WebServlet("/trainer/list")
 public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	
-	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListTraineeAndAssessmentOfClassController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBo  userBo = new UserBo();
-		Results result =  new Results();
-		ResultBo resultBo = new ResultBo();
 		
 		int id = Integer.parseInt((String) request.getParameter("class_id"));
 		String name = (String) request.getParameter("name");
@@ -77,11 +55,7 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		ResultBo resultBo = new ResultBo();
 		ClassesBo classBo = new ClassesBo();
@@ -109,8 +83,6 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 					resultInsert++;
 				}	
 			}
-			
-			
 		}
 		if(resultInsert == trainees.size()){
 			check=1;
@@ -124,10 +96,6 @@ public class ListTraineeAndAssessmentOfClassController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/trainer/list?class_id=" + classId + "&name=" + name + "&check=" + check);
 			return;
 		}
-		
-		
-
-		
 	}
 
 }

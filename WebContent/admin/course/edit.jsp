@@ -76,14 +76,16 @@ if( user.getRoleId() == 3) {
 	              	</div>
 	              	
 	              	<div class="form-group">
-		              	<label class="required" >Name</label>&nbsp;<span id="spnNameStatus"></span>
+		              	<label class="required" >Name</label>&nbsp;
 		              	<input class="form-control" id="txtName" pattern="^[A-Za-z_-][A-Za-z0-9_-]*$" type="text" name="name" value="<%= course.getName()%>" placeholder="Coursesname" required/>
+	              		<span id="spnNameStatus"></span>
 	              		<input type="text" name="id" value="<%= course.getCourseId()%>" placeholder="Coursesname" style="display: none"/>
 	              	</div>
 	              	
 	              	<div class="form-group">
-		              	<label class="required" >Duration (hours)</label>&nbsp;<span id="spnDurationStatus"></span>
+		              	<label class="required" >Duration (hours)</label>&nbsp;
 		              	<input class="form-control" type="number" min="1" max="1000" id="txtDuration" name="duration" value="<%= course.getDuration()%>" placeholder="duration" required/>
+	              		<span id="spnDurationStatus"></span>
 	              	</div>
 	              	
 	              	<div class="form-group">

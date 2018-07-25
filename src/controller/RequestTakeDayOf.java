@@ -45,10 +45,14 @@ public class RequestTakeDayOf extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		int classId = Integer.parseInt(request.getParameter("class_id"));
-		String dayinstead = request.getParameter("dayinstead");
+//		int classId = Integer.parseInt(request.getParameter("class_id"));
+		String anotherday = request.getParameter("dayinstead");
+		String date[] = anotherday.split("-");
+		String dayinstead[] = date[0].split(",");
+		String id = date[1];
+		int classId = Integer.parseInt((String)(id));
 		String Date="";
-		switch(dayinstead){
+		switch(dayinstead[0]){
 		 
 		 case "Mon":
 		 {
@@ -103,12 +107,13 @@ public class RequestTakeDayOf extends HttpServlet {
 //		}
 		ArrayList<TimeLearning> listTimeFree = learningBo.getTimeFreeOfClassInDay(classes, Date);
 		if (listTimeFree.size()>0) {
-			
-			out.println(listTimeFree.size());
-			
+			for(TimeLearning learning: listTimeFree){
+				out.println("<option value='"+learning.getTimeString()+"'>"+learning.getTimeString()+"</option>");
+			}
+						
 		}
 		else {
-			out.println("No have Free Time");
+			out.println("No select");
 		}
 		
 		

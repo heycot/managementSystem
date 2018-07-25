@@ -46,4 +46,4 @@ public class ShowDetailNotiAjax extends HttpServlet {
 		
 	}
 
-}
+}	

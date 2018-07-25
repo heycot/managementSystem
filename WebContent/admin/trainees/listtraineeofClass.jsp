@@ -14,7 +14,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -105,5 +104,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

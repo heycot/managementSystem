@@ -31,6 +31,11 @@ public class SkillBo {
 		}
 		return false;
 	}
+	
+	public List<Skills> getSkillAll(){
+		return skillDao.getSkillAll();
+	}
+
 	public Skills getOneSkill(int skillId){
 		skillDao = new SkillDao();
 		return skillDao.getOneSkill(skillId);

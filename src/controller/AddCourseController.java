@@ -66,7 +66,7 @@ public class AddCourseController extends HttpServlet {
 				
 			} else if (courseBo.checkCourseAlreadyExists(request.getParameter("name")) == true) {
 
-				message = "This course is already exists in system";
+				message = "This course has already existed in the system";
 				responseWhenWrong(course, request, response, message);
 				
 			} else {

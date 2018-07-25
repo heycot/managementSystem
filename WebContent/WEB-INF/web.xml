@@ -154,4 +154,12 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>GetFreeTimeInDateController</servlet-name>
+    <servlet-class>controller.GetFreeTimeInDateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetFreeTimeInDateController</servlet-name>
+    <url-pattern>/freetime</url-pattern>
+  </servlet-mapping>
 </web-app>

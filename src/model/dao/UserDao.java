@@ -8,12 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.ConnectionPoolDataSource;
-
-import com.mysql.fabric.xmlrpc.base.Array;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.sun.org.apache.regexp.internal.recompile;
-
 import libralies.ConnectDBLibrary;
 import model.bean.Ability;
 import model.bean.Accessment;
@@ -22,7 +16,6 @@ import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
-import model.bean.Skills;
 import model.bean.User;
 
 public class UserDao {
@@ -33,7 +26,6 @@ public class UserDao {
 	public List<User> getUsersByRoleId(int roleId){
 		conn = ConnectDBLibrary.getConnection();
 		List<User> users = new ArrayList<>();
-		List<Ability> abilities = new ArrayList<>();
 		try {
 			String sql = "select u.* from users u where u.role_id = ? order by u.user_id DESC";
 			pst = conn.prepareStatement(sql);
@@ -72,7 +64,6 @@ public class UserDao {
 	public User getUserByID(int userId) {
 		conn = ConnectDBLibrary.getConnection();
 		User user = new User();
-		List<Ability> abilities = new ArrayList<>();
 		try {
 			String sql = "select u.* from users u where u.user_id=?";
 			pst = conn.prepareStatement(sql);
@@ -110,7 +101,6 @@ public class UserDao {
 	
 	public User getUserByEmail(String email) {
 		conn = ConnectDBLibrary.getConnection();
-		List<Ability> abilities = new ArrayList<>();
 		User user= new User();
 		try {
 			String sql = "select u.* from users u where u.email=?";
@@ -1298,6 +1288,55 @@ public class UserDao {
 		
 	}
 	
+	public int getNumberOfTraineesByYear(String year){
+		int count = 0;
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "SELECT count(*) FROM mcts.users where substring_index(created_at,'-',1) = ?;";
+			pst= conn.prepareStatement(sql);
+			pst.setString(1, year);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("count(*)");
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return count;
+	}
 	
+	
+
+	public ArrayList<User> getTrainers() {
+		ArrayList<User> trainers = new ArrayList<>();
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql = "SELECT users.*, ability.ability_id, ability.skill_id as id_skill, ability.experience as ex, ability.course_id as c_id " +
+						"FROM users left join ability on users.user_id = ability.user_id where users.role_id = 1;";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while ( rs.next()) {
+				User trainer = new User(rs.getInt("user_id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"), rs.getDate("date_of_birth"), 
+						rs.getString("email"), rs.getDate("created_at"), rs.getInt("role_id"), rs.getInt("gender"), rs.getString("address"), rs.getString("phone"),
+						rs.getString("notification_id"), rs.getString("image"), rs.getInt("status"));
+				Ability ability = new Ability(rs.getInt("ability_id"), rs.getInt("user_id"), rs.getInt("id_skill") , rs.getInt("ex"), rs.getInt("c_id"));
+				trainer.setAbility(ability);
+						
+				trainers.add(trainer);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return trainers;
+	}
 
 }

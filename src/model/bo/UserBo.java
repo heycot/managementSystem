@@ -2,15 +2,11 @@ package model.bo;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-
-import com.sun.org.apache.regexp.internal.recompile;
 
 import libralies.fileLibrary;
 import model.bean.Ability;
@@ -274,6 +270,11 @@ public class UserBo {
 	public int registedClass(int user_id, int class_id){
 		userDao = new UserDao();
 		return userDao.registedClass(user_id, class_id);
+	}
+
+	public ArrayList<User> getTrainers() {
+		userDao = new UserDao();
+		return userDao.getTrainers();
 	}
 	
 	public ArrayList<ClassWaiting> getClassCanRegisterOfTrainee(int trainee_id){

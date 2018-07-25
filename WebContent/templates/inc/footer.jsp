@@ -25,18 +25,14 @@
       </div>
     </div>
     
-    <!-- Bootstrap core JavaScript -->
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="<%= request.getContextPath()%>/templates/vendor/popper/popper.min.js"></script>
     <script src="<%= request.getContextPath()%>/templates/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
     <script src="<%= request.getContextPath()%>/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="<%= request.getContextPath()%>/templates/vendor/chart.js/Chart.min.js"></script>
     <script src="<%= request.getContextPath()%>/templates/vendor/datatables/jquery.dataTables.js"></script>
     <script src="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.js"></script>
 	<script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-    <!-- Custom scripts for this template -->
     <script src="<%= request.getContextPath()%>/templates/admin/js/sb-admin.min.js"></script>
 	
   </body>	

@@ -14,8 +14,7 @@
             }
         </style>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -322,7 +321,7 @@ if( user.getRoleId() == 3) {
         </script>
         <script type="text/javascript">
             $(function () {
-                var pageSize = 10; // HiÃ¡Â»Æ’n thÃ¡Â»â€¹ 6 sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m trÃƒÂªn 1 trang
+                var pageSize = 10; 
                 showPage = function (page) {
                     $(".contentPage").hide();
                     $(".contentPage").each(function (n) {
@@ -331,8 +330,8 @@ if( user.getRoleId() == 3) {
                     });
                 }
                 showPage(1);
-                var totalRows = <%= tong%>; // TÃ¡Â»â€¢ng sÃ¡Â»â€˜ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ 
-                var btnPage = 5; // SÃ¡Â»â€˜ nÃƒÂºt bÃ¡ÂºÂ¥m hiÃ¡Â»Æ’n thÃ¡Â»â€¹ di chuyÃ¡Â»Æ’n trang
+                var totalRows = <%= tong%>;
+                var btnPage = 5; 
                 var iTotalPages = Math.ceil(totalRows / pageSize);
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
@@ -351,4 +350,5 @@ if( user.getRoleId() == 3) {
       </div>
       </div>
       </div>
+
 <%@include file="/templates/inc/footer.jsp" %> 

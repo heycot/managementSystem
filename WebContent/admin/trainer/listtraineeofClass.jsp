@@ -5,11 +5,17 @@
 <%@page import ="model.bean.Classes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard2.jsp" %> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="jquery.twbsPagination.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+<%@include file="/templates/inc/dashboard.jsp" %> 
+   <style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; /* Safari 8 */
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; /* Safari 8 */
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+        </style>
   <script type="text/javascript">
   function abc(a) {
 	  var val = $(a).val();
@@ -21,11 +27,6 @@
 	        $(a).prop("disabled", true);
 	    }
 	}
- /*  $('td > input[type="radio"]').on('click', function() {
-	  
-	    var val = $(this).val(),
-	    selectId = $(this).closest('tr').find('select').first();
-  } */
   </script>
     	<%
     		String name= (String)request.getAttribute("name");
@@ -40,7 +41,6 @@
             	  listUser = (ArrayList<Accessment>) request.getAttribute("listResult");
              } else {
             	 System.out.print("users");
-
             	  listUser = (ArrayList<Accessment>) request.getAttribute("listUser");
              }
     	int tong = listUser.size();
@@ -55,7 +55,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
@@ -107,11 +106,9 @@ if( user.getRoleId() == 3) {
                     });
                 }
                 showPage(1);
-                ///** Cáº§n truyá»n giÃ¡ trá»‹ vÃ o Ä‘Ã¢y **///
                 var totalRows = <%=tong%>; // Tá»•ng sá»‘ sáº£n pháº©m hiá»ƒn thá»‹
                 var btnPage = 5; // Sá»‘ nÃºt báº¥m hiá»ƒn thá»‹ di chuyá»ƒn trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -123,33 +120,29 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS cÄƒn id pagination ra giá»¯a mÃ n hÃ¬nh **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
-        <div class="card-body">
+
         <% 
                   if(result==1){
                 	  if(check == 1){
                 		  %>
-                		  <h5 style="color: red">Finish trainee evaluation!</h5>
+
+                		  <div class="alert alert-success">
+                		  <Strong>Finish trainee evaluation!</Strong>
+                		  </div>
                 		  <% 
-                	
                   } 
                   }else{
                 	  %>
-                	  <h5 style="color: red">The class hasn't finished yet so you cannot evaluate!</h5>
+                	  <div class="alert alert-danger">
+
+                	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
+                	  </div>
                  <% 
                  
                   }
                   %>
+        <div class="card-body">
+        
           <div class="table-responsive">
             <form action="/managementSystem/trainer/list"  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
@@ -158,20 +151,17 @@ if( user.getRoleId() == 3) {
                   <thead>
                     <tr>
                        <th style="text-align: center;">No.</th>
-                       <th width="20%" style="text-align: center;">Username </th>
-                      <th  width="20%" style="text-align: center;">Full name  </th>
+                       <th width="20%" style="text-align: center;">User Name </th>
+                      <th  width="20%" style="text-align: center;">Full Name  </th>
                       <th width="20%" style="text-align: center;">Email</th>
                       <th width="20%" style="text-align: center;">Phone  </th>
                       <th width="20%" style="text-align: center;">Assessment  </th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>
                   <%
                   	int i=0;
                   System.out.print(listUser.size());
-
                   	for (Accessment trainer : listUser){
                   		
                   		i+=1;
@@ -264,5 +254,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 
