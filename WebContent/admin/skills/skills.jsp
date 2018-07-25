@@ -96,7 +96,7 @@ if(request.getParameter("msg") != null){
 	        		<form action="<%=request.getContextPath()%>/DeleteSkills" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these skills?')" id="deleteall" type="submit" value="Delete skills">
-                	</div></form>
+                	</div>
                 	<div style="clear: both"></div>
 	        	</div>
 	
@@ -115,7 +115,18 @@ if(request.getParameter("msg") != null){
                 	  k++;
                   %>
 				   <tr class="contentPage" style="">
-				   <td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="skill<%=list.getSkillId()%>" value="<%= list.getSkillId()%>" class="checkitem" id="chkitem"> </td>
+				   <%
+				   if (list.getStatus() == 1)
+				   {
+				   %>
+				   <td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="skill<%=list.getSkillId()%>" value="<%=list.getSkillId()%>" disabled> </td>
+				   <%
+				   } else { %>
+					<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="skill<%=list.getSkillId()%>" value="<%=list.getSkillId()%>" class="checkitem" id="chkitem"> </td>
+					   
+				   <% }
+				   %>
+				   
 				   <%-- <td style="text-align: center; vertical-align: middle;width=20%" ><%=k %></td> --%>
               	  <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
               	  <%if(list.getStatus()==0){
@@ -134,6 +145,7 @@ if(request.getParameter("msg") != null){
                    data-target="#editModal<%=list.getSkillId()%>"><i class="fa fa-edit" style="font-size:16px; !important; "></i></button>
                     </td>
                    </tr>
+                   </form>
 <!-- Delete skill -->
 <div class="deleteModal<%=list.getSkillId() %>" role="dialog">
 <div class="modal-dialog">

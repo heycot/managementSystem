@@ -93,15 +93,17 @@ if( user.getRoleId() == 3) {
 	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
 	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
 	        		</div>
+	            	<form action="<%=request.getContextPath()%>/DeleteRoomController" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
                 	</div>
+                	
                 	<div style="clear: both"></div>
-	        	</div>
+	        	
 	        	<table id="myTable" class="table-bordered" style="width: 100%;">
                   <thead>
                     <tr style="height:50px;">
-                      <th style="text-align: center;">No.</th>
+                      <th style="text-align: center;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center;">Name</th>
                       <th style="text-align: center;">Capacity</th>
                       <th style="text-align: center;">Status</th>
@@ -114,11 +116,21 @@ if( user.getRoleId() == 3) {
                   	<%
                   	for (Rooms rooms: roomlist){
                   		k++;
-                  %>
+                  		%>
 				   <tr class="contentPage" style="">
-				   <td style="text-align: center; vertical-align: middle;" ><%=k %></td>
-                  <td style="text-align: center; vertical-align: middle;"><%= rooms.getName() %></td>
-                  <td style="text-align: center; vertical-align: middle;" ><%= rooms.getCapacity()%></td>
+				   <%
+				   if  (rooms.getStatus()==0){
+				   %>
+				   <td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="room<%=rooms.getRoomId() %>" value="<%=rooms.getRoomId()%>" disabled> </td>
+				   <%
+				   }
+				   else {
+				   %>
+				   <td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="room<%=rooms.getRoomId() %>" value="<%=rooms.getRoomId()%>" class="checkitem" id="chkitem"> </td>
+				   <%} %>
+				   <%-- <td style="text-align: center; vertical-align: middle;" ><%=k %></td> --%>
+                   <td style="text-align: center; vertical-align: middle;"><%= rooms.getName() %></td>
+                   <td style="text-align: center; vertical-align: middle;" ><%= rooms.getCapacity()%></td>
                   <%if(rooms.getStatus()==0){
                 	  %>
 		                    <td  id="" style='text-align: center;"'><a><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
@@ -136,7 +148,8 @@ if( user.getRoleId() == 3) {
                    </td>
                    
                   </tr>
-                  
+                  </form>
+                  </div>
 <!-- Edit room -->
                   <div class="modal fade" id="editModal<%=rooms.getRoomId()%>" role="dialog">
 						<div class="modal-dialog">

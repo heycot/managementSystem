@@ -112,4 +112,24 @@ RoomDao roomDao;
 		return listRooms;
 		
 	}
+
+	public int deleteRoom(int roomId) {
+		int kq = 0;
+		
+		String sql = "delete from rooms where room_id = ?";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try{
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, roomId);
+			kq = pst.executeUpdate();
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return kq;
+	}
+		
 }
