@@ -2,8 +2,6 @@ package model.bo;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,8 @@ import javax.servlet.http.Part;
 
 import libralies.fileLibrary;
 import model.bean.Ability;
+import model.bean.Accessment;
+import model.bean.ClassWaiting;
 import model.bean.MyMessages;
 import model.bean.Results;
 import model.bean.Schedule;
@@ -22,41 +22,45 @@ import model.dao.UserDao;
 
 public class UserBo {
 	UserDao userDao;
-
-	public static void main(String[] args) {
-		List<User> users= getUsersByRoleId(3);
-		for(User user: users){
-			System.out.println(user.toString());
-		}
-		
-	}
 	
-	public void addTrainer(User trainer, Ability ability){
-		UserDao userDao= new UserDao();
+	public int addTrainer(User trainer, Ability ability){
+		userDao= new UserDao();
 		AbilityDao abilityDao= new AbilityDao();
 		
-		userDao.addTrainer(trainer);
-		ability.setUserId(userDao.getLastTrainerId());
-		abilityDao.addTrainerAbility(ability);
+		int kq= userDao.addTrainer(trainer);
+		ability.setUserId(userDao.getLastUserId());
+		abilityDao.addTrainerAbility(ability);		
+		return kq;
 	}
 	
-	public void editTrainer(User trainer, Ability ability){
-		UserDao userDao= new UserDao();
-		AbilityDao abilityDao= new AbilityDao();
+	public int editTrainer(User trainer){
+		userDao= new UserDao();		
+		return userDao.editTrainer(trainer);
+	}
+	
+	public User getTrainerById(int trainerId){
+		userDao= new UserDao();
+		return userDao.getUserByID(trainerId);
 		
-		userDao.editTrainer(trainer);
-		abilityDao.editTrainerAbility(ability);
+	}
+	public User getUserByEmail(String email){
+		userDao= new UserDao();
+		return userDao.getUserByEmail(email);
 	}
 	
-	public static User getTrainerById(int trainerId){
-		UserDao userDao= new UserDao();
-		User trainer= userDao.getUserByID(trainerId);
-		return trainer;
+	public int getLastUserId(){
+		userDao= new UserDao();
+		return userDao.getLastUserId();
 	}
 	
-	public static List<User> getUsersByRoleId(int roleId){
-		UserDao userDao= new UserDao();
-		List<User> users= userDao.getUsersByRoleId(roleId);
+	public List<User> getUsersByRoleId(int roleId){
+		userDao= new UserDao();
+		return userDao.getUsersByRoleId(roleId);
+	}
+	
+	public List<User> getUsers(){
+		userDao= new UserDao();
+		List<User> users= userDao.getUsers();
 		return users;
 	}
 	
@@ -120,6 +124,16 @@ public class UserBo {
 		}
 	}
 	
+	public boolean deleteAvatarOfuser(String fileName, HttpServletRequest request) {
+		if (!fileName.isEmpty()) {
+			String filePath = request.getServletContext().getRealPath("/files") + File.separator + fileName;
+			File file = new File( filePath);
+			file.delete();
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean checkUsernameAlreadyExists(String username) {
 		userDao = new UserDao();
 		ArrayList<User> users = userDao.getUsers();
@@ -173,6 +187,19 @@ public class UserBo {
 		return userDao.editTrainee(trainee);
 				
 	}
+	
+
+	public int deleteTrainee(int traineeId) {
+		userDao = new UserDao();
+		return userDao.deleteTrainee(traineeId);
+	}
+
+	public int changeStatusTrainee(int traineeId, int status) {
+		userDao = new UserDao();
+		return userDao.changeStatus(traineeId, status);
+	}
+	
+	
 	public ArrayList<ScheduleOfTrainee> getClassOfTrainee(int user_id){
 		userDao = new UserDao();
 		return userDao.getClassesOfTrainee(user_id);
@@ -195,5 +222,70 @@ public class UserBo {
 		userDao= new UserDao();
 		return userDao.getMessagesOfTrainee(user_id);
 	}
+	public MyMessages getMessageDetail(int msg_id){
+		userDao = new UserDao();
+		return userDao.getMessageDetail(msg_id);
+	}
+	public boolean compareDuration(int class_id){
+		userDao= new UserDao();
+		return userDao.compareDuration(class_id);
+	}
+	public int changeStatusOfMessages(int msg_id){
+		userDao = new UserDao();
+		return userDao.changeStatusMessages(msg_id);
+		
+	}
+	public ArrayList<Schedule> getClassOpening() {
+		userDao = new UserDao();
+		return userDao.getClassOpening();
+	}
+
+	public ArrayList<User> getTrainees(int traineeRoleId) {
+		userDao = new UserDao();
+		return userDao.getTrainees(traineeRoleId);
+	}
+
+	public ArrayList<Accessment> getResult(int class_id){
+		userDao = new UserDao();
+		return userDao.getResult(class_id);
+	}
+	public ArrayList<Accessment> getTraineeClass(int class_id){
+		userDao = new UserDao();
+		return userDao.getTraineeClass(class_id);
+	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingOpen(int user_id){
+		userDao = new UserDao();
+		return userDao.getClassWaitingOpenning(user_id);
+	}
+	public boolean checkClassRegisted(int user_id, int class_id){
+		userDao = new UserDao();
+		return userDao.checkTraineeRegisted(user_id, class_id);
+	}
+	public int deleteRegisterClass(int user_id , int class_id){
+		userDao = new UserDao();
+		return userDao.deleteRegisterClass(user_id, class_id);
+	}
+	
+	public int registedClass(int user_id, int class_id){
+		userDao = new UserDao();
+		return userDao.registedClass(user_id, class_id);
+	}
+
+	public ArrayList<User> getTrainers() {
+		userDao = new UserDao();
+		return userDao.getTrainers();
+	}
+	
+	public ArrayList<ClassWaiting> getClassCanRegisterOfTrainee(int trainee_id){
+		userDao = new UserDao();
+		return userDao.getClassCanRegisterOfTrainee(trainee_id);
+	}
+	
+	public ArrayList<ClassWaiting> getClassWaitingStartOfTrainee(int trainee_id){
+		userDao = new UserDao();
+		return userDao.getClassWaitingStartOfTrainee(trainee_id);
+	}
 }
+
 

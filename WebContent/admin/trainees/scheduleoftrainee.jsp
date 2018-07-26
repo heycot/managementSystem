@@ -1,22 +1,31 @@
-
 <%@page import="java.util.ArrayList"%>
-<%@page import ="model.bean.ScheduleOfTrainee"%>;
+<%@page import ="model.bean.ScheduleOfTrainee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-        <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i>
-          Your Schedule
-        </div>
+        <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Your Schedule</strong>
+			  </div>
+		<div>
         <%
         ArrayList<ScheduleOfTrainee> listClass = (ArrayList<ScheduleOfTrainee>) request.getAttribute("listClass");
        	int i=0;
@@ -67,7 +76,6 @@
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -91,21 +99,23 @@
             }
         </style>
         <div class="card-body">
-         <ul id="pagination"></ul>
           <div class="table-responsive">
             <form action=""  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                 <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                       <th>No.</th>
-                      <th >Class  </th>
-                      <th >Room </th>
-                      <th >Trainer </th>
-                      <th>Time </th>
-                      <th >Day</th>
-                      <th >Count Lession </th>
-                      <th>Action</th>
+                       <th style="text-align: center;" >No.</th>
+                      <th style="text-align: center;" >Class  </th>
+                      <th style="text-align: center;" >Room </th>
+                      <th style="text-align: center;" >Trainer </th>
+                      <th style="text-align: center;">Time</th>
+                      <th style="text-align: center;" >Date Of Week </th>
+                      <th style="text-align: center;" >Learned Hours</th>
+                      <th style="text-align: center;" >Duration</th>
+                      <th style="text-align: center;" >Default</th>
+                      
+                      <th style="text-align: center;" >Action</th>
                       
                     </tr>
                   </thead>
@@ -117,24 +127,32 @@
                  %>
                   
                   <tr class="contentPage">
-                  <td><%= i %></td>
+                  <td style="text-align: center;"  ><%= i %></td>
                   <td><%= sched.getNameClass()%></td>
-                  <td><%= sched.getNameRoom()%></td>
-                  <td><%= sched.getNameTrainer()%></td>
-                  <td><%= sched.getTimeofday()%></td>
+                  <td style="text-align: center; vertical-align: middle;"  ><%= sched.getNameRoom()%></td>
+                  <td ><%= sched.getNameTrainer()%></td>
+                  <td style="text-align: center; vertical-align: middle;"  ><%= sched.getTimeofday()%></td>
                   
-                  <td><%= sched.getDateofweek()%></td> 
-                  <td><%= sched.getCountLession() %>
-                  
+                  <td ><%= sched.getDateofweek()%></td> 
+                  <td style="text-align: center;vertical-align: middle; "  ><%= sched.getCountLession() %>
+                  <td style="text-align: center; vertical-align: middle;"  ><%= sched.getDuration() %>
+                  <%
+                  if (sched.getStatus()==1){
+                	  %> 
+                	<td style="text-align: center; vertical-align: middle;"  >Yes</td>
+                 <%
+                  } else {
+                 %>
+                	  <td style="text-align: center; vertical-align: middle;"  >No</td>
+                 <% }
+                  %>
             
-                  <td> <a href="/managementSystem/trainee/list?class_id=<%= sched.getClassid() %>"> See list trainee of class </a>
+                  <td style="text-align:center; vertical-align: middle;"> <a href="/managementSystem/trainee/list?class_id=<%= sched.getClassid() %>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;">  </a></td>
                   </tr>
                   <%
                   	}
-                  		
                  %>
                   </tbody>
-                  
                 </table>
                 <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>

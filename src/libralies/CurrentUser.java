@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.User;
 
-public class checkLogin {
+public class CurrentUser {
 	
 	public static boolean checkLogin(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -26,4 +26,17 @@ public class checkLogin {
 		
 		return true;
 	}
+	
+	public static User getUserCurrent(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if(user != null ) {
+			return user;
+		}
+		else{
+			return null;
+		}
+	}
+	
+	
 }

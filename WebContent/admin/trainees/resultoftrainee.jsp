@@ -6,17 +6,27 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
         <!-- JS tạo nút bấm di chuyển trang start -->
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
     <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i>
-          Result of Trainee
-        </div>
+        <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Your Results</strong>
+			  </div>
+		<div>
            <%
                 
                   	ArrayList<Results> listResults = (ArrayList<Results>) request.getAttribute("listResults");
@@ -68,7 +78,6 @@
                 var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
                 var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);
-
                 var obj = $('#pagination').twbsPagination({
                     totalPages: iTotalPages,
                     visiblePages: btnPage,
@@ -85,12 +94,12 @@
           <div class="table-responsive">
             <form action=""  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table id="myTable" class="table table-bordered" width="50%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                       <th>No.</th>
-                      <th >Class Name  </th>
-                      <th >Result </th>
+                       <th style="text-align: center;" >No.</th>
+                      <th style="text-align: center;" >Class Name  </th>
+                      <th style="text-align: center;" >Result </th>
                    
                       
                     </tr>
@@ -105,15 +114,15 @@
                   			 res = "Pass";
                   		}
                   		else {
-                  			res = "Fail";
+                  			res = "Failed";
                   		}
                   %>
                   
                   <tr class="contentPage">
-                  <td><%= i %></td>
-                  <td><%= results.getClassName()%></td>
+                  <td style="text-align: center;" width="5%"><%= i %></td>
+                  <td style="text-align: center;"width="20%"><%= results.getClassName()%></td>
                   
-                  <td><%= res%></td>
+                  <td style="text-align: center;" width="20%"><%= res%></td>
                   
                   </tr>
                   <%

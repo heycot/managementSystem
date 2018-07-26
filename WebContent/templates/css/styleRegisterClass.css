@@ -21,8 +21,14 @@ th, .no, .time, .date, .duration, .trainer, .btnRegister{
 }
 
 .btn{
-	color: rgb(21, 87, 36);
-	background: rgb(212, 237, 218);
+	color: white;
+	background:#2e9ade;
+	font-size: 12px;
+	width:70px;
+}
+.btncancel{
+	color: white;
+	background:#ba2e2e;
 	font-size: 12px;
 	width:70px;
 }
@@ -34,4 +40,8 @@ th, .no, .time, .date, .duration, .trainer, .btnRegister{
 }
 .btnRegister{
 	max-width: 100px;
+}
+
+.btn:hover{
+	color:white;
 }

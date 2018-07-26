@@ -9,12 +9,25 @@
 	}
 </style>
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3">
-       		<div class="alert alert-success">
-				<strong>Account Information</strong>
-			</div>
+       		<div class="alert alert-success" style="font-size:  larger; margin-bottom: 0px;"> 
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Account Information</strong>
+			  </div>
+		<div>
 			  
 		  	<div class="divAvt">
                 <div class="co1" >

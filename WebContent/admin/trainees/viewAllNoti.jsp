@@ -1,182 +1,82 @@
+<%@page import="model.bean.MyMessages"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="libralies.FormatDateLibrary"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>
+<%@include file="/templates/inc/dashboard.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleAllNoti.css">
 <style>
 	#add-post .required:after {
 	content:"*";color:red;
 	}
 </style>
-
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3 divNoti">
-       		<div class="alert alert-success">
-				<strong>Notification</strong>
-			</div>
-			<div class="box-all-noti">
-				<ul class="list-noti">
-					<li class="noti1 noti">
-						<div class="r1 row">
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
-				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
-				  			</div>
-			  			</div>
-
-			  			<div class="r2">
-			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
-			  				</label>
-		  				</div>
-			  			
+       		
+		<div>
+			<div class="box-all-noti" style="margin-left:auto; margin-right:auto;">
+				<ul class="list-noti" style="width:50%; ">
+				
+					<li>
+						<div class="alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
+				             <i class="fa fa-fw fa-user" ></i>
+				             <strong>Notification</strong>
+						</div>	
 					</li>
+					<%
+					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
+					%>
 					
-					<li class="noti2 noti">
-						<div class="r1 row">
-							
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
-				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
-				  			</div>
-			  			</div>
-
-			  			<div class="r2">
-			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
-			  				</label>
-		  				</div>
-			  			
-					</li>
-					
-					<li class="noti3 noti">
-						<div class="r1 row">
-							
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
-				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
-				  			</div>
-			  			</div>
-
-			  			<div class="r2">
-			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
-			  				</label>
-		  				</div>
-			  			
-					</li>
-					
-					<li class="noti4 noti">
-						<div class="r1 row">
+					<%
+					for (MyMessages msg : list)  {
+						String ngay =  FormatDateLibrary.FormatDateUntilToString(msg.getCreatedDate());
+						if (msg.getStatus()==0){
+						%>
+						<li class="noti1 noti" style='background-color: rgb(212, 237, 218)' >
+						<% 
+						}
+						else {
+							%>
+						<li class="noti1 noti" >
 						
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
-				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
-				  			</div>
-			  			</div>
-
-			  			<div class="r2">
-			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
-			  				</label>
-		  				</div>
-			  			
-					</li>
-					
-					<li class="noti5 noti">
-						<div class="r1 row">
+					<%		
+						
 							
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
-				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
-				  			</div>
-			  			</div>
-
-			  			<div class="r2">
-			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
-			  				</label>
-		  				</div>
-			  			
-					</li>
-					
-					<li class="noti6 noti">
+						}
+					%>
+						
 						<div class="r1 row">
-							
-				  			<div class="divDate">
-				  				<label class="date">Mon, 15-June-2018</label>
+				  			<div class="divTitle">
+				  				<label class="title"><%= msg.getTitle() %></label>
 				  			</div>
-				  			<div class="divTime">
-				  				<label class="time">09:52</label>
+				  			<div class="divDate">
+				  				<label class="date"><%= ngay %></label>
 				  			</div>
 			  			</div>
 
 			  			<div class="r2">
 			  				<label class="content">
-			  					A flower is a special kind of plant part. 
-			  					Flowers are also called the bloom or blossom of a plant. 
-			  					The flower grows on a stalk – a thin node – which supports it. 
-			  					Flowers have petals. 
-			  					Inside the part of the flower that has petals are the parts 
-			  					which produce pollen and seeds.
-			  					Flowers are the reproductive structure of flowering plants, 
-			  					which are plants of the division Magnoliophyta, also called the Angiosperms.
-			  					In many plants, a flower is its most colourful part. 
+			  					<%= msg.getNotiContent() %>
 			  				</label>
 		  				</div>
-			  			
+		
 					</li>
+					<%
+					}
+					%>
+					
 				</ul>
 			
    		</div> </div>

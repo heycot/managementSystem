@@ -1,7 +1,6 @@
 package model.bean;
 
 import java.sql.Date;
-import java.util.List;
 
 public class User {
 	private int userId;
@@ -17,13 +16,24 @@ public class User {
 	private String phone;
 	private String notificationId;
 	private String avatar;
-	private List<Ability> abilities;
+	private int status;
+	private Ability ability;
+
 	
-	public List<Ability> getAbilities() {
-		return abilities;
+	
+	public int getStatus() {
+		return status;
 	}
-	public void setAbilities(List<Ability> abilities) {
-		this.abilities = abilities;
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	
+	public Ability getAbility() {
+		return ability;
+	}
+	public void setAbility(Ability ability) {
+		this.ability = ability;
 	}
 	public String getUsername() {
 		return username;
@@ -132,6 +142,28 @@ public class User {
 		this.notificationId = notificationId;
 		this.avatar = avatar;
 	}
+	
+	
+	public User(int userId, String username, String password, String fullname, Date dateOfBirth, String email,
+			Date createdDate, int roleId, int gender, String address, String phone, String notificationId,
+			String avatar, int status) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.fullname = fullname;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.createdDate = createdDate;
+		this.roleId = roleId;
+		this.gender = gender;
+		this.address = address;
+		this.phone = phone;
+		this.notificationId = notificationId;
+		this.avatar = avatar;
+		this.status = status;
+	}
+	
 	@Override
 	public String toString(){
 		return "UserId: " + userId+ "\n"+

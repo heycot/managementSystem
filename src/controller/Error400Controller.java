@@ -7,37 +7,33 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.bean.User;
 
-public class LoginConttroller extends HttpServlet {
+public class Error400Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public LoginConttroller() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Error400Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/auth/400.jsp");
 		rd.forward(request, response);
 	}
 
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username =  request.getParameter("username");
-		String pass =  request.getParameter("password");
-		
-		if(!"".equals(username) && !"".equals(pass) ) {
-			User user = new User();
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -11,8 +11,86 @@ public class Classes {
 	private String dateOfWeek;
 	private int countLession;
 	private int roomId;
+	private String name;
+	private int status;
+	private String nameTrainer;
+	private String nameCourse;
+	private int duration;
+	private String nameRoom;
+	private int students;
 	
 	
+	
+	public int getStudents() {
+		return students;
+	}
+
+
+	public void setStudents(int students) {
+		this.students = students;
+	}
+
+
+	public String getNameRoom() {
+		return nameRoom;
+	}
+
+
+	public void setNameRoom(String nameRoom) {
+		this.nameRoom = nameRoom;
+	}
+
+
+	public String getNameTrainer() {
+		return nameTrainer;
+	}
+
+
+	public void setNameTrainer(String nameTrainer) {
+		this.nameTrainer = nameTrainer;
+	}
+
+
+	public String getNameCourse() {
+		return nameCourse;
+	}
+
+
+	public void setNameCourse(String nameCourse) {
+		this.nameCourse = nameCourse;
+	}
+
+
+	public int getDuration() {
+		return duration;
+	}
+
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 	public int getClassId() {
 		return classId;
 	}
@@ -104,6 +182,45 @@ public class Classes {
 		this.dateOfWeek = dateOfWeek;
 		this.countLession = countLession;
 		this.roomId = roomId;
+	}
+
+	
+
+	public Classes(int classId, int courseId, int trainerId, Date createAt, String timeOfDate, String dateOfWeek,
+			int countLession, int roomId, int status, String name) {
+		super();
+		this.classId = classId;
+		this.courseId = courseId;
+		this.trainerId = trainerId;
+		this.createAt = createAt;
+		this.timeOfDate = timeOfDate;
+		this.dateOfWeek = dateOfWeek;
+		this.countLession = countLession;
+		this.roomId = roomId;
+		this.name = name;
+		this.status = status;
+	}
+
+	
+	public Classes(int classId, int courseId, int trainerId, Date createAt, String timeOfDate, String dateOfWeek,
+			int countLession, int roomId, String name, int status, String nameTrainer, String nameCourse,
+			int duration, String nameRoom, int students) {
+		super();
+		this.classId = classId;
+		this.courseId = courseId;
+		this.trainerId = trainerId;
+		this.createAt = createAt;
+		this.timeOfDate = timeOfDate;
+		this.dateOfWeek = dateOfWeek;
+		this.countLession = countLession;
+		this.roomId = roomId;
+		this.name = name;
+		this.status = status;
+		this.nameTrainer = nameTrainer;
+		this.nameCourse = nameCourse;
+		this.duration = duration;
+		this.nameRoom = nameRoom;
+		this.students = students;
 	}
 
 

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,19 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import libralies.CurrentUser;
+import model.bean.Rooms;
 import model.bean.Schedule;
+import model.bean.User;
+import model.bo.RoomBo;
 import model.bo.UserBo;
+
+
 @WebServlet("/trainer/schedule")
 public class CheckTrainerScheduleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserBo userBo;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CheckTrainerScheduleController() {
         super();
-        userBo = new UserBo();
         // TODO Auto-generated constructor stub
     }
 
@@ -31,12 +36,36 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String user_id = (String) request.getParameter("user_id");
-		int id = Integer.parseInt(user_id);
-		ArrayList<Schedule> schedule = userBo.getTrainerSchedule(id);
-		request.setAttribute("schedule", schedule);
-		RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
-		rd.forward(request, response);
+		if (CurrentUser.checkLogin(request, response)) {
+			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 1) {
+				UserBo userBo = new UserBo();
+				RoomBo roomBo = new RoomBo();
+				String user_id = (String) request.getParameter("user_id");
+				request.setAttribute("user_id", user_id);
+				int id = Integer.parseInt(user_id);
+				System.out.println(user_id);
+				
+				ArrayList<Schedule> schedule = userBo.getTrainerSchedule(id);
+				request.setAttribute("schedule", schedule);
+				User ur = userBo.getTrainerById(id);
+				request.setAttribute("ur", ur);
+				ArrayList<Rooms> rooms = roomBo.getRooms();
+				request.setAttribute("rooms", rooms);
+				/*if(request.getParameter("success")!=null){
+					String success =(String)request.getParameter("success");
+					request.setAttribute("success", success);
+				}else{
+					
+				}*/
+				
+				RequestDispatcher rd=request.getRequestDispatcher("/admin/trainer/ScheduleOfTrainer.jsp");
+				rd.forward(request, response);
+			} else {
+				
+			}
+		} else {
+			return;
+		}
 	}
 
 	/**
@@ -44,7 +73,6 @@ public class CheckTrainerScheduleController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
-
 }

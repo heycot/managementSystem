@@ -1,39 +1,53 @@
+<%@page import="libralies.FormatDateLibrary"%>
+<%@page import="model.bean.MyMessages"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard1.jsp" %>
+<%@include file="/templates/inc/dashboard.jsp" %>  
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleNoti.css">
 <style>
 	#add-post .required:after {
 	content:"*";color:red;
 	}
 </style>
+<%
+String classNameContent = "" ;
+String classNameContainer = "";
+String styleContent = "style='margin-top:  5px;'";
+if( user.getRoleId() == 3) {
+	classNameContent = "content-wrapper py-3";
+	classNameContainer = "container-fluid";
+	styleContent = "";
+}
 
-<div class="content-wrapper py-3">
-  <div class="container-fluid">
+%>
+<div class="<%= classNameContent%>" <%= styleContent%>>
+  <div class="<%= classNameContainer%>">
         <div class="card mb-3 divNoti">
-       		<div class="alert alert-success">
-				<strong>Notification</strong>
-			</div>
-			  
+       		<div class="alert alert-success" style="font-size:  larger; margin-bottom: 0px;"> 
+       		<%
+       		MyMessages messages = (MyMessages) request.getAttribute("messages");
+       		String ngay = FormatDateLibrary.FormatDateUntilToString(messages.getCreatedDate());
+       		%>
+             <i class="fa fa-fw fa-user" ></i>
+             <strong>Account Information</strong>
+			  </div>
+		<div>
 		  	<div class="box-noti">
-		  		<div class="labelNoti row">
-		  			<div class="divDate">
-		  				<label class="date">Mon, 15-June-2018</label>
-		  			</div>
-		  			<div class="divTime">
-		  				<label class="time">09:52</label>
+		  		<div class="labelNoti">
+		  			<div class="divTitle row">
+		  				<label class="title"><%= messages.getTitle() %></label>
 		  			</div>
 		  		</div>
+		  		
 		  		<div class="space"></div>
 		  		<div class="divContentNoti">
 		  			<label class="contentNoti">
-		  				A flower is a special kind of plant part. 
-			  			Flowers are also called the bloom or blossom of a plant. 
-			  			The flower grows on a stalk – a thin node – which supports it. 
-			  			Flowers have petals. Inside the part of the flower that has petals are the parts which produce pollen and seeds.
-			  			Flowers are the reproductive structure of flowering plants, which are plants of the division Magnoliophyta, also called the Angiosperms.
-					</label>
+		  				<%= messages.getNotiContent() %>
+		  			</label>
+		  			<label class="date"> <%= ngay %></label>
+		  				
 		  		</div>
 		  	</div>
    		</div> 
