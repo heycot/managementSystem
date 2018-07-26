@@ -3,8 +3,18 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard2.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
+<style>
+            #pagination {
+                display: flex;
+                display: -webkit-flex; 
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap; 
+                justify-content: center;
+                -webkit-justify-content: center;
+            }
+</style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -34,8 +44,15 @@ if( user.getRoleId() == 3) {
 			 	total = listRequests.size();
 					 
 			}		 
+			if (total ==0){
+				 %>
+				 <div class="alert alert-danger">
+	    	<strong> No Request </strong>
+		  		</div>
+				 <% 
+			  }
+			%>
 		
-		%>
         
         <script type="text/javascript">
             $(function () {
@@ -64,17 +81,7 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+         
         <div class="card-body">
           <div class="table-responsive">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
@@ -86,6 +93,9 @@ if( user.getRoleId() == 3) {
                 	<div style="clear: both"></div>
 	        	</div>
                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <%
+               	if(listRequests.size()>0){
+               %>
                   <thead>
                     <tr>           
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">No.</th>
@@ -95,10 +105,12 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Date Change</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Time Change</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Room Change</th>
-                      <th style="text-align: center; font-size: medium; vertical-align:middle;">Status</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Action</th>
                     </tr>
                   </thead>
+                  <%
+                  }
+                  %>
                   <tbody >
                    <%
                   	int number=0;
@@ -109,22 +121,19 @@ if( user.getRoleId() == 3) {
                   %>	
                   		<tr class="contentPage">
                   		<td   style=" vertical-align: middle; text-align: center"><%= number %></td>
-                      	 <td   style=" vertical-align: middle; text-align: center"><%= requestTakDayOff.getClass_name() %></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getTrainer_name() %></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getDate_off()%></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getDate_change() %></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getTime_change() %></td>
+                      	 <td   style=" vertical-align: middle; "><%= requestTakDayOff.getClass_name() %></td>
+	                    <td   style="vertical-align: middle;"><%= requestTakDayOff.getTrainer_name() %></td>
+	                    <td   style="vertical-align: middle;"><%= requestTakDayOff.getDate_off()%></td>
+	                    <td   style="vertical-align: middle;"><%= requestTakDayOff.getDate_change() %></td>
+	                    <td   style=" vertical-align: middle;"><%= requestTakDayOff.getTime_change() %></td>
 	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getRoom_name() %></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= requestTakDayOff.getStatus() %></td>
 	                    <%
                     	  if(requestTakDayOff.getStatus()==1){
 	                    	%>	
-		                    <td id="status<%= requestTakDayOff.getRequest_id()%>"    style='text-align: center; vertical-align: middle;'><a ><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
-		                    <%
+   							<td id="status<%= requestTakDayOff.getRequest_id()%>"    style='text-align: center; vertical-align: middle;'><a  ><i class="fa fa-check" style="font-size:20px; color: #106aef"></i></a></td>		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= requestTakDayOff.getRequest_id()%>"   style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= requestTakDayOff.getRequest_id()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
-		                    <%
+ 							<td id="status<%= requestTakDayOff.getRequest_id()%>"    style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= requestTakDayOff.getRequest_id()%>, 0);" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; color: #999999"></i></a></td>		                    <%
 	                    }
 	                    %>
                     	
@@ -170,5 +179,6 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
+  </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 

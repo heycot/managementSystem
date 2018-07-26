@@ -1,11 +1,12 @@
 
+
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,59 +14,82 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
-
-    <!-- Bootstrap core CSS -->
+    
     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+	  <script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
- 	 <script src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
-  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 	 <script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard2.css">
+  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+  	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
-	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+    
+	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 	        <!-- JS tạo nút bấm di chuyển trang start -->
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
+	<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
+  	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
 	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-	 
-    <style type="text/css">
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	
+	<style type="text/css">
       .hiden{display:none}
       .error{color:red}
-
     .label-info {background-color: #5bc0de;}
+    .col-15 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+    margin-left: 15px
+	}
+
+	.col-50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+	}
     </style>
+    
+ </head>
 
-  </head>
-
-<body class="fixed-nav" id="page-top">
+<body class="fixed-nav" id="page-top"  onload="disableSubmit();">
 
     <%
     String styleTogglerBar = "";
     User user = (User)session.getAttribute("user");
     if (user.getRoleId() == 3) {
     	%>
-    	<div class="wrapechper">
     	<!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-          <div class="sidebar-header">
-	          <a class="navbar-brand nav1" href="">BOOTCAMP MANAGEMENT SYSTEM</a>
-	          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	          </button>
-	      </div>
+          <a class="navbar-brand" href="">BOOTCAMP MANAGEMENT SYSTEM</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 41px; min-width:250px; max-width:250px;">
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="<%= request.getContextPath()%>/">
-                  <img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" class="img-thumbnail" alt="Cinque Terre" width="220" style="margin-top:5px;">
+                  <img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" class="img-thumbnail" alt="Cinque Terre" width="220">
                 </a>
               </li>
 
@@ -160,6 +184,32 @@
               </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#skill" style="font-size:  larger;">
+                  <i class="fa fa-fw fa-graduation-cap" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Skill</span>
+              </a>
+              <ul class="sidenav-second-level collapse" id="skill">
+                <li>
+                  <a href="<%= request.getContextPath()%>/Skills"><i class="fa fa-fw fa-list"></i> List skills</a>
+                </li>
+               
+              </ul>
+            </li>
+             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#request" style="font-size:  larger;">
+                  <i class="fa fa-paper-plane" ></i>&nbsp;
+                  <span class="nav-link-text">
+                    Requestions</span>
+              </a>
+              <ul class="sidenav-second-level collapse" id="request">
+                <li>
+                  <a href="<%= request.getContextPath()%>/admin/requestTakeDateOff"><i class="fa fa-fw fa-list"></i> List Requestions</a>
+                </li>
+               
+              </ul>
+		</li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#statistical" style="font-size:  larger;">
                   <i class="fa fa-calculator" ></i>&nbsp;
                   <span class="nav-link-text">
@@ -180,7 +230,16 @@
     	styleTogglerBar = "style='display: none'";
     %>
     <!-- Navigation -->
-    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <a href="<%= request.getContextPath()%>/"><img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" width="95px" style="margin-left: -16px; margin-bottom: -13px; margin-top: -8px;"></a>
+    <!--  <a style="display: inline-block; margin-left: 10px;" class="navbar-brand" href=""></a> -->
+       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>  
+      
+      <nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <ul class="nav navbar-nav">
 		    <%
 				    if(user.getRoleId() == 1) {
 				    %>
@@ -188,18 +247,21 @@
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				      <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Registion</a></li>
-				    <%
+				        <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
+					 <%
 				    } 
 				    %>
-		  
+		    </ul>
 		  </div>
-		  
-		
+		</nav>
+	
     <%
     }
     %>
+    
         <script type="text/javascript">
       jQuery(document).ready(function($){
         var url = window.location.href;
@@ -239,18 +301,9 @@
         <script type="text/javascript">
         $(document).ready(function() { 
 	        $( "#sidenavToggler" ).click(function() {
-	        	  $( "#mainNav" ).toggleClass('slide_item');
-	        	  /* if(document.getElementById("body-content").style.display = "none") {
-	        		  changeFont();
-	        	  } */
-	        	  
+	        	  $( "#slide_item" ).toggle( "slow", function() {
+	        	  });
 	        });
-	        
-	       /*  function changeFont() {
-      		  document.getElementById("toggler_contentId").classList.remove('content-wrapper py-3');
-      		  document.getElementById("toggler_contentId").style = 'margin-top:  5px;';
-      		  document.getElementById("toggler_containerId").classList.remove('container-fluid');
-	        } */
         });
         </script>
         
@@ -258,7 +311,7 @@
 		
 		  <li role="presentation" class="dropdown">
 		  	<a class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-              <i id="btt" class="iconMail fa fa-envelope-o" ></i>
+              <i id="btt" class="iconMail fa fa-envelope-o" style=" width: 25px;"></i>
               <span class="badge bg-green">?</span>
             </a>
              <ul id="result1" class="dropdown-menu msg_list pull-right" role="menu"></ul>
@@ -266,7 +319,7 @@
                 
           <li class="nav-item nav-item1">
           	<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 10px; width: 25px;">
-                <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" alt="<%= user.getUsername()%>" ><%= user.getUsername()%>
+                <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" ><%= user.getUsername()%>
             </a>
             <ul class="dropdown-menu menu_user pull-right">
 				    <%
@@ -281,20 +334,15 @@
 				    }
 				    %>
                     <li><a  href="<%= request.getContextPath()%>/logout"><i style="margin-top:10px;" class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
             </ul>
           </li>
-          </ul>
-          </nav>
-          
-          
           <div id="maincontent">
   			
 		 </div>
-
+        </ul>
        </div>
-       
-</body>
-     
+       </nav>
 
      <script type="text/javascript">
    $(document).ready(function(){ 
@@ -315,6 +363,24 @@
 			 var post_id = $(this).attr("id");
 			 fetch_post_data(post_id);
 		});
+	   $(document).on('click','.aprove',function(){
+		   			 var request_id= $("#request_id").text();
+		   					$.ajax({
+		   						type : 'POST',
+		   						url : '/managementSystem/ApproveRequestOffTrainerAjax?request_id=' + request_id,
+		   						success : function(data) {
+		   
+		   				        	   if(data == 1){
+		   									alert('You have just approved this request!');
+		   									$('#post_modal').modal('hide');
+		   								}
+		   								else if(data == 0){
+		   									alert('Some error. Please approve it again!');
+		   								}
+		   							
+		   						}
+		   					});
+		   		});
 		function fetch_post_data(post_id)
 		{	
 			
@@ -329,15 +395,54 @@
 				}
 			});
 		}
+		function approveRequest() {
+						alert("Yes");
+						var request_id= $("#request_id").text();
+						alert(request_id);
+							$.ajax({
+								type : 'POST',
+								url : '/managementSystem/forgotpassword?emailForgot=' + request_id,
+								success : function(data) {
+									alert(data);
+								}
+							});
+						
+					}
+		
 		
 	});
 </script>
-</html>
-<div id="post_modal" class ="modal fade">
-		<div class = "modal-dialog">
-		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
-		</div>
+<%
+	if(user.getRoleId() == 3){
 		
-	</div>
+%> 
+		<div id="post_modal" class ="modal fade">
+			<div class = "modal-dialog">
+				<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btnForgot" onclick="sendEmail();">Send</button>
+				
+				<button type="button" style=" background:#2e9ade; color: white; " class="btn btn-infor" data-dismiss="modal">Close</button> \
+				</div>	
+				</div>	
+					
+			</div>
+				</div> 
+				
+<%
+	} else{
+%>	
+	<div id="post_modal" class ="modal fade">
+ 		<div class = "modal-dialog">
+ 		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail">
+ 		</div>
+ 		
+ 	</div>
 </div>
+	</div>
+<%
+	}
+%>		
 
+
+</html>

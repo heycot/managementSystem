@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
+
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -148,18 +151,7 @@ if( user.getRoleId() == 3) {
 	            });
 	        </script>
 	        
-<!-- Style Pagination -->
-	        <style>
-	           ///** CSS căn id pagination ra giữa màn hình **///
-	           #pagination {
-	               display: flex;
-	               display: -webkit-flex; /* Safari 8 */
-	               flex-wrap: wrap;
-	               -webkit-flex-wrap: wrap; /* Safari 8 */
-	               justify-content: center;
-	               -webkit-justify-content: center;
-	           }
-	       </style>
+	        
 	       
 <!-- Content -->
 		   <div class="card-body" style="">

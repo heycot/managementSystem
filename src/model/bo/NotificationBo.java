@@ -6,13 +6,13 @@ import model.dao.NotificationDao;
 
 public class NotificationBo {
 	NotificationDao notificationDao;
-	public int addNotiTakedayoffS( String dateoff, String datechange,  String timechange , String room, Classes classes , User trainer, int admin_id){
+	public int addNotiTakedayoffS( String dateoff, String datechange,  String timechange , String room, Classes classes , User trainer, int admin_id, int request_id, String note){
 		notificationDao = new NotificationDao();
-		return notificationDao.addNotiTakedayoffS(dateoff, datechange, timechange,room, classes, trainer, admin_id);
+		return notificationDao.addNotiTakedayoffS(dateoff, datechange, timechange,room, classes, trainer, admin_id, request_id, note);
 	}
-	public int addRequestTakeaDayOff(String dateoff, String datechange,  String timechange , Classes classes , User trainer, int room_id){
+	public int addRequestTakeaDayOff(String dateoff, String datechange,  String timechange , Classes classes , User trainer, int room_id, String note){
 		notificationDao = new NotificationDao();
-		return notificationDao.addRequestTakeaDayOff(dateoff, datechange, timechange, classes, trainer, room_id);
+		return notificationDao.addRequestTakeaDayOff(dateoff, datechange, timechange, classes, trainer, room_id,  note);
 	}
 	public int addNotiRequestBeApproveSendToTrainer(RequestTakDayOff dayOff){
 		notificationDao = new NotificationDao();

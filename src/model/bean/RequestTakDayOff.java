@@ -12,9 +12,18 @@ public class RequestTakDayOff {
 	private String time_change;
 	private String room_name;
 	private int status;
+	private String note;
 	
 	
 	
+	
+	
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
 	public int getTrainer_id() {
 		return trainer_id;
 	}
@@ -90,5 +99,21 @@ public class RequestTakDayOff {
 	public RequestTakDayOff() {
 		super();
 	}
+	public RequestTakDayOff(int request_id, int class_id, String class_name, int trainer_id, String trainer_name,
+			String date_off, String date_change, String time_change, String room_name, int status, String note) {
+		super();
+		this.request_id = request_id;
+		this.class_id = class_id;
+		this.class_name = class_name;
+		this.trainer_id = trainer_id;
+		this.trainer_name = trainer_name;
+		this.date_off = date_off;
+		this.date_change = date_change;
+		this.time_change = time_change;
+		this.room_name = room_name;
+		this.status = status;
+		this.note = note;
+	}
+	
 	
 }

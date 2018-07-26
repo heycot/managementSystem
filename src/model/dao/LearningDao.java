@@ -146,11 +146,12 @@ public  ArrayList<User> countTraineeConflict(int classId , int class_other){
 		ArrayList<Rooms> listRoomFree = new ArrayList<>();
 		conn = ConnectDBLibrary.getConnection();
 		try {
-			String sql = "select room_id, name from rooms where room_id != all (Select room_id from classes where date_of_week like ? and time_of_date = ?)";
+			String sql = "select room_id, name from rooms where room_id != all (Select room_id from classes where date_of_week like ? and time_of_date = ?) and rooms.status = ?";
 			pst = conn.prepareStatement(sql);
 			String chen = "%" +date+"%";
 			pst.setString(1, chen);
 			pst.setString(2, time);
+			pst.setInt(3, 1);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Rooms rooms = new Rooms();
