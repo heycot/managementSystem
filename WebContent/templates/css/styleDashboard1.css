@@ -8,6 +8,9 @@ body{
 .dropdown-menu > li > a {
     color: #555;
 }
+.bg-light {
+    background-color: white !important;
+}
 
 #mainNav.fixed-top .navbar-sidenav {
     height: calc(100vh - 0px);
@@ -24,6 +27,9 @@ body{
 .navbar-light .navbar-nav .nav-link:active{
 	color:#4272d7;
 }
+.alert{
+	margin-bottom:0;
+}
 #mainNav .navbar-collapse .navbar-sidenav li.active a{
 	color:#555;
 	background:white;
@@ -32,6 +38,17 @@ body{
 #mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed::after {
     color: white;
 }
+
+.table thead th {
+	border: 2px solid #ddd;
+}
+.table-bordered td, .table-bordered th{
+	border: 2px solid #ddd;
+}
+.container-fluid{
+	padding-right:0px;
+}
+
 .imglogo{
 	height: 51px;
 	width: 173px;
@@ -217,3 +234,4 @@ ul.msg_list li a .message {
 	color:#555;
 }
 }
+

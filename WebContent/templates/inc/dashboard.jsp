@@ -136,27 +136,27 @@
     	styleTogglerBar = "style='display: none'";
     %>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a href="<%= request.getContextPath()%>/"><img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave.jpg" width="95px" style="margin-left: -16px; margin-bottom: -13px; margin-top: -8px;"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="background:white;height:74px;box-shadow:2px 2px #c8c5c5">
+      <a href="<%= request.getContextPath()%>/"><img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave_logo.png" width="150px" height="50px" style="margin-left: 24px; margin-bottom: -13px; margin-top: -12px;"></a>
     <!--  <a style="display: inline-block; margin-left: 10px;" class="navbar-brand" href=""></a> -->
        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>  
       
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default" style="font-size:16px;">
 		  <div class="container-fluid">
 		    <ul class="nav navbar-nav">
 		    <%
 				    if(user.getRoleId() == 1) {
 				    %>
-				      <li ><a style="color: white;" href="<%= request.getContextPath()%>/trainer/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li ><a style="color: #555;" href="<%= request.getContextPath()%>/trainer/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				        <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
+				        <li style="display: block;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
 					 <%
 				    } 
 				    %>

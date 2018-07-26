@@ -20,7 +20,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  -5px;'";
+String styleContent = "style='padding:10px 20px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -47,7 +47,7 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
-        <div class="card mb-3" style="height:auto;margin-top:20px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
+        <div class="card mb-3" style="height:auto;margin-top:14px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
              
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>" method="POST" enctype="multipart/form-data" >

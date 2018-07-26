@@ -9,7 +9,7 @@
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -21,13 +21,13 @@ if( user.getRoleId() == 3) {
 }
 %>
 
-<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3" >
+    <div  class="card mb-3" style="background: transparent;border: none;">
 <!-- Nav -->
-       	<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
+       	<div class="alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;margin-left:-23px;"> 
         	<i class="fa fa-fw fa-briefcase" ></i>
-			<strong>Majors </strong>
+			<strong style="font-weight: 400;font-size: 21px;">Majors </strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -70,13 +70,13 @@ if( user.getRoleId() == 3) {
 					  
 					  if( check == false){
 						  %>
-				        	<div class="alert alert-danger">
+				        	<div class="alert alert-danger" style="margin-right: 20px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
 					  } else {
 						  %>
-				        	<div class="alert alert-success">
+				        	<div class="alert alert-success" style="margin-right: 20px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
@@ -168,7 +168,7 @@ if( user.getRoleId() == 3) {
 	       </style>
 	       
 <!-- Content -->
-		   <div class="card-body">
+		   <div class="card-body" style="margin-left: -20px;">
 		         <div class="table-responsive">
            			<form action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="margin-left: -10px; margin-bottom: 5px;">
@@ -184,10 +184,10 @@ if( user.getRoleId() == 3) {
 		              		<div style="clear: both">
 		              		</div>
 	       				</div>
-		                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+		                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
 							<thead>
 		                    	<tr>
-									<th style="text-align: center; font-size: medium;">Delete All
+									<th style="text-align: center; font-size: medium;max-width: 100px;">Delete All
 			                      		<input 	style="display: inline-block; margin-left: 15px;vertical-align: middle; margin-top: -3px;" 
 			                      				type="checkbox" class="checkall">
 			                      	</th>
@@ -206,14 +206,27 @@ if( user.getRoleId() == 3) {
 							   	   </td>
 				                   <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
 								   <td style="text-align: center; vertical-align: middle;">
-				                   		<button type="button" class="btn btn-link" name="editMajor" style="" data-toggle="modal"
+								   <div class="row">
+								   			
+										<button type="button" class="btn btn-link" name="editMajor"  data-toggle="modal"
+				                    			data-target="#editModal<%=list.getMajorId()%>" style="margin-left:auto; margin-right:0;padding:0;border-radius:100%;background:#e5e5e5; border:none;height:30px;width:30px;">
+                                            <i class="zmdi zmdi-edit" style="vertical-align:middle; color:#808080;font-size:20px; display:inline-block; font: normal normal normal 14px/1 'Material-Design-Iconic-Font';"></i>
+                                        </button>
+								   		<a 	href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
+				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor" 
+				                    		style="margin-left:15px;margin-right:auto;text-align: center;padding:0;border-radius:100%;background:#e5e5e5; border:none;height:30px;width:30px;">
+					                    	<i class="zmdi zmdi-delete" style="vertical-align:middle; color:#808080;font-size:20px; display:inline-block; font: normal normal normal 14px/1 'Material-Design-Iconic-Font';"></i>
+					                    	
+				                    	</a>
+								   </div>
+<%-- 				                   		<button type="button" class="btn btn-link" name="editMajor" style="" data-toggle="modal"
 				                    			data-target="#editModal<%=list.getMajorId()%>">
 				                    	<i class="fa fa-edit" style="font-size:20px;  vertical-align:middle;"></i>
-			                    		</button>
-				                    	<a 	href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
+			                    		</button> --%>
+				                    	<%-- <a 	href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
 				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor" >
 					                    	<i class="fa fa-trash" style="color:rgb(220, 53, 69) ;font-size:20px; vertical-align:middle;"></i>
-				                    	</a>
+				                    	</a> --%>
 				                   </td>          
 			                   </tr>
 <!-- Edit list -->
@@ -276,6 +289,8 @@ if( user.getRoleId() == 3) {
 												 		</button>
 														<button style="width:80px;height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
 														</button>
+													
+														
 													</div>
 												</div>
 											</form>
@@ -294,10 +309,7 @@ if( user.getRoleId() == 3) {
 				</form>
 	      </div>
     </div>
-<!-- Footer -->
-    <div class="card-footer small text-muted" style="margin-top: 40px;">
-      	Updated yesterday at 11:59 PM
-    </div>
+
   </div>
 </div>
 </div>
