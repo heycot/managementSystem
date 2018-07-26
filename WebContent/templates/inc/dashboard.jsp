@@ -34,7 +34,9 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">	
+	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 		 
     <style type="text/css">
       .hiden{display:none}
