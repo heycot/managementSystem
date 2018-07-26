@@ -456,7 +456,7 @@ public class UserDao {
 			conn = ConnectDBLibrary.getConnection();
 			System.out.println("Connect 2!");
 			
-			String sql = "SELECT classes.class_id, classes.name, trainer_id ,time_of_date, date_of_week , count_lesson, room_id , classes.course_id FROM learning  INNER JOIN classes on learning.class_id = classes.class_id INNER JOIN users ON users.user_id = learning.user_id WHERE learning.user_id = ?";
+			String sql = "SELECT classes.class_id, classes.name, trainer_id ,time_of_date, date_of_week , count_lesson, room_id , classes.course_id FROM learning  INNER JOIN classes on learning.class_id = classes.class_id INNER JOIN users ON users.user_id = learning.user_id WHERE learning.user_id = ? and classes.status =1 ";
 			System.out.println(sql);
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, user_id);
@@ -1201,8 +1201,66 @@ public class UserDao {
 			while(rs.next()) {
 				ClassWaiting classWaiting= new ClassWaiting();
 				classWaiting.setClassId(rs.getInt("class_id"));
-				classWaiting.setClassName(rs.getString("name"));
-				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				classWaiting.setClassName(rs.getString("name"));				
+				String str = rs.getString("date_of_week");
+				String s =""; 
+          	 	String arr[] =str.split(",");
+              	 for(int i=0; i<arr.length;i++){
+              		 
+              		if(i==(arr.length-1)){
+            			 s+=" and ";
+            		 }
+              		 switch(arr[i]){
+              		 
+              		 case "2":
+              		 {
+              			 s+="Mon";
+              			 break;
+              		 }
+              		 case "3":
+              		 {
+              			 s+="Tue";
+              			break;
+              		 }
+              		 case "4":
+              		 {
+              			 s+="Wed";
+              			break;
+              		 }
+              		case "5":
+              		 {
+              			 s+="Thu";
+              			break;
+              		 }
+              		case "6":
+              		 {
+              			 s+="Fri";
+              			break;
+              		 }
+              		case "7":
+              		 {
+              			 s+="Sat";
+              			break;
+              		 }
+              		case "8":
+              		 {
+              			 s+="Sun";
+              			break;
+              		 }
+              	    default:
+              	    {
+              	        
+              	    }
+              		 }
+              		 if (i< (arr.length-2)) {
+              			 s+=", ";
+              		 }
+              		
+//              	
+          	 	}
+				classWaiting.setDateOfWeek(s);
+				
+				
 				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
 				classWaiting.setDuration(rs.getInt("duration"));
 				
@@ -1250,8 +1308,63 @@ public class UserDao {
 			while(rs.next()) {
 				ClassWaiting classWaiting= new ClassWaiting();
 				classWaiting.setClassId(rs.getInt("class_id"));
-				classWaiting.setClassName(rs.getString("name"));
-				classWaiting.setDateOfWeek(rs.getString("date_of_week"));
+				classWaiting.setClassName(rs.getString("name"));				
+				String str = rs.getString("date_of_week");
+				String s =""; 
+          	 	String arr[] =str.split(",");
+              	 for(int i=0; i<arr.length;i++){
+              		 
+              		if(i==(arr.length-1)){
+            			 s+=" and ";
+            		 }
+              		 switch(arr[i]){
+              		 
+              		 case "2":
+              		 {
+              			 s+="Mon";
+              			 break;
+              		 }
+              		 case "3":
+              		 {
+              			 s+="Tue";
+              			break;
+              		 }
+              		 case "4":
+              		 {
+              			 s+="Wed";
+              			break;
+              		 }
+              		case "5":
+              		 {
+              			 s+="Thu";
+              			break;
+              		 }
+              		case "6":
+              		 {
+              			 s+="Fri";
+              			break;
+              		 }
+              		case "7":
+              		 {
+              			 s+="Sat";
+              			break;
+              		 }
+              		case "8":
+              		 {
+              			 s+="Sun";
+              			break;
+              		 }
+              	    default:
+              	    {
+              	        
+              	    }
+              		 }
+              		 if (i< (arr.length-2)) {
+              			 s+=", ";
+              		 }
+           	 	}
+				classWaiting.setDateOfWeek(s);
+				
 				classWaiting.setTimeOfDate(rs.getString("time_of_date"));
 				classWaiting.setDuration(rs.getInt("duration"));
 				

@@ -63,7 +63,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
           <a class="navbar-brand" href="">BOOTCAMP MANAGEMENT SYSTEM</a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon">${count}</span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="slide_item" class="navbar-nav navbar-sidenav" style="margin-top: 41px; min-width:250px; max-width:250px;">
@@ -170,9 +170,14 @@
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				        <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+				       <li style="display: block;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				        <li  style="display: block; margin-left: 20px; " class="dropdown-submenu">
+            				<a style="color: white;" class="test" href="#">Classses<span class="caret"></span></a>
+            				<ul class="dropdown-menu">
+              					<li><a href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
+              					<li><a href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+            				</ul>
+          				</li>
 				      <li style="display: block; margin-left: 20px;"><a style="color: white;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
 					 <%
 				    } 
@@ -186,6 +191,28 @@
     %>
     
         <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+        	
+        	function updateNumberNoti()
+    			{        		
+        		$.ajax({
+                    type: "GET",
+                    url: "/managementSystem/CountNotificationController",
+                    timeout:1000,
+                    success: function (data) {
+                       if(data === ""){
+                    	   
+                       }
+                       else{
+                    	   var string= "<span id ='countNoti' class='badge bg-green'>" + data + "</span>";
+                    	   $("#countNoti").replaceWith(string);
+                       }
+                    }
+                });
+        		setTimeout(updateNumberNoti, 10000);
+    		}
+        	updateNumberNoti();
+        });
       jQuery(document).ready(function($){
         var url = window.location.href;
           $(".nav-item a").each(function() {
@@ -198,6 +225,9 @@
      <script type="text/javascript">
 	   $(document).ready(function()
 	   { 
+		   $('.dropdown-submenu a.test').on("click", function(e){
+			    $(this).next('ul').toggle();
+			  });
 	      //khi nút submit được click
 	    $('#btt').click(function(){
 	    	
@@ -237,7 +267,7 @@
 		  <li role="presentation" class="dropdown">
 		  	<a class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
               <i id="btt" class="iconMail fa fa-envelope-o" style=" width: 25px;"></i>
-              <span class="badge bg-green">?</span>
+              <span  id ="countNoti" class="badge bg-green">0</span>
             </a>
              <ul id="result1" class="dropdown-menu msg_list pull-right" role="menu"></ul>
            </li>

@@ -148,5 +148,16 @@ ul.msg_list li a .message {
 	border:1px solid white;
 	border-radius: 5px;
 }
+.dropdown-submenu {
+    position: relative;
+    background-color: #343a40;
+    color: white;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
 
 @media only screen and (max-width: 1381px){}

@@ -28,9 +28,9 @@ public class NotificationDao {
 		String nameclasses = classes.getName();
 		String content = "";
 		
-		content+= "The "+nameclasses+" at " +"<b>"+ dateoff+"</b> will be canceled."+"<br/> ";
+		content+= "The "+nameclasses+" on " +"<b>"+ dateoff+"</b> will be canceled."+"<br/> ";
 		content+="<label  id='request_id' style='display: none;' >"+request_id+"  </label>";
-		content+="This class will be move to: <br/>";
+		content+="This class will be moved to: <br/>";
 		content+="<form>";
 		content+="<div class='row'>";
 		content+="<div class='col-15'>";
@@ -141,8 +141,8 @@ public class NotificationDao {
 //		content+= dayOff.getClass_name() +" will take day off on " + dayOff.getDate_off()+". \n";
 //		content+="Replace learning plan is "  + " at "+ dayOff.getTime_change()+ ", on"+ dayOff.getDate_change()+".\n Room  is "+ dayOff.getRoom_name()+". \n We inform to know and do it on time "; ;
 //		
-		content+= "The "+dayOff.getClass_name()+" at " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
-		content+="This class will be move to: <br/>";
+		content+= "The "+dayOff.getClass_name()+" on " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
+		content+="This class will be moved to: <br/>";
 		content+="<form>";
 		content+="<div class='row'>";
 		content+="<div class='col-15'>";
@@ -224,8 +224,8 @@ public class NotificationDao {
 		int result = 0;
 		String title = "Change schedule learning : " + dayOff.getClass_name();
 		String content = "";
-		content+= "The "+dayOff.getClass_name()+" at " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
-		content+="This class will be move to: <br/>";
+		content+= "The "+dayOff.getClass_name()+" on " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
+		content+="This class will be moved to: <br/>";
 		content+="<form>";
 		content+="<div class='row'>";
 		content+="<div class='col-15'>";
@@ -343,7 +343,30 @@ public class NotificationDao {
 			// TODO: handle exception
 		}
 		return nu;		
-}
+	}
+	
+	public int countNotificationNewById( int user_id){
+		
+		int count = 0;
+		conn= ConnectDBLibrary.getConnection();
+		try{
+			String sql= "select count(*) as number  from messages where user_id = ? and status = 0;";
+			pst= conn.prepareStatement(sql);
+			pst.setInt(1, user_id);
+			rs = pst.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("number");
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return count;
+		
+	}
 
 
 }
