@@ -57,4 +57,9 @@ RoomDao roomDao;
 		}
 		return false;
 	}
+
+	public int deleteRooms(int roomId) {
+		roomDao = new RoomDao();
+		return roomDao.deleteRoom(roomId);
+	}
 }

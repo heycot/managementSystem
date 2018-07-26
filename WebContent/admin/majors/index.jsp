@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
 <%
 String classNameContent = "" ;
@@ -118,7 +119,6 @@ if( user.getRoleId() == 3) {
 	                });
 	            });
 	        </script>
-	        
 <!-- Pagination -->
 	        <script type="text/javascript">
 	            $(function () {
@@ -131,7 +131,6 @@ if( user.getRoleId() == 3) {
 	                    });
 	                }
 	                showPage(1);
-	                ///** Cần truyền giá trị vào đây **///
 	                var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
 	                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
 	                var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -148,18 +147,7 @@ if( user.getRoleId() == 3) {
 	            });
 	        </script>
 	        
-<!-- Style Pagination -->
-	        <style>
-	           ///** CSS căn id pagination ra giữa màn hình **///
-	           #pagination {
-	               display: flex;
-	               display: -webkit-flex; /* Safari 8 */
-	               flex-wrap: wrap;
-	               -webkit-flex-wrap: wrap; /* Safari 8 */
-	               justify-content: center;
-	               -webkit-justify-content: center;
-	           }
-	       </style>
+	        
 	       
 <!-- Content -->
 		   <div class="card-body" style="">
@@ -273,8 +261,6 @@ if( user.getRoleId() == 3) {
 												 		</button>
 														<button style="width:80px;height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
 														</button>
-													
-														
 													</div>
 												</div>
 											</form>
@@ -284,7 +270,6 @@ if( user.getRoleId() == 3) {
 									<%
 				                  	}
 				                  	%>
-                  
                			</tbody>
 	                </table>
 	                <div id="pager" style="">
@@ -293,7 +278,6 @@ if( user.getRoleId() == 3) {
 				</form>
 	      </div>
     </div>
-
   </div>
 </div>
 </div>
