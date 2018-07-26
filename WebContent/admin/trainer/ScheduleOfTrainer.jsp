@@ -330,7 +330,7 @@ if( user.getRoleId() == 3) {
 						          		int s4 =Integer.parseInt((String)s3);
 						          		if(b1==s4){
 						          		%>
-										  <input style="  float: left;" type="radio" name="dayoff" value="<%=s2[0]+", "+s2[1] %>"><span style="margin-right: 120px"><%=s2[0]+", "+s2[1] %></span> <br>
+										  <input style="  float: left;" type="radio" class="<%= s2[0] %>" name="dayoff" value="<%=s2[0]+", "+s2[1] %>"> <span style="margin-right: 120px"><%=s2[0]+", "+s2[1] %></span> <br>
 										  <% 
 										 } else {
 											 if(b1>s4){
