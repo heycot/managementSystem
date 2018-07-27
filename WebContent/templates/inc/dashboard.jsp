@@ -15,29 +15,47 @@
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
     
-    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%-- <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
 	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">	
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
-	<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">	
+		
 	
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
 	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --%>
 
+  <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
+	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
+	<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
+  	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
+	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <style type="text/css">
 .hiden {
