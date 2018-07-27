@@ -6,14 +6,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
-   <style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
+<style>
+           
+           
+           /*  .card mb-3 {
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+			margin-left: -12px; 
+            } */
+            #cardNodin {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            
             }
         </style>
   <script type="text/javascript">
@@ -58,9 +61,9 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-         <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-book" ></i>
+    <div class="card1 card mb-3" id="cardNodin" >
+         <div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
 			    <strong><%= name %></strong>
 			  </div>
 			  <div>
@@ -126,14 +129,14 @@ if( user.getRoleId() == 3) {
                 	  if(check == 1){
                 		  %>
 
-                		  <div class="alert alert-success">
+                		  <div class="alert alert-success" style="margin-top: 10px;">
                 		  <Strong>Finish trainee evaluation!</Strong>
                 		  </div>
                 		  <% 
                   } 
                   }else{
                 	  %>
-                	  <div class="alert alert-danger">
+                	  <div class="alert alert-danger" style="margin-top: 10px;">
 
                 	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
                 	  </div>
@@ -147,15 +150,15 @@ if( user.getRoleId() == 3) {
             <form action="/managementSystem/trainer/list"  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                <input type="text" name="class_id" value="<%=id %>" style="display: none;" >
-                <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%" id="dataTable" >
                   <thead>
                     <tr>
-                       <th style="text-align: center;">No.</th>
-                       <th width="20%" style="text-align: center;">User Name </th>
-                      <th  width="20%" style="text-align: center;">Full Name  </th>
-                      <th width="20%" style="text-align: center;">Email</th>
-                      <th width="20%" style="text-align: center;">Phone  </th>
-                      <th width="20%" style="text-align: center;">Assessment  </th>
+                       <th style="text-align: center; vertical-align: middle;">No.</th>
+                       <th style="text-align: center; vertical-align: middle;">User Name </th>
+                      <th  style="text-align: center; vertical-align: middle;">Full Name  </th>
+                      <th style="text-align: center; vertical-align: middle;">Email</th>
+                      <th style="text-align: center; vertical-align: middle;">Phone  </th>
+                      <th style="text-align: center; vertical-align: middle;">Assessment  </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -168,11 +171,11 @@ if( user.getRoleId() == 3) {
                   %>
                   
                   <tr class="contentPage">
-                  <td><%= i %></td>
-                  <td style=""><%= trainer.getUsername() %></td>
-                  <td><%= trainer.getFullname() %></td>
-            	  <td><%= trainer.getEmail() %></td>
-                  <td style="text-align: center;"><%= trainer.getPhone() %></td>
+                  <td style="text-align: center; vertical-align: middle;"><%= i %></td>
+                  <td style=" vertical-align: middle;"><%= trainer.getUsername() %></td>
+                  <td style=" vertical-align: middle;"><%= trainer.getFullname() %></td>
+            	  <td style=" vertical-align: middle;"><%= trainer.getEmail() %></td>
+                  <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone() %></td>
                   <input type="text" name="user_id" value="<%=trainer.getUserid() %>" style="display: none;" >
                   <% 
                   if(result==1){
@@ -249,9 +252,7 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+        
       </div>
     </div>
   </div>

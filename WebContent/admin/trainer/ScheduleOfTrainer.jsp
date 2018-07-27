@@ -9,13 +9,18 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
+           
+            .tdModelNodin {
+            border: 0px !important;
+            }
+           /*  .card mb-3 {
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+			margin-left: -12px; 
+            } */
+            #cardNodin {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            
             }
         </style>
   <%
@@ -47,9 +52,9 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-         <div class="alert alert-primary"  style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-book" ></i>
+    <div class="card1 card mb-3" id="cardNodin" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
+         <div class="alert1 alert alert-primary"   style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
 			    <strong><%=ur.getUsername()%>'s schedule</strong>
          </div>
 			  
@@ -113,6 +118,30 @@ if( user.getRoleId() == 3) {
 	                        }
 	              });
 		}
+        	
+        	function handle(name) {
+        		var selectDay = name.id+"instead";
+        		var selectDay1 = name.id+"insteaddayName";
+        		
+        		var link = document.getElementById(selectDay);    			
+
+        		 if (localStorage){
+        			var day= localStorage.getItem("day");
+        			
+        			if(day == null){
+            			localStorage.setItem("day", selectDay);
+            			localStorage.setItem("day1", selectDay1);
+            			link.disabled = true; 
+            		}
+            		else{
+            			document.getElementById(day).disabled = false; 
+            			link.disabled = true; 
+           				localStorage.setItem("day", selectDay);
+            		}
+        		}
+        		
+			}
+        	
         function myCheckRoom(select) {
         	var selectId = select.id;
         	
@@ -156,7 +185,7 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<div class="alert alert-success">
+        		<div class="alert alert-success" style=" margin-top: 10px;">
         		<strong>Send the request successfully!</strong>
         		</div>
         		<% 
@@ -170,18 +199,18 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="100%"  cellspacing="0">
+                <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center;">No.</th>
-                      <th style="text-align: center;">Class</th>
-                       <th style="text-align: center;">Room</th>
-                      <th style="text-align: center;">Course</th>
-                      <th style="text-align: center;">Time</th>
-                      <th style="text-align: center;">Date Of Week</th>
-                      <th style="text-align: center;">Taught Hours</th>
-                      <th style="text-align: center;">Duration (Hours)</th>
-                      <th style="text-align: center;">Action</th>
+                      <th style="text-align: center; vertical-align: middle;">No.</th>
+                      <th style="text-align: center; vertical-align: middle;">Class</th>
+                      <th style="text-align: center; vertical-align: middle;">Room</th>
+                      <th style="text-align: center; vertical-align: middle;">Course</th>
+                      <th style="text-align: center; vertical-align: middle;">Time</th>
+                      <th style="text-align: center; vertical-align: middle;">Date Of Week</th>
+                      <th style="text-align: center; vertical-align: middle;">Taught Hours</th>
+                      <th style="text-align: center; vertical-align: middle;">Duration (Hours)</th>
+                      <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -317,11 +346,11 @@ if( user.getRoleId() == 3) {
 						        </div>
 						        <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
-						          <table  border="0px" style="width: 465px">
+						          <table style="width: 465px; border: 0px;">
 
-						          <tr>
-						          <th>Day off</th>
-						          <td >
+						          <tr style="border: 0px;">
+						          <th class="tdModelNodin">Day off</th>
+						          <td class="tdModelNodin" >
 						          			<%
 						          		String []dayoff={"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 						          		for(int j=0; j<arr.length; j++){
@@ -330,7 +359,7 @@ if( user.getRoleId() == 3) {
 						          		int s4 =Integer.parseInt((String)s3);
 						          		if(b1==s4){
 						          		%>
-										  <input style="  float: left;margin-top: 2px" type="radio" name="dayoff" value="<%=s2[0]+", "+s2[1] %>"><span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span> <br>
+										  <input id="<%=s2[0] %><%=list.getClassid() %>" style=" clear: both; float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=s2[0]+", "+s2[1] %>"><span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span> <br>
 										  <% 
 										 } else {
 											 if(b1>s4){
@@ -349,7 +378,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
 													 %>
-													  <input style="float: left;margin-top: 2px" type="radio" name="dayoff" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
 													  <%
 												 }else{
 													 String dayOfWeek ="";
@@ -362,7 +391,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 													 %>
-													  <input style="float: left;margin-top: 2px" type="radio" name="dayoff" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
 													  <%
 												 }
 												
@@ -384,7 +413,7 @@ if( user.getRoleId() == 3) {
 														 }
 														 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
 														 %>
-													  <input style="float: left;margin-top: 2px" type="radio" name="dayoff" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
 													  <%
 													 }else{
 														 String dayOfWeek ="";
@@ -397,7 +426,7 @@ if( user.getRoleId() == 3) {
 														 }
 														 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 														 %>
-														  <input style="float: left;margin-top: 2px" type="radio" name="dayoff" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
+														  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
 														  <%
 													 }
 													 
@@ -417,8 +446,8 @@ if( user.getRoleId() == 3) {
 						          </tr>
 						          
 						          <tr>
-						          <th>Day instead</th>
-						          <td>
+						          <th class="tdModelNodin">Day instead</th>
+						          <td class="tdModelNodin">
 						         
 						          	<%
 						          	String []dayoff2={"2", "3", "4", "5", "6", "7", "8"};
@@ -429,7 +458,10 @@ if( user.getRoleId() == 3) {
 						          		int s5 =Integer.parseInt((String)s3);
 						          		
 						          		if(c1==s5){
-						          			/* dayOfWeek2 = s2[0]; */
+						          			dayOfWeek2 = s2[0]; 
+						          			%>
+										  <input style=" clear: both;float: left;margin-top: 2px;" type="radio" name="dayinstead" disabled="disabled" onclick="handleClick(this);" value="<%=s2[0]+", "+s2[1] %>-<%=list.getClassid()%>"> <span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span><br>
+ 											<% 
 						          			 
 						          		}else {
 											 if(c1>s5){
@@ -447,8 +479,9 @@ if( user.getRoleId() == 3) {
 														 }
 													 }
 													 day3=dayOfWeek2 +", "+ day3 +" Aug " +arr1[2];
+													 String selectDay = dayOfWeek2+list.getClassid()+"instead";
 													 %>
-													  <input style="float: left; margin-top: 2px " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="float:left; margin-left: 10px; "> <%=day3 %></span><br>
+													  <input id="<%=selectDay %>" style=" clear: both; float: left;  margin-top: 2px " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span id="<%=selectDay %>dayName" style="float:left; margin-left: 10px; "> <%=day3 %></span><br>
 													  <%
 												 }else {
 													 dayOfWeek2 ="";
@@ -460,8 +493,9 @@ if( user.getRoleId() == 3) {
 														 }
 													 }
 													 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
+													 String selectDay = dayOfWeek2+list.getClassid()+"instead";
 													 %>
-													  <input style="float: left;margin-top: 2px " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span style="float:left; margin-left: 10px; "> <%=day3 %></span><br>
+													  <input id="<%=selectDay %>" style=" clear: both; float: left;  margin-top: 2px " type="radio" name="dayinstead" onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""><span id="<%=selectDay %>dayName" style="float:left; margin-left: 10px; "> <%=day3 %></span><br>
 													  <%
 												 }
 												 
@@ -481,8 +515,9 @@ if( user.getRoleId() == 3) {
 															 }
 														 }
 														 day3=dayOfWeek2 +", "+ day3 +" Aug " +arr1[2];
+														 String selectDay = dayOfWeek2+list.getClassid()+"instead";
 														 %>
-														  <input style="float: left;margin-top: 2px " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="float:left; margin-left: 10px; "><%=day3 %></span><br>
+														  <input id="<%=selectDay %>"  style=" clear: both; float: left; margin-top: 2px " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span id="<%=selectDay %>dayName" style="float:left; margin-left: 10px; "><%=day3 %></span><br>
 														  <%
 													 }else {
 														 dayOfWeek2 ="";
@@ -494,8 +529,9 @@ if( user.getRoleId() == 3) {
 															 }
 														 }
 														 day3=dayOfWeek2 +", "+ day3 +" " +arr1[1] +" " +arr1[2];
+														 String selectDay = dayOfWeek2+list.getClassid()+"instead";
 														 %>
-														  <input style="float: left;margin-top: 2px " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span style="float:left; margin-left: 10px; "><%=day3 %></span><br>
+														  <input id="<%=selectDay%>" style="clear: both; float: left;  margin-top: 2px " type="radio" name="dayinstead"  onclick="handleClick(this);" value="<%=day3 %>-<%=list.getClassid()%>""> <span id="<%=selectDay %>dayName" style="float:left; margin-left: 10px; "><%=day3 %></span><br>
 														  <%
 													 }
 													
@@ -513,17 +549,17 @@ if( user.getRoleId() == 3) {
 	 					         <label id="choiceLabel"></label>
 	 					         
 						          <tr>
-						          <th>Time</th>
-						          <td>
-						          <select  class="selectTime" name="time" id = "Select<%= list.getClassid() %>" onchange="myCheckRoom(this)" style="float: left;width:145px" >
+						          <th class="tdModelNodin">Time</th>
+						          <td class="tdModelNodin">
+						          <select  class="selectTime" name="time" id = "Select<%= list.getClassid() %>" onchange="myCheckRoom(this)" style="float: left;width:340px" >
 									  
 									</select>
 						          </td>
 						          </tr>
 						          <tr>
-						          <th>Room</th>
-						          <td>
-						          	 <select  class="selectRoom" name="room" style="float: left;width:145px ">
+						          <th class="tdModelNodin">Room</th>
+						          <td class="tdModelNodin">
+						          	 <select  class="selectRoom" name="room" style="float: left;width:340px ">
 						          	  <%
 						          	%>	
 						          <%
@@ -532,14 +568,14 @@ if( user.getRoleId() == 3) {
 						          </td>
 						          </tr>
 						          <tr>
-						          <th>Content</th>
-						          <td ><textarea name="content" style=" resize: none; float: left;" rows="3" cols="35"></textarea></td>
+						          <th class="tdModelNodin">Content</th>
+						          <td class="tdModelNodin"><textarea name="content" style=" resize: none; float: left;width:340px" rows="3" cols="35"></textarea></td>
 						          </tr>
 						          </table>
 						        </div>
 						        <div class="modal-footer">
 						         <button type="submit" class="btn btn-default; btn btn-primary" style="font-size: 16px; width:80px;" >Submit</button>
-						         <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 16px; width:80px;margin-right: 30px" >Close</button>
+						         <button type="button" class="btn btn-default;" data-dismiss="modal" style="font-size: 16px; width:80px;margin-right: 13px" >Close</button>
 
 						        </div>
 						        </form>
@@ -560,9 +596,7 @@ if( user.getRoleId() == 3) {
 				</div>
 					</div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+       
       </div>
     </div>
   </div>
