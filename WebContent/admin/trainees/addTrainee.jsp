@@ -140,7 +140,7 @@ if( user.getRoleId() == 3) {
 	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
 	           		
 	           	</div> 
-             	<div style="clear: both"></div>
+	            <div style="clear: both"></div>
           
               
               <div style="margin-bottom: 5%"></div>
