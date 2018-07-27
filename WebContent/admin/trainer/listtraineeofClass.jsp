@@ -126,14 +126,14 @@ if( user.getRoleId() == 3) {
                 	  if(check == 1){
                 		  %>
 
-                		  <div class="alert alert-success">
+                		  <div class="alert alert-success" style="margin-top: 10px;">
                 		  <Strong>Finish trainee evaluation!</Strong>
                 		  </div>
                 		  <% 
                   } 
                   }else{
                 	  %>
-                	  <div class="alert alert-danger">
+                	  <div class="alert alert-danger" style="margin-top: 10px;">
 
                 	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
                 	  </div>
@@ -169,7 +169,7 @@ if( user.getRoleId() == 3) {
                   
                   <tr class="contentPage">
                   <td><%= i %></td>
-                  <td style="text-align: center;"><%= trainer.getUsername() %></td>
+                  <td style=""><%= trainer.getUsername() %></td>
                   <td><%= trainer.getFullname() %></td>
             	  <td><%= trainer.getEmail() %></td>
                   <td style="text-align: center;"><%= trainer.getPhone() %></td>
