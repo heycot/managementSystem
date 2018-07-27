@@ -25,11 +25,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-             <strong>Your Schedule</strong>
-			  </div>
+    <div class="card1 card mb-3">
+    	<div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+		    <strong class="lb_name">Your Schedule</strong>
+		 </div>
 		<div>
         <%
         ArrayList<ScheduleOfTrainee> listClass = (ArrayList<ScheduleOfTrainee>) request.getAttribute("listClass");
@@ -96,21 +96,20 @@ if( user.getRoleId() == 3) {
         <div class="card-body">
           <div class="table-responsive">
             <form action=""  method="post">
-                <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table id="myTable" style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%"  cellspacing="0">                
                   <thead>
                     <tr>
-                       <th style="text-align: center;" >No.</th>
-                      <th style="text-align: center;" >Class  </th>
-                      <th style="text-align: center;" >Room </th>
-                      <th style="text-align: center;" >Trainer </th>
-                      <th style="text-align: center;">Time</th>
-                      <th style="text-align: center;" >Date Of Week </th>
-                      <th style="text-align: center;" >Learned (hours)</th>
-                      <th style="text-align: center;" >Duration (hours)</th>
-                      <th style="text-align: center;" >Default</th>
+                       <th style="text-align: center; vertical-align: middle;" >No.</th>
+                      <th style="text-align: center; vertical-align: middle;" >Class  </th>
+                      <th style="text-align: center; vertical-align: middle;" >Room </th>
+                      <th style="text-align: center; vertical-align: middle;" >Trainer </th>
+                      <th style="text-align: center; vertical-align: middle; ">Time</th>
+                      <th style="text-align: center; vertical-align: middle; " >Date Of Week </th>
+                      <th style="text-align: center; vertical-align: middle;" >Learned (hours)</th>
+                      <th style="text-align: center; vertical-align: middle;" >Duration (hours)</th>
+                      <th style="text-align: center; vertical-align: middle;" >Default</th>
                       
-                      <th style="text-align: center;" >Action</th>
+                      <th style="text-align: center; vertical-align: middle;" >Action</th>
                       
                     </tr>
                   </thead>
@@ -155,9 +154,7 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+      
       </div>
     </div>
   </div>

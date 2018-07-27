@@ -2,9 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
-
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -283,11 +282,3 @@ if( user.getRoleId() == 3) {
 </div>
 </div>
 <%@include file="/templates/inc/footer.jsp" %> 
-
-
-
-
-
-
-
-

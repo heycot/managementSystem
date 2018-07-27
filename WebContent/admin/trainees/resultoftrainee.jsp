@@ -16,11 +16,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class=" alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-             <strong>Your Results</strong>
-			  </div>
+    <div class="card1 card mb-3">
+        <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+		    <strong class="lb_name">Your Results</strong>
+		 </div>
 		<div>
            <%
                 
@@ -88,13 +88,12 @@ if( user.getRoleId() == 3) {
         <div class="card-body">
           <div class="table-responsive">
             <form action=""  method="post">
-                <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="50%" id="dataTable" cellspacing="0">
+                <table id="myTable"  style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="50%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                       <th style="text-align: center;" >No.</th>
-                      <th style="text-align: center;" >Class Name  </th>
-                      <th style="text-align: center;" >Result </th>
+                       <th style="text-align: center; vertical-align: middle; "   >No.</th>
+                      <th style="text-align: center; vertical-align: middle; "  >Class Name  </th>
+                      <th style="text-align: center; vertical-align: middle; "    >Result </th>
                    
                       
                     </tr>
@@ -114,10 +113,10 @@ if( user.getRoleId() == 3) {
                   %>
                   
                   <tr class="contentPage">
-                  <td style="text-align: center;" width="5%"><%= i %></td>
-                  <td style="text-align: center;"width="20%"><%= results.getClassName()%></td>
+                  <td style="text-align: center; vertical-align: middle; " width="5%"><%= i %></td>
+                  <td style="text-align: center; vertical-align: middle; "width="20%"><%= results.getClassName()%></td>
                   
-                  <td style="text-align: center;" width="20%"><%= res%></td>
+                  <td style="text-align: center; vertical-align: middle;" width="20%"><%= res%></td>
                   
                   </tr>
                   <%
@@ -134,9 +133,7 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+ 
       </div>
     </div>
   </div>

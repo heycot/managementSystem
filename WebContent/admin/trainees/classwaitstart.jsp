@@ -30,11 +30,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3 divForm">
-       		<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-             <strong>Waiting Class </strong>
-			  </div>
+        <div class="card1 card mb-3 divForm">
+       		<div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+		    <strong class="lb_name">Waiting Classes</strong>
+		 </div>
 			  <div>
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
@@ -74,21 +74,26 @@ if( user.getRoleId() == 3) {
             });
         </script>
 			  
-		  	<div class="form">
-		  		<table >
+        <div class="card-body">
+                  <div class="table-responsive">
+        	<form  class="formTable" action=""  method="post">
+        	
+	        	<table class="myTable table table-bordered table-hover table-compact" width="100%" cellspacing="0" >
 		  		<%
 		  		if(tong!=0){
 		
 		  		%>
+		  		  <thead>
 				  <tr >
-				    <th>No.</th>
-				    <th>Name</th>
-				    <th>Time</th>
-				    <th>Day Of Week</th>
-				    <th>Duration (hours)</th>
-				    <th>Trainer</th>
-				    <th>Action</th>
+				    <th style="text-align: center; vertical-align: middle;">No.</th>
+				    <th style="text-align: center; vertical-align: middle;" >Name</th>
+				    <th style="text-align: center; vertical-align: middle;" >Time</th>
+				    <th style="text-align: center; vertical-align: middle;">Day Of Week</th>
+				    <th style="text-align: center; vertical-align: middle;">Duration (hours)</th>
+				    <th style="text-align: center; vertical-align: middle;">Trainer</th>
+				    <th style="text-align: center; vertical-align: middle;" >Action</th>
 				  </tr>
+                  <thead>
 				  
 				  <%
 				  }
@@ -103,11 +108,11 @@ if( user.getRoleId() == 3) {
 				  
 				  %>
 				   <tr class="contentPage" >
-				    <td class="no"><%= count %></td>
+				    <td class="no" style="text-align: center; vertical-align: middle;"><%= count %></td>
 				    <td class="name"><%= classOpening.getClassName() %></td>
 				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
 				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
-				    <td class="duration"><%= classOpening.getDuration()%></td>
+				    <td class="duration" style="text-align: center; vertical-align: middle;" ><%= classOpening.getDuration()%></td>
 				    <td class="trainer"><%= classOpening.getTrainerName() %></td>
 				    
 				    
@@ -115,7 +120,7 @@ if( user.getRoleId() == 3) {
 				    
 				    
 				    %>
-				    <td class="btnRegister" >
+				    <td  style="text-align: center; vertical-align: middle;" class="btnRegister" >
 						<button  type="button" name="cancel" class = "btn btn-danger cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
 background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>		
 					</td>
@@ -130,13 +135,11 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 				<div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
+				</form>
 		  	</div>
    		</div> 
      
-              
-        <div style="clear: both"></div>
-        <div class="error" ></div>
-        <div style="margin-bottom: 10%"></div>
+          
 	</div>
 </div>
 </div>

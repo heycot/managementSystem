@@ -20,7 +20,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -30,11 +30,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 5px;"> 
-             <i class="fa fa-fw fa-users" ></i>
-		    <strong>Trainers</strong>
-		  </div>
+    <div class="card1 card mb-3">
+        <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+		    <strong class="lb_name">Trainers</strong>
+		 </div>
 		<div> 
 	  <%
 	  String msg = "";
@@ -119,17 +119,17 @@ if( user.getRoleId() == 3) {
         </script>
         <div class="card-body">
           <div class="table-responsive">
-            <form action="<%=request.getContextPath() %>/trainer/del"  method="post">
-                <div style="margin-left: -15px; margin-bottom: 5px;">
-	            	<div style="float: left" >
-	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
-	        		</div>
+            <form  class="formTable" action="<%=request.getContextPath() %>/trainer/del"  method="post">
+                <div style="">
+	            	<div class="divBtnAdd" style="float: left" >
+	            	<a style="margin-left:0" class="btnAdd  btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+	         		</div>
 	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+	            	<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
                 	<div style="clear: both"></div>
 	        	</div>
-	        	<table  id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
+	        	<table style="border-collapse: collapse;" id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
                       <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -168,8 +168,10 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
 	                    <td   style="text-align: center; vertical-align: middle;">
-                        <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a  class="iconDel" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
+	                    <div class="row">
+                        <a class="btnEdit1" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="zmdi zmdi-edit" style=""></i></a>
+                        <a  class="btnDel1" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="zmdi zmdi-delete" style=""></i></a>
+                     	</div>
                      	</td>
                     </tr>
                   <%	
@@ -233,11 +235,10 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+
       </div>
     </div>
   </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 
+

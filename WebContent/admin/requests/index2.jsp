@@ -18,20 +18,21 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
 
+
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3" >
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
+    <div class="card1 card mb-3">
+        <div class="alert1 alert alert-primary" style=""> 
              <i class="fa fa-paper-plane" ></i>
-			    <strong class="namePage">Requests List </strong>
+			    <strong class="namePage">Requests </strong>
 			  </div>
         <div>
 		<%
@@ -84,7 +85,7 @@ if( user.getRoleId() == 3) {
          
         <div class="card-body">
           <div class="table-responsive">
-            <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
+            <form class="formTable" action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div class="wrapper" style="">
 	            	
 	            	<div style="float: left; margin-left: 15px;">
@@ -92,7 +93,7 @@ if( user.getRoleId() == 3) {
                 	</div>
                 	<div style="clear: both"></div>
 	        	</div>
-               <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+               <table  id="myTable" style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact"  width="100%" id="dataTable" cellspacing="0">               
                 <%
                	if(listRequests.size()>0){
                %>
@@ -173,9 +174,6 @@ if( user.getRoleId() == 3) {
 				</div>
             </form>
           </div>
-        </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
         </div>
       </div>
     </div>
