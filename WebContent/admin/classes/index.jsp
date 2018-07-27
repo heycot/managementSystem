@@ -131,13 +131,13 @@ if( user.getRoleId() == 3) {
             <form action="<%= request.getContextPath()%>/classes/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
-	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px; color: #000000" class="btn btn-light" href="<%=request.getContextPath() %>/classes/add" role="button">Add new class</a>
+	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;" class="btn btn-primary" href="<%=request.getContextPath() %>/classes/add" role="button">Add new class</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these Classes?')" id="deleteall" type="submit" value="Delete Classes">
                 	</div>
-                	<div style="float: right;">
-                	<input id="myInput" type="text" placeholder="Search..">
+                	<div style="float: right; width: 20%;">
+                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<div style="float: right; margin-right: 15px;">
 					  <ul class="nav nav-tabs" style='border-bottom: 0px solid #ddd;'>
@@ -215,7 +215,7 @@ if( user.getRoleId() == 3) {
 		                  	for(Classes classIndex : classesWait){
 		                  %>	
 		                  	<tr class="contentPageWait" id='class<%= classIndex.getClassId()%>'>
-		                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="class<%= classIndex.getClassId()%>" value="<%= classIndex.getClassId()%>" class="checkitem" id="chkitem"> </td>
+		                      	<td  style="text-align: center; vertical-align: middle;"> <input onclick="changeColor();" type="checkbox" name="class<%= classIndex.getClassId()%>" value="<%= classIndex.getClassId()%>" class="checkitem" id="chkitem"> </td>
 		                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><b><%= classIndex.getName() %></b></a> </td>
 			                    <%
 			                    if( classIndex.getNameTrainer() == null) {
@@ -307,8 +307,9 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;">Time Of Date</th>
 		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
+		                      <th style="text-align: center; font-size: medium;">Taught Hours</th>
 		                      <th style="text-align: center; font-size: medium;">Trainees (Learning)</th>
-		                      <th style="text-align: center; font-size: medium;">Action</th>
+		                      <!-- <th style="text-align: center; font-size: medium;">Action</th> -->
 		                    </tr>
 		                  </thead>
 		                  <tbody id="myTBody" >
@@ -352,11 +353,12 @@ if( user.getRoleId() == 3) {
 			                    %>
 			                    <td  style='vertical-align: middle;'> <%= dateStr%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getDuration()%></td>
+			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getCountLession()%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
-		                    	<td  style="text-align: center; vertical-align: middle;">
+		                    	<%-- <td  style="text-align: center; vertical-align: middle;">
 		                        	<a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
 		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
-		                     	</td>
+		                     	</td> --%>
 		                    </tr>
 		                  <%	
 		                  	}
@@ -407,6 +409,7 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;">Time Of Date</th>
 		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
+		                      <th style="text-align: center; font-size: medium;">Trainees</th>
 		                      <th style="text-align: center; font-size: medium;">Trainees (Failed)</th>
 		                      <th style="text-align: center; font-size: medium;">Action</th>
 		                    </tr>
@@ -452,11 +455,12 @@ if( user.getRoleId() == 3) {
 			                    %>
 			                    <td  style='vertical-align: middle;'> <%= dateStr%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getDuration()%></td>
+			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getTotalStudents()%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
 		                    	<td  style="text-align: center; vertical-align: middle;">
 		                    		<a href="javascript:void(0)" onclick="<%= openClass%>" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; <%= colorStatus%>"></i></a>
-		                        	<a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
+		                        	<%-- <a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a> --%>
+<%-- 		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a> --%>
 		                     	</td>
 		                    </tr>
 		                  <%	

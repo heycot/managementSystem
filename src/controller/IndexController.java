@@ -21,8 +21,19 @@ public class IndexController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(CurrentUser.checkLogin(request, response) == true) {
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
+			
+			if ( CurrentUser.getUserCurrent(request, response).getRoleId() == 3 ) {
+				response.sendRedirect(request.getContextPath() + "/trainee/index");
+				return;
+			} else if ( CurrentUser.getUserCurrent(request, response).getRoleId() == 2 ) {
+
+				response.sendRedirect(request.getContextPath() + "/trainee/edit?id=" + CurrentUser.getUserCurrent(request, response).getUserId());
+				return;
+			} else {
+
+				response.sendRedirect(request.getContextPath() + "/trainer/edit?id=" + CurrentUser.getUserCurrent(request, response).getUserId());
+				return;
+			}
 		}else {
 			return;
 		}

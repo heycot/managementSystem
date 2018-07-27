@@ -5,13 +5,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.TimeClass;
+import model.bean.User;
 import model.bo.ClassesBo;
+import model.bo.UserBo;
 
 
 public class GetFreeTimeInDateController extends HttpServlet {
@@ -24,16 +25,59 @@ public class GetFreeTimeInDateController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("get free time get controller");
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		System.out.println("free time");
+		try {
+			int courseId = 0;
+			if ( request.getParameter("courseId") != null) {
+				courseId = Integer.parseInt(request.getParameter("courseId"));
+			}
+			
+			UserBo userBo = new UserBo();
+			ArrayList<User> traniers = userBo.getTrainerByIdCourse(courseId);
+			
+			String result = " <div> <br/> " 
+							+" <label class='required' >Trainer&nbsp;:</label>";
+			
+			if (traniers.size() > 0) {
+				result +=  " <select name='trainer' id='trainerSelect' style='width: 100%'> <option onclick='showRoom();' value='0'>Select trainer</option> ";
+				for (User user : traniers) {
+					System.out.println("tranier: " + user.getUsername());
+					result += " <option onclick='showRoom();' value='" + user.getUserId() +"'>" + user.getUsername() + " (" + user.getAbility().getExperience() + " years experience)</option>";
+					
+				}
+				result += " </select> ";
+			} else {
+				result += " <br/> <span style='color: red;'> Can not find the trainer meet this requirement</span>";
+			}
+			result += "</div> <span id='spnTrainerStatus'></span>  ";
+			
+			out.println(result);
+				
+		} catch ( Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		System.out.println("free time post controller");
 		try {
 			int duration = 1;
-			int roomId = 0;
+			int roomId = 1;
+			int trainerId = 0;
 			ArrayList<String> dayOfWeek = new ArrayList<>();
 			
 			if ( request.getParameter("duration") != null) {
 				String durationStr = request.getParameter("duration");
 				duration = Integer.parseInt(durationStr.substring(8));
+			}
+			
+			if ( request.getParameter("trainer") != null) {
+				trainerId = Integer.parseInt(request.getParameter("trainer"));
 			}
 			
 			if ( request.getParameter("roomId") != null) {
@@ -57,13 +101,23 @@ public class GetFreeTimeInDateController extends HttpServlet {
 			
 			
 			ClassesBo classBo = new ClassesBo();
-			ArrayList<TimeClass> times = classBo.getFreeTimeInDay(duration, dayOfWeek, roomId);
+			ArrayList<TimeClass> times = classBo.getFreeTimeInDay(duration, dayOfWeek, roomId, trainerId);
 			
-			String timeclass = " <div id='duration" + duration +"'  class='time red'> " ;
-			for (TimeClass timeClass : times) {
-				timeclass += "<input type='radio' name='time' value='" + timeClass.getTimeOfDate() + "' /> " + timeClass.getTimeOfDate() + "<br/>" ;
+			String timeclass = "<label class='required' >Time&nbsp;</label> <br/>" ;
+			
+			if (times.size() > 0) {
+
+				for (TimeClass timeClass : times) {
+					System.out.println("time : " + timeClass.getTimeOfDate());
+					timeclass += "<input type='radio' onclick='hideErrorTime();' name='time' value='" + timeClass.getTimeOfDate() + "' /> " + timeClass.getTimeOfDate() + "<br/>" ;
+				}
+				
+			} else {
+				timeclass += "<span style='color: red;'> All hours are busy</span> <br/>";
 			}
-			timeclass += "</div>";
+
+			timeclass += "<span id='spnTimeStatus'></span>";
+			timeclass += " </div>";
 			
 			out.println(timeclass);
 			
@@ -71,12 +125,6 @@ public class GetFreeTimeInDateController extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

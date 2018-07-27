@@ -5,11 +5,10 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
-
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -17,13 +16,13 @@ if( user.getRoleId() == 3) {
 }
 %>
 
-<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3" >
+    <div  class="card1 card mb-3" style="">
 <!-- Nav -->
-       	<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
-        	<i class="fa fa-fw fa-briefcase" ></i>
-			<strong>Majors </strong>
+       	<div class="alert1 alert alert-primary" style=""> 
+        	<i class="fa1 fa fa-fw fa-briefcase" ></i>
+			<strong class="lb_name">Majors </strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -66,13 +65,13 @@ if( user.getRoleId() == 3) {
 					  
 					  if( check == false){
 						  %>
-				        	<div class="alert alert-danger">
+				        	<div class="alert alert-danger" style="margin-right: 20px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
 					  } else {
 						  %>
-				        	<div class="alert alert-success">
+				        	<div class="alert alert-success" style="margin-right: 20px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
@@ -120,7 +119,6 @@ if( user.getRoleId() == 3) {
 	                });
 	            });
 	        </script>
-	        
 <!-- Pagination -->
 	        <script type="text/javascript">
 	            $(function () {
@@ -133,7 +131,6 @@ if( user.getRoleId() == 3) {
 	                    });
 	                }
 	                showPage(1);
-	                ///** Cần truyền giá trị vào đây **///
 	                var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
 	                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
 	                var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -153,26 +150,25 @@ if( user.getRoleId() == 3) {
 	        
 	       
 <!-- Content -->
-		   <div class="card-body">
+		   <div class="card-body" style="">
 		         <div class="table-responsive">
-           			<form action="<%= request.getContextPath()%>/major/del"  method="post">
-          				<div style="margin-left: -10px; margin-bottom: 5px;">
-            				<div style="float: left" >
-			            		<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
-			            				type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
+           			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
+          				<div style="">
+            				<div class=""  style="float: left; margin-bottom: 15px;" >
+			            		<button style="" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
 	            				</button>
 			        		</div>
 			            	<div style="float: left; margin-left: 15px;">
-			            		<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" 
+			            		<input class="btn btn-danger" style="" 
 			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete majors">
 			               	</div>
 		              		<div style="clear: both">
 		              		</div>
 	       				</div>
-		                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+		                <table  id="myTable" class="myTable table table-bordered" width="100%" id="dataTable" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
 							<thead>
 		                    	<tr>
-									<th style="text-align: center; font-size: medium;">Delete All
+									<th style="text-align: center; font-size: medium;max-width: 100px;">Delete All
 			                      		<input 	style="display: inline-block; margin-left: 15px;vertical-align: middle; margin-top: -3px;" 
 			                      				type="checkbox" class="checkall">
 			                      	</th>
@@ -191,14 +187,18 @@ if( user.getRoleId() == 3) {
 							   	   </td>
 				                   <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
 								   <td style="text-align: center; vertical-align: middle;">
-				                   		<button type="button" class="btn btn-link" name="editMajor" style="" data-toggle="modal"
-				                    			data-target="#editModal<%=list.getMajorId()%>">
-				                    	<i class="fa fa-edit" style="font-size:20px;  vertical-align:middle;"></i>
-			                    		</button>
-				                    	<a 	href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
-				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor" >
-					                    	<i class="fa fa-trash" style="color:rgb(220, 53, 69) ;font-size:20px; vertical-align:middle;"></i>
+								   <div class="row">
+								   			
+										<button type="button" class="btnEdit1 btn btn-link" name="editMajor"  data-toggle="modal"
+				                    			data-target="#editModal<%=list.getMajorId()%>" style="">
+                                            <i class="zmdi zmdi-edit" style=""></i>
+                                        </button>
+								   		<a 	class="btnDel1" href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
+				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor"  style="">
+					                    	<i class="zmdi zmdi-delete" style=""></i>
+					                    	
 				                    	</a>
+								   </div>
 				                   </td>          
 			                   </tr>
 <!-- Edit list -->
@@ -270,18 +270,13 @@ if( user.getRoleId() == 3) {
 									<%
 				                  	}
 				                  	%>
-                  
                			</tbody>
 	                </table>
-	                <div id="pager" style="float: left; margin-top:10px;">
+	                <div id="pager" style="">
 						<ul id="pagination" class="pagination-sm"></ul>
 					</div>
 				</form>
 	      </div>
-    </div>
-<!-- Footer -->
-    <div class="card-footer small text-muted" style="margin-top: 40px;">
-      	Updated yesterday at 11:59 PM
     </div>
   </div>
 </div>

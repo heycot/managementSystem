@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,6 +29,9 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
+
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
@@ -127,7 +131,7 @@ if( user.getRoleId() == 3) {
               	
               	<div class="form-group">
 	              	<label class="required" >Birthday</label>
-	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<input class="form-control" id="txtBirthday" max="<%=dateMax%>" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">

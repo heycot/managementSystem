@@ -95,7 +95,6 @@ if( user.getRoleId() == 3) {
 				  int count=0;
 				  for (ClassWaiting classOpening : listClassOpening) {
 					  count++;
-				  
 				  %>
 				   <tr class="contentPage" id="row<%= classOpening.getClassId()%>">
 				    <td class="no"><%= count %></td>
@@ -104,22 +103,14 @@ if( user.getRoleId() == 3) {
 				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
 				    <td class="duration"><%= classOpening.getDuration()%></td>
 				    <td class="trainer" style=" text-align: left;"><%= classOpening.getTrainerName() %></td>
-				    
-				    
 				    <%
-				    
-				    
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >
 				    	<button  type="button" name="register" class = "btn btn-danger register"  style="border-color: #e7c6c9;
 background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
-						
-				    		
 				    </td>
-				    
 				  </tr>
 				  <%
-					  
 				  }
 				  %>
 				</table>
@@ -136,6 +127,7 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 	</div>
 </div>
 </div>
+
      <script type="text/javascript">
    $(document).ready(function(){ 
    
@@ -179,12 +171,7 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 					}
 				});
 			}
-			
-			
 		}
-		
-		
-		
 	});
 </script>
 <div id="post_modal_noti" class ="modal fade">

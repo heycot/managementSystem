@@ -18,9 +18,20 @@ public class Classes {
 	private int duration;
 	private String nameRoom;
 	private int students;
+	private int totalStudents;
 	
 	
 	
+	public int getTotalStudents() {
+		return totalStudents;
+	}
+
+
+	public void setTotalStudents(int totalStudents) {
+		this.totalStudents = totalStudents;
+	}
+
+
 	public int getStudents() {
 		return students;
 	}

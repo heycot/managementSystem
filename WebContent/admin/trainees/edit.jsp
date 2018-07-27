@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,20 +21,23 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style='padding:10px 20px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
 
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
+
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3" style="height:650px;">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+  
+  <div class="alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;margin-left:-23px;"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;<%= trainee.getUsername()%> </strong>
+			    <strong style="font-weight: 400;font-size: 21px;">&nbsp;<%= trainee.getUsername()%> </strong>
 			  </div>
 			  
 			  <div>
@@ -47,6 +51,8 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
+        <div class="card mb-3" style="height:auto;margin-top:14px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
+             
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>" method="POST" enctype="multipart/form-data" >
               	<div style="height: 5%"></div>
@@ -89,8 +95,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >FullName</label>&nbsp;<span id="spnFullNameStatus"></span>
-
+	              	<label class="required" >FullName</label>&nbsp;
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
 	              	<span id="spnFullNameStatus"></span>
               	</div>
@@ -132,7 +137,7 @@ if( user.getRoleId() == 3) {
               	
               	<div class="form-group">
 	              	<label class="required" >Birthday</label>
-	              	<input class="form-control" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<input class="form-control"  max="<%=dateMax%>" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
@@ -151,7 +156,7 @@ if( user.getRoleId() == 3) {
                    <input style="display: none; margin-top:-23px;" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
  -->
                     		
-                   <label for="usr"><strong>Password:</strong></label>&nbsp;
+                   <label for="usr">Password</label>&nbsp;
                   <input type="button" value="Click here to change" onclick="changePass();"> <br>
                    <input style="display: none" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
                    <span id="spnPassStatus"></span>
@@ -164,18 +169,21 @@ if( user.getRoleId() == 3) {
                    <span id="spnPassStatus"></span>
                   </div>
               	</div>
+              	</form>
+              	<div style="text-align:center;margin-top: 30px;margin-bottom: 32px;">
+             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
+             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
+              </div> 
               	
               	
                    <script type="text/javascript">
      				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
-							document.getElementById("lbfill").style.display = "block";
 							document.getElementById("oldpass").style.display = "block";
 							document.getElementById("newpass").style.display = "block";
 							document.getElementById("confirmpass").style.display = "block";
 						}
 						else{
-							document.getElementById("lbfill").style.display = "none";
 							document.getElementById("oldpass").style.display = "none";
 							document.getElementById("newpass").style.display = "none";
 							document.getElementById("confirmpass").style.display = "none";
@@ -186,10 +194,7 @@ if( user.getRoleId() == 3) {
               <div style="clear: both"></div>
               <div class="error" ></div>
                
-              <div style="text-align:center;">
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
-              </div> 
+              
 	          <div style="clear: both"></div>
               
               <div style="margin-bottom: 5%"></div>
@@ -329,7 +334,37 @@ if( user.getRoleId() == 3) {
       				}); 
 
       				$(document).ready(function() {
-      					$('#txtPassword').blur(function(e) {
+      					$('#oldpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnPassStatus').html('');
+      							$('#spnPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+      				
+      				$(document).ready(function() {
+      					$('#newpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnPassStatus').html('');
+      							$('#spnPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+      				
+      				$(document).ready(function() {
+      					$('#confirmpass').blur(function(e) {
           					if (validatePassword()) {
       							$('#spnPassStatus').html('');
       							$('#spnPassStatus').css('color', 'green');
@@ -419,9 +454,6 @@ if( user.getRoleId() == 3) {
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
           </div>
         </div>
       </div>
