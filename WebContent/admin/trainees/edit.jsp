@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,6 +27,9 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
+
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
@@ -91,8 +95,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >FullName</label>&nbsp;<span id="spnFullNameStatus"></span>
-
+	              	<label class="required" >FullName</label>&nbsp;
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
 	              	<span id="spnFullNameStatus"></span>
               	</div>
@@ -134,7 +137,7 @@ if( user.getRoleId() == 3) {
               	
               	<div class="form-group">
 	              	<label class="required" >Birthday</label>
-	              	<input class="form-control" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<input class="form-control"  max="<%=dateMax%>" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
@@ -176,13 +179,11 @@ if( user.getRoleId() == 3) {
                    <script type="text/javascript">
      				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
-							document.getElementById("lbfill").style.display = "block";
 							document.getElementById("oldpass").style.display = "block";
 							document.getElementById("newpass").style.display = "block";
 							document.getElementById("confirmpass").style.display = "block";
 						}
 						else{
-							document.getElementById("lbfill").style.display = "none";
 							document.getElementById("oldpass").style.display = "none";
 							document.getElementById("newpass").style.display = "none";
 							document.getElementById("confirmpass").style.display = "none";
@@ -333,7 +334,37 @@ if( user.getRoleId() == 3) {
       				}); 
 
       				$(document).ready(function() {
-      					$('#txtPassword').blur(function(e) {
+      					$('#oldpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnPassStatus').html('');
+      							$('#spnPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+      				
+      				$(document).ready(function() {
+      					$('#newpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnPassStatus').html('');
+      							$('#spnPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+      				
+      				$(document).ready(function() {
+      					$('#confirmpass').blur(function(e) {
           					if (validatePassword()) {
       							$('#spnPassStatus').html('');
       							$('#spnPassStatus').css('color', 'green');

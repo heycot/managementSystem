@@ -46,6 +46,11 @@ RoomDao roomDao;
 		return roomDao.getRooms();
 	}
 	
+	public ArrayList<Rooms> getRoomsEnable(){
+		roomDao = new RoomDao();
+		return roomDao.getRoomsEnable();
+	}
+	
 	public boolean checkRoomNameAlreadyExistsEdit(String roomName, int roomId) {
 		roomDao = new RoomDao();
 		ArrayList<Rooms> rooms = roomDao.getRooms();

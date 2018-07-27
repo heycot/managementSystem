@@ -6,17 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-<style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-</style>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -163,8 +153,8 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
                 	</div>
-                	<div style="float: right; margin-right: 15px;">
-                	<input id="myInput" type="text" placeholder="Search..">
+                	<div style="float: right; width: 25%;">
+                	<input style=" width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
 					<script>
 					$(document).ready(function(){
@@ -178,7 +168,7 @@ if( user.getRoleId() == 3) {
 					</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table  id="myTable"  class="table table-bordered table-hover table-compact" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -196,15 +186,15 @@ if( user.getRoleId() == 3) {
                   %>	
                   	<tr class="contentPage">
                       	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
-                     	<td  style="vertical-align: middle;"> <a href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><%= course.getName() %></a> </td>
+                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><b><%= course.getName() %></b></a> </td>
 	                    <td  style="vertical-align: middle;"><%= course.getMajorName() %></td>
 	                    <td  style="text-align: center; vertical-align: middle;"><%= course.getDuration()%></td>
 	                    <%
 	                    String kind = "";
 	                    if (course.getKind_of_course() == 1) {
-	                    	kind = "True";
+	                    	kind = "Yes";
 	                    } else {
-	                    	kind = "False";
+	                    	kind = "No";
 	                    }
 	                    %>
 	                    <td  style="text-align: center; vertical-align: middle;"><%= kind %></td>

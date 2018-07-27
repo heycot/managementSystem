@@ -289,7 +289,11 @@ public class UserBo {
 	public ArrayList<MyMessages> getMessagesOfAdmin( int user_id){
 				userDao= new UserDao();
 				return userDao.getMessagesOfAdmin(user_id);
-			}
+	}
+	public ArrayList<User> getTrainerByIdCourse(int courseId) {
+		userDao = new UserDao();
+		return userDao.getTrainerByIdCourse(courseId);
+	}
 }
 
 

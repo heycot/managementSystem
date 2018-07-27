@@ -69,7 +69,8 @@ public class ClassesDao {
 		String sql = "select class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
 				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom from classes " +
 				"inner join courses on classes.course_id = courses.course_id  " + 
-				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id";
+				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id" +
+				" order by classes.class_id desc";
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
@@ -95,7 +96,8 @@ public class ClassesDao {
 		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
 				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, count(waiting.user_id) as students from classes " +
 				"inner join courses on classes.course_id = courses.course_id  left join waiting on classes.class_id = waiting.class_id " + 
-				"left join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 0 group by classes.class_id";
+				"left join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 0 group by classes.class_id" +
+				" order by classes.class_id desc";
 
 		try {
 			pst = conn.prepareStatement(sql);
@@ -123,7 +125,8 @@ public class ClassesDao {
 		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
 				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, count(learning.user_id) as students from classes " +
 				"inner join courses on classes.course_id = courses.course_id  left join learning on classes.class_id = learning.class_id " + 
-				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 1 group by classes.class_id";
+				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 1 group by classes.class_id" +
+				" order by classes.class_id desc";
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
@@ -148,16 +151,19 @@ public class ClassesDao {
 		conn  = ConnectDBLibrary.getConnection();
 		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
 				" , courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, " + 
-				" (select count(user_id) from results inner join classes on results.class_id = classes.class_id where results.status = 0)  as students from classes " + 
+				" (select count(user_id) from results inner join classes on results.class_id = classes.class_id where results.status = 0)  as traineeFailed, " +
+				" (select count(user_id) from results inner join classes on results.class_id = classes.class_id )  as students from classes " + 
 				" inner join courses on classes.course_id = courses.course_id  left join results on classes.class_id = results.class_id  " + 
-				" inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 2 group by classes.class_id ";
+				" inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 2 group by classes.class_id " +
+				" order by classes.class_id desc";
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Classes classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
 									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
-									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("students"));
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("traineeFailed"));
+				classE.setTotalStudents(rs.getInt("students"));
 				classes.add(classE);
 			}
 		} catch (SQLException e) {
@@ -299,7 +305,7 @@ public class ClassesDao {
 		boolean check = false;
 		
 		conn = ConnectDBLibrary.getConnection();
-		String sql  = "select * from classes where time_of_date like '%" + time + "%' and date_of_week like '%" + day + "%' and status = 1 and room_id = ?";
+		String sql  = "select * from classes where time_of_date like '%" + time + "%' and date_of_week like '%" + day + "%' and ( status = 1 or status = 0 ) and room_id = ?";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, roomId);
@@ -323,7 +329,7 @@ public class ClassesDao {
 	public ArrayList<TimeClass> getTimeClassByDuration(int duration) {
 		ArrayList<TimeClass> times = new ArrayList<>();
 		
-		String sql = "select * from timetable where duration  = ?";
+		String sql = "select * from timetable where duration = ?";
 		conn = ConnectDBLibrary.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
@@ -343,6 +349,60 @@ public class ClassesDao {
 		return times;
 	}
 
+	public ArrayList<TimeClass> getTimeInDayAndRoom(String day, int roomId,int trainerId) {
+		ArrayList<TimeClass> times = new ArrayList<>();
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql  = "select * from classes where date_of_week like '%" + day + "%' and "  + 
+						"(status = 1 or status = 0) and (room_id = ? or trainer_id = ?) order by class_id desc";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, roomId);
+			pst.setInt(2, trainerId);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				TimeClass time = new TimeClass(rs.getInt("class_id"), rs.getString("time_of_date"), rs.getString("date_of_week"), 0);
+				times.add(time);		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+				
+		return times;
+	}
 
-
+	public int addClass(Classes newClass) {
+		int kq = 0;
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql  = "insert into classes(created_at, time_of_date, date_of_week, count_lesson, course_id, trainer_id, room_id, name, status) values(?,?,?,?,?,?,?,?,?)";
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setDate(1, newClass.getCreateAt());
+			pst.setString(2, newClass.getTimeOfDate());
+			pst.setString(3, newClass.getDateOfWeek());
+			pst.setInt(4, 0);
+			pst.setInt(5, newClass.getCourseId());
+			pst.setInt(6, newClass.getTrainerId());
+			pst.setInt(7, newClass.getRoomId());
+			pst.setString(8, newClass.getName());
+			pst.setInt(9, 0);
+			
+			kq = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return kq;
+	}
+	
 }
