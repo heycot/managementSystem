@@ -45,7 +45,7 @@ String dateMax= date.toString();
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
     <div  class="card mb-3">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+             <div class="alert alert-primary"> 
              <i class="fa fa-fw fa-user" ></i>
 			    <strong>&nbsp;<%=trainer.getUsername() %> </strong>
 			  </div>
@@ -67,12 +67,12 @@ String dateMax= date.toString();
 									value="<%=trainer.getUserId() %>" name="user_id"/><br>
 							<div class="form-group">
 								<div>
-									<div class="form-group" class="col-sm-2" style="float: left; padding-right:20px;">
+									<div class="form-group" class="col-sm-2" >
 										<img id="blah"
 											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
 											alt="your image" width="120" height="150" />
 									</div>					
-									<div class="form-group" class="col-sm-4" style="float: left">
+									<div class="form-group" class="col-sm-4">
 										<label class="required">Avatar:<em
 											style="color: red">(jpg, png, gif)</em> </label>
 											 <input
@@ -96,7 +96,7 @@ String dateMax= date.toString();
 									}
 								</script>
 							</div>
-							<div class="form-group" style="margin-top:-10px;">
+							<div class="form-group" >
 								<label for="usr">Email<span
 									style="color: red"> *</span></label> <input
 									type="email" class="form-control" id="txtemail"
@@ -164,7 +164,7 @@ String dateMax= date.toString();
 							</div>
 
 
-							<div class="form-group" style="margin-top:-5px;">
+							<div class="form-group" >
 
 								<label for="usr">Password:</label> <input type="button"
 									value="Click here to change" onclick="changePass();"> <br>
@@ -186,8 +186,8 @@ String dateMax= date.toString();
 								<table class="table table-bordered" id="abilityTable">
 									<thead>
 										<tr>
-											<td style="text-align:center;">Skill:<br>
-											<select class="form-group" name="skillId" id="ability" style="text-align:center;width: 12em;margin-top: 5px;">
+											<td >Skill:<br>
+											<select class="form-group" name="skillId" id="ability">
 												<%
 													List<Skills> skills = skillBo.getSkills();
 													for (Skills skill : skills) {
@@ -198,9 +198,9 @@ String dateMax= date.toString();
 												%>
 											</select>
 											</td>
-											<td style="text-align:center;">Experience:<br>
+											<td>Experience:<br>
 											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" style="text-align:center;width: 12em; margin-top: 5px;" min="0" max="50" />
+												placeholder="Experience Year" id="exp" min="0" max="50" />
 											</td>
 											
 									</thead>
@@ -216,9 +216,9 @@ String dateMax= date.toString();
 					</div>
 					<br>
 					<br>
-					<div class="" style="text-align:center; ">
-						<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update" style="height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
-						<input class="btn btn-secondary btn-lg" type="reset" value="Reset"  style="border:1px solid white;height:40px; width:100px; text-align:center; vertical-align:middle;font-size:17px;padding:5px; "/>
+					<div class="">
+						<input class="btn btn-primary btn-lg" type="submit"  name="submit" id="btnSubmit"  value="Update"/>
+						<input class="btn btn-secondary btn-lg" type="reset" value="Reset"  />
 					</div>
 					</div>
 			</form>

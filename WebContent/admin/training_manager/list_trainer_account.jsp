@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,7 +6,6 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
     <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
             #pagination {
                 display: flex;
                 display: -webkit-flex; /* Safari 8 */
@@ -132,7 +130,7 @@ if( user.getRoleId() == 3) {
 	        	<table id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th >DeleteAll<input style="display: inline-block;" type="checkbox" class="checkall"></th>
+                      <th >DeleteAll<input type="checkbox" class="checkall"></th>
                       <th >Avatar</th>
                       <th >UserName</th>
                       <th >FullName</th>

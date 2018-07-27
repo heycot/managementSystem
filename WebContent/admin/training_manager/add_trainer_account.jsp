@@ -25,7 +25,7 @@ String dateMax= date.toString();
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
 		<div class="card1 card mb-3">
-			<div class="alert1 card-header alert alert-primary" style=""> 
+			<div class="alert1 card-header alert alert-primary" > 
              <i class="fa1 fa fa-fw fa-user" ></i>
 			    <strong class="lb_name">&nbsp;Add trainer's account </strong>
 			  </div>
@@ -42,18 +42,18 @@ String dateMax= date.toString();
 			  	%>
 			  </div>
 			<form id="add-trainer-post" action="<%= request.getContextPath() %>/trainer/add" method="POST"  enctype="multipart/form-data">
-				<div style="height: 2%"></div>
+				<div></div>
 
-				<div class="card container-fluid" style="padding:20px 20px;">
+				<div class="card container-fluid" >
 					<div class="row">
 						<div class="col-md-6">
 							<div>
-								<div class="form-group" class="col-sm-2" style="float: left">
+								<div class="form-group" class="col-sm-2" >
 								<img id="blah"
 									src="<%=request.getContextPath()%>/files/default.jpg"/>
 							</div>
 							<br><br><br>
-								<div class="form-group" class="col-sm-4" style="float: left">
+								<div class="form-group" class="col-sm-4" >
 									<label class="required"><strong>Avatar:</strong><em style="color: red">(jpg,
 											png, gif)</em> </label> <input class="form-control" id="image" type="file"
 										name="avatar" onchange="readURL(this);" />
@@ -73,7 +73,7 @@ String dateMax= date.toString();
 									}
 								</script>
 
-								<div style="clear: both"></div>
+								<div ></div>
 							</div>
 				
 							<div class="form-group">
@@ -170,15 +170,13 @@ String dateMax= date.toString();
 					</div>
 					<div class="divButtons">
 						<input class="btnA btn btn-primary btn-lg" type="submit" name="submit"
-							id="btnSubmit" value="Add" style="" /> 
-						<input class=" btnB btn btn-secondary btn-lg" type="reset" value="Reset" style="" />
+							id="btnSubmit" value="Add" /> 
+						<input class=" btnB btn btn-secondary btn-lg" type="reset" value="Reset" />
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-	
-					<div style="margin-bottom: 7%"></div>
 </div>
 <script type="text/javascript">
 	function readURL(input) {
@@ -352,8 +350,4 @@ String dateMax= date.toString();
 		}
 </script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-
-</body>
-</html>
-
 <%@include file="/templates/inc/footer.jsp"%>
