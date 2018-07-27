@@ -20,7 +20,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style='padding:20px 20px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -28,12 +28,12 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
+<div class="<%= classNameContent%>" <%= styleContent%> style="">
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3" style="height:650px;">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;<%= trainee.getUsername()%> </strong>
+  
+  <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-user " style=""></i>
+			    <strong class="lb_name" style="">&nbsp;<%= trainee.getUsername()%> </strong>
 			  </div>
 			  
 			  <div>
@@ -47,6 +47,8 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
+        <div class="card mb-3" style="">
+             
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>" method="POST" enctype="multipart/form-data" >
               	<div style="height: 5%"></div>
@@ -151,7 +153,7 @@ if( user.getRoleId() == 3) {
                    <input style="display: none; margin-top:-23px;" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
  -->
                     		
-                   <label for="usr"><strong>Password:</strong></label>&nbsp;
+                   <label for="usr">Password</label>&nbsp;
                   <input type="button" value="Click here to change" onclick="changePass();"> <br>
                    <input style="display: none" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
                    <span id="spnPassStatus"></span>
@@ -164,6 +166,11 @@ if( user.getRoleId() == 3) {
                    <span id="spnPassStatus"></span>
                   </div>
               	</div>
+              	</form>
+              	<div class="divButtons" style="">
+             		<input style=" " id="btnSubmit"  class="btnA btn btn-primary" type="submit" name="submit" value="Edit" />
+             		<input style="" class="btnB btn btn-secondary" type="reset" name="reset" value="Reset" />
+              </div> 
               	
               	
                    <script type="text/javascript">
@@ -186,14 +193,11 @@ if( user.getRoleId() == 3) {
               <div style="clear: both"></div>
               <div class="error" ></div>
                
-              <div style="text-align:center;">
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
-             		<input style=" width:100px; height:40px; font-size: 18px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
-              </div> 
+              
 	          <div style="clear: both"></div>
               
               <div style="margin-bottom: 5%"></div>
-              </form> 
+             
 
            <script type="text/javascript">
       				$(document).ready(function() {
@@ -419,10 +423,5 @@ if( user.getRoleId() == 3) {
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
-          </div>
-        </div>
-      </div>
-<%@include file="/templates/inc/footer.jsp" %> 
+     
+

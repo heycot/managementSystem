@@ -169,7 +169,7 @@ if( user.getRoleId() == 3) {
                   
                   <tr class="contentPage">
                   <td><%= i %></td>
-                  <td style="text-align: center;"><%= trainer.getUsername() %></td>
+                  <td style=""><%= trainer.getUsername() %></td>
                   <td><%= trainer.getFullname() %></td>
             	  <td><%= trainer.getEmail() %></td>
                   <td style="text-align: center;"><%= trainer.getPhone() %></td>
