@@ -103,7 +103,7 @@ if( user.getRoleId() == 3) {
 				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
 				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
 				    <td class="duration"><%= classOpening.getDuration()%></td>
-				    <td class="trainer"><%= classOpening.getTrainerName() %></td>
+				    <td class="trainer" style=" text-align: left;"><%= classOpening.getTrainerName() %></td>
 				    
 				    
 				    <%
@@ -142,11 +142,7 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 	   $(document).on('click','.register',function(){
 			 var classOpening_id = $(this).attr("id");
 			 regiterClass(classOpening_id);
-			 var rowid= "row"+classOpening_id;
-			 alert(rowid);
-			 var link = document.getElementById(rowid);
-			 link.style.display = 'none'; //or
-			 link.style.visibility = 'hidden';
+			 
 		});
 		function regiterClass(classOpening_id)
 		{	
@@ -154,7 +150,6 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 				$.ajax({
 					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + classOpening_id,
 					type : 'POST',
-					//data:{post_id:post_id},
 					success:function(data)
 					{
 						
@@ -162,6 +157,10 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 						$('#post_detail_noti').html(data);					 
 					}
 				});
+				var rowid= "row"+classOpening_id;
+				 var link = document.getElementById(rowid);
+				 link.style.display = 'none'; //or
+				 link.style.visibility = 'hidden';
 			}
 			
 		}
@@ -172,7 +171,6 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 				$.ajax({
 					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + class_id,
 					type : 'POST',
-					//data:{post_id:post_id},
 					success:function(data)
 					{
 						

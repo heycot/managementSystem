@@ -27,5 +27,10 @@ public class NotificationBo {
 	public int changeStatusAllMessagesOfUser(int user_id){
 		notificationDao = new NotificationDao();
 		return notificationDao.changeStatusAllMessagesOfUser(user_id);
-}
+	}
+	
+	public int countNotificationNewById( int user_id){
+		notificationDao = new NotificationDao();
+		return notificationDao.countNotificationNewById(user_id);
+	}
 }
