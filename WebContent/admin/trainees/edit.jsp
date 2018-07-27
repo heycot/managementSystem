@@ -152,12 +152,19 @@ if( user.getRoleId() == 3) {
                    <span id="spnPassStatus"></span>
                   </div>
               	</div>
-              	</form>
-              	<div class="divButtons" style="">
-             		<input style=" " id="btnSubmit"  class="btnA btn btn-primary" type="submit" name="submit" value="Edit" />
-             		<input style="" class="btnB btn btn-secondary" type="reset" name="reset" value="Reset" />
-              </div> 
-              	
+              	<div style="clear: both"></div>
+              	<div class="error" ></div>
+        
+	           	<div style="text-align:center;margin-top:15px;">
+	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
+	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
+	           		
+	           	</div> 
+	            <div style="clear: both"></div>
+          
+              
+              <div style="margin-bottom: 5%"></div>
+              </form> 
               	
                    <script type="text/javascript">
      				function changePass() {

@@ -1,3 +1,4 @@
+
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,13 +13,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
-
+    <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    
-    <%-- <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Plugin CSS -->
@@ -27,7 +25,6 @@
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
 
-<<<<<<< HEAD
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
  	 <script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
   	<script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -43,56 +40,9 @@
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
 	        <!-- JS táº¡o nÃºt báº¥m di chuyá»ƒn trang start -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.js" type="text/javascript"></script>
-=======
-	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">	
-		
-	
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
-	
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --%>
-
-  <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
-	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
-  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">	
-	<script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
-  	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
-	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
-	
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
-<style type="text/css">
-.hiden {
-	display: none
-}
-
-.error {
-	color: red
-}
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
 
 	 
 <%--   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -110,7 +60,6 @@
     margin-top: 6px;
     margin-left: 15px
 	}
-
 	.col-50 {
     float: left;
     width: 50%;
@@ -138,15 +87,10 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="slide_item" class="navbar-nav navbar-sidenav" style="min-height: 100%; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px;background:white; padding:20px 20px;">
           
-<<<<<<< HEAD
           
               <li class="nav-item" data-toggle="tooltip"  data-placement="right" title="Components">
-=======
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-users" style="margin-right: 11px; color: green;"></i>&nbsp;
+                  <i class="fa fa-fw fa-users" style="margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Trainee</span>
                 </a>
@@ -154,72 +98,52 @@
 
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/trainer/index" style="font-size:  17px; ">
-                  <i class="fa fa-fw fa-users" style="margin-right: 11px; color: green;"></i>&nbsp;
+                  <i class="fa fa-fw fa-users" style="margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
                     Trainer</span>
                 </a>
               </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="major">
-<<<<<<< HEAD
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  larger;">
-                  <i class="fa fa-briefcase"  style="margin-right: 11px; color: green;"></i>&nbsp;
+                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
+                  <i class="fa fa-briefcase"  style="margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
-=======
-                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
-                  <i class="fa fa-briefcase" style="margin-left:3px; margin-right: 11px;"></i>&nbsp;
-                  <span class="nav-link-text" style="margin-left: 2px;">
-
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
                     Major</span>
               	</a>
             </li>
               
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-<<<<<<< HEAD
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/classes/index" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px;  color: green;"></i>&nbsp;
-=======
-
-                <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/classes" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
-
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
+                  <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
                     Class</span>
                 </a>
             </li>
             
               <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-<<<<<<< HEAD
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course/index" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px;  color: green;"></i>&nbsp;
-=======
-
-                <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
+                  <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/room" style="font-size:  17px;">
-                  <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px;  color: green;"></i>&nbsp;
+                  <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/Skills" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px;  color: green;"></i>&nbsp;
+                  <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
             </li>
              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="contact">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/admin/requestTakeDateOff" style="font-size: 17px; font-family: Poppins;">
-                  <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px;  color: green;"></i>&nbsp;
+                  <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px; color: #000000;"></i>&nbsp;
                   <span class="nav-link-text" style="margin-left:4px;">
                     Request</span>
               </a>
