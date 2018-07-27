@@ -37,12 +37,13 @@ if( user.getRoleId() == 3) {
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
-        <div class="card mb-3">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+  <div class="<%= classNameContainer%>"  style="margin-left: -2px;">
+        <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
+             <div class="alert alert-primary" style="font-size: larger; margin-bottom: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-book" ></i>
 			    <strong>Edit course: &nbsp;<%= course.getName()%> </strong>
 			  </div>
+		</div>
 			  
 			  <div>
 			  	<%
@@ -191,9 +192,6 @@ if( user.getRoleId() == 3) {
       					return $.trim(string).match(pattern) ? true : false;
       				}
       			</script>
-        <div class="card-footer small text-muted" >
-          Updated yesterday at 11:59 PM
-        </div>
           </div>
         </div>
       </div>

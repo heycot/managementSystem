@@ -1,5 +1,4 @@
 
-<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -30,19 +29,15 @@ if( user.getRoleId() == 3) {
 	styleContent = "";
 }
 
-LocalDate date= LocalDate.now().minusYears(18);
-String dateMax= date.toString();
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
-        <div class="card mb-3">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+  <div class="<%= classNameContainer%>"  style="margin-left: -2px;">
+        <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
+             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-user" ></i>
-			    <strong>Add New Trainee's Account</strong>
-			  </div>
-			  
-			  <div>
+			    <strong>Add Trainee's Account</strong>
+	  	</div>
+	  	</div>
 			  	<%
 				if(request.getAttribute("error") != null){
 				%>
@@ -52,20 +47,16 @@ String dateMax= date.toString();
 				<%
 				}
 			  	%>
-			  </div>
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/add" method="POST" enctype="multipart/form-data" >
               	<div style="height: 5%"></div>
               
               <div class="col-sm-6" style="float: left">
               	<div >
-              		<div class="form-group" class="col-sm-2" style="float: left">
-	              		<img alt="" src="<%= request.getContextPath()%>/files/default.jpg" width="192px">
-	              	</div>
-	              	
-	              	<div class="form-group" class="col-sm-4" style="float: left">
+	              	<div class="form-group" class="col-sm-4" style="float: left; height:200px; ">
 		              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
-	    				<img id="blah" src="#" alt="" />
+		              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
+	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/default.jpg"  height="135px">
 	    				<script type="text/javascript">
 	    				function readURL(input) {
 	    			        if (input.files && input.files[0]) {
@@ -74,8 +65,7 @@ String dateMax= date.toString();
 	    			            reader.onload = function (e) {
 	    			                $('#blah')
 	    			                    .attr('src', e.target.result)
-	    			                    .width(150)
-	    			                    .height(100);
+	    			                    .height(135);
 	    			            };
 	
 	    			            reader.readAsDataURL(input.files[0]);
@@ -117,7 +107,7 @@ String dateMax= date.toString();
 					  <input type="radio" name="gender" value="2" > Other
               	</div>
               	
-              	<div class="form-group">
+              	<div class="form-group" style="margin-top: 38px;">
 	              	<label class="required" >Address</label>&nbsp;
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
 	              	<span id="spnAddressStatus"></span>
@@ -131,7 +121,7 @@ String dateMax= date.toString();
               	
               	<div class="form-group">
 	              	<label class="required" >Birthday</label>
-	              	<input class="form-control" id="txtBirthday" max="<%=dateMax%>" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
@@ -150,7 +140,7 @@ String dateMax= date.toString();
 	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
 	           		
 	           	</div> 
-             <div style="clear: both"></div>
+             	<div style="clear: both"></div>
           
               
               <div style="margin-bottom: 5%"></div>
@@ -379,11 +369,5 @@ String dateMax= date.toString();
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-      			
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
           </div>
-        </div>
-      </div>
 <%@include file="/templates/inc/footer.jsp" %> 

@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">  
 
 <%
 String classNameContent = "" ;
@@ -19,9 +19,9 @@ if( user.getRoleId() == 3) {
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger; margin-bottom: -5px;"> 
+  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: -2px;"> 
+    <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
+        <div class="alert alert-primary" style="font-size: larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-book" ></i>
 	    	<strong>Courses</strong>
 	  	</div>
@@ -168,7 +168,7 @@ if( user.getRoleId() == 3) {
 					</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable"  class="table table-bordered table-hover table-compact" width="100%" id="dataTable" cellspacing="0">
+                <table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -249,10 +249,6 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
       </div>
     </div>
-  </div>
 <%@include file="/templates/inc/footer.jsp" %> 

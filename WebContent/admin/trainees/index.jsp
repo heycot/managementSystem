@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css"> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">  
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -11,19 +11,18 @@ String styleContent = "style='margin-top:  5px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
-	styleContent = "style='margin-top: -11px; margin-left: 228px; margin-right: -31px; margin-bottom: -19px;'";
-				/* " box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"; */
+	styleContent = "";
 }
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3" >
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
+  <div class="<%= classNameContainer%>" id="toggler_containerId"  style="margin-left: -2px;">
+    <div  class="card mb-3"  style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
+        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-users" ></i>
-			    <strong class="namePage">Trainees </strong>
-			  </div>
-        <div>
+			 <strong class="namePage">Trainees </strong>
+	  	</div>
+	  	</div>
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -109,7 +108,7 @@ if( user.getRoleId() == 3) {
         
         <script type="text/javascript">
             $(function () {
-                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+                var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
                     $(".contentPage").each(function (n) {
@@ -134,13 +133,13 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-        <div class="card-body" style="margin-left: 10px; margin-right: 10px;">
-          <div class="table-responsive">
+        <div class="card-body">
+          <div  class="table-responsive">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
 	            	<a style="font-size:medium;" class="btn btn-primary btnAdd" href="<%=request.getContextPath() %>/trainee/add" role="button">
-	            		Add new trainee's account
+	            		Add trainee's account
             		</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;">
@@ -161,7 +160,7 @@ if( user.getRoleId() == 3) {
 					</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable" class="table table-bordered table-hover table-compact" width="100%" id="dataTable" cellspacing="0">
+                <table  id="myTable"  id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">DeleteAll
@@ -185,10 +184,10 @@ if( user.getRoleId() == 3) {
                       	<td   style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainee.getUserId()%>" value="<%= trainee.getUserId()%>" class="checkitem" id="chkitem"> </td>
                       	<td  style="text-align: center; vertical-align: middle;"><img alt="<%= trainee.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainee.getAvatar()%>" class="img-circle" width="120" height="140"></td>
                      	<td  style="text-align: center; vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><b><%= trainee.getUsername()%></b></a> </td>
-	                    <td   style=" vertical-align: middle;"><%= trainee.getFullname() %></td>
-	                    <td   style=" vertical-align: middle;"><%= trainee.getEmail()%></td>
+	                    <td   style=" vertical-align: middle; text-align: center"><%= trainee.getFullname() %></td>
+	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getEmail()%></td>
 	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getPhone()%></td>
-	                    <td   style="vertical-align: middle;"><%= trainee.getAddress() %></td>
+	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getAddress() %></td>
 	                    <%
 	                    if (trainee.getStatus() == 1){
 	                    	%>	
@@ -246,5 +245,4 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
-  </div>
 <%@include file="/templates/inc/footer.jsp" %> 

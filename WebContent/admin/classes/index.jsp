@@ -16,9 +16,9 @@ if( user.getRoleId() == 3) {
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger; margin-bottom: -5px;"> 
+  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: -2px;">
+    <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
+        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-book" ></i>
 	    	<strong>Classes</strong>
 	  	</div>
@@ -115,17 +115,6 @@ if( user.getRoleId() == 3) {
                 });
             });
         </script>
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
         <div class="card-body">
           <div class="table-responsive"  class="container">
             <form action="<%= request.getContextPath()%>/classes/del"  method="post">
@@ -141,7 +130,7 @@ if( user.getRoleId() == 3) {
                 	</div>
                 	<div style="float: right; margin-right: 15px;">
 					  <ul class="nav nav-tabs" style='border-bottom: 0px solid #ddd;'>
-					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#waiting" style="color: #333333;">Waiting</a></li>
+					    <li class="btn btn-light" id="waitingStyle" style="margin-right: 15px;"><a  data-toggle="tab" href="#waiting" style="color: #333333;">Waiting</a></li>
 					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#openning" style="color: #333333;">Opening</a></li>
 					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#finished" style="color: #333333;">Finished</a></li>
 					  </ul>
@@ -196,7 +185,7 @@ if( user.getRoleId() == 3) {
 			                console.info(obj.data());
 			            });
 			        </script>
-		        		<table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0" >
+		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
 		                  <thead>
 		                    <tr>
 		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -207,7 +196,7 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
 		                      <th style="text-align: center; font-size: medium;">Trainees (Waiting)</th>
-		                      <th style="text-align: center; font-size: medium;">Action</th>
+		                      <th width="15%" style="text-align: center; font-size: medium;">Action</th>
 		                    </tr>
 		                  </thead>
 		                  <tbody id="myTBody" >
@@ -297,7 +286,7 @@ if( user.getRoleId() == 3) {
 				                console.info(obj.data());
 				            });
 				        </script>
-		        		<table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0" >
+		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%" >
 		                  <thead>
 		                    <tr>
 		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -399,7 +388,7 @@ if( user.getRoleId() == 3) {
 				                console.info(obj.data());
 				            });
 				        </script>
-		        		<table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0" >
+		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%" >
 		                  <thead>
 		                    <tr>
 		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -476,6 +465,11 @@ if( user.getRoleId() == 3) {
 	        	</div>
                 
                 <script type="text/javascript">
+                
+                $( "#page-top" ).load(function() {
+              		$('#waitingStyle').css("background-color", "blue");
+              	});
+                
                 function changeStatusClass(id, status){
             		$.ajax({
             			url: '<%=request.getContextPath()%>/classes/index',
@@ -499,10 +493,6 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
       </div>
     </div>
-  </div>
 <%@include file="/templates/inc/footer.jsp" %> 

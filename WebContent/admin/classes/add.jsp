@@ -44,15 +44,15 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> >
-  <div class="<%= classNameContainer%>">
-        <div class="card mb-3">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+  <div class="<%= classNameContainer%>"  style="margin-left: -2px;">
+        <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
+             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
              <i class="fa fa-fw fa-book" ></i>
 			    <strong>Add new class</strong>
 			  </div>
+		</div>
 			  
 			  <div>
 			  	<%
@@ -200,10 +200,6 @@ if( user.getRoleId() == 3) {
 	              	<div  style="clear: both"></div>
 	              <div style="margin-bottom: 5%"></div>
 	              </form> 
-	              
-	               <div class="card-footer small text-muted">
-			          Updated yesterday at 11:59 PM
-			        </div>
               	</div>
               	
               	<script type="text/javascript">
@@ -241,7 +237,6 @@ if( user.getRoleId() == 3) {
                 var countDuration = 0;
                 var countRoom = 0;
                 var countDateOfWeek = 0;
-
                 function showRoom() {
                 	var trainer = $('#trainerSelect').val();
                 	if (trainer == 0) {
@@ -273,7 +268,6 @@ if( user.getRoleId() == 3) {
                 		getFreeTime();
                 	}
                 }
-
                 function showDateOfWeek() {
                 	var duration = $('#durationSelector').val();
                 	if (duration == 0) {
@@ -386,10 +380,8 @@ if( user.getRoleId() == 3) {
       				
       				function validateName(string) {
       					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
-
       					return $.trim(string).match(pattern) ? true : false;
       				}
       			</script>
           </div>
-        </div>
 <%@include file="/templates/inc/footer.jsp" %> 

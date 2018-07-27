@@ -1,5 +1,4 @@
 
-<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,9 +26,6 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
-LocalDate date= LocalDate.now().minusYears(18);
-String dateMax= date.toString();
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
@@ -59,15 +55,10 @@ String dateMax= date.toString();
               
               <div class="col-sm-6" style="float: left">
               	<div >
-              		<div class="form-group" class="col-sm-2" style="float: left; padding-right:20px;">
-	              	<img alt="" src="<%= request.getContextPath()%>/files/<%= trainee.getAvatar()%>" width="120px" height="150px">
-	              	
-	              	</div>
-	              	
-	              	<div class="form-group" class="col-sm-4" style="float: left; height:157px; ">
+	              	<div class="form-group" class="col-sm-4" style="float: left; height:200px; ">
 		              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
 		              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
-	    				<img style="margin-top:5px;" id="blah" src="#" alt="" />
+	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/default.jpg"  height="135px">
 	    				<script type="text/javascript">
 	    				function readURL(input) {
 	    			        if (input.files && input.files[0]) {
@@ -76,8 +67,7 @@ String dateMax= date.toString();
 	    			            reader.onload = function (e) {
 	    			                $('#blah')
 	    			                    .attr('src', e.target.result)
-	    			                    .width(80)
-	    			                    .height(65);
+	    			                    .height(135);
 	    			            };
 	
 	    			            reader.readAsDataURL(input.files[0]);
@@ -95,7 +85,8 @@ String dateMax= date.toString();
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >FullName</label>&nbsp;
+	              	<label class="required" >FullName</label>&nbsp;<span id="spnFullNameStatus"></span>
+
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
 	              	<span id="spnFullNameStatus"></span>
               	</div>
@@ -137,7 +128,7 @@ String dateMax= date.toString();
               	
               	<div class="form-group">
 	              	<label class="required" >Birthday</label>
-	              	<input class="form-control"  max="<%=dateMax%>" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<input class="form-control" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
@@ -147,14 +138,6 @@ String dateMax= date.toString();
               	</div>
               	
               	<div class="form-group">
-
-	<!--               	<label class="" >Password:</label>&nbsp;<span id="spnPassStatus"></span>
-	              	<br>
-              		<input type="button" value="Click here to change" onclick="changePass();" style="height:40px;"> <br>
-              		<label style="display: none;margin-left:-10px; border:1px solid white;"  class="form-control" id ="lbfill"  name="">Please fill out these fields:</label> 
-                   <br>
-                   <input style="display: none; margin-top:-23px;" type="password" class="form-control" id ="oldpass"  name="oldpass" placeholder="Current password" />
- -->
                     		
                    <label for="usr">Password</label>&nbsp;
                   <input type="button" value="Click here to change" onclick="changePass();"> <br>
@@ -179,6 +162,7 @@ String dateMax= date.toString();
                    <script type="text/javascript">
      				function changePass() {
 						if(document.getElementById("oldpass").style.display == "none"){
+							
 							document.getElementById("oldpass").style.display = "block";
 							document.getElementById("newpass").style.display = "block";
 							document.getElementById("confirmpass").style.display = "block";
@@ -334,37 +318,7 @@ String dateMax= date.toString();
       				}); 
 
       				$(document).ready(function() {
-      					$('#oldpass').blur(function(e) {
-          					if (validatePassword()) {
-      							$('#spnPassStatus').html('');
-      							$('#spnPassStatus').css('color', 'green');
-      							enableSubmit();
-      						}
-      						else {
-      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
-      							$('#spnPassStatus').css('color', 'red');
-      							enableSubmit();
-      						}
-       					});
-      				});
-      				
-      				$(document).ready(function() {
-      					$('#newpass').blur(function(e) {
-          					if (validatePassword()) {
-      							$('#spnPassStatus').html('');
-      							$('#spnPassStatus').css('color', 'green');
-      							enableSubmit();
-      						}
-      						else {
-      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
-      							$('#spnPassStatus').css('color', 'red');
-      							enableSubmit();
-      						}
-       					});
-      				});
-      				
-      				$(document).ready(function() {
-      					$('#confirmpass').blur(function(e) {
+      					$('#txtPassword').blur(function(e) {
           					if (validatePassword()) {
       							$('#spnPassStatus').html('');
       							$('#spnPassStatus').css('color', 'green');
