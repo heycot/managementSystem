@@ -9,47 +9,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <meta name="description" content="">
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
     <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom fonts for this template -->
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!-- Plugin CSS -->
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="<%= request.getContextPath()%>/templates/public/images/logo.png" type="image/x-icon" />
+  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
  	 <script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
-  	<script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
   	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    
-    
 	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
-	        <!-- JS táº¡o nÃºt báº¥m di chuyá»ƒn trang start -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.js" type="text/javascript"></script>
-
-	 
-<%--   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
-  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
- --%>
     <style type="text/css">
       .hiden{display:none}
       .error{color:red}
@@ -70,7 +50,6 @@
  </head>
 
 <body class="fixed-nav" id="page-top"> 
-
     <%
     String styleTogglerBar = "";
     User user = (User)session.getAttribute("user");
@@ -265,10 +244,7 @@
 
      <script type="text/javascript">
    $(document).ready(function(){ 
-      //khi nÃºt submit Ä‘Æ°á»£c click
     $('#btt').click(function(){
-    	
-        //Sá»­ dá»¥ng phÆ°Æ¡ng thá»©c Ajax.
         $.ajax({
               type : 'POST', //Sá»­ dá»¥ng kiá»ƒu gá»­i dá»¯ liá»‡u POST
               url : '/managementSystem/ListNotificationAjax', //gá»­i dá»¯ liá»‡u sang trang data.php
@@ -363,3 +339,4 @@
 %>	
 	</div>
 </div>
+

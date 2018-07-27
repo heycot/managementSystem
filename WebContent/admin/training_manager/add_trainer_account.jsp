@@ -12,7 +12,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style=''";
+String styleContent = "style='padding:10px 20px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -22,14 +22,13 @@ if( user.getRoleId() == 3) {
 LocalDate date= LocalDate.now().minusYears(18);
 String dateMax= date.toString();
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
   <div class="<%= classNameContainer%>">
-		<div class="card1 card mb-3">
-			<div class="alert1 card-header alert alert-primary" style=""> 
+  <div class="alert1 alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;"> 
              <i class="fa1 fa fa-fw fa-user" ></i>
-			    <strong class="lb_name">&nbsp;Add trainer's account </strong>
+			    <strong class="lb_name" style="font-size: 21px;">&nbsp;Add trainer's account </strong>
 			  </div>
-			  
+		<div class="card mb-3" style="height:auto;margin-top:14px;box-shadow: 2px 2px #c8c5c5;padding:10px;">
 			<div>
 			  	<%
 				if(request.getAttribute("error") != null){
@@ -42,18 +41,16 @@ String dateMax= date.toString();
 			  	%>
 			  </div>
 			<form id="add-trainer-post" action="<%= request.getContextPath() %>/trainer/add" method="POST"  enctype="multipart/form-data">
-				<div style="height: 2%"></div>
-
-				<div class="card container-fluid" style="padding:20px 20px;">
+				<div></div>
+				<div class="container-fluid" >
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-6" style="float: left">
 							<div>
-								<div class="form-group" class="col-sm-2" style="float: left">
+								<div class="form-group" class="col-sm-2" style="padding-right:20px;">
 								<img id="blah"
-									src="<%=request.getContextPath()%>/files/default.jpg"/>
-							</div>
-							<br><br><br>
-								<div class="form-group" class="col-sm-4" style="float: left">
+									src="<%=request.getContextPath()%>/files/default.jpg" width="120"/>
+								</div>
+								<div class="form-group" class="col-sm-4" >
 									<label class="required"><strong>Avatar:</strong><em style="color: red">(jpg,
 											png, gif)</em> </label> <input class="form-control" id="image" type="file"
 										name="avatar" onchange="readURL(this);" />
@@ -73,7 +70,7 @@ String dateMax= date.toString();
 									}
 								</script>
 
-								<div style="clear: both"></div>
+								<div ></div>
 							</div>
 				
 							<div class="form-group">
@@ -81,39 +78,40 @@ String dateMax= date.toString();
 									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtemail" type="text"
 									name="email" placeholder="Email" required="required"/>
-									<span id="spnEmailStatus"></span>
+									&nbsp;<span id="spnEmailStatus"></span>
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Username:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtusername" type="text"
 									name="username" placeholder="Username" required="required"/>
-									<span id="spnUserNameStatus"></span>
+									&nbsp;<span id="spnUserNameStatus"></span>
 							</div>
 
 							<div class="form-group">
 								<label class="required"><strong>Password:</strong>
 								<span style="color: red"> *</span></label> 
 								<input class="form-control" id="password" type="password" name="password" placeholder="Password" required="required"/>
-								<span id="spnPasswordStatus"></span>
+								&nbsp;<span id="spnPasswordStatus"></span>
 							</div>
 							<div class="form-group">
 								<label class="required"><strong>Confirm password:</strong>
 								<span style="color: red"> *</span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
-									placeholder="Confirm Password" required="required"/><span id="spnPasswordStatus"></span>
+									placeholder="Confirm Password" required="required"/>&nbsp;<span id="spnPasswordStatus"></span>
 							</div>
 
 						</div>
 
 						<div class="col-md-6">
+						<br>
 							<div class="form-group">
 								<label class="required"><strong>Full Name:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtfullname" type="text"
 									name="fullname" placeholder="Fullname" required="required"/>
-									<span id="spnFullNameStatus"></span>
+									&nbsp;<span id="spnFullNameStatus"></span>
 							</div>
 
 							<div class="form-group">
@@ -128,7 +126,7 @@ String dateMax= date.toString();
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"
 									name="address" value="" placeholder="Address" required="required"/>
-									<span id="spnAddressStatus"></span>
+									&nbsp;<span id="spnAddressStatus"></span>
 							</div>
 
 							<div class="form-group">
@@ -136,7 +134,7 @@ String dateMax= date.toString();
 									style="color: red"> *</span> </label>
 								<input class="form-control" id="txtphone" type="text"
 									name="phone" placeholder="Phone" required="required"/>
-									<span id="spnPhoneStatus"></span>
+									&nbsp;<span id="spnPhoneStatus"></span>
 							</div>
 							
 
@@ -144,13 +142,15 @@ String dateMax= date.toString();
 								<label class="required"><strong>Day of Birth:</strong><span
 									style="color: red"> *</span></label> <input class="form-control"
 									id="txtname" type="date" name="dateOfBirth" value="<%=dateMax%>" max="<%=dateMax%>"
-									placeholder="Birthday" required="required"/>
+									placeholder="Birthday" required="required"/>&nbsp;
 							</div>
 
 
 							<div class="form-group">
 								<label class="required"><strong>Ability:</strong><span
 									style="color: red"> *</span></label><br> 
+									
+									<div class="form-inline">
 									<select
 									class="form-inline" name="skillId" required="required">
 									<%
@@ -160,25 +160,23 @@ String dateMax= date.toString();
 							%>
 									<option value="<%=skill.getSkillId()%>"><%=skill.getName()%></option>
 									<%}%>
-								</select> <input class="form-group" id="txtname" type="number"
-									name="experience" placeholder="Experience Year" min="0"
+								</select> <input class="form-inline" id="txtname" type="number"
+									name="experience" placeholder="Experience Year" min="1"
 									max="50" required="required"/>
 							</div>
+							</div>
 							<div class="error"></div>
-							<br> <br>
 						</div>
 					</div>
-					<div class="divButtons">
-						<input class="btnA btn btn-primary btn-lg" type="submit" name="submit"
-							id="btnSubmit" value="Add" style="" /> 
-						<input class=" btnB btn btn-secondary btn-lg" type="reset" value="Reset" style="" />
+					<div class="divButtons" style="text-align:center;margin-bottom: 32px;">
+						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btnA btn btn-primary btn-lg" type="submit" name="submit"
+							id="btnSubmit" value="Add" /> 
+						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btnB btn btn-secondary btn-lg" type="reset" value="Reset" />
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-	
-					<div style="margin-bottom: 7%"></div>
 </div>
 <script type="text/javascript">
 	function readURL(input) {
@@ -351,9 +349,5 @@ String dateMax= date.toString();
 			return $.trim(password).match(pattern) ? true : false;
 		}
 </script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-
-</body>
-</html>
-
-<%@include file="/templates/inc/footer.jsp"%>
+<!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+ --><%@include file="/templates/inc/footer.jsp"%>

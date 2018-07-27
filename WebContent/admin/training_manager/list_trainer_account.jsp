@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,12 +6,12 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
     <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
+            ///* CSS căn id pagination ra giữa màn hình *///
             #pagination {
                 display: flex;
-                display: -webkit-flex; /* Safari 8 */
+                display: -webkit-flex; / Safari 8 /
                 flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
+                -webkit-flex-wrap: wrap; / Safari 8 /
                 justify-content: center;
                 -webkit-justify-content: center;
             }
@@ -185,12 +184,12 @@ if( user.getRoleId() == 3) {
 				                showPage = function (page) {
 				                    $(".contentPage").hide();
 				                    $(".contentPage").each(function (n) {
-				                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+				                        if (n >= pageSize  (page - 1) && n < pageSize  page)
 				                            $(this).show();
 				                    });
 				                }
 				                showPage(1);
-				                ///** Cần truyền giá trị vào đây **///
+				                ///* Cần truyền giá trị vào đây *///
 				                var totalRows = 10;// Tổng số sản phẩm hiển thị
 				                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
 				                var iTotalPages = Math.ceil(totalRows / pageSize);
@@ -241,4 +240,3 @@ if( user.getRoleId() == 3) {
   </div>
   </div>
 <%@include file="/templates/inc/footer.jsp" %> 
-
