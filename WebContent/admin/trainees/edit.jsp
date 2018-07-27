@@ -20,7 +20,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='padding:10px 20px;'";
+String styleContent = "style='padding:20px 20px;'";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -28,12 +28,12 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
+<div class="<%= classNameContent%>" <%= styleContent%> style="">
   <div class="<%= classNameContainer%>">
   
-  <div class="alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;margin-left:-23px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-			    <strong style="font-weight: 400;font-size: 21px;">&nbsp;<%= trainee.getUsername()%> </strong>
+  <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-user " style=""></i>
+			    <strong class="lb_name" style="">&nbsp;<%= trainee.getUsername()%> </strong>
 			  </div>
 			  
 			  <div>
@@ -47,7 +47,7 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
-        <div class="card mb-3" style="height:auto;margin-top:14px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
+        <div class="card mb-3" style="">
              
   
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>" method="POST" enctype="multipart/form-data" >
@@ -169,9 +169,9 @@ if( user.getRoleId() == 3) {
                   </div>
               	</div>
               	</form>
-              	<div style="text-align:center;margin-top: 30px;margin-bottom: 32px;">
-             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;" id="btnSubmit"  class="btn btn-primary" type="submit" name="submit" value="Edit" />
-             		<input style=" width:100px; height:35px; font-size: 15px; border:1px solid white;border-radius: 5px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" />
+              	<div class="divButtons" style="">
+             		<input style=" " id="btnSubmit"  class="btnA btn btn-primary" type="submit" name="submit" value="Edit" />
+             		<input style="" class="btnB btn btn-secondary" type="reset" name="reset" value="Reset" />
               </div> 
               	
               	
@@ -203,7 +203,7 @@ if( user.getRoleId() == 3) {
               </div>
               
               <div style="margin-bottom: 5%"></div>
-              </form> 
+             
 
            <script type="text/javascript">
       				$(document).ready(function() {
@@ -429,7 +429,5 @@ if( user.getRoleId() == 3) {
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-          </div>
-        </div>
-      </div>
-<%@include file="/templates/inc/footer.jsp" %> 
+     
+

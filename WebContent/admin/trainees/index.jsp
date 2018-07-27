@@ -3,12 +3,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard2.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -18,10 +18,10 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card mb-3" >
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
-             <i class="fa fa-fw fa-users" ></i>
-			    <strong class="namePage">Trainees </strong>
+    <div  class="card1 card mb-3" >
+             <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+			    <strong class="lb_name">Trainees </strong>
 			  </div>
         <div>
 	  <%
@@ -147,10 +147,10 @@ if( user.getRoleId() == 3) {
         </style>
         <div class="card-body">
           <div class="table-responsive">
-            <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
+            <form class="formTable" action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div class="wrapper" style="">
-	            	<div style="float: left" >
-	            	<a style="font-size:medium;" class="btn btn-primary btnAdd" href="<%=request.getContextPath() %>/trainee/add" role="button">
+	            	<div class="divBtnAdd" style="float: left" >
+	            	<a style="font-size:medium;" class="btnAdd btn btn-primary " href="<%=request.getContextPath() %>/trainee/add" role="button">
 	            		Add new trainee's account
             		</a>
 	        		</div>
@@ -159,7 +159,7 @@ if( user.getRoleId() == 3) {
                 	</div>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table  id="myTable" class="myTable table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">DeleteAll
@@ -199,12 +199,14 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
                     	<td   style="text-align: center; vertical-align: middle;">
-                        <a href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>">
-                        	<i class="fa fa-edit" style="font-size:20px"></i>
+                    	<div class="row">
+                         <a class="btnEdit1" href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>">
+                        	<i class="zmdi zmdi-edit" style=""></i>
                        	</a>
-                        <a  style="" href="<%= request.getContextPath()%>/trainee/del?id=<%= trainee.getUserId()%>" onclick="return confirm('Do you want to delete trainee : <%= trainee.getUsername()%>?')">
-                        	<i class="fa fa-trash iconDel" style="font-size:20px;color:rgb(220, 53, 69)"></i>
-                       	</a>
+                        <a  class="btnDel1" style="" href="<%= request.getContextPath()%>/trainee/del?id=<%= trainee.getUserId()%>" onclick="return confirm('Do you want to delete trainee : <%= trainee.getUsername()%>?')">
+                        	<i class="zmdi zmdi-delete" style=""></i>
+                       	</a> 
+                       	</div>
                      	</td>
                     </tr>
                   <%	
@@ -242,9 +244,7 @@ if( user.getRoleId() == 3) {
             </form>
           </div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+
       </div>
     </div>
   </div>
