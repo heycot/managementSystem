@@ -30,11 +30,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3 divForm">
-       		<div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-             <strong>Register Class</strong>
-			  </div>
+    <div class="card1 card mb-3">
+       		<div class="alert1 alert alert-primary" style=""> 
+             	<i class="fa1 fa fa-fw fa-users" ></i>
+		    	<strong class="lb_name">Register Class</strong>
+		 	</div>
 			  <div>
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
@@ -73,19 +73,23 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
+           <div class="card-body">
+        	<div class="table-responsive">
+        		
 		  	<div class="form">
-		  		<table>
+		  		<table style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%">
+
 		  		<%
 		  		if(tong !=0){
 		  			%>
 		  			<tr >
-				    <th>No.</th>
-				    <th>Name</th>
-				    <th>Time</th>
-				    <th>Date Of Week</th>
-				    <th>Duration (hours)</th>
-				    <th>Trainer</th>
-				    <th>Action</th>
+				    <th  style="text-align: center; vertical-align: middle;">No.</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Name</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Time</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Date Of Week</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Duration (hours)</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Trainer</th>
+				    <th  style="text-align: center; vertical-align: middle;" >Action</th>
 				  </tr>
 		  			<% 
 		  		}
@@ -96,13 +100,13 @@ if( user.getRoleId() == 3) {
 				  for (ClassWaiting classOpening : listClassOpening) {
 					  count++;
 				  %>
-				   <tr class="contentPage" id="row<%= classOpening.getClassId()%>">
-				    <td class="no"><%= count %></td>
-				    <td class="name"><%= classOpening.getClassName() %></td>
-				    <td class="time"><%= classOpening.getTimeOfDate() %></td>
-				    <td class="date"><%= classOpening.getDateOfWeek() %></td>
-				    <td class="duration"><%= classOpening.getDuration()%></td>
-				    <td class="trainer" style=" text-align: left;"><%= classOpening.getTrainerName() %></td>
+				   <tr class="contentPage"  id="row<%= classOpening.getClassId()%>">
+				    <td class="no"  style="text-align: center; vertical-align: middle;" ><%= count %></td>
+				    <td class="name"  style="vertical-align: middle;"><%= classOpening.getClassName() %></td>
+				    <td class="time" style="vertical-align: middle;"><%= classOpening.getTimeOfDate() %></td>
+				    <td class="date" style="vertical-align: middle;"><%= classOpening.getDateOfWeek() %></td>
+				    <td class="duration" style="text-align: center; vertical-align: middle;"  ><%= classOpening.getDuration()%></td>
+				    <td class="trainer" style=" text-align: left; vertical-align: middle; "><%= classOpening.getTrainerName() %></td>
 				    <%
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >

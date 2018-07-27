@@ -14,7 +14,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -23,18 +23,17 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3 divNoti">
+        <div class="card1 card mb-3 divNoti">
+        <div class="alert1 alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
+		    <strong class="lb_name">Notifications</strong>
+		 </div>
        		
 		<div>
 			<div class="box-all-noti" style="margin-left:auto; margin-right:auto;">
 				<ul class="list-noti" style="width:50%; ">
 				
-					<li>
-						<div class="alert alert-primary"  style="font-size:  larger; margin-bottom: 0px;"> 
-				             <i class="fa fa-fw fa-user" ></i>
-				             <strong>Notification</strong>
-						</div>	
-					</li>
+			
 					<%
 					 ArrayList<MyMessages> list = (ArrayList<MyMessages>)request.getAttribute("list");
 					%>

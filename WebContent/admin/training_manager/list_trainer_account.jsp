@@ -34,7 +34,7 @@ if( user.getRoleId() == 3) {
         <div class="alert1 alert alert-primary" style=""> 
              <i class="fa1 fa fa-fw fa-users" ></i>
 		    <strong class="lb_name">Trainers</strong>
-		  </div>
+		 </div>
 		<div> 
 	  <%
 	  String msg = "";
@@ -123,7 +123,7 @@ if( user.getRoleId() == 3) {
                 <div style="">
 	            	<div class="divBtnAdd" style="float: left" >
 	            	<a style="margin-left:0" class="btnAdd  btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
-	        		</div>
+	         		</div>
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
