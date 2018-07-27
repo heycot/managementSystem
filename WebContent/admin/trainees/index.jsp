@@ -12,12 +12,12 @@ if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
 	styleContent = "style='margin-top: -11px; margin-left: 228px; margin-right: -31px; margin-bottom: -19px;'";
-	//styleContent = "";
+				/* " box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"; */
 }
 
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: 10px; margin-right: -15px;">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card mb-3" >
              <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 5px;"> 
              <i class="fa fa-fw fa-users" ></i>
@@ -134,7 +134,7 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-        <div class="card-body">
+        <div class="card-body" style="margin-left: 10px; margin-right: 10px;">
           <div class="table-responsive">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div style="margin-left: -15px; margin-bottom: 5px;">
@@ -243,9 +243,6 @@ if( user.getRoleId() == 3) {
 				</div>
             </form>
           </div>
-        </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
         </div>
       </div>
     </div>

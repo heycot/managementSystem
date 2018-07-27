@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <title>BOOTCAMP MANAGEMENT SYSTEM</title>
     
-     <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%= request.getContextPath()%>/templates/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/templates/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<%= request.getContextPath()%>/templates/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/templates/css/sb-admin.css" rel="stylesheet">
