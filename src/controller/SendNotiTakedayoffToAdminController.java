@@ -14,6 +14,7 @@ import libralies.CurrentUser;
 import model.bean.Classes;
 import model.bean.User;
 import model.bo.NotificationBo;
+import model.bo.RequestTakeDateOffBo;
 
 /**
  * Servlet implementation class SendNotiTakedayoffToAdminController
@@ -58,7 +59,7 @@ public class SendNotiTakedayoffToAdminController extends HttpServlet {
 		String rooms[] = name.split("-");
 		String room = rooms[0];
 		int roomId = Integer.parseInt((String)(rooms[1]));
-		String content = request.getParameter("content");
+		String note = request.getParameter("content");
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String fullname = request.getParameter("fullname");
 		String classname = request.getParameter("classname");
@@ -70,9 +71,11 @@ public class SendNotiTakedayoffToAdminController extends HttpServlet {
 		trainer.setUserId(userId);
 		trainer.setFullname(fullname);
 		NotificationBo notificationBo = new NotificationBo();
-		int notification = notificationBo.addNotiTakedayoffS(dateoff, datechange, timechange,room, classes, trainer, admin_id);
-		if(notification>0){
-			notificationBo.addRequestTakeaDayOff(dateoff, datechange, timechange, classes, trainer, roomId);
+		RequestTakeDateOffBo requestTakeDateOffBo = new RequestTakeDateOffBo();
+		int numberadd = notificationBo.addRequestTakeaDayOff(dateoff, datechange, timechange, classes, trainer, roomId, note );
+		int idRequest = requestTakeDateOffBo.getIdOfRequestNearest();
+		if(idRequest!=0){
+			int notification = notificationBo.addNotiTakedayoffS(dateoff, datechange, timechange,room, classes, trainer, admin_id , idRequest, note);
 			String success = "1";
 			 HttpSession session = request.getSession();
 		     session.setAttribute("success", success);

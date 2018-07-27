@@ -1,0 +1,132 @@
+.content-wrapper{
+	background: rgb(229, 229, 229);
+	padding:20px 20px;
+	max-height:900px;
+}
+.alert1{
+	margin-top:20px;
+	font-size: larger;
+	margin-bottom: 0px;
+	background:none; 
+	border:none; 
+	color: #333333 !important;
+	margin-left:-23px;
+}
+.fa1{
+	font-size:22px;
+}
+.lb_name{
+	font-weight: 400;
+	font-size: 26px;
+}
+.card{
+	height:auto;
+	margin-top:14px;
+	border-radius: 5px;
+	box-shadow: 2px 2px #c8c5c5;
+}
+.card1{
+	background: none;
+	border: none;
+}
+.divButtons{
+	text-align:center;
+	margin-top: 30px;
+	margin-bottom: 32px;
+	
+}
+.btnA{
+	width:100px; 
+	height:35px; 
+	font-size: 15px; 
+	border:1px solid white;
+	vertical-align: middle;
+}
+.btnB{
+	width:100px; 
+	height:35px; 
+	font-size: 15px; 
+	border:1px solid white;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+.formTable{
+
+}
+.card{
+	box-shadow: none;
+}
+.card-body{
+	padding:0;
+}
+.myTable{
+	background: white;
+	box-shadow: 2px 2px rgb(189, 189, 189);
+	margin-bottom: 1rem;
+	border-collapse: separate;
+}
+.divBtnAdd{
+	margin-bottom: 10px;
+}
+.btnAdd{
+	border: none;
+}
+
+.zmdi-edit{
+	vertical-align:middle; 
+	color:#808080;
+	font-size:20px; 
+	display:inline-block; 
+	font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+}
+.btnEdit1{
+	margin-left:auto; 
+	margin-right:0;
+	padding:0;
+	border-radius:100%;
+	background:#e5e5e5; 
+	border:none;
+	height:30px;
+	width:30px;
+}
+.btnDel1{
+	margin-left:15px;
+	margin-right:auto;
+	text-align: center;
+	padding:0;
+	border-radius:100%;
+	background:#e5e5e5; 
+	border:none;
+	height:30px;
+	width:30px;
+}
+.zmdi-delete{
+	vertical-align:middle; 
+	color:#808080;
+	font-size:20px; 
+	display:inline-block; 
+	font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+}
+
+.btnAdd{
+	font-size:medium;
+	width:auto;
+}
+.btn-danger{
+	display: none; 
+	margin-left: 10px; 
+	margin-bottom: 5px;
+	border:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+

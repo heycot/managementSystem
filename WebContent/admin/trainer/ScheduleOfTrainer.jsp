@@ -9,16 +9,18 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
+           
             .tdModelNodin {
             border: 0px !important;
+            }
+           /*  .card mb-3 {
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+			margin-left: -12px; 
+            } */
+            #cardNodin {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            
             }
         </style>
   <%
@@ -50,9 +52,9 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-         <div class="alert alert-primary"  style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-book" ></i>
+    <div class="card1 card mb-3" id="cardNodin" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
+         <div class="alert1 alert alert-primary"   style="font-size: larger;margin-bottom: 0px;"> 
+             <i class="fa1 fa fa-fw fa-users" ></i>
 			    <strong><%=ur.getUsername()%>'s schedule</strong>
          </div>
 			  
@@ -183,7 +185,7 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<div class="alert alert-success" style="margin-top: 10px;">
+        		<div class="alert alert-success" style=" margin-top: 10px;">
         		<strong>Send the request successfully!</strong>
         		</div>
         		<% 
@@ -197,18 +199,18 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
-                <table id="myTable" class="table table-bordered" width="100%"  cellspacing="0">
+                <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center;">No.</th>
-                      <th style="text-align: center;">Class</th>
-                       <th style="text-align: center;">Room</th>
-                      <th style="text-align: center;">Course</th>
-                      <th style="text-align: center;">Time</th>
-                      <th style="text-align: center;">Date Of Week</th>
-                      <th style="text-align: center;">Taught Hours</th>
-                      <th style="text-align: center;">Duration (Hours)</th>
-                      <th style="text-align: center;">Action</th>
+                      <th style="text-align: center; vertical-align: middle;">No.</th>
+                      <th style="text-align: center; vertical-align: middle;">Class</th>
+                      <th style="text-align: center; vertical-align: middle;">Room</th>
+                      <th style="text-align: center; vertical-align: middle;">Course</th>
+                      <th style="text-align: center; vertical-align: middle;">Time</th>
+                      <th style="text-align: center; vertical-align: middle;">Date Of Week</th>
+                      <th style="text-align: center; vertical-align: middle;">Taught Hours</th>
+                      <th style="text-align: center; vertical-align: middle;">Duration (Hours)</th>
+                      <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -357,7 +359,7 @@ if( user.getRoleId() == 3) {
 						          		int s4 =Integer.parseInt((String)s3);
 						          		if(b1==s4){
 						          		%>
-										  <input id="<%=s2[0] %><%=list.getClassid() %>" style="  float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=s2[0]+", "+s2[1] %>"><span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span> <br>
+										  <input id="<%=s2[0] %><%=list.getClassid() %>" style=" clear: both; float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=s2[0]+", "+s2[1] %>"><span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span> <br>
 										  <% 
 										 } else {
 											 if(b1>s4){
@@ -376,7 +378,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
 													 %>
-													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
 													  <%
 												 }else{
 													 String dayOfWeek ="";
@@ -389,7 +391,7 @@ if( user.getRoleId() == 3) {
 													 }
 													 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 													 %>
-													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"> <span style="float:left; margin-left: 10px; "><%=day1 %></span><br>
 													  <%
 												 }
 												
@@ -411,7 +413,7 @@ if( user.getRoleId() == 3) {
 														 }
 														 day1=dayOfWeek +", "+ day1 +" Aug " +arr1[2];
 														 %>
-													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
+													  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
 													  <%
 													 }else{
 														 String dayOfWeek ="";
@@ -424,7 +426,7 @@ if( user.getRoleId() == 3) {
 														 }
 														 day1=dayOfWeek +", "+ day1 +" " +arr1[1] +" " +arr1[2];
 														 %>
-														  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
+														  <input id="<%=dayOfWeek %><%=list.getClassid() %>" style="clear: both;float: left;margin-top: 2px" type="radio" name="dayoff" onchange="handle(this)" value="<%=day1 %>"><span style="float:left; margin-left: 10px; "> <%=day1 %></span><br>
 														  <%
 													 }
 													 
@@ -458,7 +460,7 @@ if( user.getRoleId() == 3) {
 						          		if(c1==s5){
 						          			dayOfWeek2 = s2[0]; 
 						          			%>
-										  <input style="float: left;margin-top: 2px;" type="radio" name="dayinstead" disabled="disabled" onclick="handleClick(this);" value="<%=s2[0]+", "+s2[1] %>-<%=list.getClassid()%>"> <span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span><br>
+										  <input style=" clear: both;float: left;margin-top: 2px;" type="radio" name="dayinstead" disabled="disabled" onclick="handleClick(this);" value="<%=s2[0]+", "+s2[1] %>-<%=list.getClassid()%>"> <span style="float:left; margin-left: 10px; "><%=s2[0]+", "+s2[1] %></span><br>
  											<% 
 						          			 
 						          		}else {
@@ -594,9 +596,7 @@ if( user.getRoleId() == 3) {
 				</div>
 					</div>
         </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+       
       </div>
     </div>
   </div>

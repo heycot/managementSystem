@@ -1,4 +1,4 @@
-package controller;
+ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,12 +40,12 @@ public class EditRoomController extends HttpServlet {
 
 		if (roomBo.checkRoomNameAlreadyExistsEdit(request.getParameter("name"), roomId)) {
 			request.setAttribute("room", room);
-			response.sendRedirect(request.getContextPath() + "/room?msg=3");
+			response.sendRedirect(request.getContextPath() + "/room?msg=1");
 			}
 		else {
 			request.setAttribute("room", room);
 			roomBo.editRooms(room);
-			response.sendRedirect(request.getContextPath() + "/room?msg=2");
+			response.sendRedirect(request.getContextPath() + "/room?msg=3");
 		}
 
 	}
