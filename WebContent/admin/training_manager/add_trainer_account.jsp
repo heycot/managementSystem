@@ -12,7 +12,7 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -24,10 +24,10 @@ String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-		<div class="card mb-3">
-			<div class="card-header alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-			    <strong>&nbsp;Add trainer's account </strong>
+		<div class="card1 card mb-3">
+			<div class="alert1 card-header alert alert-primary" style=""> 
+             <i class="fa1 fa fa-fw fa-user" ></i>
+			    <strong class="lb_name">&nbsp;Add trainer's account </strong>
 			  </div>
 			  
 			<div>
@@ -44,7 +44,7 @@ String dateMax= date.toString();
 			<form id="add-trainer-post" action="<%= request.getContextPath() %>/trainer/add" method="POST"  enctype="multipart/form-data">
 				<div style="height: 2%"></div>
 
-				<div class="container-fluid">
+				<div class="card container-fluid" style="padding:20px 20px;">
 					<div class="row">
 						<div class="col-md-6">
 							<div>
@@ -168,17 +168,17 @@ String dateMax= date.toString();
 							<br> <br>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-5"></div>
-						<input class="btn btn-primary btn-lg" type="submit" name="submit"
-							id="btnSubmit" value="Add" style="width:100px; font-size:17px;height:40px; padding:5px; text-align:center;margin-right:10px;" /> <input
-							class="btn btn-secondary btn-lg" type="reset" value="Reset" style="font-size:17px;border:1px solid white;width:100px; height:40px; padding:5px; text-align:center;" />
+					<div class="divButtons">
+						<input class="btnA btn btn-primary btn-lg" type="submit" name="submit"
+							id="btnSubmit" value="Add" style="" /> 
+						<input class=" btnB btn btn-secondary btn-lg" type="reset" value="Reset" style="" />
 					</div>
-					<div style="margin-bottom: 10%"></div>
 				</div>
 			</form>
 		</div>
 	</div>
+	
+					<div style="margin-bottom: 7%"></div>
 </div>
 <script type="text/javascript">
 	function readURL(input) {
