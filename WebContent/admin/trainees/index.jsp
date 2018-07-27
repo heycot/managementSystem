@@ -133,20 +133,6 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-<<<<<<< HEAD
-=======
-         <style>
-            ///** CSS căn id pagination ra giữa màn hình **///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
         <div class="card-body">
           <div  class="table-responsive">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
@@ -259,9 +245,4 @@ if( user.getRoleId() == 3) {
         </div>
       </div>
     </div>
-<<<<<<< HEAD
 <%@include file="/templates/inc/footer.jsp" %> 
-=======
-  </div>
-<%@include file="/templates/inc/footer.jsp" %> 
->>>>>>> 72945ba358122f0576b29b70c0cb9c534f906f03
