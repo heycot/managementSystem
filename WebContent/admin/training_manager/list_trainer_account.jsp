@@ -31,7 +31,7 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
     <div class="card1 card mb-3">
-        <div class="alert1 alert alert-primary" style=""> 
+        <div class="alert1 alert alert-primary" > 
              <i class="fa1 fa fa-fw fa-users" ></i>
 		    <strong class="lb_name">Trainers</strong>
 		  </div>
@@ -120,27 +120,27 @@ if( user.getRoleId() == 3) {
         <div class="card-body">
           <div class="table-responsive">
             <form  class="formTable" action="<%=request.getContextPath() %>/trainer/del"  method="post">
-                <div style="">
-	            	<div class="divBtnAdd" style="float: left" >
-	            	<a style="margin-left:0" class="btnAdd  btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+                <div >
+	            	<div class="divBtnAdd" >
+	            	<a class="btnAdd  btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
 	        		</div>
-	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+	            	<div >
+	            	<input class="btn btn-danger" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
-                	<div style="clear: both"></div>
+                	<div ></div>
 	        	</div>
-	        	<table style="border-collapse: collapse;" id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
+	        	<table id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th style="text-align: center; vertical-align: middle;">Avatar</th>
-                      <th style="text-align: center; vertical-align: middle;">UserName</th>
-                      <th style="text-align: center; vertical-align: middle;">FullName</th>
-                      <th style="text-align: center; vertical-align: middle;">Email</th>
-                      <th style="text-align: center; vertical-align: middle;">Phone</th>
-                      <th style="text-align: center; vertical-align: middle;">Address</th>
-                      <th style="text-align: center; vertical-align: middle;">Status</th>
-                      <th style="text-align: center; vertical-align: middle;">Action</th>
+                      <th >DeleteAll<input style="display: inline-block;" type="checkbox" class="checkall"></th>
+                      <th >Avatar</th>
+                      <th >UserName</th>
+                      <th >FullName</th>
+                      <th >Email</th>
+                      <th >Phone</th>
+                      <th >Address</th>
+                      <th>Status</th>
+                      <th >Action</th>
                     </tr>
                   </thead>
                   <tbody >
@@ -149,28 +149,28 @@ if( user.getRoleId() == 3) {
                   %>	
 
                   	<tr class="contentPage">
-                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
-                     	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getAddress() %></td>
+                      	<td > <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
+                      	<td ><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
+                     	<td  > <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
+	                    <td  ><%= trainer.getFullname() %></td>
+	                    <td  ><%= trainer.getEmail()%></td>
+	                    <td  ><%= trainer.getPhone()%></td>
+	                    <td  ><%= trainer.getAddress() %></td>
 	                    <%
 	                    if (trainer.getStatus() == 1){
 	                    	%>	
-		                    <td id="status<%= trainer.getUserId()%>"    style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id="status<%= trainer.getUserId()%>" ><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
 		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= trainer.getUserId()%>"   style='text-align: center; vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="status<%= trainer.getUserId()%>" ><a href="javascript:void(0)" onclick="changeStatus(<%= trainer.getUserId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
 		                    <%
 	                    }
 	                    %>
-	                    <td   style="text-align: center; vertical-align: middle;">
+	                    <td    >
 	                    <div class="row">
-                        <a class="btnEdit1" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="zmdi zmdi-edit" style=""></i></a>
-                        <a  class="btnDel1" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="zmdi zmdi-delete" style=""></i></a>
+                        <a class="btnEdit1" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="zmdi zmdi-edit" ></i></a>
+                        <a  class="btnDel1" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="zmdi zmdi-delete" ></i></a>
                      	</div>
                      	</td>
                     </tr>
