@@ -131,5 +131,25 @@ RoomDao roomDao;
 		}
 		return kq;
 	}
+	
+	public ArrayList<Rooms> getRoomsEnable() {
+		ArrayList<Rooms> listRooms = new ArrayList<Rooms>();
+		String sql = "SELECT * from rooms where status = 1";
+		
+		conn = ConnectDBLibrary.getConnection();
+		try{
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				Rooms room = new Rooms(rs.getInt("room_id"), rs.getString("name"), rs.getInt("capacity"), rs.getInt("status"));
+				listRooms.add(room);
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		return listRooms;
+	}
 		
 }

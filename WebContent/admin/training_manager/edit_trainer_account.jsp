@@ -223,50 +223,6 @@ String dateMax= date.toString();
 					</div>
 			</form>
 			<script type="text/javascript">
-      				/* $(document).ready(function() {
-      					$("#edit-trainer-post").validate({
-      						rules: {
-      							email:{
-      								required: true,
-      								email:true
-      							},
-      							username:"required",
-                                oldpass:{
-                                	required: true,
-                                },
-                                newpass:{
-                                	required: true,
-                                },
-                                confirmpass:{
-                                	required: true,
-                                	equalTo: "#newpass"
-                                },
-                                fullname:"required",
-                                address:"required",
-                                dateOfBirth:"required",
-      						},
-      						messages: {
-      							username:"Username is required!",
-                                oldpass:{
-                                	required: "Password is required!",
-                                	minlength: "Password must be at least 8 characters!",
-                                },
-                                newpass:{
-                                	required: "Password is required!",
-                                	minlength: "Password must be at least 8 characters!",
-                                },
-                                confirmpass:{
-                                	required: "Password is required!",
-                                	minlength: "Password must be at least 8 characters!",
-                                	equalTo: "Password does not matching!"
-                                },
-                                fullname:"Fullname is required!",
-                                address:"Address is required!",
-                                dateOfBirth:"Day of Birth is required!",
-      						}
-      					});
-      				}); */
-      				
       				$(document).ready(function() {
       					$('#txtphone').blur(function(e) {
           					if (checkPhoneNumber()) {
