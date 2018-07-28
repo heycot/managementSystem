@@ -145,20 +145,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>  
       
-      <nav class="navbar navbar-default" style="font-size:16px;">
+      <nav id="mainNav1" class="navbar navbar-default" style="font-size:16px;margin-left: 37px;">
 		  <div class="container-fluid">
 		    <ul class="nav navbar-nav">
 		    <%
 				    if(user.getRoleId() == 1) {
 				    %>
-				      <li ><a style="color: #555;" href="<%= request.getContextPath()%>/trainer/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li  class="li1 nav-item" data-toggle="tooltip" data-placement="right"  ><a class="a1 nav-link nav-link-collapse collapsed" style="color: #555;" href="<%= request.getContextPath()%>/trainer/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				        <li style="display: block;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
-				      <li style="display: block; margin-left: 20px;"><a style="color: #555;" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
+				        <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style=""><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
+				      <li  class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a class="a1 nav-link nav-link-collapse collapsed" style="" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
+				      <li  class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a  class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
 					 <%
 				    } 
 				    %>

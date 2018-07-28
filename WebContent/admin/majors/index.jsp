@@ -149,8 +149,8 @@ if( user.getRoleId() == 3) {
 	        
 	       
 <!-- Content -->
-		   <div class="card-body" style="margin-top: 10px;">
-		         <div class="table-responsive" style="background: white;padding: 20px 23px;padding-bottom: 10px;">
+		   <div class="card-body" style="">
+		         <div class="table-responsive" style="background: white;padding: 28px 23px;padding-bottom: 10px;">
            			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="">
             				<div class=""  style="float: left; margin-bottom: 15px;" >
@@ -159,7 +159,7 @@ if( user.getRoleId() == 3) {
 			        		</div>
 			            	<div style="float: left; margin-left: 15px;">
 			            		<input class="btn btn-danger" style="" 
-			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete majors">
+			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete major">
 			               	</div>
 		              		<div style="clear: both">
 		              		</div>
