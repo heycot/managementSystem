@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
 <%
 String classNameContent = "" ;
@@ -15,14 +16,17 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: -2px;">
-    <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
-        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-book" ></i>
-	    	<strong>Classes</strong>
-	  	</div>
-	  	</div>
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+    <div  class="card1 card mb-3" style="">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary" style=""> 
+        	<i class="fa fa-fw fa-book" ></i>
+			<strong>Classes</strong>
+		</div>
+		
+<!-- Div Page Content -->
+        <div>
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -115,8 +119,8 @@ if( user.getRoleId() == 3) {
                 });
             });
         </script>
-        <div class="card-body">
-          <div class="table-responsive"  class="container">
+   		<div class="card-body" style="">
+         <div class="table-responsive" style="background: white;padding: 20px 23px;padding-bottom: 10px;">
             <form action="<%= request.getContextPath()%>/classes/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
