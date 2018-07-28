@@ -67,6 +67,19 @@ if( user.getRoleId() == 3) {
         </script>
 			  
         <div class="card-body">
+        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#tableshowclass tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
 
           <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">        	<form  class="formTable" action=""  method="post">
         	
@@ -129,7 +142,7 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 				</div>
 		  	</div>
    		</div> 
-     
+    
           
 	</div>
 </div>

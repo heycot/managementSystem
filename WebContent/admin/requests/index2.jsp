@@ -5,16 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-<style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; 
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; 
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-</style>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -29,11 +20,13 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div class="card1 card mb-3">
-        <div class="alert1 alert alert-primary" style=""> 
-             <i class="fa fa-paper-plane" ></i>
-			    <strong class="namePage">Requests </strong>
-			  </div>
+    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+             <i style="margin-left: 10px; font-size: 24px;" class="fa fa-paper-plane" ></i>
+		    <strong style="font-size: 21px;">&nbsp;Requests</strong>
+	</div>
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:0px;">
+        
+		
         <div>
 		<%
 	
@@ -84,7 +77,20 @@ if( user.getRoleId() == 3) {
         </script>
          
         <div class="card-body">
-          <div class="table-responsive">
+        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#requests tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
+          <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;">
             <form class="formTable" action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div class="wrapper" style="">
 	            	
@@ -112,7 +118,7 @@ if( user.getRoleId() == 3) {
                   <%
                   }
                   %>
-                  <tbody >
+                  <tbody id="requests" >
                    <%
                   	int number=0;
                   	for(RequestTakDayOff requestTakDayOff : listRequests){

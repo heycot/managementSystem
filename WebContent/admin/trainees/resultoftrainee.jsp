@@ -86,6 +86,19 @@ if( user.getRoleId() == 3) {
         </script>
         
         <div class="card-body">
+                <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#resultoftrainee tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
 			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
             <form action=""  method="post">
                 <table id="myTable"  style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="50%" id="dataTable" cellspacing="0">
@@ -98,7 +111,7 @@ if( user.getRoleId() == 3) {
                       
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="resultoftrainee">
                
                   <%
                   	for (Results results : listResults){

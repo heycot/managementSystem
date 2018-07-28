@@ -61,6 +61,19 @@ if( user.getRoleId() == 3) {
             });
         </script>
            <div class="card-body">
+           <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#tableshowclass tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
 			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
         		
 		  	<div class="form">
@@ -81,6 +94,7 @@ if( user.getRoleId() == 3) {
 		  			<% 
 		  		}
 		  		%>
+				 <tbody id ="tableshowclass">
 				  
 				  <%
 				  int count=0;
@@ -110,11 +124,7 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 				</div>
 		  	</div>
    		</div> 
-     
-              
-        <div style="clear: both"></div>
-        <div class="error" ></div>
-        <div style="margin-bottom: 10%"></div>
+
 	</div>
 </div>
 </div>
