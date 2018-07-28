@@ -5,19 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleRegisterClass.css">
-<style>
-	#add-post .required:after {
-	content:"*";color:red;
-	}
-	#pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-</style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -30,12 +17,12 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3">
-       		<div class="alert1 alert alert-primary" style=""> 
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
+        	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              	<i class="fa1 fa fa-fw fa-users" ></i>
-		    	<strong class="lb_name">Register Class</strong>
+		    	<strong  style="font-size: 21px;" class="lb_name">Register Class</strong>
 		 	</div>
-			  <div>
+  <div style="background: white;">
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
 			  int tong = listClassOpening.size();
@@ -74,7 +61,7 @@ if( user.getRoleId() == 3) {
             });
         </script>
            <div class="card-body">
-        	<div class="table-responsive">
+			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
         		
 		  	<div class="form">
 		  		<table style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%">
@@ -110,7 +97,7 @@ if( user.getRoleId() == 3) {
 				    <%
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >
-				    	<button  type="button" name="register" class = "btn btn-danger register"  style="border-color: #e7c6c9;
+				    	<button  type="button" name="register" class = "btn  register"  style="border-color: #e7c6c9;
 background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
 				    </td>
 				  </tr>
@@ -180,6 +167,8 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
 </script>
 <div id="post_modal_noti" class ="modal fade">
 		<div class = "modal-dialog">
+		
+		
 		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail_noti">
 		</div>
 		

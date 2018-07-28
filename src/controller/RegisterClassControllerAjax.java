@@ -58,6 +58,7 @@ public class RegisterClassControllerAjax extends HttpServlet {
 				if(class_id!=0){
 					ClassWaiting classConflicted = classWatingBo.getClassWaitingById(class_id);
 					out.println("<div class='alert alert-danger'>");
+					out.println("<button type='button' class='close' style='color: red; float: right;' data-dismiss='modal'>&times;</button>");
 					out.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>Cann't register this Class</h4>");
 					out.print("</div> <div class ='modal-body' >");
 					out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > Because of having conflig with class: "+ classConflicted.getClassName() +"</label>");
@@ -69,6 +70,7 @@ public class RegisterClassControllerAjax extends HttpServlet {
 						ClassWaiting classregisted = classWatingBo.getClassWaitingById(classOpening_id);
 						
 						out.println("<div class='alert alert-success'>");
+						out.println("<button type='button' class='close' style='color: red; float: right;' data-dismiss='modal'>&times;</button>");
 						out.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>Register Successfull! </h4>");
 						out.print("</div> <div class ='modal-body' >");
 						out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > You registed class: "+ classregisted.getClassName() +"</label>");

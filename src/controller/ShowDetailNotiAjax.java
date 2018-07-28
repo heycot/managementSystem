@@ -44,6 +44,7 @@ public class ShowDetailNotiAjax extends HttpServlet {
 			}
 			PrintWriter printWriter = response.getWriter();
 			printWriter.println("<div class='alert alert-primary'>");
+			printWriter.println("<button type='button' class='close' style='color: red; float: right;' data-dismiss='modal'>&times;</button>");
 			printWriter.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>"+ messages.getTitle()+"</h4>");
 			printWriter.print("</div> <div class ='modal-body' >");
 			printWriter.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' >"+messages.getNotiContent()+"</label>");
