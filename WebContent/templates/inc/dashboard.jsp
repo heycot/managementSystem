@@ -24,33 +24,31 @@
 	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">
-  	
-
+  	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
  	<script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
  	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.js" type="text/javascript"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <style type="text/css">
-      .hiden{display:none}
-      .error{color:red}
-    .label-info {background-color: #5bc0de;}
-    .col-15 {
-    float: left;
-    width: 15%;
-    margin-top: 6px;
-    margin-left: 15px
+		.hiden{display:none}
+		.error{color:red}
+		.label-info {background-color: #5bc0de;}
+		.col-15 {
+		float: left;
+		width: 15%;
+		margin-top: 6px;
+		margin-left: 15px
 	}
 	.col-50 {
-    float: left;
-    width: 50%;
-    margin-top: 6px;
+	    float: left;
+	    width: 50%;
+	    margin-top: 6px;
 	}
     </style>
     
@@ -74,7 +72,7 @@
             <ul id="slide_item" class="navbar-nav navbar-sidenav" style="min-height: 100%; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px;background:white; padding:20px 20px;">
           
           
-              <li class="nav-item" data-toggle="tooltip"  data-placement="right" title="">
+              <li class="nav-item" data-toggle="tooltip"  data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  17px;">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
@@ -82,7 +80,7 @@
                 </a>
               </li>
 
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/trainer/index" style="font-size:  17px; ">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
@@ -90,7 +88,7 @@
                 </a>
               </li>
               
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
                   <i class="fa fa-briefcase"   style="margin-left:3px; margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text" style="margin-left: 2px;">
@@ -98,36 +96,36 @@
               	</a>
             </li>
               
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/classes/index" style="font-size:  17px;">
-                  <i class="fa fa-fw fa-object-group" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
+                  <i class="fa fa-university" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
                     Class</span>
                 </a>
             </li>
             
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course/index" style="font-size:  17px;">
                   <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/room" style="font-size:  17px;">
                   <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/Skills" style="font-size:  17px;">
                   <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
             </li>
-             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="">
+             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/admin/requestTakeDateOff" style="font-size: 17px; font-family: Poppins;">
                   <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text" style="margin-left:4px;">
@@ -226,7 +224,7 @@
           	<a href="javascript:void(0);" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 10px; width: 25px;">
                 <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" ><%= user.getUsername()%>
             </a>
-            <ul class="dropdown-menu menu_user pull-right" style="margin-top:0;">
+            <ul class="dropdown-menu menu_user pull-right" style="margin-top:-7px;">
 				    <%
 				    if(user.getRoleId() == 1) {
 				    %>

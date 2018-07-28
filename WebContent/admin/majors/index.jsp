@@ -64,13 +64,13 @@ if( user.getRoleId() == 3) {
 					  
 					  if( check == false){
 						  %>
-				        	<div class="alert alert-danger" style="margin-right: 20px;">
+				        	<div class="alert alert-danger" style="">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
 					  } else {
 						  %>
-				        	<div class="alert alert-success" style="margin-right: 20px;">
+				        	<div class="alert alert-success" style="">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
@@ -150,11 +150,11 @@ if( user.getRoleId() == 3) {
 	       
 <!-- Content -->
 		   <div class="card-body" style="">
-		         <div class="table-responsive">
+		         <div class="table-responsive" style="background: white;padding: 20px 23px;padding-bottom: 10px;">
            			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="">
             				<div class=""  style="float: left; margin-bottom: 15px;" >
-			            		<button style="" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
+			            		<button style="height: auto !important;" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
 	            				</button>
 			        		</div>
 			            	<div style="float: left; margin-left: 15px;">
@@ -186,18 +186,17 @@ if( user.getRoleId() == 3) {
 							   	   </td>
 				                   <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
 								   <td style="text-align: center; vertical-align: middle;">
-								   <div class="row">
-								   			
-										<button type="button" class="btnEdit1 btn btn-link" name="editMajor"  data-toggle="modal"
+								   
+										<a type="button" class="btn btn-link" name="editMajor"  data-toggle="modal"
 				                    			data-target="#editModal<%=list.getMajorId()%>" style="">
-                                            <i class="zmdi zmdi-edit" style=""></i>
-                                        </button>
-								   		<a 	class="btnDel1" href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
+                                            <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i>
+                                        </a>
+								   		<a 	class="" href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
 				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor"  style="">
-					                    	<i class="zmdi zmdi-delete" style=""></i>
+					                    	<i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69)"></i>
 					                    	
 				                    	</a>
-								   </div>
+								   
 				                   </td>          
 			                   </tr>
 <!-- Edit list -->
