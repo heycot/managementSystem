@@ -149,7 +149,7 @@ if( user.getRoleId() == 3) {
 	        
 	       
 <!-- Content -->
-		   <div class="card-body" style="">
+		   <div class="card-body" style="margin-top: 10px;">
 		         <div class="table-responsive" style="background: white;padding: 20px 23px;padding-bottom: 10px;">
            			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="">
