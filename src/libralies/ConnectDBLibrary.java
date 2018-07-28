@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 
 public class ConnectDBLibrary {
-	private static final String URL = "jdbc:mysql://192.168.20.166:3306/mcts?useUnicode=yes&characterEncoding=utf-8";
-	private static final String USER = "callie";
-	private static final String PASSWORD = "123456";
+	private static final String URL = "jdbc:mysql://localhost/mcts?useUnicode=yes&characterEncoding=utf-8";
+	private static final String USER = "root";
+	private static final String PASSWORD = "";
 	
 	Connection conn;
 	ResultSet rs;
