@@ -58,7 +58,16 @@
     <%
     String styleTogglerBar = "";
     User user = (User)session.getAttribute("user");
-    if (user.getRoleId() == 3) {
+    if(user == null){
+    	%>
+    	<script>
+    	$(document).ready(function(){
+    		window.location.href = 'http://localhost:8080/managementSystem/login';
+    	});
+    	</script>
+    	<%
+    }
+    else if (user.getRoleId() == 3) {
     	%>
     	<!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="box-shadow: 2px 2px #c8c5c5;border-bottom: 1px solid #D9DEE4;background: rgb(237, 237, 237); height:74px;">

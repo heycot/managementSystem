@@ -3,22 +3,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
+String styleContent = "";
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";
@@ -26,13 +16,13 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-home" ></i>
-             	<strong>Room List</strong>
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" >
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+             <i style="margin-left: 0px; font-size: 24px;" class="fa fa-fw fa-home" ></i>
+             	<strong style="font-size: 21px;">&nbsp;Room List</strong>
 			  </div>	
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:5px;">
          
          <%			int check=0;
                   	ArrayList<Rooms> roomlist = (ArrayList<Rooms>) request.getAttribute("roomList");
@@ -83,21 +73,20 @@ if( user.getRoleId() == 3) {
 	  %>
 <!-- Show room -->			  	
         <div class="card-body" >
-          <div class="table-responsive">
-                <div style="margin-left: -15px; margin-bottom: 5px;">
-	            	<div style="float: left" >
-	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
-	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
+          <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;">
+                <div style=" margin-bottom: 5px;">
+	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;">
+	            		<button style="height:auto !important;" type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
 	        		</div>
 	            <form action="<%=request.getContextPath()%>/DeleteRoomController" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
                 	</div>
                 	<div style="clear: both"></div>
-	        	<table id="myTable" class="table-bordered" style="width: 100%;">
+	        	<table id="myTable" class="myTable table table-bordered" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
                   <thead>
                     <tr style="height:50px;">
-                      <th style="text-align: center;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center;">Name</th>
                       <th style="text-align: center;">Capacity</th>
                       <th style="text-align: center;">Status</th>
@@ -126,11 +115,11 @@ if( user.getRoleId() == 3) {
                    <td style="text-align: center; vertical-align: middle;" ><%= rooms.getCapacity()%></td>
                   <%if(rooms.getStatus()==0){
                 	  %>
-		                    <td  id="" style='text-align: center;"'><a><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="" style='text-align: center;vertical-align: middle; "'><a><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
                 	  <%
                   } else {
                 	  %>
-		                    <td id=""  style='text-align: center;'><a  ><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id=""  style='text-align: center;vertical-align: middle;'><a  ><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
                 	  <%
                   }
                    %>  

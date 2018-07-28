@@ -19,8 +19,6 @@
 		
 	</style>
 <%@include file="/templates/inc/dashboard.jsp"%>
-<!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
- -->
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -42,13 +40,13 @@ if (request.getAttribute("ability") != null) {
 LocalDate date= LocalDate.now().minusYears(18);
 String dateMax= date.toString();
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;">
   <div class="<%= classNameContainer%>">
-    <div class="alert" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;">
-             <i class="fa fa-fw fa-user" ></i>
+    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;">
+             <i style="margin-left: 0px; font-size: 24px;" class="fa fa-fw fa-user" ></i>
 			    <strong style="font-size: 21px;">&nbsp;Profile</strong>
 			  </div>
-    <div class="card mb-3" style="height:auto;margin-top:14px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:10px;">
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:10px;margin-top:0px;">
 		<div> 
 			<%
 				if(request.getAttribute("error") != null){
@@ -66,18 +64,18 @@ String dateMax= date.toString();
 									value="<%=trainer.getUserId() %>" name="user_id"/><br>
 							<div class="form-group">
 								<div>
-									<div class="form-group" class="col-sm-2"  style="padding-right:20px;">
-										<img id="blah"
-											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
-											alt="your image" width="120"/>
-									</div>					
 									<div class="form-group" class="col-sm-4" style="">
-										<label class="required">Avatar:<em
+										<label class="required"><strong>Avatar: </strong><em
 											style="color: red">(jpg, png, gif)</em> </label>
 											 <input
 											class="form-control" id="image" type="file" name="avatar"
 											onchange="readURL(this);" />
 									</div>
+									<div class="form-group" class="col-sm-2"  style="padding-right:20px;">
+										<img id="blah"
+											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
+											alt="your image" width="120"/>
+									</div>					
 									<div style="clear: both"></div>
 								</div>
 								<script type="text/javascript">

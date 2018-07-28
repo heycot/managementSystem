@@ -22,13 +22,13 @@ if( user.getRoleId() == 3) {
 LocalDate date= LocalDate.now().minusYears(18);
 String dateMax= date.toString();
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);padding:20px 20px;max-height:900px;">
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);;max-height:900px;">
   <div class="<%= classNameContainer%>">
-  <div class="alert1 alert alert-primary" style="margin-top:20px;font-size: larger;margin-bottom: 0px;background:none; border:none; color: #333333 !important;"> 
-             <i class="fa1 fa fa-fw fa-user" ></i>
+  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+             <i style="margin-left: 0px; font-size: 24px;" class="fa1 fa fa-fw fa-user" ></i>
 			    <strong class="lb_name" style="font-size: 21px;">&nbsp;Add trainer's account </strong>
 			  </div>
-		<div class="card mb-3" style="height:auto;margin-top:14px;box-shadow: 2px 2px #c8c5c5;padding:10px;">
+		<div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:10px;margin-top:0px;">
 			<div>
 			  	<%
 				if(request.getAttribute("error") != null){
@@ -46,15 +46,17 @@ String dateMax= date.toString();
 					<div class="row">
 						<div class="col-md-6" style="float: left">
 							<div>
-								<div class="form-group" class="col-sm-2" style="padding-right:20px;">
-								<img id="blah"
-									src="<%=request.getContextPath()%>/files/default.jpg" width="120"/>
-								</div>
+							<br>
 								<div class="form-group" class="col-sm-4" >
 									<label class="required"><strong>Avatar:</strong><em style="color: red">(jpg,
 											png, gif)</em> </label> <input class="form-control" id="image" type="file"
 										name="avatar" onchange="readURL(this);" />
 								</div>
+								<div class="form-group" class="col-sm-2" style="padding-right:20px;">
+								<img id="blah"
+									src="<%=request.getContextPath()%>/files/default.jpg" width="120"/>
+								</div>
+								
 								<script type="text/javascript">
 									function readURL(input) {
 										if (input.files && input.files[0]) {
@@ -69,8 +71,7 @@ String dateMax= date.toString();
 										}
 									}
 								</script>
-
-								<div ></div>
+								<div style="clear: both"></div>
 							</div>
 				
 							<div class="form-group">
@@ -81,7 +82,7 @@ String dateMax= date.toString();
 									&nbsp;<span id="spnEmailStatus"></span>
 							</div>
 							<div class="form-group">
-								<label class="required"><strong>Username:</strong><span
+								<label class="required"><strong>User Name:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtusername" type="text"
 									name="username" placeholder="Username" required="required"/>
@@ -95,7 +96,7 @@ String dateMax= date.toString();
 								&nbsp;<span id="spnPasswordStatus"></span>
 							</div>
 							<div class="form-group">
-								<label class="required"><strong>Confirm password:</strong>
+								<label class="required"><strong>Confirm Password:</strong>
 								<span style="color: red"> *</span></label> 
 								<input class="form-control"
 									id="confirmpass" type="password" name="confirmpass"
@@ -144,8 +145,6 @@ String dateMax= date.toString();
 									id="txtname" type="date" name="dateOfBirth" value="<%=dateMax%>" max="<%=dateMax%>"
 									placeholder="Birthday" required="required"/>&nbsp;
 							</div>
-
-
 							<div class="form-group">
 								<label class="required"><strong>Ability:</strong><span
 									style="color: red"> *</span></label><br> 
@@ -168,10 +167,10 @@ String dateMax= date.toString();
 							<div class="error"></div>
 						</div>
 					</div>
-					<div class="divButtons" style="text-align:center;margin-bottom: 32px;">
-						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btnA btn btn-primary btn-lg" type="submit" name="submit"
+					<div style="text-align:center;margin-bottom: 30px;">
+						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btn btn-primary btn-lg" type="submit" name="submit"
 							id="btnSubmit" value="Add" /> 
-						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btnB btn btn-secondary btn-lg" type="reset" value="Reset" />
+						<input style=" width:100px; font-size: 15px; border:1px solid white;" class="btn btn-secondary btn-lg" type="reset" value="Reset" />
 					</div>
 				</div>
 			</form>

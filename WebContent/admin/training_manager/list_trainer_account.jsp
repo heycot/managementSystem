@@ -4,18 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-    <style>
-            ///* CSS căn id pagination ra giữa màn hình *///
-            #pagination {
-                display: flex;
-                display: -webkit-flex; / Safari 8 /
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; / Safari 8 /
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>    
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -27,13 +15,13 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3">
-        <div class="alert1 alert alert-primary" style=""> 
-             <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name">Trainers</strong>
-		 </div>
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;" >
+  <div class="<%= classNameContainer%>" >
+  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+             <i style="margin-left: 10px; font-size: 24px;" class="fa1 fa fa-fw fa-users" ></i>
+		    <strong style="font-size: 21px;">&nbsp;Trainers</strong>
+	</div>
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:0px;">
 		<div> 
 	  <%
 	  String msg = "";
@@ -117,27 +105,26 @@ if( user.getRoleId() == 3) {
             });
         </script>
         <div class="card-body">
-          <div class="table-responsive">
+          <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;">
             <form  class="formTable" action="<%=request.getContextPath() %>/trainer/del"  method="post">
                 <div style="">
-	            	<div class="divBtnAdd" style="float: left" >
-	            	<a style="margin-left:0" class="btnAdd  btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;margin-top:2px;">
+	            		<a style="height:auto !important;" class="btnAdd btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
 	         		</div>
 	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
                 	<div style="clear: both"></div>
 	        	</div>
 	        	<table style="border-collapse: collapse;" id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; vertical-align: middle;">Delete
+                      <input style="display: inline-block;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center; vertical-align: middle;">Avatar</th>
-                      <th style="text-align: center; vertical-align: middle;">UserName</th>
-                      <th style="text-align: center; vertical-align: middle;">FullName</th>
+                      <th style="text-align: center; vertical-align: middle;">User Name</th>
                       <th style="text-align: center; vertical-align: middle;">Email</th>
                       <th style="text-align: center; vertical-align: middle;">Phone</th>
-                      <th style="text-align: center; vertical-align: middle;">Address</th>
                       <th style="text-align: center; vertical-align: middle;">Status</th>
                       <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
@@ -146,15 +133,12 @@ if( user.getRoleId() == 3) {
                   <%
                   	for(User trainer : trainers){
                   %>	
-
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
                       	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
-                     	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
+                     	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>" style="color: black;" ><strong><%= trainer.getUsername()%></strong></a> </td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getAddress() %></td>
 	                    <%
 	                    if (trainer.getStatus() == 1){
 	                    	%>	
@@ -166,11 +150,11 @@ if( user.getRoleId() == 3) {
 		                    <%
 	                    }
 	                    %>
-	                    <td   style="text-align: center; vertical-align: middle;">
-	                    <div class="row">
-                        <a class="btnEdit1" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="zmdi zmdi-edit" style=""></i></a>
-                        <a  class="btnDel1" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="zmdi zmdi-delete" style=""></i></a>
-                     	</div>
+	                    <td style="text-align: center; vertical-align: middle;">
+                        <a class="btn btn-link" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
+                        <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i></a>
+                        <a class="btn btn-link" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
+                        <i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69);float:right;"></i></a>
                      	</td>
                     </tr>
                   <%	
@@ -178,33 +162,32 @@ if( user.getRoleId() == 3) {
                   %>
                   </tbody>
                 </table>
-                <script type="text/javascript">          
-                    $(function () {
-				                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
-				                showPage = function (page) {
-				                    $(".contentPage").hide();
-				                    $(".contentPage").each(function (n) {
-				                        if (n >= pageSize  (page - 1) && n < pageSize  page)
-				                            $(this).show();
-				                    });
-				                }
-				                showPage(1);
-				                ///* Cần truyền giá trị vào đây *///
-				                var totalRows = 10;// Tổng số sản phẩm hiển thị
-				                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
-				                var iTotalPages = Math.ceil(totalRows / pageSize);
-				
-				                var obj = $('#pagination').twbsPagination({
-				                    totalPages: iTotalPages,
-				                    visiblePages: btnPage,
-				                    onPageClick: function (event, page) {
-				                        console.info(page);
-				                        showPage(page);
-				                    }
-				                });
-				                console.info(obj.data());
-				            });
-                    
+                <!-- Pagination -->
+	        <script type="text/javascript">
+	            $(function () {
+	                var pageSize = 5; 
+	                showPage = function (page) {
+	                    $(".contentPage").hide();
+	                    $(".contentPage").each(function (n) {
+	                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+	                            $(this).show();
+	                    });
+	                }
+	                showPage(1);
+	                var totalRows = <%= total%>; // Tổng số sản phẩm hiển thị
+	                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+	                var iTotalPages = Math.ceil(totalRows / pageSize);
+	
+	                var obj = $('#pagination').twbsPagination({
+	                    totalPages: iTotalPages,
+	                    visiblePages: btnPage,
+	                    onPageClick: function (event, page) {
+	                        console.info(page);
+	                        showPage(page);
+	                    }
+	                });
+	                console.info(obj.data());
+	            });
               
                 function changeStatus(id, status){
             		$.ajax({
@@ -212,29 +195,24 @@ if( user.getRoleId() == 3) {
             			type: 'POST',
             			cache: false,
             			data: {
-            				//Dữ liệu gửi đi
             				trainerId: id,
             				status : status
             			},
             			success: function(data){
-            				// Xử lý thành công
             				$('#status' + id).html(data);
             			},
             			error: function (){
-            			// Xử lý nếu có lỗi
             				alert('fail');
             			}
             		});
             	}
                 </script>
-                
                 <div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </div>
