@@ -41,7 +41,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;padding-left: 10px;"> 
+       	<div class="alert1 alert alert-primary"  style="margin-bottom: -6px;padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-book" ></i>
 			<strong class="lb_name">Course </strong>
 		</div>

@@ -25,7 +25,7 @@ if( user.getRoleId() == 3) {
     <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
         	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-hourglass-2" ></i>
-		    <strong style="font-size: 25px;" class="lb_name">&nbsp;Waiting Class</strong>
+		    <strong style="font-size: 25px;" class="lb_name">&nbsp;Pending Class</strong>
 		 </div>
   <div style="background: white;">
 			<%
@@ -33,7 +33,7 @@ if( user.getRoleId() == 3) {
 			  int tong = listClassOpening.size();
 			  if (tong==0){
 					 %>
-					 <div class="alert alert-danger">
+					 <div class="alert alert-danger" style="margin-top: 10px;">
 			    	<strong> No Waiting Class </strong>
 			  		</div>
 					 <% 
@@ -68,6 +68,9 @@ if( user.getRoleId() == 3) {
 			  
         <div class="card-body">
         <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+        		<%
+		  		if(tong!=0){
+		  		%> 
                 	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>
@@ -80,14 +83,16 @@ if( user.getRoleId() == 3) {
 					  });
 					});
 					</script>
-
+				  <%
+				  }
+				  %> 
           <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">        	<form  class="formTable" action=""  method="post">
         	
 	        	<table style="" id="myTable"  class="myTable table table-bordered table-hover table-compact" width="100%">
 		  		<%
 		  		if(tong!=0){
 		
-		  		%>
+		  		%> 
 		  		  <thead>
 				  <tr >
 				    <th style="text-align: center; vertical-align: middle;">No.</th>
@@ -102,7 +107,7 @@ if( user.getRoleId() == 3) {
 				  
 				  <%
 				  }
-				  %>
+				  %> 
 				  <tbody id ="tableshowclass">
 				  
 				  

@@ -54,7 +54,7 @@ String dateMax= date.toString();
 								</div>
 								<div class="form-group" class="col-sm-2" style="padding-right:20px;">
 								<img id="blah"
-									src="<%=request.getContextPath()%>/files/default.jpg" width="120"/>
+									src="<%=request.getContextPath()%>/files/default.jpg" width="100"/>
 								</div>
 								
 								<script type="text/javascript">
@@ -64,8 +64,8 @@ String dateMax= date.toString();
 
 											reader.onload = function(e) {
 												$('#blah').attr('src',
-														e.target.result).width(
-														300);
+														e.target.result)
+														.width(100);
 											};
 											reader.readAsDataURL(input.files[0]);
 										}
@@ -107,7 +107,7 @@ String dateMax= date.toString();
 
 						<div class="col-md-6">
 						<br>
-							<div class="form-group">
+							<div class="form-group" style="margin-top: 20px; ">
 								<label class="required"><strong>Full Name:</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtfullname" type="text"
@@ -115,14 +115,13 @@ String dateMax= date.toString();
 									&nbsp;<span id="spnFullNameStatus"></span>
 							</div>
 
-							<div class="form-group">
-								<label class="required"><strong>Gender:</strong><span
-									style="color: red"> *</span></label> <br> <input type="radio"
-									name="gender" value="1" > Male <input type="radio"
-									name="gender" value="2" >Female <input type="radio"
-									name="gender" value="0" >Other
+							<div class="form-group" style="margin-top: 20px; ">
+								<label class="required"><strong>Gender:</strong><span style="color: red"> *</span></label> <br> 
+								<input type="radio" name="gender" value="1" > Male 
+								<input type="radio" name="gender" value="2" style="margin-left: 10px;"> Female 
+								<input type="radio" name="gender" value="0"  style="margin-left: 10px;"> Other
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-top: 33px; ">
 								<label class="required"><strong>Address</strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"

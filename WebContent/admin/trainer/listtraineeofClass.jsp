@@ -125,14 +125,14 @@ if( user.getRoleId() == 3) {
                 	  if(check == 1){
                 		  %>
 
-                		  <div class="alert alert-success" style="padding-left: 13px;">
+                		  <div class="alert alert-success" style="padding-left: 13px; margin-top: 10px;">
                 		  <Strong>Finish trainee evaluation!</Strong>
                 		  </div>
                 		  <% 
                   } 
                   }else{
                 	  %>
-                	  <div class="alert alert-danger" style="padding-left: 13px;">
+                	  <div class="alert alert-danger" style="padding-left: 13px; margin-top: 10px;">
 
                 	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
                 	  </div>
@@ -141,7 +141,7 @@ if( user.getRoleId() == 3) {
                   }
                   %>
         <div class="card-body">
-        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+        <div style="float: right; width: 25%;margin-top: 10px;margin-bottom: 20px;margin-right: 13px;">
                 	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>

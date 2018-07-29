@@ -33,7 +33,7 @@ int tong = skill.size();
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;padding-left: 10px;"> 
+       	<div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: -6px;padding-left: 10px;"> 
              <i class="fa fa-fw fa-graduation-cap" style="font-size:24px;" ></i>
              	<strong class="lb_name" style="font-size:26px;">Skill</strong>
 			  </div>	

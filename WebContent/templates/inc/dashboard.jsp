@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">
+  	
   	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
  	<script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
@@ -147,8 +148,8 @@
     	styleTogglerBar = "style='display: none'";
     %>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="background:white;height:74px;box-shadow:2px 2px #c8c5c5">
-      <a href="<%= request.getContextPath()%>/"><img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave_logo.png" width="150px" height="50px" style="margin-left: 24px; margin-bottom: -13px; margin-top: -12px;"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="background:white; height:74px; box-shadow:2px 2px #c8c5c5">
+      <a href="<%= request.getContextPath()%>/"><img alt="Enlave" src="<%= request.getContextPath()%>/templates/images/enclave_logo.png" width="150px" height="50px" style="margin-left: 10px; margin-bottom: -13px; margin-top: -12px;"></a>
     <!--  <a style="display: inline-block; margin-left: 10px;" class="navbar-brand" href=""></a> -->
        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -164,10 +165,10 @@
 				    <%
 				    } else if (user.getRoleId() == 2) {
 			    	%>
-				        <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style=""><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
-				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Register Class</a></li>
-				      <li  class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a class="a1 nav-link nav-link-collapse collapsed" style="" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Waiting Start</a></li>
-				      <li  class="li1 nav-item" data-toggle="tooltip" data-placement="right"><a  class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
+				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style="padding-left: 10px; padding-right: 10px;"><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/schedule?user_id=<%= user.getUserId()%>">Schedule</a></li>
+				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style="padding-left: 10px; padding-right: 10px;"><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/list/classcanregister?user_id=<%= user.getUserId()%>">Class Registration</a></li>
+				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style="padding-left: 10px; padding-right: 10px;"><a class="a1 nav-link nav-link-collapse collapsed" style="" href="<%= request.getContextPath()%>/trainee/list/classwaitstart">Pending Class</a></li>
+				      <li class="li1 nav-item" data-toggle="tooltip" data-placement="right" style="padding-left: 10px; padding-right: 10px;"><a class="a1 nav-link nav-link-collapse collapsed"  style="" href="<%= request.getContextPath()%>/trainee/results?user_id=<%= user.getUserId()%>">Result</a></li>
 					 <%
 				    } 
 				    %>

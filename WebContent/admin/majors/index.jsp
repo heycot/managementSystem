@@ -201,7 +201,7 @@ if( user.getRoleId() == 3) {
 				                   <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
 								   <td style="text-align: center; vertical-align: middle;">
 								   
-										<a type="button" class="btn btn-link" name="editMajor"  data-toggle="modal"
+										<a name="editMajor"  data-toggle="modal"
 				                    			data-target="#editModal<%=list.getMajorId()%>" style="">
                                             <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i>
                                         </a>

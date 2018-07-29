@@ -32,7 +32,7 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> style="">
   <div class="<%= classNameContainer%>">
-  	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
+  	<div class="alert1 alert alert-primary" style="margin-left: -14px; margin-bottom: -6px;"> 
         <i class="fa1 fa fa-fw fa-user " style="margin-left: 0px; font-size: 24px;"></i>
 		<strong class="lb_name" style="">Add Trainee's Account </strong>
 	</div>

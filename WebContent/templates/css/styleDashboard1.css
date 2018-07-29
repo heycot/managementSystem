@@ -52,7 +52,7 @@ body{
 }
 .navbar-default .container-fluid .navbar-nav .item1{
 	display: block;
-	width: 150px;
+	width: 120px;
 	text-align: center;
 	padding-top: 24px;
 	padding-bottom: 24px;
@@ -84,7 +84,6 @@ li.item1 a{
     background: #F0F0F0;
 }
 .li1{
-	width: 150px;
 	text-align: center;
 }
 .li1 a{
@@ -307,7 +306,7 @@ ul.msg_list li a .message {
 	color:#555;
 	}
 	.nav-item{
-		width: 160px !important;
+		width: 160px important!;
 	}
 }
 

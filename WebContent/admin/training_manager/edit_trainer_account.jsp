@@ -19,6 +19,7 @@
 		
 	</style>
 <%@include file="/templates/inc/dashboard.jsp"%>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -31,18 +32,22 @@ if( user.getRoleId() == 3) {
 User trainer = new User();
 Ability ability= new Ability();
 SkillBo skillBo = new SkillBo();
+
 if (request.getAttribute("trainer") != null) {
 	trainer = (User) request.getAttribute("trainer");
 }
+
 if (request.getAttribute("ability") != null) {
 	ability = (Ability) request.getAttribute("ability");
 }
+
 LocalDate date= LocalDate.now().minusYears(18);
 String dateMax= date.toString();
 %>
+
 <div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;overflow-x: inherit;">
   <div class="<%= classNameContainer%>">
-    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:13px;margin-bottom:10px;">
+    <div class="alert1" style="font-size: larger; margin-bottom: -6px; background:none; border:none; color: #333333 !important;margin-top:13px;margin-bottom:10px;">
              <i style="margin-left: 5px; font-size: 24px;" class="fa fa-fw fa-user" ></i>
 			    <strong style="font-size: 26px;">Profile</strong>
 			  </div>
@@ -74,7 +79,7 @@ String dateMax= date.toString();
 									<div class="form-group" class="col-sm-2"  style="padding-right:20px;">
 										<img id="blah"
 											src="<%=request.getContextPath()%>/files/<%=trainer.getAvatar()%>"
-											alt="your image" width="120"/>
+											alt="your image" width="100"/>
 									</div>					
 									<div style="clear: both"></div>
 								</div>
@@ -83,7 +88,7 @@ String dateMax= date.toString();
 										if (input.files && input.files[0]) {
 											var reader = new FileReader();
 											reader.onload = function(e) {
-												$('#blah').attr('src',e.target.result).width(120);
+												$('#blah').attr('src',e.target.result).width(100);
 											};
 											reader.readAsDataURL(input.files[0]);
 										}
@@ -127,8 +132,8 @@ String dateMax= date.toString();
 			              	  }
 			              	 %>
 							  <input type="radio" name="gender" value="0" <%= male%>> Male 
-							  <input type="radio" name="gender" value="1" <%= female%>> Female 
-							  <input type="radio" name="gender" value="2" <%= other%> > Other 
+							  <input type="radio" name="gender" value="1" <%= female%> style="margin-left: 10px;"> Female 
+							  <input type="radio" name="gender" value="2" <%= other%> style="margin-left: 10px;"> Other 
 			              	
 				              	
 		              	</div>
@@ -156,20 +161,7 @@ String dateMax= date.toString();
 									value="<%=trainer.getPhone() %>" />
 									&nbsp;<span id="spnPhoneStatus"></span>
 							</div>
-							<div class="form-group" >
-								<label for="usr"><strong>Password:</strong></label> <input type="button"
-									value="Click here to change" onclick="changePass();"> <br>
-								<input style="display: none;" type="password"
-									class="form-control" id="oldpass" name="oldpass"
-									placeholder="Current password" value=""/> <input
-									style="display: none;" type="password" class="form-control"
-									id="newpass" name="newpass" placeholder="New password" value=""/>
-								<input style="display: none;" type="password"
-									class="form-control" id="confirmpass" name="confirmpass"
-									placeholder="Confirm new password" value="" onkeyup="checkConfirmPass();"/>&nbsp;<span
-									id="spnPasswordStatus"></span>
-							</div>
-
+							
 							<div class="form-group">
 								<label for="usr"><strong>Ability:</strong></label>
 								<table class="table table-bordered" id="abilityTable">
@@ -200,6 +192,21 @@ String dateMax= date.toString();
 									</tbody>
 								</table>
 							</div>
+							
+							<div class="form-group" style="margin-top: 30px;">
+								<label for="usr"><strong>Password:</strong></label> <input type="button"
+									value="Click here to change" onclick="changePass();"> <br>
+								<input style="display: none;" type="password"
+									class="form-control" id="oldpass" name="oldpass"
+									placeholder="Current password" value=""/> <input
+									style="display: none;" type="password" class="form-control"
+									id="newpass" name="newpass" placeholder="New password" value=""/>
+								<input style="display: none;" type="password"
+									class="form-control" id="confirmpass" name="confirmpass"
+									placeholder="Confirm new password" value="" onkeyup="checkConfirmPass();"/>&nbsp;<span
+									id="spnPasswordStatus"></span>
+							</div>
+							
 						</div>
 					</div>
 					<br>

@@ -18,7 +18,7 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x:inherit;" >
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:12px;margin-bottom:-4px;"> 
+  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:12px;margin-bottom:-6px;"> 
              <i style="margin-left: 5px; font-size: 24px;" class="fa fa-fw fa-home" ></i>
              	<strong style="font-size: 26px;">Room</strong>
 			  </div>	

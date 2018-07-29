@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard.jsp" %> 
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -15,14 +15,18 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;" >
-  <div class="<%= classNameContainer%>" >
-  <div class="alert1" style="background:none; border:none; color: #333333 !important;margin-top: 13px;"> 
-             <i style="margin-left: 10px; font-size: 22px;" class="fa1 fa fa-fw fa-users" ></i>
-		    <strong style="font-size: 26px;">&nbsp;Trainer</strong>
-	</div>
-    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:10px;">
-		<div> 
+
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x: inherit;">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+    <div  class="card1 card mb-3" style="margin-top: 0px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary" style="margin-bottom: -6px;padding-left: 10px;"> 
+        	<i class="fa1 fa fa-fw fa-users" ></i>
+			<strong class="lb_name">Trainer</strong>
+		</div>
+		
+<!-- Div Page Content -->
+        <div>
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -139,7 +143,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; vertical-align: middle;">Email</th>
                       <th style="text-align: center; vertical-align: middle;">Phone</th>
                       <th style="text-align: center; vertical-align: middle;">Status</th>
-                      <th style="text-align: center; vertical-align: middle;">Action</th>
+                      <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Action</th>
                     </tr>
                   </thead>
                   <tbody id="myTBody" >
@@ -148,7 +152,7 @@ if( user.getRoleId() == 3) {
                   %>	
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;width:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
+                      	<td style="text-align: center; vertical-align: middle;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="100px;"></td>
                      	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>" style="color: black;" ><strong><%= trainer.getUsername()%></strong></a> </td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
@@ -164,10 +168,10 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
 	                    <td style="text-align: center; vertical-align: middle;">
-                        <a class="btn btn-default" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
-                        <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i></a>
-                        <a class="btn btn-default" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
-                        <i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69);float:right;"></i></a>
+                        	<a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
+                        		<i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i></a>
+                        	<a  href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
+                        		<i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69);"></i></a>
                      	</td>
                     </tr>
                   <%	
@@ -178,7 +182,7 @@ if( user.getRoleId() == 3) {
                 <!-- Pagination -->
 	        <script type="text/javascript">
 	            $(function () {
-	                var pageSize = 5; 
+	                var pageSize = 10; 
 	                showPage = function (page) {
 	                    $(".contentPage").hide();
 	                    $(".contentPage").each(function (n) {

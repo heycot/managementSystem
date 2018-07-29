@@ -180,7 +180,7 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<div class="alert alert-success" style="padding-left: 13px;">
+        		<div class="alert alert-success" style="padding-left: 13px; margin-top: 10px;">
         		<strong>Send the request successfully!</strong>
         		</div>
         		<% 
@@ -203,7 +203,7 @@ if( user.getRoleId() == 3) {
 					  });
 					});
 					</script>
-          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">
+          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 10px;">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                 <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
@@ -340,23 +340,26 @@ if( user.getRoleId() == 3) {
                    <td style=" vertical-align: middle;"><%= s%></td>
                    <td style="text-align: center; vertical-align: middle;"><%= list.getCountLession()%></td>
                    <td style="text-align: center; vertical-align: middle;"><%= list.getDuration() %></td>
-                    <td style="text-align: center; vertical-align: middle;"> <a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;"></a>
+                   <td style="text-align: center; vertical-align: middle;"> 
+                   	<a href="/managementSystem/trainer/list?class_id=<%= list.getClassid() %>&name=<%= list.getNameclass()%>" class="fa fa-list" style="text-align: center; vertical-align: middle;font-size:20px; text-decoration: none;"></a>
                    <button  type="button" class="btn btn-link"  style="text-align: center; vertical-align: middle; font-size: 20px" data-toggle="modal" data-target="#myModal<%=k%>"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                    </button>
                    
                    <div class="modal fade" id="myModal<%=k %>" role="dialog" style="text-align: center;">
 						    <div class="modal-dialog " style="text-align: center;">
 						      <div class="modal-content">
-						        <div class="modal-header; alert alert-primary">
-						          <button style="color: red" type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">Requesting a day off for <%= list.getNameclass()%></h4>
-						        </div>
+						      <div class="modal-header alert alert-primary">
+         							 <h5 class="modal-title " align="center">
+										<strong>Requesting a day off for <%= list.getNameclass()%></strong>
+									</h5>
+									<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
+								</div>
 						        <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
 						        <div class="modal-body">
 						          <table style="width: 465px; border: 0px;">
 
 						          <tr style="border: 0px;">
-						          <th class="tdModelNodin">Day off</th>
+						          <th class="tdModelNodin"><strong>Day off:</strong></th>
 						          <td class="tdModelNodin" >
 						          			<%
 						          		String []dayoff={"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
@@ -453,7 +456,7 @@ if( user.getRoleId() == 3) {
 						          </tr>
 						          
 						          <tr>
-						          <th class="tdModelNodin">Day instead</th>
+						          <th class="tdModelNodin"><strong>Day instead:</strong></th>
 						          <td class="tdModelNodin">
 						         
 						          	<%
@@ -556,7 +559,7 @@ if( user.getRoleId() == 3) {
 	 					         <label id="choiceLabel"></label>
 	 					         
 						          <tr>
-						          <th class="tdModelNodin">Time</th>
+						          <th class="tdModelNodin"><strong>Time:</strong></th>
 						          <td class="tdModelNodin">
 						          <select  class="selectTime" name="time" id = "Select<%= list.getClassid() %>" onchange="myCheckRoom(this)" style="float: left;width:340px" >
 									  
@@ -564,7 +567,7 @@ if( user.getRoleId() == 3) {
 						          </td>
 						          </tr>
 						          <tr>
-						          <th class="tdModelNodin">Room</th>
+						          <th class="tdModelNodin"><strong>Room:</strong></th>
 						          <td class="tdModelNodin">
 						          	 <select  class="selectRoom" name="room" style="float: left;width:340px ">
 						          	  <%
@@ -575,8 +578,8 @@ if( user.getRoleId() == 3) {
 						          </td>
 						          </tr>
 						          <tr>
-						          <th class="tdModelNodin">Content</th>
-						          <td class="tdModelNodin"><textarea name="content" style=" resize: none; float: left;width:340px" rows="3" cols="35"></textarea></td>
+						          <th class="tdModelNodin"><strong>Content:</strong></th>
+						          <td class="tdModelNodin"><textarea name="content" style="margin-left: 1px; resize: none; float: left;width:340px" rows="3" cols="35"></textarea></td>
 						          </tr>
 						          </table>
 						        </div>

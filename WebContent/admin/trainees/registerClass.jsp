@@ -28,7 +28,7 @@ if( user.getRoleId() == 3) {
 			  int tong = listClassOpening.size();
 			  if (tong==0){
 				 %>
-				 <div class="alert alert-danger">
+				 <div class="alert alert-danger" style="margin-top: 10px;">
 		    	<strong> No Class to register </strong>
 		  		</div>
 				 <% 
@@ -62,6 +62,9 @@ if( user.getRoleId() == 3) {
         </script>
            <div class="card-body">
            <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+           		<%
+		  		if(tong !=0){
+		  		%>
                 	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>
@@ -74,8 +77,11 @@ if( user.getRoleId() == 3) {
 					  });
 					});
 					</script>
-			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
-        		
+				<% 
+		  		}
+		  		%>
+			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            
+			<form action=""  method="post">
 		  	<div class="form">
 		  		<table style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%">
 
@@ -111,9 +117,7 @@ if( user.getRoleId() == 3) {
 				    <%
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >
-				    	<button  type="button" name="register" class = " btn register "  style="border-color: #e7c6c9;
-
-background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
+				    	<button  type="button" name="register" class = " btn register "  style="border-color: #e7c6c9; background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
 				    </td>
 				  </tr>
 				  <%

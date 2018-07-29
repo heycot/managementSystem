@@ -31,7 +31,7 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%> style="">
   <div class="<%= classNameContainer%>">
   
-  <div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
+  <div class="alert1 alert alert-primary" style="margin-left: -14px; margin-bottom: -6px;"> 
              <i class="fa1 fa fa-fw fa-user " style="margin-left: 0px; font-size: 24px;"></i>
 			    <strong class="lb_name" style="">Profile </strong>
 			  </div>
@@ -54,9 +54,9 @@ if( user.getRoleId() == 3) {
               <div class="col-sm-6" style="float: left">
               	<div >
 	              	<div class="form-group" class="col-sm-4" style="float: left; height:200px; ">
-		              	<label ><strong>Avatar</strong> <em style="color: red">(jpg, png, gif)</em> </label>
+		              	<label ><strong>Avatar:</strong> <em style="color: red">(jpg, png, gif)</em> </label>
 		              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
-	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/default.jpg"  height="125px">
+	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/<%= trainee.getAvatar()%>"  height="125px">
 	    				<script type="text/javascript">
 	    				function readURL(input) {
 	    			        if (input.files && input.files[0]) {
@@ -78,7 +78,7 @@ if( user.getRoleId() == 3) {
               	
               	
               	<div class="form-group">
-	              	<label class="required" ><strong>Email</strong></label>&nbsp;
+	              	<label class="required" ><strong>Email:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email"  disabled="disabled"/>
 	              	<span id="spnEmailStatus"></span>
               	</div>
@@ -118,7 +118,7 @@ if( user.getRoleId() == 3) {
 					  <input type="radio" name="gender" value="2" <%= other%> > Other <br>
               	</div>
               	
-              	<div class="form-group" style="margin-top: 30px;">
+              	<div class="form-group" style="margin-top: 20px;">
 	              	<label class="required" ><strong>Address:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
 	              	<span id="spnAddressStatus"></span>

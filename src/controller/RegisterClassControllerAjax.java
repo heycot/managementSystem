@@ -57,21 +57,28 @@ public class RegisterClassControllerAjax extends HttpServlet {
 				int class_id = classWatingBo.checkConflicRegisterClass(classWaiting, classWaitingofTrainee);
 				if(class_id!=0){
 					ClassWaiting classConflicted = classWatingBo.getClassWaitingById(class_id);
-					out.println("<div class='alert alert-danger'>");
-					out.println("<button type='button' class='close' style='color: red; float: right;' data-dismiss='modal'>&times;</button>");
-					out.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>Cann't register this Class</h4>");
+					String result = "<div class='modal-header alert alert-danger'>" + 
+							" <h5 class='modal-title ' align='center'>" + 
+							" <strong>Can't register this Class</strong>" + 
+							" </h5>" + 
+							" <button type='button' class='close' style='color: red;' data-dismiss='modal'>&times;</button>" + 
+							" </div>";
+					out.println(result);
 					out.print("</div> <div class ='modal-body' >");
-					out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > Because of having conflig with class: "+ classConflicted.getClassName() +"</label>");
+					out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > There is a conflict with class: "+ classConflicted.getClassName() +"</label>");
 					out.println("</div> <div class='modal-footer'><button type='button' style=' background:#2e9ade; color: white; ' class ='btn btn-infor' data-dismiss='modal'>Close</button> </div>");
 				
 				} else {
 					UserBo userBo = new UserBo();
 					if(userBo.registedClass(user.getUserId(), classOpening_id)>0){
 						ClassWaiting classregisted = classWatingBo.getClassWaitingById(classOpening_id);
-						
-						out.println("<div class='alert alert-success'>");
-						out.println("<button type='button' class='close' style='color: red; float: right;' data-dismiss='modal'>&times;</button>");
-						out.println("<h4 style='font-size:20px; padding:10px 5px 10px;' class='modal-title'>Register Successfull! </h4>");
+						String result = "<div class='modal-header alert alert-success'>" + 
+								" <h5 class='modal-title ' align='center'>" + 
+								" <strong>Register Successfull!</strong>" + 
+								" </h5>" + 
+								" <button type='button' class='close' style='color: red;' data-dismiss='modal'>&times;</button>" + 
+								" </div>";
+						out.println(result);
 						out.print("</div> <div class ='modal-body' >");
 						out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > You registed class: "+ classregisted.getClassName() +"</label>");
 						out.println("</div> <div class='modal-footer'><button type='button' style=' background:#2e9ade; color: white; ' class ='btn btn-infor' data-dismiss='modal'>Close</button> </div>");
