@@ -64,13 +64,13 @@ if( user.getRoleId() == 3) {
 					  
 					  if( check == false){
 						  %>
-				        	<div class="alert alert-danger" style="">
+				        	<div class="alert alert-danger" style=" padding-left: 10px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
 					  } else {
 						  %>
-				        	<div class="alert alert-success" style="">
+				        	<div class="alert alert-success" style="padding-left: 10px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
@@ -162,6 +162,19 @@ if( user.getRoleId() == 3) {
 			            		<input class="btn btn-danger" style="" 
 			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete major">
 			               	</div>
+			               	<div style="float: right; width: 25%;">
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
 		              		<div style="clear: both">
 		              		</div>
 	       				</div>
@@ -176,7 +189,7 @@ if( user.getRoleId() == 3) {
 									<th style="text-align: center; font-size: medium;">Action</th>
 			                    </tr>
 		                  	</thead>
-                  			<tbody>
+                  			<tbody id="myTBody">
 				                  <%
 				                  	for (Majors list: majors){
 				                  %>
@@ -210,6 +223,7 @@ if( user.getRoleId() == 3) {
 													<i class="fa fa-fw fa-edit"></i>
 													<strong>Edit Major</strong>
 												</h5>
+												<button type="button" class="close" style="color: red; float: right;" data-dismiss="modal">&times;</button>
 											</div>
 											<div class="modal-body">
 												<form id="add-post2" action="/managementSystem/major/edit?id=<%=list.getMajorId()%>" method="POST">
@@ -243,6 +257,7 @@ if( user.getRoleId() == 3) {
 														<i style="size: 20px;" class="fa fa-fw fa-plus-square"></i>
 														<strong>Add new major</strong>
 													</h5>
+													<button type="button" class="close" style="color: red; float: right;" data-dismiss="modal">&times;</button>
 												</div>
 												<div class="modal-body">
 													<div class="form-group">

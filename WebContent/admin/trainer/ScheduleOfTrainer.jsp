@@ -17,11 +17,7 @@
             box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 			margin-left: -12px; 
             } */
-            #cardNodin {
-            margin-top: 15px;
-            margin-bottom: 15px;
             
-            }
         </style>
   <%
   	
@@ -52,13 +48,12 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3" id="cardNodin" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
-         <div class="alert1 alert alert-primary"   style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa1 fa fa-fw fa-users" ></i>
-			    <strong><%=ur.getUsername()%>'s schedule</strong>
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
+         <div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
+             <i class="fa1 fa fa-fw fa-users"  ></i>
+			    <strong style="font-size: 21px;">&nbsp;<%=ur.getUsername()%>'s schedule</strong>
          </div>
-			  
-			  <div>
+			  <div style="background: white;">
         <script type="text/javascript">
             $(document).ready(function(){
                 $(document).on('change', '.checkall, .checkitem', function(){
@@ -185,7 +180,7 @@ if( user.getRoleId() == 3) {
         <%
         	if(success.equals("1")){
         		%>
-        		<div class="alert alert-success" style=" margin-top: 10px;">
+        		<div class="alert alert-success" style="padding-left: 13px;">
         		<strong>Send the request successfully!</strong>
         		</div>
         		<% 
@@ -195,8 +190,20 @@ if( user.getRoleId() == 3) {
         	}
         %>   
         <div class="card-body">
-        
-          <div class="table-responsive">
+        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search"  style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
+          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">
           
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                 <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
@@ -213,7 +220,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody  id="myTBody">
                   
                   	<%
                   	String FORMAT = "EEE,d MMM yyyy";
@@ -341,7 +348,7 @@ if( user.getRoleId() == 3) {
 						    <div class="modal-dialog " style="text-align: center;">
 						      <div class="modal-content">
 						        <div class="modal-header; alert alert-primary">
-						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <button style="color: red" type="button" class="close" data-dismiss="modal">&times;</button>
 						          <h4 class="modal-title">Requesting a day off for <%= list.getNameclass()%></h4>
 						        </div>
 						        <form name="myForm" action="/managementSystem/trainer/SendNotiTakedayoffToAdminController" method="post">
@@ -592,7 +599,7 @@ if( user.getRoleId() == 3) {
                   </tbody>
                 </table>
                 <div id="pager">
-					<ul id="pagination" class="pagination-sm"></ul>
+					<ul id="pagination" class="pagination-sm pagination"></ul>
 				</div>
 					</div>
         </div>

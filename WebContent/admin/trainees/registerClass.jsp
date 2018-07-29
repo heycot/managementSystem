@@ -110,7 +110,7 @@ if( user.getRoleId() == 3) {
 				    <%
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >
-				    	<button  type="button" name="register" class = "btn btn-danger register"  style="border-color: #e7c6c9;
+				    	<button  type="button" name="register" class = " btn register "  style="border-color: #e7c6c9;
 background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</button>	
 				    </td>
 				  </tr>

@@ -13,11 +13,7 @@
             box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 			margin-left: -12px; 
             } */
-            #cardNodin {
-            margin-top: 15px;
-            margin-bottom: 15px;
-            
-            }
+          
         </style>
   <script type="text/javascript">
   function abc(a) {
@@ -61,12 +57,12 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3" id="cardNodin" >
-         <div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;" >
+         <div class="alert1 "  style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-			    <strong><%= name %></strong>
+			    <strong style="font-size: 21px;">&nbsp;<%= name %></strong>
 			  </div>
-			  <div>
+			  <div style="background: white;">
 
         <script type="text/javascript">
             $(document).ready(function(){
@@ -129,14 +125,14 @@ if( user.getRoleId() == 3) {
                 	  if(check == 1){
                 		  %>
 
-                		  <div class="alert alert-success" style="margin-top: 10px;">
+                		  <div class="alert alert-success" style="padding-left: 13px;">
                 		  <Strong>Finish trainee evaluation!</Strong>
                 		  </div>
                 		  <% 
                   } 
                   }else{
                 	  %>
-                	  <div class="alert alert-danger" style="margin-top: 10px;">
+                	  <div class="alert alert-danger" style="padding-left: 13px;">
 
                 	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
                 	  </div>
@@ -145,8 +141,21 @@ if( user.getRoleId() == 3) {
                   }
                   %>
         <div class="card-body">
+        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
         
-          <div class="table-responsive">
+          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">
             <form action="/managementSystem/trainer/list"  method="post">
                 <input style="display: none; margin-left: 10px; margin-bottom: 10px; color: red" id="deleteall" type="submit" value="Delete">
                <input type="text" name="class_id" value="<%=id %>" style="display: none;" >
@@ -161,7 +170,7 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; vertical-align: middle;">Assessment  </th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="myTBody">
                   <%
                   	int i=0;
                   System.out.print(listUser.size());

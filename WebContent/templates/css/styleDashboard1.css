@@ -174,7 +174,7 @@ a.user-profile {
     float: left;
     font-size: 14px;
     right: 3%;
-    left: 82%;
+    left: 84%;
     line-height: 30px;
     list-style: none outside none;
     padding: 10px 10px 10px;
@@ -292,8 +292,8 @@ ul.msg_list li a .message {
 		max-width:200px !important;
 	}
 	.menu_user{
-		right:6%;
-		left:74%;
+		right:11%;
+		left:75%;
 	}
 	
 	.content-wrapper{

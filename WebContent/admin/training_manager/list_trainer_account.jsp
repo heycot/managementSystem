@@ -114,8 +114,8 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;">
 	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
-                	                	<div style="float: right; width: 25%;">
-                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	<div style="float: right; width: 25%;">
+                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>
 					$(document).ready(function(){

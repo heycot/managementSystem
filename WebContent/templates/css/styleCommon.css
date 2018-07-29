@@ -117,7 +117,12 @@
 table.myTable tbody tr:hover{
 	background:#F0F0F0;
 }
-
+.box-search{
+	padding: 5px 10px;
+	border: 1px solid #C9C9C9;
+	box-shadow: 1px 1px #b9b9b9;
+	color: #555;
+}
 @media only screen and (min-width: 1000px)and (max-width:1100px) {
 	.content-wrapper{
 		margin-left: 162px;

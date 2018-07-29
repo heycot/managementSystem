@@ -45,3 +45,7 @@ th, .no, .time, .date, .duration, .trainer, .btnRegister{
 .btn:hover{
 	color:white;
 }
+
+.register{
+	background: black;
+}

@@ -121,7 +121,7 @@ if( user.getRoleId() == 3) {
 				    
 				    %>
 				    <td  style="text-align: center; vertical-align: middle;" class="btnRegister" >
-						<button  type="button" name="cancel" class = "btn btn-danger cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
+						<button  type="button" name="cancel" class = "btn cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
 background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>		
 					</td>
 				    

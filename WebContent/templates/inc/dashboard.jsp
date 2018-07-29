@@ -154,7 +154,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>  
       
-      <nav id="mainNav1" class="navbar navbar-default" style="font-size:16px;margin-left: 37px;">
+      <nav id="mainNav1" class="navbar navbar-default" style="font-size:16px;margin-left: 27px;">
 		  <div class="container-fluid">
 		    <ul class="nav navbar-nav">
 		    <%
