@@ -211,6 +211,28 @@
      
 
         <script type="text/javascript">
+jQuery(document).ready(function ($) {
+        	
+        	function updateNumberNoti()
+    			{        		
+        		$.ajax({
+                    type: "GET",
+                    url: "/managementSystem/CountNotificationController",
+                    timeout:1000,
+                    success: function (data) {
+                       if(data === ""){
+                    	   
+                       }
+                       else{
+                    	   var string= "<span id ='countNoti' class='badge bg-green'>" + data + "</span>";
+                    	   $("#countNoti").replaceWith(string);
+                       }
+                    }
+                });
+        		setTimeout(updateNumberNoti, 10000);
+    		}
+        	updateNumberNoti();
+        });
         $(document).ready(function() { 
 	        $( "#sidenavToggler" ).click(function() {
 	        	  $( "#slide_item" ).toggle( "slow", function() {
@@ -223,8 +245,8 @@
 		
 		  <li role="presentation" class="dropdown">
 		  	<a class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-              <i id="btt" class="iconMail fa fa-envelope-o" style=" width: 25px;"></i>
-              <span class="badge bg-green">?</span>
+              <i id="btt" class="iconMail fa fa-envelope-o" style=" width: 25px;font-size: 20px;"></i>
+              <span  id ="countNoti" class="badge bg-green">0</span>
             </a>
              <ul id="result1" class="dropdown-menu msg_list pull-right" role="menu"></ul>
            </li>
