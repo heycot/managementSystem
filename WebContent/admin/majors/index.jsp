@@ -77,6 +77,7 @@ if( user.getRoleId() == 3) {
 					  }
 				  }
 			%>
+			
 	  
 			<%
 				ArrayList<Majors> majors = new ArrayList<Majors>();
