@@ -115,7 +115,6 @@ background-color: #2e9ade; " id="<%= classOpening.getClassId() %>" >Register</bu
               
         <div style="clear: both"></div>
         <div class="error" ></div>
-        <div style="margin-bottom: 10%"></div>
 	</div>
 </div>
 </div>
