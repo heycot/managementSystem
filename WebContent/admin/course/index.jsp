@@ -8,6 +8,12 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css"> 
  
+ <style>
+	#add-post .required:after {
+	  content:"*";color:red;
+	}
+</style>
+
 <%
 Courses course = new Courses(0, 0, "", 1, 0, "", 0);
 ArrayList<Majors> majors = new ArrayList<>();
