@@ -45,7 +45,7 @@ body{
     -webkit-text-fill-color: black;
 }
 #mainNav .navbar-collapse .navbar-sidenav li.active{
-	background: #F0F0F0;
+	background: #333333;
     color: black;
     font-weight: 600;
     -webkit-text-fill-color: black;

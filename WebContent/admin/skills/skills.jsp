@@ -7,16 +7,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-</style>
 
 <%
 String classNameContent = "" ;
@@ -37,13 +27,20 @@ List<Skills> skill = (List<Skills>) request.getAttribute("skill");
 int k = 0;
 int tong = skill.size();
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
+
+
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+    <div  class="card1 card mb-3" style="margin-top: 0px;">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
              <i class="fa fa-fw fa-graduation-cap" ></i>
              	<strong>Skills List</strong>
 			  </div>	
+		
+<!-- Div Page Content -->
+        <div>	
+	
 			  <%       	
 String msg = "";
 if(request.getParameter("msg") != null){
@@ -82,8 +79,8 @@ if(request.getParameter("msg") != null){
 		}
 	}
 %>  
-        <div class="card-body" >
-          <div class="table-responsive">
+   <div class="card-body" style="margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
 	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"

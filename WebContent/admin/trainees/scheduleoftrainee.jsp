@@ -19,7 +19,7 @@ if( user.getRoleId() == 3) {
     <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
         	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name"  style="font-size: 21px;">Your Schedule</strong>
+		    <strong class="lb_name"  style="font-size: 21px;">Schedule</strong>
 		 </div >
   <div style="background: white;">
           <%
