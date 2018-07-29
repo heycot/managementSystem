@@ -19,10 +19,10 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" >
   <div class="<%= classNameContainer%>" id="toggler_containerId">
   <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
-             <i style="margin-left: 0px; font-size: 24px;" class="fa fa-fw fa-home" ></i>
+             <i style="margin-left: 5px; font-size: 24px;" class="fa fa-fw fa-home" ></i>
              	<strong style="font-size: 21px;">&nbsp;Room List</strong>
 			  </div>	
-    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:5px;">
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:0px;">
          
          <%			int check=0;
                   	ArrayList<Rooms> roomlist = (ArrayList<Rooms>) request.getAttribute("roomList");
@@ -82,10 +82,23 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
                 	</div>
+                	                	                	<div style="float: right; width: 25%;">
+                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
                 	<div style="clear: both"></div>
 	        	<table id="myTable" class="myTable table table-bordered" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
                   <thead>
-                    <tr style="height:50px;">
+                    <tr >
                       <th style="text-align: center;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center;">Name</th>
                       <th style="text-align: center;">Capacity</th>
@@ -94,7 +107,7 @@ if( user.getRoleId() == 3) {
                    
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody  id="myTBody">
                   
                   	<%
                   	for (Rooms rooms: roomlist){
@@ -275,9 +288,6 @@ if( user.getRoleId() == 3) {
 		      				}
 							</script>
 							
-					<div class="card-footer small text-muted">
-          
-        </div>
         <script type="text/javascript">
             $(document).ready(function(){
                 $(document).on('change', '.checkall, .checkitem', function(){

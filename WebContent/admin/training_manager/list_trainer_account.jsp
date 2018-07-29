@@ -114,6 +114,19 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;">
 	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
                 	</div>
+                	                	<div style="float: right; width: 25%;">
+                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
                 	<div style="clear: both"></div>
 	        	</div>
 	        	<table style="border-collapse: collapse;" id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">
@@ -129,13 +142,13 @@ if( user.getRoleId() == 3) {
                       <th style="text-align: center; vertical-align: middle;">Action</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody id="myTBody" >
                   <%
                   	for(User trainer : trainers){
                   %>	
                   	<tr class="contentPage">
                       	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
+                      	<td style="text-align: center; vertical-align: middle;width:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
                      	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>" style="color: black;" ><strong><%= trainer.getUsername()%></strong></a> </td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
 	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
@@ -151,9 +164,9 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
 	                    <td style="text-align: center; vertical-align: middle;">
-                        <a class="btn btn-link" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
+                        <a class="btn btn-default" href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
                         <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i></a>
-                        <a class="btn btn-link" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
+                        <a class="btn btn-default" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
                         <i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69);float:right;"></i></a>
                      	</td>
                     </tr>
