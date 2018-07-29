@@ -45,15 +45,12 @@ if( user.getRoleId() == 3) {
 	styleContent = "";
 }
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> >
-  <div class="<%= classNameContainer%>"  style="margin-left: -2px;">
-        <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: 0px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-book" ></i>
-			    <strong>Add new class</strong>
-			  </div>
+<div class="<%= classNameContent%>" <%= styleContent%> style="overflow-x: inherit;">
+  <div class="<%= classNameContainer%>">
+  	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
+        <i class="fa1 fa fa-fw fa-university" style="margin-left: 5px; font-size: 24px;"></i>
+		<strong class="lb_name" style="">&nbsp;Add new class </strong>
 		</div>
-			  
 			  <div>
 			  	<%
 				if(request.getAttribute("error") != null){
@@ -64,22 +61,22 @@ if( user.getRoleId() == 3) {
 				<%
 				}
 			  	%>
-			  </div>
-  
+	  </div>
+        <div class="card mb-3" style="padding-top: 10px; margin-top: 0px;">
              <form id="add-post" action="<%= request.getContextPath()%>/classes/add" method="POST" >
               	<div style="height: 5%"></div>
               	
               	 <div class="col-sm-4"  style="float: left"> 
 	              	
 	              	<div class="form-group">
-		              	<label class="required" >Name&nbsp;</label>
+		              	<label class="required" ><strong>Name:</strong>&nbsp;</label>
 		              	<input class="form-control" id="txtName"  type="text" name="name" value="<%= classAdd.getName()%>" placeholder="Class name" />
 	              		<span id="spnNameStatus"></span>
 					</div>
 	              	
 	              	<div class="form-group">
 	              		<br>
-		              	<label class="required" >Major&nbsp;</label>
+		              	<label class="required" ><strong>Major:</strong>&nbsp;</label>
 		              	<br>
 		              	<div class="button dropdown"> 
 						  <select id="colorselector" onchange="emptyTrainer();"  style="width: 100%"> 
@@ -108,7 +105,7 @@ if( user.getRoleId() == 3) {
 						  </script>
 						</div>
 						<br><br>
-		              	<label class="required" >Course&nbsp;</label>
+		              	<label class="required" ><strong>Course:</strong>&nbsp;</label>
 		              	<br>
 						<div class="output">
 		              	<%
@@ -135,7 +132,7 @@ if( user.getRoleId() == 3) {
 	              	
 	              	<div class="col-sm-4"  style="float: left"> 
 		              	<div class="form-group" id="roomDiv" style="display: none;">
-			              	<label class="required" >Room&nbsp;</label>
+			              	<label class="required" ><strong>Room:</strong>&nbsp;</label>
 			              	<br>
 			              	<select id="roomSelect"  name="room" onchange="showDuration();" style="width: 100%; margin-bottom: 7px;">
 			              		<option value="0" onclick="showErrorRoom();">Select room</option>
@@ -152,7 +149,7 @@ if( user.getRoleId() == 3) {
 		              	
 	              		<div class="form-group" id="duration" style="display: none">
 	              			<br>
-			              	<label class="required" >Duration in one day (hours)&nbsp;</label>
+			              	<label class="required" ><strong>Duration in one day (hours):</strong>&nbsp;</label>
 			              	<select id="durationSelector" style="width: 100%" onchange="showDateOfWeek();">
 							  <option value="0" >Select duration</option>
 							  <option value="duration1">1 hour</option>
@@ -165,7 +162,7 @@ if( user.getRoleId() == 3) {
 		              	
 		              	<div class="form-group" id="dateOfWeek"  style="display: none">
 		              		<br>
-			              	<label class="required" >Date of week:&nbsp;</label> <br>
+			              	<label class="required" ><strong>Date of week:</strong>&nbsp;</label> <br>
 			              	<input type="checkbox" name="monday" id="monday" onclick="getFreeTime();" value="2" >&nbsp;Monday <br>
 			              	<input type="checkbox" name="tuesday" id="tuesday" onclick="getFreeTime();" value="3">&nbsp;Tuesday <br>
 			              	<input type="checkbox" name="wednesday" id="wednesday" onclick="getFreeTime();" value="4">&nbsp;Wednesday <br>
@@ -337,7 +334,7 @@ if( user.getRoleId() == 3) {
                 	if ( errorTime == true) {
                 		$('#spnTimeStatus').html("Please choose time of date!");
                 		$('#spnTimeStatus').css("color", "red");
-                		$('#timeOfDate').empty();
+                		/* $('#timeOfDate').empty(); */
                 		return false;
                 	} else {
                 		$('#spnTimeStatus').empty();

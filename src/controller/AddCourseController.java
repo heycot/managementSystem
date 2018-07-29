@@ -31,12 +31,8 @@ public class AddCourseController extends HttpServlet {
 		if (CurrentUser.checkLogin(request, response)) {
 			User user = CurrentUser.getUserCurrent(request, response);
 			if (user.getRoleId() == 3) {
-				MajorBo majorBo = new MajorBo();
-				
-				request.setAttribute("majors", majorBo.getMajors());
-				
-				RequestDispatcher rd = request.getRequestDispatcher("/admin/course/add.jsp");
-				rd.forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/course/index");
+				return;
 				
 			}  else {
 				response.sendRedirect(request.getContextPath() + "/badrequest");
@@ -61,13 +57,13 @@ public class AddCourseController extends HttpServlet {
 		
 			if ( courseBo.checkValidateCourse(request.getParameter("name"), request.getParameter("major"), request.getParameter("duration"), request.getParameter("kindOfCourse")) == false) {
 
-				message = "Please complate all information";
-				responseWhenWrong(course, request, response, message);
+				response.sendRedirect(request.getContextPath() + "/course/index?msg=7");
+				return;
 				
 			} else if (courseBo.checkCourseAlreadyExists(request.getParameter("name")) == true) {
 
-				message = "This course has already existed in the system";
-				responseWhenWrong(course, request, response, message);
+				response.sendRedirect(request.getContextPath() + "/course/index?msg=6");
+				return;
 				
 			} else {
 				
@@ -77,9 +73,8 @@ public class AddCourseController extends HttpServlet {
 					return;
 					
 				} else {
-
-					message = "Sorry! Can't add this course. please try again";
-					responseWhenWrong(course, request, response, message);
+					response.sendRedirect(request.getContextPath() + "/course/index?msg=0");
+					return;
 				}
 			}
 		
@@ -90,23 +85,4 @@ public class AddCourseController extends HttpServlet {
 		}
 	}
 	
-	
-	public void responseWhenWrong( Courses course, HttpServletRequest request, HttpServletResponse response, String message) {
-
-		try {
-			MajorBo majorBo = new MajorBo();
-			
-			request.setAttribute("majors", majorBo.getMajors());
-			request.setAttribute("course", course);
-			request.setAttribute("error", message);
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/course/add.jsp");
-			rd.forward(request, response);
-			
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }

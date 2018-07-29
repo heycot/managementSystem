@@ -30,33 +30,34 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
-  <div class="<%= classNameContainer%>"  style="margin-left: -2px;">
-        <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
-             <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-user" ></i>
-			    <strong>Add Trainee's Account</strong>
-	  	</div>
-	  	</div>
-			  	<%
-				if(request.getAttribute("error") != null){
-				%>
-				<div class="alert alert-danger">
-				  <strong>Error!</strong><%= request.getAttribute("error")%>
-				</div>
-				<%
-				}
-			  	%>
-  
+<div class="<%= classNameContent%>" <%= styleContent%> style="">
+  <div class="<%= classNameContainer%>">
+  	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
+        <i class="fa1 fa fa-fw fa-user " style="margin-left: 0px; font-size: 24px;"></i>
+		<strong class="lb_name" style="">&nbsp;Add Trainee's Account </strong>
+	</div>
+			  
+	  <div>
+	  	<%
+		if(request.getAttribute("error") != null){
+		%>
+		<div class="alert alert-danger">
+		  <strong>Error!</strong><%= request.getAttribute("error")%>
+		</div>
+		<%
+		}
+	  	%>
+	  </div>
+        <div class="card mb-3" style="padding-top: 10px; margin-top: 0px;">
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/add" method="POST" enctype="multipart/form-data" >
-              	<div style="height: 5%"></div>
+              	<!-- <div style="height: 5%"></div> -->
               
               <div class="col-sm-6" style="float: left">
               	<div >
 	              	<div class="form-group" class="col-sm-4" style="float: left; height:200px; ">
-		              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
+		              	<label ><strong>Avatar:</strong> <em style="color: red">(jpg, png, gif)</em> </label>
 		              	<input class="form-control" id="txtname" type="file" name="avatar" value="" onchange="readURL(this);" />
-	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/default.jpg"  height="135px">
+	              		<img  id="blah" alt="" src="<%= request.getContextPath()%>/files/default.jpg"  height="150px">
 	    				<script type="text/javascript">
 	    				function readURL(input) {
 	    			        if (input.files && input.files[0]) {
@@ -65,7 +66,7 @@ if( user.getRoleId() == 3) {
 	    			            reader.onload = function (e) {
 	    			                $('#blah')
 	    			                    .attr('src', e.target.result)
-	    			                    .height(135);
+	    			                    .height(150);
 	    			            };
 	
 	    			            reader.readAsDataURL(input.files[0]);
@@ -76,56 +77,60 @@ if( user.getRoleId() == 3) {
 	              	<div style="clear: both"></div>
               	</div>
               
-              	<div class="form-group">
-	              	<label class="required" >Username</label>&nbsp;
-	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" />
+              	<div class="form-group" style="margin-top: 10px;">
+	              	<label class="required" ><strong>Username:</strong></label>&nbsp;
+	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="User Name" />
 	              	<span id="spnNameStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Password</label>&nbsp;
+	              	<label class="required" ><strong>Password:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtPassword" type="password" name="password" value="" placeholder="Password" />
 	              	<span id="spnPassStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Fullname</label>&nbsp;
-	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
-	              	<span id="spnFullNameStatus"></span>
+	              	<label class="required" ><strong>Confirm Password:</strong></label>&nbsp;
+	              	<input class="form-control" id="txtPassword" type="password" name="cnfpassword" value="" placeholder="Confrim Password" />
+	              	<span id="spnCnfPassStatus"></span>
               	</div>
-              	
               	
               </div>
               
               <div class="col-sm-6" style="float: right">
               	
-              	
               	<div class="form-group">
-	              	  <label class="required" >Gender</label> <br>
-					  <input type="radio" name="gender" value="0" checked> Female <br>
-					  <input type="radio" name="gender" value="1" >  Male <br>
-					  <input type="radio" name="gender" value="2" > Other
+	              	  <label class="required" ><strong>Gender:</strong></label> <br>
+					  <input type="radio" name="gender" value="0" checked> Female 
+					  <input type="radio" name="gender" value="1" style="margin-left: 10px;" >  Male 
+					  <input type="radio" name="gender" value="2" style="margin-left: 10px;"> Other
               	</div>
               	
-              	<div class="form-group" style="margin-top: 38px;">
-	              	<label class="required" >Address</label>&nbsp;
+              	<div class="form-group">
+	              	<label class="required" ><strong>Fullname:</strong></label>&nbsp;
+	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Full Name" />
+	              	<span id="spnFullNameStatus"></span>
+              	</div>
+              	
+              	<div class="form-group">
+	              	<label class="required" ><strong>Address:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
 	              	<span id="spnAddressStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Phone</label>&nbsp;
+	              	<label class="required" ><strong>Phone:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtPhone" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" />
 	              	<span id="spnPhoneStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Birthday</label>
+	              	<label class="required" ><strong>Birthday</strong></label>
 	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Email</label>&nbsp;
+	              	<label class="required" ><strong>Email</strong></label>&nbsp;
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" />
 	              	<span id="spnEmailStatus"></span>
               	</div>
@@ -144,7 +149,15 @@ if( user.getRoleId() == 3) {
           
               
               <div style="margin-bottom: 5%"></div>
-              </form> 
+              </form>
+              
+              <div style="clear: both"></div>
+              <div class="error" ></div>
+               
+              
+	          <div style="clear: both"></div>
+              
+              <div style="margin-bottom: 5%"></div> 
 
             <script type="text/javascript">
       				$(document).ready(function() {
@@ -370,4 +383,6 @@ if( user.getRoleId() == 3) {
       				}
       			</script>
           </div>
+     </div>
+</div>
 <%@include file="/templates/inc/footer.jsp" %> 

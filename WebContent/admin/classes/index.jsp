@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
 <%
 String classNameContent = "" ;
@@ -15,14 +16,18 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: -2px;">
-    <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
-        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-book" ></i>
-	    	<strong>Classes</strong>
-	  	</div>
-	  	</div>
+
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x: inherit;">
+  <div class="<%= classNameContainer%>" id="toggler_containerId" >
+    <div  class="card1 card mb-3" style="margin-top: 0px;">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;"> 
+        	<i class="fa fa-fw fa-book" ></i>
+			<strong>Classes</strong>
+		</div>
+		
+<!-- Div Page Content -->
+        <div>
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -115,19 +120,23 @@ if( user.getRoleId() == 3) {
                 });
             });
         </script>
-        <div class="card-body">
-          <div class="table-responsive"  class="container">
-            <form action="<%= request.getContextPath()%>/classes/del"  method="post">
+   <div class="card-body" style="margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
+            <form action="#"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
+	            
 	            	<div style="float: left">
-	            	<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;" class="btn btn-primary" href="<%=request.getContextPath() %>/classes/add" role="button">Add new class</a>
+	            		<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;" class="btn btn-primary" href="<%=request.getContextPath() %>/classes/add" role="button">Add new class</a>
 	        		</div>
+	        		
 	            	<div style="float: left; margin-left: 15px;" >
-	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these Classes?')" id="deleteall" type="submit" value="Delete Classes">
+	            		<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these Classes?')" id="deleteall" type="submit" value="Delete Classes">
                 	</div>
+                	
                 	<div style="float: right; width: 20%;">
-                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
+                	
                 	<div style="float: right; margin-right: 15px;">
 					  <ul class="nav nav-tabs" style='border-bottom: 0px solid #ddd;'>
 					    <li class="btn btn-light" id="waitingStyle" style="margin-right: 15px;"><a  data-toggle="tab" href="#waiting" style="color: #333333;">Waiting</a></li>
@@ -185,10 +194,10 @@ if( user.getRoleId() == 3) {
 			                console.info(obj.data());
 			            });
 			        </script>
-		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
-		                  <thead>
+		        		<table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
+                  			<thead>
 		                    <tr>
-		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+		                      <th style="text-align: center; font-size: medium;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
 		                      <th style="text-align: center; font-size: medium;">Name</th>
 		                      <th style="text-align: center; font-size: medium;">Trainer</th>
 		                      <th style="text-align: center; font-size: medium;">Course</th>
@@ -196,7 +205,7 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
 		                      <th style="text-align: center; font-size: medium;">Trainees (Waiting)</th>
-		                      <th width="15%" style="text-align: center; font-size: medium;">Action</th>
+		                      <th width="20%" style="text-align: center; font-size: medium;">Action</th>
 		                    </tr>
 		                  </thead>
 		                  <tbody id="myTBody" >
@@ -205,7 +214,7 @@ if( user.getRoleId() == 3) {
 		                  %>	
 		                  	<tr class="contentPageWait" id='class<%= classIndex.getClassId()%>'>
 		                      	<td  style="text-align: center; vertical-align: middle;"> <input onclick="changeColor();" type="checkbox" name="class<%= classIndex.getClassId()%>" value="<%= classIndex.getClassId()%>" class="checkitem" id="chkitem"> </td>
-		                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><b><%= classIndex.getName() %></b></a> </td>
+		                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="#"><b><%= classIndex.getName() %></b></a> </td>
 			                    <%
 			                    if( classIndex.getNameTrainer() == null) {
 			                    %>
@@ -243,8 +252,8 @@ if( user.getRoleId() == 3) {
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
 		                    	<td  style="text-align: center; vertical-align: middle;">
 		                    		<a href="javascript:void(0)" onclick="<%= openClass%>" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; <%= colorStatus%>"></i></a>
-		                        	<a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color: red"></i></a>
+		                        	<a style="margin-left: 10px"  href="#"><i class="fa fa-edit" style="font-size:20px"></i></a>
+		                        	<a style="margin-left: 10px" href="#" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color: red"></i></a>
 		                     	</td>
 		                    </tr>
 		                  <%	
@@ -286,10 +295,10 @@ if( user.getRoleId() == 3) {
 				                console.info(obj.data());
 				            });
 				        </script>
-		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%" >
+				        <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
 		                  <thead>
 		                    <tr>
-		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+		                      <th style="text-align: center; font-size: medium;">No.</th>
 		                      <th style="text-align: center; font-size: medium;">Name</th>
 		                      <th style="text-align: center; font-size: medium;">Trainer</th>
 		                      <th style="text-align: center; font-size: medium;">Course</th>
@@ -303,11 +312,13 @@ if( user.getRoleId() == 3) {
 		                  </thead>
 		                  <tbody id="myTBody" >
 		                  <%
+		                  	int indexO = 0;
 		                  	for(Classes classIndex : classesOpen){
+		                  		indexO++;
 		                  %>	
 		                  	<tr class="contentPageOpen" id='class<%= classIndex.getClassId()%>'>
-		                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="class<%= classIndex.getClassId()%>" value="<%= classIndex.getClassId()%>" class="checkitem" id="chkitem"> </td>
-		                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><%= classIndex.getName() %></a> </td>
+		                      	<td  style="text-align: center; vertical-align: middle;"><%= indexO%></td>
+		                     	<td  style="vertical-align: middle;"><b style="color: #000000"><%= classIndex.getName()%></b></td>
 			                    <%
 			                    if( classIndex.getNameTrainer() == null) {
 			                    %>
@@ -344,10 +355,6 @@ if( user.getRoleId() == 3) {
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getDuration()%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getCountLession()%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
-		                    	<%-- <td  style="text-align: center; vertical-align: middle;">
-		                        	<a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a>
-		                     	</td> --%>
 		                    </tr>
 		                  <%	
 		                  	}
@@ -388,10 +395,10 @@ if( user.getRoleId() == 3) {
 				                console.info(obj.data());
 				            });
 				        </script>
-		        		<table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%" >
+				        <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
 		                  <thead>
 		                    <tr>
-		                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+		                      <th style="text-align: center; font-size: medium;">No.</th>
 		                      <th style="text-align: center; font-size: medium;">Name</th>
 		                      <th style="text-align: center; font-size: medium;">Trainer</th>
 		                      <th style="text-align: center; font-size: medium;">Course</th>
@@ -405,11 +412,13 @@ if( user.getRoleId() == 3) {
 		                  </thead>
 		                  <tbody id="myTBody" >
 		                  <%
+		                  	int index = 0;
 		                  	for(Classes classIndex : classesFinish){
+		                  		index++;
 		                  %>	
 		                  	<tr class="contentPageFinish" id='class<%= classIndex.getClassId()%>'>
-		                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="class<%= classIndex.getClassId()%>" value="<%= classIndex.getClassId()%>" class="checkitem" id="chkitem"> </td>
-		                     	<td  style="vertical-align: middle;"> <a style="color: #000000" href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><%= classIndex.getName() %></a> </td>
+		                      	<td  style="text-align: center; vertical-align: middle;"> <%= index%> </td>
+		                     	<td  style="vertical-align: middle;"><b style="color: #000000"><%= classIndex.getName()%></b></td>
 			                    <%
 			                    if( classIndex.getNameTrainer() == null) {
 			                    %>
@@ -448,8 +457,6 @@ if( user.getRoleId() == 3) {
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
 		                    	<td  style="text-align: center; vertical-align: middle;">
 		                    		<a href="javascript:void(0)" onclick="<%= openClass%>" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; <%= colorStatus%>"></i></a>
-		                        	<%-- <a style="margin-left: 10px"  href="<%= request.getContextPath()%>/classes/edit?id=<%= classIndex.getClassId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a> --%>
-<%-- 		                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/class/del?id=<%= classIndex.getClassId()%>" onclick="return confirm('Do you want to delete class: <%= classIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a> --%>
 		                     	</td>
 		                    </tr>
 		                  <%	

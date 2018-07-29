@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import libralies.CurrentUser;
 import model.bean.Courses;
+import model.bean.User;
 import model.bo.CourseBo;
 import model.bo.MajorBo;
 import model.bo.UserBo;
@@ -28,26 +29,13 @@ public class EditCourseController extends HttpServlet {
 
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	if (CurrentUser.checkLogin(request, response) ) {
-			if (CurrentUser.getUserCurrent(request, response).getRoleId() == 3) {
-
-
-				MajorBo majorBo = new MajorBo();
-				CourseBo courseBo = new CourseBo();
+    	if (CurrentUser.checkLogin(request, response)) {
+			User user = CurrentUser.getUserCurrent(request, response);
+			if (user.getRoleId() == 3) {
+				response.sendRedirect(request.getContextPath() + "/course/index");
+				return;
 				
-				if (request.getParameter("id") != null) {
-					int courseId = Integer.parseInt(request.getParameter("id"));
-					request.setAttribute("course", courseBo.getCourseById(courseId));
-					request.setAttribute("majors", majorBo.getMajors());
-					
-					RequestDispatcher rd = request.getRequestDispatcher("/admin/course/edit.jsp");
-					rd.forward(request, response);
-				} else {
-					response.sendRedirect(request.getContextPath() + "/course/index");
-					return;
-				}
-				
-			} else {
+			}  else {
 				response.sendRedirect(request.getContextPath() + "/badrequest");
 				return;
 			}
@@ -73,13 +61,13 @@ public class EditCourseController extends HttpServlet {
 			
 			if ( courseBo.checkValidateCourse(request.getParameter("name"), request.getParameter("major"), request.getParameter("duration"), request.getParameter("kindOfCourse")) == false) {
 
-				message = "Please complate all information";
-				responseWhenWrong(course, request, response, message);
+				response.sendRedirect(request.getContextPath() + "/course/index?msg=7");
+				return;
 				
 			} else if (courseBo.checkCourseAlreadyExistsEdit(request.getParameter("name"), courseId) == true) {
 
-				message = "This course is already exists in system";
-				responseWhenWrong(course, request, response, message);
+				response.sendRedirect(request.getContextPath() + "/course/index?msg=6");
+				return;
 				
 			} else {
 				
@@ -90,8 +78,8 @@ public class EditCourseController extends HttpServlet {
 					
 				} else {
 
-					message = "Sorry! Can't edit this course. please try again";
-					responseWhenWrong(course, request, response, message);
+					response.sendRedirect(request.getContextPath() + "/course/index?msg=0");
+					return;
 				}
 			}
 		
@@ -102,23 +90,4 @@ public class EditCourseController extends HttpServlet {
 		}
 	}
 	
-	
-	public void responseWhenWrong( Courses course, HttpServletRequest request, HttpServletResponse response, String message) {
-
-		try {
-			MajorBo majorBo = new MajorBo();
-			
-			request.setAttribute("majors", majorBo.getMajors());
-			request.setAttribute("course", course);
-			request.setAttribute("error", message);
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/course/edit.jsp");
-			rd.forward(request, response);
-			
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }

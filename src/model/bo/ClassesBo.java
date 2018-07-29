@@ -96,38 +96,6 @@ public class ClassesBo {
 		
 		return timeFrees;
 	}
-	/*
-	public ArrayList<TimeClass> getFreeTimeInDay(int duration, ArrayList<String> days, int roomId) {
-		ClassesDao classDao = new ClassesDao();
-		
-		ArrayList<TimeClass> timeFrees = new ArrayList<>();
-		ArrayList<TimeClass> times = classDao.getTimeClassByDuration(duration);
-		ArrayList<TimeClass> timeBusy = new ArrayList<>();
-		
-		
-		int i = 0;
-		for (String day: days) {
-			for (TimeClass time : times) {
-				if (classDao.checkTimeAlready(time.getTimeOfDate(), String.valueOf(day), roomId)) {
-
-					TimeClass timebusy = new TimeClass(i, time.getTimeOfDate(), day, time.getDuration());
-					if ( checkTime(timeFrees, time.getTimeOfDate()) == false) {
-						timeBusy.add(timebusy);
-					}
-					i++;
-				}
-			}
-		}
-		
-		for(TimeClass time : times ) {
-			if( checkTime(timeBusy, time.getTimeOfDate()) == false) {
-				timeFrees.add(time);
-			}
-		}
-		
-		return timeFrees;
-	}*/
-	
 
 	public ArrayList<TimeClass> getFreeTimeInDay(int duration, ArrayList<String> days, int roomId, int trainerId) {
 		ClassesDao classDao = new ClassesDao();
@@ -148,9 +116,12 @@ public class ClassesBo {
 		
 		for(TimeClass time : times ) {
 			for (TimeClass timebusy : timeBusy) {
-				System.out.println(time.getTimeOfDate() + " and busy " + timebusy.getTimeOfDate() + " : " + (checkConflictTime(timebusy.getTimeOfDate(), time.getTimeOfDate()) == false && checkTime(timeFrees, time.getTimeOfDate()) == false));
+				System.out.println(time.getTimeOfDate() + " and busy " + timebusy.getTimeOfDate() + " : " 
+			+ (checkConflictTime(timebusy.getTimeOfDate(), time.getTimeOfDate()) == false && checkTime(timeFrees, time.getTimeOfDate()) == false));
 				
-				if ( (checkConflictTime(timebusy.getTimeOfDate(), time.getTimeOfDate()) == false) && (checkTime(timeFrees, time.getTimeOfDate()) == false ) && (checkTime(newTimeBusy, time.getTimeOfDate()) == false)) {
+				if ( (checkConflictTime(timebusy.getTimeOfDate(), time.getTimeOfDate()) == false)
+						&& (checkTime(timeFrees, time.getTimeOfDate()) == false )
+						&& (checkTime(newTimeBusy, time.getTimeOfDate()) == false)) {
 					timeFrees.add(time);
 				} else {
 					newTimeBusy.add(time);
@@ -175,37 +146,6 @@ public class ClassesBo {
 			return false;
 		}
 	}
-	
-	/*public ArrayList<TimeClass> getFreeTimeOfRoom(int roomId, ArrayList<String> days) {
-		ClassesDao classDao = new ClassesDao();
-
-		ArrayList<TimeClass> timeFrees = new ArrayList<>();
-		ArrayList<TimeClass> times = classDao.getTimeClass();
-		ArrayList<TimeClass> timeBusy = new ArrayList<>();
-		
-		
-		int i = 0;
-		for (String day: days) {
-			for (TimeClass time : times) {
-				if (classDao.checkTimeAlreadyInRoom(roomId)) {
-
-					TimeClass timebusy = new TimeClass(i, time.getTimeOfDate(), day, time.getDuration());
-					if ( checkTime(timeFrees, time.getTimeOfDate()) == false) {
-						timeBusy.add(timebusy);
-					}
-					i++;
-				}
-			}
-		}
-		
-		for(TimeClass time : times ) {
-			if( checkTime(timeBusy, time.getTimeOfDate()) == false) {
-				timeFrees.add(time);
-			}
-		}
-		
-		return times;
-	}*/
 	
 	public boolean checkTime(ArrayList<TimeClass> times, String time) {
 		for (TimeClass timeClass : times) {

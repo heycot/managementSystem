@@ -4,6 +4,17 @@
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
+
+<style>
+	#trainerName{
+		color: black;
+		text-decoration: none;
+	}
+	
+	#trainerName:hover{
+		color: blue;
+	}
+</style>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -15,14 +26,18 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId"  style="margin-left: -2px;">
-    <div  class="card mb-3"  style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px; margin-bottom: 0px;">
-        <div class="alert alert-primary" style="font-size:  larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-users" ></i>
-			 <strong class="namePage">Trainees </strong>
-	  	</div>
-	  	</div>
+
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+    <div  class="card1 card mb-3" style="margin-top: 0px;">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary" style="margin-bottom: 0px;"> 
+        	<i class="fa1 fa fa-fw fa-users" ></i>
+			<strong class="lb_name">Trainees </strong>
+		</div>
+		
+<!-- Div Page Content -->
+        <div>	
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -133,8 +148,8 @@ if( user.getRoleId() == 3) {
                 console.info(obj.data());
             });
         </script>
-        <div class="card-body">
-          <div  class="table-responsive">
+   <div class="card-body" style="margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
             	<div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
@@ -145,8 +160,8 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;">
 	            		<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainees?')" id="deleteall" type="submit" value="Delete trainees">
                 	</div>
-                	<div style="float: right; width: 25%;">
-                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	<div class="form-group" style="float: right; width: 25%;">
+                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>
 					$(document).ready(function(){
@@ -160,18 +175,16 @@ if( user.getRoleId() == 3) {
 					</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable"  id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
+	        	<table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center; font-size: medium; vertical-align:middle;">DeleteAll
+                      <th style="text-align: center; font-size: medium; vertical-align:middle;">Delete
                       	<input style="display: inline-block; " type="checkbox" class="checkall">
                    	  </th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Avatar</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">UserName</th>
-                      <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">FullName</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Email</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Phone</th>
-                      <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Address</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Status</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle; word-break:normal;">Action</th>
                     </tr>
@@ -181,13 +194,11 @@ if( user.getRoleId() == 3) {
                   	for(User trainee : trainees){
                   %>	
                   	<tr class="contentPage">
-                      	<td   style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainee.getUserId()%>" value="<%= trainee.getUserId()%>" class="checkitem" id="chkitem"> </td>
-                      	<td  style="text-align: center; vertical-align: middle;"><img alt="<%= trainee.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainee.getAvatar()%>" class="img-circle" width="120" height="140"></td>
-                     	<td  style="text-align: center; vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><b><%= trainee.getUsername()%></b></a> </td>
-	                    <td   style=" vertical-align: middle; text-align: center"><%= trainee.getFullname() %></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getEmail()%></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getPhone()%></td>
-	                    <td   style="text-align: center; vertical-align: middle;"><%= trainee.getAddress() %></td>
+                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainee.getUserId()%>" value="<%= trainee.getUserId()%>" class="checkitem" id="chkitem"> </td>
+                      	<td id="trainerName" style="text-align: center; vertical-align: middle;"><img alt="<%= trainee.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainee.getAvatar()%>" class="img-circle" width="100px"></td>
+                     	<td style="text-align: center; vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/trainee/edit?id=<%= trainee.getUserId()%>"><b><%= trainee.getUsername()%></b></a> </td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainee.getEmail()%></td>
+	                    <td style="text-align: center; vertical-align: middle;"><%= trainee.getPhone()%></td>
 	                    <%
 	                    if (trainee.getStatus() == 1){
 	                    	%>	

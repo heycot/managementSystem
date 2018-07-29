@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import libralies.CurrentUser;
 import model.bo.CourseBo;
+import model.bo.MajorBo;
 import model.bo.UserBo;
 
 
@@ -35,7 +36,9 @@ public class IndexCourseController extends HttpServlet {
 
 
 				CourseBo courseBo = new CourseBo();
+				MajorBo majorBo = new MajorBo();
 				
+				request.setAttribute("majors", majorBo.getMajors());
 				request.setAttribute("courses", courseBo.getCourses());
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/course/index.jsp");
