@@ -152,18 +152,22 @@ if(request.getParameter("msg") != null){
                     </td>
                    </tr>
                    </form>
-<!-- Delete skill -->
-<div class="deleteModal<%=list.getSkillId() %>" role="dialog">
-<div class="modal-dialog">
-</div>
-</div>
-<!-- Edit list -->
+				<!-- Delete skill -->
+				<div class="deleteModal<%=list.getSkillId() %>" role="dialog">
+				<div class="modal-dialog">
+				</div>
+				</div>
+				<!-- Edit list -->
                   <div class="modal fade" id="editModal<%=list.getSkillId()%>" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h5 class="modal-title " align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Edit Skill</strong></h5>
+         							 <h5 class="modal-title " align="center">
+										<i class="fa fa-fw fa-graduation-cap"></i>
+										<strong><%= list.getName()%></strong>
+									</h5>
+									<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
 								</div>
 								<div class="modal-body">
 									<form id="add-post2" action="/managementSystem/EditSkillController?id=<%=list.getSkillId()%>" method="POST">
@@ -261,7 +265,11 @@ if(request.getParameter("msg") != null){
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h5 class="modal-title" align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Add new skill</strong></h5>
+         							 <h5 class="modal-title " align="center">
+										<i class="fa fa-fw fa-graduation-cap"></i>
+										<strong>Add skill</strong>
+									</h5>
+									<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
 								</div>
 								<div class="modal-body" >
 									<form id="add-post1" action="/managementSystem/AddNewSkillController" method="POST">

@@ -288,7 +288,7 @@ ul.msg_list li a .message {
 	
 	.navbar-sidenav{
 		min-width:0 !important;
-		max-width:200px !important;
+		max-width:160px !important;
 	}
 	.menu_user{
 		right:11%;

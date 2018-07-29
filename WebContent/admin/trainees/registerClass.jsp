@@ -20,7 +20,7 @@ if( user.getRoleId() == 3) {
     <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
         	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              	<i class="fa1 fa fa-pencil-square-o" ></i>
-		    	<strong  style="font-size: 25px;" class="lb_name">&nbsp;Register Class</strong>
+		    	<strong  style="font-size: 25px;" class="lb_name">&nbsp;Class Registration</strong>
 		 	</div>
   <div style="background: white;">
 			<%
