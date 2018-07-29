@@ -1,12 +1,25 @@
 
+<%@page import="model.bean.Majors"%>
 <%@page import="model.bean.Courses"%>
 <%@page import="model.bean.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css"> 
+ 
+<%
+Courses course = new Courses(0, 0, "", 1, 0, "", 0);
+ArrayList<Majors> majors = new ArrayList<>();
 
+if( request.getAttribute("course") != null){
+	course = (Courses) request.getAttribute("course");
+}
+
+if (request.getAttribute("majors") != null) {
+	majors = (ArrayList<Majors>)request.getAttribute("majors");
+}
+%>
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -18,14 +31,17 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>  id="toggler_contentId">
-  <div class="<%= classNameContainer%>" id="toggler_containerId" style="margin-left: -2px;"> 
-    <div class="card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: -12px;">
-        <div class="alert alert-primary" style="font-size: larger; margin-bottom: -5px; box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);"> 
-             <i class="fa fa-fw fa-book" ></i>
-	    	<strong>Courses</strong>
-	  	</div>
-	  	</div>
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
+  <div class="<%= classNameContainer%>" id="toggler_containerId">
+    <div  class="card1 card mb-3" style="margin-top: 0px;">
+<!-- Nav -->
+       	<div class="alert1 alert alert-primary" style=""> 
+        	<i class="fa1 fa fa-fw fa-book" ></i>
+			<strong class="lb_name">Courses </strong>
+		</div>
+		
+<!-- Div Page Content -->
+        <div>	
 	  <%
 	  String msg = "";
 	  if(request.getParameter("msg") != null){
@@ -47,6 +63,14 @@ if( user.getRoleId() == 3) {
 		  case 4:{
 			  check = true;
 			  msg  = "You deleted courses successfully"; break;
+		  }
+		  case 6:{
+			  check = false;
+			  msg  = "Error! This course has already existed in the system"; break;
+		  }
+		  case 7:{
+			  check = false;
+			  msg  = "Error! Please complate all information"; break;
 		  }
 		  case 0:{
 			  check = false;
@@ -143,18 +167,18 @@ if( user.getRoleId() == 3) {
             });
         </script>
          
-        <div class="card-body">
-          <div class="table-responsive">
+   		<div class="card-body" style="margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
-	            	<a style="width:auto; font-size:15px; height:auto; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/course/add" role="button">Add new course</a>
+	            	<a style="width:auto; font-size:15px; height:auto; margin-left: 14px; " class="btn btn-primary" href="#" data-toggle="modal" data-target="#addModal" role="button">Add new course</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
                 	</div>
-                	<div style="float: right; width: 25%;">
-                	<input style=" width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	<div style="float: right; width: 25%; height: 100%">
+                	<input style=" width: 100%; height: 100%; margin-top: 7px;" id="myInput" type="text" placeholder="Search..">
                 	</div>
 					<script>
 					$(document).ready(function(){
@@ -168,10 +192,10 @@ if( user.getRoleId() == 3) {
 					</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table  id="myTable" id="dataTable" class="table table-bordered table-hover table-compact" width="100%">
+                <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
-                      <th style="text-align: center; font-size: medium;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; font-size: medium;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center; font-size: medium;">Name</th>
                       <th style="text-align: center; font-size: medium;">Major</th>
                       <th style="text-align: center; font-size: medium;">Duration (hours)</th>
@@ -182,16 +206,16 @@ if( user.getRoleId() == 3) {
                   </thead>
                   <tbody  id="myTBody">
                   <%
-                  	for(Courses course : courses){
+                  	for(Courses courseIndex : courses){
                   %>	
                   	<tr class="contentPage">
-                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="course<%= course.getCourseId()%>" value="<%= course.getCourseId()%>" class="checkitem" id="chkitem"> </td>
-                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><b><%= course.getName() %></b></a> </td>
-	                    <td  style="vertical-align: middle;"><%= course.getMajorName() %></td>
-	                    <td  style="text-align: center; vertical-align: middle;"><%= course.getDuration()%></td>
+                      	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="course<%= courseIndex.getCourseId()%>" value="<%= courseIndex.getCourseId()%>" class="checkitem" id="chkitem"> </td>
+                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/course/edit?id=<%= courseIndex.getCourseId()%>"><b><%= courseIndex.getName() %></b></a> </td>
+	                    <td  style="vertical-align: middle;"><%= courseIndex.getMajorName() %></td>
+	                    <td  style="text-align: center; vertical-align: middle;"><%= courseIndex.getDuration()%></td>
 	                    <%
 	                    String kind = "";
-	                    if (course.getKind_of_course() == 1) {
+	                    if (courseIndex.getKind_of_course() == 1) {
 	                    	kind = "Yes";
 	                    } else {
 	                    	kind = "No";
@@ -199,21 +223,138 @@ if( user.getRoleId() == 3) {
 	                    %>
 	                    <td  style="text-align: center; vertical-align: middle;"><%= kind %></td>
 	                    <%
-	                    if (course.getStatus() == 1){
+	                    if (courseIndex.getStatus() == 1){
 	                    	%>	
-		                    <td id="status<%= course.getCourseId()%>"  style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
+		                    <td id="status<%= courseIndex.getCourseId()%>"  style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= courseIndex.getCourseId()%>, 1);"><img alt="" src="<%= request.getContextPath()%>/templates/images/active.gif"></a></td>
 		                    <%
 	                    } else {
 	                    	%>	
-		                    <td  id="status<%= course.getCourseId()%>" style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= course.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
+		                    <td  id="status<%= courseIndex.getCourseId()%>" style='text-align: center;  vertical-align: middle;'><a href="javascript:void(0)" onclick="changeStatus(<%= courseIndex.getCourseId()%>, 0);"><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
 		                    <%
 	                    }
 	                    %>
                     	<td  style="text-align: center; vertical-align: middle;">
-                        <a  href="<%= request.getContextPath()%>/course/edit?id=<%= course.getCourseId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= course.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= course.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
+                       		<a href="#"  data-toggle="modal" data-target="#editModal<%=courseIndex.getCourseId()%>" ><i class="fa fa-edit" style="font-size:20px"></i></a>
+                        	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= courseIndex.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= courseIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
                      	</td>
                     </tr>
+                    
+<!-- Edit list -->
+                  <div class="modal fade" id="editModal<%=courseIndex.getCourseId()%>" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header alert alert-primary">
+         							 <h5 class="modal-title " align="center">
+										<i class="fa fa-fw fa-book"></i>
+										<strong><%= courseIndex.getName()%></strong>
+									</h5>
+									<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
+								</div>
+								<div class="modal-body">
+									<form id="add-post2" action="<%=request.getContextPath() %>/course/edit?id=<%=courseIndex.getCourseId()%>" method="POST">
+										<div class="form-group">
+							              	<label class="required" ><strong>Major:</strong> &nbsp;</label>
+							              	<br>
+							              	<select name="major" style="width: 100%">
+							              	<%
+							              		for (Majors major : majors) {
+							              		%> 
+							              		<option value="<%= major.getMajorId()%>">&nbsp;<%= major.getName()%></option>
+							              		<%
+							              		}
+							              	%>
+							              	</select>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	<label class="required" ><strong>Name:</strong></label>&nbsp;
+							              	<input class="form-control" id="txtName"  type="text" name="name" value="<%= courseIndex.getName()%>" placeholder="Coursesname" required/>
+						              		<span id="spnNameStatus"></span>
+						              		<input type="text" name="id" value="<%= courseIndex.getCourseId()%>" placeholder="Coursesname" style="display: none"/>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	<label class="required" ><strong>Duration (hours):</strong></label>&nbsp;
+							              	<input class="form-control" type="number" min="1" max="1000" id="txtDuration" name="duration" value="<%= courseIndex.getDuration()%>" placeholder="duration" required/>
+						              		<span id="spnDurationStatus"></span>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	  <label class="required"><strong>Is this course the default?</strong> &nbsp;</label> <br>
+											  <input type="radio" name="kindOfCourse" value="1" > Yes <br>
+											  <input type="radio" name="kindOfCourse" value="0" checked>  No <br>
+						              	</div>
+						              	
+										<div style="text-align:center;">
+											<button type="submit" class="btn btn-primary" style="width:80px; height:40px; font-size:15px;" id="btnSubmit">Save 
+											</button>
+											<button style="width:80px; height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+			 
+<!-- Add Modal -->
+					<div class="modal fade" id="addModal" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<form id="add-post1" action="<%= request.getContextPath()%>/course/add" method="POST">
+									<div class="modal-header alert alert-primary">
+          								<h5 class="modal-title" align="center">
+											<i style="size: 20px;" class="fa fa-fw fa-book"></i>
+											<strong>Add new course</strong>
+										</h5>
+										<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+							              	<label class="required" ><strong>Major:</strong>&nbsp;</label>
+							              	<br>
+							              	<select name="major" style="width: 100%;">
+							              	<%
+							              		for (Majors major : majors) {
+							              		%> 
+							              		<option value="<%= major.getMajorId()%>"><%= major.getName()%></option>
+							              		<%
+							              		}
+							              	%>
+							              	</select>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	<label class="required" ><strong>Name:</strong></label>&nbsp;
+							              	<input class="form-control" id="txtName" type="text" name="name" value="<%= course.getName()%>" placeholder="Course name" />
+						              		<span id="spnNameStatus"></span>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	<label class="required" ><strong>Duration (hours):</strong></label>&nbsp;
+							              	<input class="form-control" type="number" min="1" max="1000" id="txtDuration" name="duration" value="<%= course.getDuration()%>" placeholder="duration" />
+						              		<span id="spnDurationStatus"></span>
+						              	</div>
+						              	
+						              	<div class="form-group">
+							              	  <label class="required"><strong>Is this course the default?</strong> &nbsp;</label> <br>
+											  <input type="radio" name="kindOfCourse" value="1" > Yes <br>
+											  <input type="radio" name="kindOfCourse" value="0" checked>  No <br>
+						              	</div>
+										<div style="text-align: center;" >
+											<button type="submit" class="btn btn-primary" id="btnSubmit"
+											 		style="width:80px;height:40px; font-size:15px;" >Add 
+									 		</button>
+											<button style="width:80px;height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
                   <%	
                   	}
                   %>
@@ -241,6 +382,38 @@ if( user.getRoleId() == 3) {
             			}
             		});
             	}
+                
+                $(document).ready(function() {
+  					$('#txtName').blur(function(e) {
+  						var name = $('#txtName').val();
+      					if (validateName(name)) {
+  							$('#spnNameStatus').html('');
+  							$('#spnNameStatus').css('color', 'green');
+  						}
+  						else {
+  							$('#spnNameStatus').html('Name of course must be character.');
+  							$('#spnNameStatus').css('color', 'red');
+  							document.getElementById("btnSubmit").disabled = true; 
+  						}
+   					});
+  				});
+  				
+  				function checkDuration() {
+  					var intRegex = /^\d+$/;
+
+  					var str = $('#txtDuration').val();
+  					if(intRegex.test(str)) {
+  					   return true;
+  					} else{
+  						return false;
+  					}
+  				}   
+  				
+  				function validateName(string) {
+  					var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;
+
+  					return $.trim(string).match(pattern) ? true : false;
+  				}
                 </script>
                 
                 <div id="pager">

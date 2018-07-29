@@ -38,7 +38,7 @@ public class GetFreeTimeInDateController extends HttpServlet {
 			ArrayList<User> traniers = userBo.getTrainerByIdCourse(courseId);
 			
 			String result = " <div> <br/> " 
-							+" <label class='required' >Trainer&nbsp;:</label>";
+							+" <label class='required' ><strong>Trainer:</strong>&nbsp;:</label>";
 			
 			if (traniers.size() > 0) {
 				result +=  " <select name='trainer' id='trainerSelect' style='width: 100%'> <option onclick='showRoom();' value='0'>Select trainer</option> ";
@@ -103,7 +103,7 @@ public class GetFreeTimeInDateController extends HttpServlet {
 			ClassesBo classBo = new ClassesBo();
 			ArrayList<TimeClass> times = classBo.getFreeTimeInDay(duration, dayOfWeek, roomId, trainerId);
 			
-			String timeclass = "<label class='required' >Time&nbsp;</label> <br/>" ;
+			String timeclass = "<label class='required' ><strong>Time:</strong>&nbsp;</label> <br/>" ;
 			
 			if (times.size() > 0) {
 
