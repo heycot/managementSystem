@@ -16,12 +16,12 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3">
-        <div class="alert1 alert alert-primary" style=""> 
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
+        	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name">Your Results</strong>
+		    <strong  style="font-size: 21px;" class="lb_name">Your Results</strong>
 		 </div>
-		<div>
+  <div style="background: white;">
            <%
                 
                   	ArrayList<Results> listResults = (ArrayList<Results>) request.getAttribute("listResults");
@@ -86,7 +86,7 @@ if( user.getRoleId() == 3) {
         </script>
         
         <div class="card-body">
-          <div class="table-responsive">
+			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
             <form action=""  method="post">
                 <table id="myTable"  style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="50%" id="dataTable" cellspacing="0">
                   <thead>
@@ -114,7 +114,7 @@ if( user.getRoleId() == 3) {
                   
                   <tr class="contentPage">
                   <td style="text-align: center; vertical-align: middle; " width="5%"><%= i %></td>
-                  <td style="text-align: center; vertical-align: middle; "width="20%"><%= results.getClassName()%></td>
+                  <td style="vertical-align: middle; "width="20%"><%= results.getClassName()%></td>
                   
                   <td style="text-align: center; vertical-align: middle;" width="20%"><%= res%></td>
                   

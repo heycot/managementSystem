@@ -9,14 +9,6 @@
 	#add-post .required:after {
 	content:"*";color:red;
 	}
-	#pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
 </style>
 <%
 String classNameContent = "" ;
@@ -30,12 +22,12 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-        <div class="card1 card mb-3 divForm">
-       		<div class="alert1 alert alert-primary" style=""> 
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
+        	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name">Waiting Classes</strong>
+		    <strong style="font-size: 21px;" class="lb_name">Waiting Classes</strong>
 		 </div>
-			  <div>
+  <div style="background: white;">
 			<%
 			  ArrayList<ClassWaiting> listClassOpening = (ArrayList<ClassWaiting>)request.getAttribute("list");
 			  int tong = listClassOpening.size();
@@ -52,7 +44,7 @@ if( user.getRoleId() == 3) {
                 var pageSize = 10; // Hiển thị 6 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
-                    $(".contentPage").each(function (n) {
+                    $(".contentPage").each(function 👎 {
                         if (n >= pageSize * (page - 1) && n < pageSize * page)
                             $(this).show();
                     });
@@ -75,8 +67,8 @@ if( user.getRoleId() == 3) {
         </script>
 			  
         <div class="card-body">
-                  <div class="table-responsive">
-        	<form  class="formTable" action=""  method="post">
+
+          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">        	<form  class="formTable" action=""  method="post">
         	
 	        	<table class="myTable table table-bordered table-hover table-compact" width="100%" cellspacing="0" >
 		  		<%
@@ -121,7 +113,7 @@ if( user.getRoleId() == 3) {
 				    
 				    %>
 				    <td  style="text-align: center; vertical-align: middle;" class="btnRegister" >
-						<button  type="button" name="cancel" class = "btn cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
+						<button  type="button" name="cancel" class = "btn  cancel" style="border-color: #2e9ade; border-color: #e7c6c9;
 background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>		
 					</td>
 				    
@@ -135,7 +127,6 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 				<div id="pager">
 					<ul id="pagination" class="pagination-sm"></ul>
 				</div>
-				</form>
 		  	</div>
    		</div> 
      
@@ -173,4 +164,4 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 		
 	</div>
 </div>
-<%@include file="/templates/inc/footer.jsp" %> 
+<%@include file="/templates/inc/footer.jsp" %>

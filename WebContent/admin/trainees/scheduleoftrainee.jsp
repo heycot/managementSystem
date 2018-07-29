@@ -3,16 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %> 
-<style>
-            #pagination {
-                display: flex;
-                display: -webkit-flex; /* Safari 8 */
-                flex-wrap: wrap;
-                -webkit-flex-wrap: wrap; /* Safari 8 */
-                justify-content: center;
-                -webkit-justify-content: center;
-            }
-        </style>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -25,13 +16,13 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%>>
   <div class="<%= classNameContainer%>">
-    <div class="card1 card mb-3">
-    	<div class="alert1 alert alert-primary" style=""> 
+    <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
+        	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name">Your Schedule</strong>
-		 </div>
-		<div>
-        <%
+		    <strong class="lb_name"  style="font-size: 21px;">Your Schedule</strong>
+		 </div >
+  <div style="background: white;">
+          <%
         ArrayList<ScheduleOfTrainee> listClass = (ArrayList<ScheduleOfTrainee>) request.getAttribute("listClass");
        	int i=0;
         int tong = listClass.size();
@@ -94,8 +85,20 @@ if( user.getRoleId() == 3) {
         </script>
          
         <div class="card-body">
-          <div class="table-responsive">
-            <form action=""  method="post">
+        	<div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+                	<input class=" box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                	</div>
+                	<script>
+					$(document).ready(function(){
+					  $("#myInput").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#myTBody tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+					});
+					</script>
+			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            <form action=""  method="post">
                 <table id="myTable" style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%"  cellspacing="0">                
                   <thead>
                     <tr>
@@ -113,7 +116,7 @@ if( user.getRoleId() == 3) {
                       
                     </tr>
                   </thead>
-                  <tbody id="trainer_body">
+                  <tbody id="myTBody" >
                  <%
                  
                	for (ScheduleOfTrainee sched : listClass){
@@ -123,7 +126,7 @@ if( user.getRoleId() == 3) {
                   <tr class="contentPage">
                   <td style="text-align: center;"  ><%= i %></td>
                   <td><%= sched.getNameClass()%></td>
-                  <td style="text-align: center; vertical-align: middle;"  ><%= sched.getNameRoom()%></td>
+                  <td style=" vertical-align: middle;"  ><%= sched.getNameRoom()%></td>
                   <td ><%= sched.getNameTrainer()%></td>
                   <td style="text-align: center; vertical-align: middle;"  ><%= sched.getTimeofday()%></td>
                   
