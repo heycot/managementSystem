@@ -25,7 +25,7 @@ String dateMax= date.toString();
 <div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);;max-height:900px;">
   <div class="<%= classNameContainer%>">
   <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
-             <i style="margin-left: 0px; font-size: 24px;" class="fa1 fa fa-fw fa-user" ></i>
+             <i style="margin-left: 5px; font-size: 24px;" class="fa1 fa fa-fw fa-user" ></i>
 			    <strong class="lb_name" style="font-size: 21px;">&nbsp;Add trainer's account </strong>
 			  </div>
 		<div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:10px;margin-top:0px;">
