@@ -78,10 +78,10 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="min-height: 100%; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px;background:white; padding:20px 20px;">
+            <ul id="slide_item" class="navbar-nav navbar-sidenav" style="min-height: 100%; max-width:250px;box-shadow: 2px 2px #c8c5c5;margin-top: 76px;background:white;">
           
           
-              <li class="nav-item" data-toggle="tooltip"  data-placement="right" title="" style="width: 210px;">
+              <li class="nav-item" data-toggle="tooltip"  data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/trainee/index" style="font-size:  17px;">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
@@ -89,7 +89,7 @@
                 </a>
               </li>
 
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/trainer/index" style="font-size:  17px; ">
                   <i class="fa fa-fw fa-users" style="margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
@@ -97,7 +97,7 @@
                 </a>
               </li>
               
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/major" style="font-size:  17px;">
                   <i class="fa fa-briefcase"   style="margin-left:3px; margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text" style="margin-left: 2px;">
@@ -105,7 +105,7 @@
               	</a>
             </li>
               
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed"  href="<%= request.getContextPath()%>/classes/index" style="font-size:  17px;">
                   <i class="fa fa-university" style="margin-left:2px; font-size:15px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text">
@@ -113,28 +113,28 @@
                 </a>
             </li>
             
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/course/index" style="font-size:  17px;">
                   <i class="fa fa-fw fa-book" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Course</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/room" style="font-size:  17px;">
                   <i class="fa fa-home" style="margin-left:1px; font-size:21px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Room</span>
               </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/Skills" style="font-size:  17px;">
                   <i class="fa fa-fw fa-graduation-cap" style="margin-left:0px;margin-right: 11px; "></i>&nbsp;
                   <span class="nav-link-text">
                     Skill</span>
               </a>
             </li>
-             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 210px;">
+             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" style="width: 250px;">
                 <a class="nav-link nav-link-collapse collapsed" href="<%= request.getContextPath()%>/admin/requestTakeDateOff" style="font-size: 17px; font-family: Poppins;">
                   <i class="fa fa-paper-plane" style="margin-left:2px;margin-right: 11px;"></i>&nbsp;
                   <span class="nav-link-text" style="margin-left:4px;">

@@ -19,7 +19,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary" style=""> 
+       	<div class="alert1 alert alert-primary" style="padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-briefcase" ></i>
 			<strong class="lb_name">Majors </strong>
 		</div>
@@ -151,7 +151,7 @@ if( user.getRoleId() == 3) {
 	       
 <!-- Content -->
 		   <div class="card-body" style="">
-		         <div class="table-responsive" style="background: white;padding: 28px 23px;padding-bottom: 10px;">
+		         <div class="table-responsive" style="background: white;padding: 28px 23px;padding-bottom: 10px;padding-left: 10px; padding-right: 10px;">
            			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="">
             				<div class=""  style="float: left; margin-bottom: 15px;" >
