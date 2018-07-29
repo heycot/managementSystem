@@ -334,7 +334,7 @@ if( user.getRoleId() == 3) {
                 	if ( errorTime == true) {
                 		$('#spnTimeStatus').html("Please choose time of date!");
                 		$('#spnTimeStatus').css("color", "red");
-                		$('#timeOfDate').empty();
+                		/* $('#timeOfDate').empty(); */
                 		return false;
                 	} else {
                 		$('#spnTimeStatus').empty();

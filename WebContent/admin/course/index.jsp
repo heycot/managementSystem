@@ -216,7 +216,7 @@ if( user.getRoleId() == 3) {
                   %>	
                   	<tr class="contentPage">
                       	<td  style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="course<%= courseIndex.getCourseId()%>" value="<%= courseIndex.getCourseId()%>" class="checkitem" id="chkitem"> </td>
-                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" href="<%= request.getContextPath()%>/course/edit?id=<%= courseIndex.getCourseId()%>"><b><%= courseIndex.getName() %></b></a> </td>
+                     	<td  style="vertical-align: middle;"> <a style="color: #000000;" data-toggle="modal" data-target="#editModal<%=courseIndex.getCourseId()%>" ><b><%= courseIndex.getName() %></b></a> </td>
 	                    <td  style="vertical-align: middle;"><%= courseIndex.getMajorName() %></td>
 	                    <td  style="text-align: center; vertical-align: middle;"><%= courseIndex.getDuration()%></td>
 	                    <%
@@ -240,7 +240,7 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
                     	<td  style="text-align: center; vertical-align: middle;">
-                       		<a href="#"  data-toggle="modal" data-target="#editModal<%=courseIndex.getCourseId()%>" ><i class="fa fa-edit" style="font-size:20px"></i></a>
+                       		<a href="#" data-toggle="modal" data-target="#editModal<%=courseIndex.getCourseId()%>" ><i class="fa fa-edit" style="font-size:20px"></i></a>
                         	<a style="margin-left: 10px" href="<%= request.getContextPath()%>/course/del?id=<%= courseIndex.getCourseId()%>" onclick="return confirm('Do you want to delete course: <%= courseIndex.getName()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
                      	</td>
                     </tr>
