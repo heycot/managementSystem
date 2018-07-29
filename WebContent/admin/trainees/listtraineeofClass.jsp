@@ -26,7 +26,7 @@ int tong = listUser.size();
       
 		<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
              <i class="fa1 fa fa-fw fa-book" ></i>
-		    <strong  style="font-size: 21px;" class="lb_name">Trainees</strong>
+		    <strong  style="font-size: 21px;" class="lb_name">Trainee</strong>
 		 </div>
 			  
   <div style="background: white;">

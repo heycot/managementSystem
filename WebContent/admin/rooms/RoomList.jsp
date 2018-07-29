@@ -16,11 +16,11 @@ if( user.getRoleId() == 3) {
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" >
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x:inherit;" >
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:12px;margin-bottom:-4px;"> 
              <i style="margin-left: 5px; font-size: 24px;" class="fa fa-fw fa-home" ></i>
-             	<strong style="font-size: 21px;">&nbsp;Room List</strong>
+             	<strong style="font-size: 26px;">Room</strong>
 			  </div>	
     <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:0px;">
          
@@ -73,7 +73,7 @@ if( user.getRoleId() == 3) {
 	  %>
 <!-- Show room -->			  	
         <div class="card-body" >
-          <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;">
+          <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;margin-top: 10px;">
                 <div style=" margin-bottom: 5px;">
 	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;">
 	            		<button style="height:auto !important;" type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
@@ -83,20 +83,20 @@ if( user.getRoleId() == 3) {
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
                 	</div>
                 	                	                	<div style="float: right; width: 25%;">
-                	<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
-                	</div>
-                	<script>
-					$(document).ready(function(){
-					  $("#myInput").on("keyup", function() {
-					    var value = $(this).val().toLowerCase();
-					    $("#myTBody tr").filter(function() {
-					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					    });
-					  });
-					});
-					</script>
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="clear: both"></div>
-	        	<table id="myTable" class="myTable table table-bordered" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
+	        	<table id="myTable" class="myTable table table-bordered" cellspacing="0" style="margin-top: 5px;background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
                   <thead>
                     <tr >
                       <th style="text-align: center;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -147,7 +147,7 @@ if( user.getRoleId() == 3) {
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h4 class="modal-title " align="center"><i class="fa fa-fw fa-home"></i><strong>Edit room</strong></h4>
+								<h5 class="modal-title " align="center"><i class="fa fa-fw fa-home"></i><strong>Edit room</strong></h5>
 								</div>
 								<div class="modal-body">
 									<form id="add-post2" action="/managementSystem/EditRoomController?id=<%=rooms.getRoomId()%>" method="POST">
@@ -185,8 +185,10 @@ if( user.getRoleId() == 3) {
 												}
 											%>
 										</div>
-										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit<%=rooms.getRoomId()%>">Save Room</button>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<div style="text-align: center;vertical-align: middle;">
+										<button type="submit" class="btn btn-primary" style="height:40px; width:80px; font-size:15px;" id="btnSubmit<%=rooms.getRoomId()%>">Save</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px; width:80px;">Close</button>
+									</div>
 									</form>
 	<script type="text/javascript">
 							$(document).ready(function() {
@@ -231,7 +233,7 @@ if( user.getRoleId() == 3) {
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h4 class="modal-title" align="center"><i class="fa fa-fw fa-home"></i><strong>Add new room</strong></h4>
+								<h5 class="modal-title" align="center"><i class="fa fa-fw fa-home"></i><strong>Add new room</strong></h5>
 								</div>
 								<div class="modal-body">
 									<form id="add-post1" action="/managementSystem/AddNewRoom"

@@ -26,7 +26,7 @@ if( user.getRoleId() == 3) {
         <div class="card1 card mb-3 divNoti">
         <div class="alert1 alert alert-primary" style=""> 
              <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong class="lb_name">Notifications</strong>
+		    <strong class="lb_name">Notification</strong>
 		 </div>
        		
 		<div>

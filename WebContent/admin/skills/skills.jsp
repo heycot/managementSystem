@@ -33,9 +33,9 @@ int tong = skill.size();
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-graduation-cap" ></i>
-             	<strong>Skills List</strong>
+       	<div class="alert1 alert alert-primary" style="font-size: larger;margin-bottom: 0px;padding-left: 10px;"> 
+             <i class="fa fa-fw fa-graduation-cap" style="font-size:24px;" ></i>
+             	<strong class="lb_name" style="font-size:26px;">Skill</strong>
 			  </div>	
 		
 <!-- Div Page Content -->
@@ -80,20 +80,33 @@ if(request.getParameter("msg") != null){
 	}
 %>  
    <div class="card-body" style="margin-top: 0px;">
-         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 20px 10px; margin-top: 0px;">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
-	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
+	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 13px;"
 	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new skill</button>
 	        		</div>
 	        		<form action="<%=request.getContextPath()%>/DeleteSkills" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these skills?')" id="deleteall" type="submit" value="Delete skills">
+	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these skills?')" id="deleteall" type="submit" value="Delete skill">
                 	</div>
+                	<div style="float: right; width: 25%;">
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="clear: both"></div>
 	        	</div>
 	
-	        	<table id="myTable" class="table-bordered" style="width: 100%;">
+	        	<table id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%"  style="margin-top: -24px;">
                   <thead>
                     <tr style="height:50px;">
                       <th style="text-align: center;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
@@ -150,11 +163,11 @@ if(request.getParameter("msg") != null){
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h4 class="modal-title " align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Edit Skill</strong></h4>
+								<h5 class="modal-title " align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Edit Skill</strong></h5>
 								</div>
 								<div class="modal-body">
 									<form id="add-post2" action="/managementSystem/EditSkillController?id=<%=list.getSkillId()%>" method="POST">
-									<div class="container">
+									<div class="container" style="padding-left:0;padding-right:0; ">
 										 <div><strong>Major:</strong>
 										  <select class="form-group" name="majorId" id="major" style="width: 12em;margin-top: 5px;" disabled>
 												<%
@@ -201,9 +214,12 @@ if(request.getParameter("msg") != null){
 												}
 											%>
 										</div>
-										<button type="submit" class="btn btn-primary" style="width:auto; font-size:15px; margin-left: 9.5em;" id="btnSubmit<%=list.getSkillId()%>">Save Skill</button>
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									</form>
+																							<div style="text-align:center;">
+														<button type="submit" class="btn btn-primary" style="width:80px; height:40px; font-size:15px;" id="btnSubmit">Save 
+														</button>
+														<button style="width:80px; height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
+														</button>
+													</div></form>
 									</div>
 								</div>
 							</div>
@@ -245,11 +261,11 @@ if(request.getParameter("msg") != null){
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h4 class="modal-title" align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Add new skill</strong></h4>
+								<h5 class="modal-title" align="center"><i class="fa fa-fw fa-graduation-cap"></i><strong>Add new skill</strong></h5>
 								</div>
-								<div class="modal-body">
+								<div class="modal-body" >
 									<form id="add-post1" action="/managementSystem/AddNewSkillController" method="POST">
-										<div class="container" >
+										<div class="container" style="padding-left:0; padding-right:0" >
 										 <div><strong>Major:<span style="color: red"> *</span></strong>
 										 <select class="form-group" name="majorId" id="major" style="width: 12em;margin-top: 5px;" required>
 												<%
@@ -278,9 +294,12 @@ if(request.getParameter("msg") != null){
 											<input type="radio" name="status" value="1" checked style="display: none;"> 
 											<input type="radio" name="status" value="0" style="display: none;">
 										</div>
-										<button type="submit" class="btn btn-primary" id="btnSubmit"
-										 style="width:auto; font-size:15px; margin-left: 9em;">Add Skill</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																							<div style="text-align:center;">
+														<button type="submit" class="btn btn-primary" style="width:80px; height:40px; font-size:15px;" id="btnSubmit">Add 
+														</button>
+														<button style="width:80px; height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
+														</button>
+													</div>
 									</div>
 									</form>
 

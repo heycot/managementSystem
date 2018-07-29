@@ -36,7 +36,7 @@ body{
 	color: #4CAF50;
 }
 #mainNav .navbar-collapse .navbar-sidenav li.active a {
-    color: #4CAF50;
+    color: black;
     background: #F0F0F0;
 }
 #mainNav .navbar-collapse .navbar-sidenav li.active a i{
@@ -45,7 +45,7 @@ body{
     -webkit-text-fill-color: black;
 }
 #mainNav .navbar-collapse .navbar-sidenav li.active{
-	background: #333333;
+	background: #F0F0F0;
     color: black;
     font-weight: 600;
     -webkit-text-fill-color: black;

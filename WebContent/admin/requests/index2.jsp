@@ -20,9 +20,9 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
+    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:13px;margin-bottom:10px;"> 
              <i style="margin-left: 10px; font-size: 24px;" class="fa fa-paper-plane" ></i>
-		    <strong style="font-size: 21px;">&nbsp;Requests</strong>
+		    <strong style="font-size: 26px;">Request</strong>
 	</div>
     <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:0px;">
         
@@ -77,7 +77,7 @@ if( user.getRoleId() == 3) {
         </script>
          
         <div class="card-body">
-        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
+        <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 11px;margin-right: 13px;">
                 	<input  class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
                 	</div>
                 	<script>

@@ -17,11 +17,11 @@ if( user.getRoleId() == 3) {
 
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card1 card mb-3" style="">
+    <div  class="card1 card mb-3" style="margin-top:0px;box-shadow: 2px 2px #c8c5c5;">
 <!-- Nav -->
        	<div class="alert1 alert alert-primary" style="padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-briefcase" ></i>
-			<strong class="lb_name">Majors </strong>
+			<strong class="lb_name">Major </strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -150,9 +150,9 @@ if( user.getRoleId() == 3) {
 	        
 	       
 <!-- Content -->
-		   <div class="card-body" style="">
+		   <div class="card-body" style="margin-top: 0px;">
 		         <div class="table-responsive" style="padding-bottom: 1px;background: white;padding-top:18px;padding-left: 10px; padding-right: 10px;">
-           			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post">
+           			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post" style="margin-top: 2px;">
           				<div style="">
             				<div class=""  style="float: left; margin-bottom: 15px;" >
 			            		<button style="height: auto !important;" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major

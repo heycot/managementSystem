@@ -41,9 +41,9 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;"> 
+       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-book" ></i>
-			<strong class="lb_name">Courses </strong>
+			<strong class="lb_name">Course </strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -174,7 +174,7 @@ if( user.getRoleId() == 3) {
         </script>
          
    		<div class="card-body" style="margin-top: 0px;">
-         <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
+         <div class="table-responsive" style="background: white;padding: 20px 10px; margin-top: 0px;">
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
@@ -183,22 +183,22 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
                 	</div>
-                	<div style="float: right; width: 25%; height: 100%">
-                	<input style=" width: 100%; height: 100%; margin-top: 7px;" id="myInput" type="text" placeholder="Search..">
-                	</div>
-					<script>
-					$(document).ready(function(){
-					  $("#myInput").on("keyup", function() {
-					    var value = $(this).val().toLowerCase();
-					    $("#myTBody tr").filter(function() {
-					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					    });
-					  });
-					});
-					</script>
+                	<div style="float: right; width: 25%;">
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="clear: both"></div>
 	        	</div>
-                <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
+                <table id="myTable" class="myTable table table-bordered table-hover table-compact" style=" width:100% ;margin-top: 16px;">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>

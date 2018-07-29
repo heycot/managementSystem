@@ -27,13 +27,13 @@ if( user.getRoleId() == 3) {
 
 %>
 
-<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="">
+<div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x: inherit;">
   <div class="<%= classNameContainer%>" id="toggler_containerId">
-    <div  class="card1 card mb-3" style="margin-top: 0px;">
+    <div  class="card1 card mb-3" style="margin-top: 0px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary" style="margin-bottom: 0px;"> 
+       	<div class="alert1 alert alert-primary" style="margin-bottom: 0px;padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-users" ></i>
-			<strong class="lb_name">Trainees </strong>
+			<strong class="lb_name">Trainee </strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -151,7 +151,7 @@ if( user.getRoleId() == 3) {
    <div class="card-body" style="margin-top: 0px;">
          <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
             <form action="<%= request.getContextPath()%>/trainee/del"  method="post">
-            	<div style="margin-left: -15px; margin-bottom: 5px;">
+            	<div style="margin-left: -15px; margin-bottom: 5px;margin-top: 10px;">
 	            	<div style="float: left" >
 	            	<a style="font-size:medium;" class="btn btn-primary btnAdd" href="<%=request.getContextPath() %>/trainee/add" role="button">
 	            		Add trainee's account
@@ -160,22 +160,22 @@ if( user.getRoleId() == 3) {
 	            	<div style="float: left; margin-left: 15px;">
 	            		<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainees?')" id="deleteall" type="submit" value="Delete trainees">
                 	</div>
-                	<div class="form-group" style="float: right; width: 25%;">
-                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
-                	</div>
-                	<script>
-					$(document).ready(function(){
-					  $("#myInput").on("keyup", function() {
-					    var value = $(this).val().toLowerCase();
-					    $("#myTBody tr").filter(function() {
-					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					    });
-					  });
-					});
-					</script>
+                	<div style="float: right; width: 25%;">
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="clear: both"></div>
 	        	</div>
-	        	<table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
+	        	<table style="margin-top: 13px;border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   <thead>
                     <tr>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Delete

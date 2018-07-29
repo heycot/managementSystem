@@ -17,11 +17,11 @@ if( user.getRoleId() == 3) {
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;" >
   <div class="<%= classNameContainer%>" >
-  <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;"> 
-             <i style="margin-left: 10px; font-size: 24px;" class="fa1 fa fa-fw fa-users" ></i>
-		    <strong style="font-size: 21px;">&nbsp;Trainers</strong>
+  <div class="alert1" style="background:none; border:none; color: #333333 !important;margin-top: 13px;"> 
+             <i style="margin-left: 10px; font-size: 22px;" class="fa1 fa fa-fw fa-users" ></i>
+		    <strong style="font-size: 26px;">&nbsp;Trainer</strong>
 	</div>
-    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:0px;">
+    <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;margin-top:10px;">
 		<div> 
 	  <%
 	  String msg = "";
@@ -107,26 +107,26 @@ if( user.getRoleId() == 3) {
         <div class="card-body">
           <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;">
             <form  class="formTable" action="<%=request.getContextPath() %>/trainer/del"  method="post">
-                <div style="">
-	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;margin-top:2px;">
+                <div style="margin-bottom: 5px;margin-top: 10px;">
+	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;">
 	            		<a style="height:auto !important;" class="btnAdd btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
 	         		</div>
 	            	<div style="float: left; margin-left: 15px;">
-	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainer">
                 	</div>
                 	<div style="float: right; width: 25%;">
-                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
-                	</div>
-                	<script>
-					$(document).ready(function(){
-					  $("#myInput").on("keyup", function() {
-					    var value = $(this).val().toLowerCase();
-					    $("#myTBody tr").filter(function() {
-					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					    });
-					  });
-					});
-					</script>
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="clear: both"></div>
 	        	</div>
 	        	<table style="border-collapse: collapse;" id="dataTable" class="myTable table table-bordered table-hover table-compact" width="100%">

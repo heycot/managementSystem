@@ -40,11 +40,11 @@ if (request.getAttribute("ability") != null) {
 LocalDate date= LocalDate.now().minusYears(18);
 String dateMax= date.toString();
 %>
-<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;">
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: rgb(229, 229, 229);max-height:900px;overflow-x: inherit;">
   <div class="<%= classNameContainer%>">
-    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:25px;margin-bottom:20px;">
+    <div class="alert1" style="font-size: larger;background:none; border:none; color: #333333 !important;margin-top:13px;margin-bottom:10px;">
              <i style="margin-left: 5px; font-size: 24px;" class="fa fa-fw fa-user" ></i>
-			    <strong style="font-size: 21px;">&nbsp;Profile</strong>
+			    <strong style="font-size: 26px;">Profile</strong>
 			  </div>
     <div class="card mb-3" style="height:auto;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;padding:10px;margin-top:0px;">
 		<div> 

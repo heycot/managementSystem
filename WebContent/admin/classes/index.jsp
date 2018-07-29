@@ -19,11 +19,11 @@ if( user.getRoleId() == 3) {
 
 <div class="<%= classNameContent%>" <%= styleContent%> id="toggler_contentId" style="overflow-x: inherit;">
   <div class="<%= classNameContainer%>" id="toggler_containerId" >
-    <div  class="card1 card mb-3" style="margin-top: 0px;">
+    <div  class="card1 card mb-3" style="margin-top:0px;box-shadow: 2px 2px #c8c5c5;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;"> 
-        	<i class="fa fa-fw fa-book" ></i>
-			<strong>Classes</strong>
+       	<div class="alert1 alert alert-primary"  style="padding-left: 10px;"> 
+        	<i class="fa fa-university" style="font-size: 23px;" ></i>
+			<strong  class="lb_name">Class</strong>
 		</div>
 		
 <!-- Div Page Content -->
@@ -122,7 +122,7 @@ if( user.getRoleId() == 3) {
         </script>
    <div class="card-body" style="margin-top: 0px;">
          <div class="table-responsive" style="background: white;padding: 10px 10px; margin-top: 0px;">
-            <form action="#"  method="post">
+            <form action="#"  method="post" style="margin-top: 10px;">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            
 	            	<div style="float: left">
@@ -133,15 +133,24 @@ if( user.getRoleId() == 3) {
 	            		<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these Classes?')" id="deleteall" type="submit" value="Delete Classes">
                 	</div>
                 	
-                	<div style="float: right; width: 20%;">
-                		<input style="width: 100%;" id="myInput" type="text" placeholder="Search..">
-                	</div>
-                	
+                	<div style="float: right; width: 25%;">
+                				<input class="box-search" style="width: 100%;" id="myInput" type="text" placeholder="Search..">
+                			</div>
+		               		<script>
+								$(document).ready(function(){
+								  $("#myInput").on("keyup", function() {
+								    var value = $(this).val().toLowerCase();
+								    $("#myTBody tr").filter(function() {
+								      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								    });
+								  });
+								});
+							</script>
                 	<div style="float: right; margin-right: 15px;">
 					  <ul class="nav nav-tabs" style='border-bottom: 0px solid #ddd;'>
-					    <li class="btn btn-light" id="waitingStyle" style="margin-right: 15px;"><a  data-toggle="tab" href="#waiting" style="color: #333333;">Waiting</a></li>
-					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#openning" style="color: #333333;">Opening</a></li>
-					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#finished" style="color: #333333;">Finished</a></li>
+					    <li class="btn btn-light" id="waitingStyle" style="margin-right: 15px;"><a  data-toggle="tab" href="#waiting" style="color: #333333; text-decoration: none;">Waiting</a></li>
+					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#openning" style="color: #333333; text-decoration: none;">Opening</a></li>
+					    <li class="btn btn-light" style="margin-right: 15px;"><a  data-toggle="tab" href="#finished" style="color: #333333; text-decoration: none;">Finished</a></li>
 					  </ul>
                 	</div>
 					<script>
@@ -153,16 +162,7 @@ if( user.getRoleId() == 3) {
 					    });
 					});
 					</script>
-					<script>
-					$(document).ready(function(){
-					  $("#myInput").on("keyup", function() {
-					    var value = $(this).val().toLowerCase();
-					    $("#myTBody tr").filter(function() {
-					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					    });
-					  });
-					});
-					</script>
+
                 	<div style="clear: both"></div>
 	        	</div>
 	        	<div class="tab-content">
@@ -197,15 +197,15 @@ if( user.getRoleId() == 3) {
 		        		<table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   			<thead>
 		                    <tr>
-		                      <th style="text-align: center; font-size: medium;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-		                      <th style="text-align: center; font-size: medium;">Name</th>
-		                      <th style="text-align: center; font-size: medium;">Trainer</th>
-		                      <th style="text-align: center; font-size: medium;">Course</th>
-		                      <th style="text-align: center; font-size: medium;">Time Of Date</th>
-		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
-		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
-		                      <th style="text-align: center; font-size: medium;">Trainees (Waiting)</th>
-		                      <th width="20%" style="text-align: center; font-size: medium;">Action</th>
+		                      <th style="text-align: center; font-size: medium; vertical-align: middle;">Delete<input style="display: inline-block; " type="checkbox" class="checkall"></th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Name</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Trainer</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Course</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Time Of Date</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Day Of Week</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Duration (hours)</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Trainees (Waiting)</th>
+		                      <th width="20%" style="text-align: center; font-size: medium;vertical-align: middle;">Action</th>
 		                    </tr>
 		                  </thead>
 		                  <tbody id="myTBody" >

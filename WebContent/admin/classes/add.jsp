@@ -48,8 +48,8 @@ if( user.getRoleId() == 3) {
 <div class="<%= classNameContent%>" <%= styleContent%> style="overflow-x: inherit;">
   <div class="<%= classNameContainer%>">
   	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
-        <i class="fa1 fa fa-fw fa-university" style="margin-left: 5px; font-size: 24px;"></i>
-		<strong class="lb_name" style="">&nbsp;Add new class </strong>
+        <i class="fa1 fa fa-fw fa-university" style="margin-left: 10px; font-size: 23px;"></i>
+		<strong class="lb_name" style="">Add new class </strong>
 		</div>
 			  <div>
 			  	<%
@@ -62,7 +62,7 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 	  </div>
-        <div class="card mb-3" style="padding-top: 10px; margin-top: 0px;">
+        <div class="card mb-3" style="padding-top: 10px; margin-top: 0px;padding-bottom: 44px;">
              <form id="add-post" action="<%= request.getContextPath()%>/classes/add" method="POST" >
               	<div style="height: 5%"></div>
               	
@@ -181,22 +181,17 @@ if( user.getRoleId() == 3) {
 	              <div style="clear: both"></div>
 	              <div style="height: 5%"></div>
 	               
-	              <div>
-		               <div class="col-sm-4" style="float: left"></div>
-		               
-		             	<div class="col-sm-4" style="float: left">
-		             		<div style="float: left"><input style="width:auto; font-size:20px; height:auto; margin-bottom:10px;" id="btnSubmitAddClass"  class="btn btn-primary" type="submit" name="submit" value="Add" /></div>
-		             		<div style="float: left; margin-left: 20px;"><input style="width:auto; font-size:18px; height:auto; margin-bottom:10px;" class="btn btn-secondary" type="reset" name="reset" value="Reset" /></div>
-		             		<div style="clear: both"></div>	
-		             	</div> 
-		             	
-		               <div class="col-sm-4" style="float: right"></div>
-		               <div style="clear: both"></div>
-	              </div>
-	              
-	              	<div  style="clear: both"></div>
-	              <div style="margin-bottom: 5%"></div>
-	              </form> 
+	             	<div style="text-align:center;margin-top:15px;">
+	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
+	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
+	           		
+	           	</div> 
+	            <div style="clear: both"></div>
+          
+              
+              <div style="margin-bottom: 5%"></div>
+              </form>
+              
               	</div>
               	
               	<script type="text/javascript">

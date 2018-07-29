@@ -24,8 +24,8 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>">
     <div class="card1 card mb-3" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); margin-left: 0px;margin-right:7px;">
         	<div class="alert1"   style="padding-left: 10px;font-size: larger;margin-bottom: 20px;margin-top: 25px;"> 
-             <i class="fa1 fa fa-fw fa-users" ></i>
-		    <strong style="font-size: 21px;" class="lb_name">Waiting Classes</strong>
+             <i class="fa1 fa fa-hourglass-2" ></i>
+		    <strong style="font-size: 25px;" class="lb_name">&nbsp;Waiting Class</strong>
 		 </div>
   <div style="background: white;">
 			<%
@@ -44,7 +44,7 @@ if( user.getRoleId() == 3) {
                 var pageSize = 10; // Hiển thị 6 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
-                    $(".contentPage").each(function 👎 {
+                    $(".contentPage").each(function (n) {
                         if (n >= pageSize * (page - 1) && n < pageSize * page)
                             $(this).show();
                     });
@@ -83,7 +83,7 @@ if( user.getRoleId() == 3) {
 
           <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">        	<form  class="formTable" action=""  method="post">
         	
-	        	<table class="myTable table table-bordered table-hover table-compact" width="100%" cellspacing="0" >
+	        	<table style="" id="myTable"  class="myTable table table-bordered table-hover table-compact" width="100%">
 		  		<%
 		  		if(tong!=0){
 		

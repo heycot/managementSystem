@@ -34,7 +34,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>">
   	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
         <i class="fa1 fa fa-fw fa-user " style="margin-left: 0px; font-size: 24px;"></i>
-		<strong class="lb_name" style="">&nbsp;Add Trainee's Account </strong>
+		<strong class="lb_name" style="">Add Trainee's Account </strong>
 	</div>
 			  
 	  <div>
@@ -49,7 +49,7 @@ if( user.getRoleId() == 3) {
 	  	%>
 	  </div>
         <div class="card mb-3" style="padding-top: 10px; margin-top: 0px;">
-             <form id="add-post" action="<%= request.getContextPath()%>/trainee/add" method="POST" enctype="multipart/form-data" >
+             <form id="add-post" action="<%= request.getContextPath()%>/trainee/add" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
               	<!-- <div style="height: 5%"></div> -->
               
               <div class="col-sm-6" style="float: left">
@@ -156,8 +156,6 @@ if( user.getRoleId() == 3) {
                
               
 	          <div style="clear: both"></div>
-              
-              <div style="margin-bottom: 5%"></div> 
 
             <script type="text/javascript">
       				$(document).ready(function() {
