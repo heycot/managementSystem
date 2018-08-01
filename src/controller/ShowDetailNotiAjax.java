@@ -58,7 +58,7 @@ public class ShowDetailNotiAjax extends HttpServlet {
 				printWriter.println("</div> <div class='modal-footer'><button type='button' style=' background:#2e9ade; color: white; ' class ='btn btn-infor aprove' onclick='approveRequest();' >Approve</button> <button type='button' class='btn btn-default;' data-dismiss='modal' style='font-size: 16px;width:80px; margin-right: 30px'>Close</button> </div>");
 				
 			} else {
-				printWriter.println("</div> <div class='modal-footer'><button type='button' class='btn btn-default;' data-dismiss='modal' style='font-size: 16px;width:80px; margin-right: 30px'>Close</button> </div>");
+				printWriter.println("</div> <div class='modal-footer'><button type='button' class='btn btn-default;' data-dismiss='modal' style='font-size: 16px;width:80px; margin-right: 30px; background: white'>Close</button> </div>");
 				return;
 			} 
 			}
