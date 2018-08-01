@@ -76,7 +76,7 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive" style="background: white;padding: 10px;padding-bottom: 10px;margin-top: 10px;">
                 <div style=" margin-bottom: 5px;">
 	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;">
-	            		<button style="height:auto !important;" type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
+	            		<button style="height:auto !important;" type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add Room</button>
 	        		</div>
 	            <form action="<%=request.getContextPath()%>/DeleteRoomController" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
@@ -124,7 +124,7 @@ if( user.getRoleId() == 3) {
 				   %>
 				   <td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="room<%=rooms.getRoomId() %>" value="<%=rooms.getRoomId()%>" class="checkitem" id="chkitem"> </td>
 				   <%} %>
-                   <td style="text-align: center; vertical-align: middle;"><%= rooms.getName() %></td>
+                   <td style="text-align: center; vertical-align: middle;"><strong><%= rooms.getName() %></strong></td>
                    <td style="text-align: center; vertical-align: middle;" ><%= rooms.getCapacity()%></td>
                   <%if(rooms.getStatus()==0){
                 	  %>
@@ -147,7 +147,8 @@ if( user.getRoleId() == 3) {
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h5 class="modal-title " align="center"><i class="fa fa-fw fa-home"></i><strong>Edit room</strong></h5>
+								<h5 class="modal-title " align="center"><i class="fa fa-fw fa-home"></i><strong>Edit Room</strong></h5>
+								<button type='button' class='close' style='color: red; margin-left: 10px;' data-dismiss='modal'>&times;</button>
 								</div>
 								<div class="modal-body">
 									<form id="add-post2" action="/managementSystem/EditRoomController?id=<%=rooms.getRoomId()%>" method="POST">
@@ -186,7 +187,7 @@ if( user.getRoleId() == 3) {
 											%>
 										</div>
 										<div style="text-align: center;vertical-align: middle;">
-										<button type="submit" class="btn btn-primary" style="height:40px; width:80px; font-size:15px;" id="btnSubmit<%=rooms.getRoomId()%>">Save</button>
+										<button type="submit" class="btn btn-primary" style="height:40px; width:80px; font-size:15px;" id="btnSubmit<%=rooms.getRoomId()%>">Edit</button>
 										<button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px; width:80px;">Close</button>
 									</div>
 									</form>
@@ -233,7 +234,8 @@ if( user.getRoleId() == 3) {
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header alert alert-primary">
-								<h5 class="modal-title" align="center"><i class="fa fa-fw fa-home"></i><strong>Add new room</strong></h5>
+								<h5 class="modal-title" align="center"><i class="fa fa-fw fa-home"></i><strong>Add Room</strong></h5>
+								<button type='button' class='close' style='color: red; margin-left: 10px;' data-dismiss='modal'>&times;</button>
 								</div>
 								<div class="modal-body">
 									<form id="add-post1" action="/managementSystem/AddNewRoom"
@@ -257,7 +259,7 @@ if( user.getRoleId() == 3) {
 											<input type="radio" name="status" value="0" style="display: none;">
 										</div>
 										<button type="submit" class="btn btn-primary" id="btnSubmit"
-										 style="width:auto; font-size:15px; margin-left: 9em;">Add Room</button>
+										 style="width:auto; font-size:15px; margin-left: 9em;">Add</button>
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									</form>
 								</div>

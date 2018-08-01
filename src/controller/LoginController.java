@@ -63,7 +63,7 @@ public class LoginController extends HttpServlet {
 					out.println(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
 				}
 				if(user.getRoleId()==3){
-					out.println(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+					out.println(request.getContextPath()+"/trainee/index");
 				}
 				
 			}

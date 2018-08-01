@@ -181,7 +181,7 @@ if( user.getRoleId() == 3) {
         	if(success.equals("1")){
         		%>
         		<div class="alert alert-success" style="padding-left: 13px; margin-top: 10px;">
-        		<strong>Send the request successfully!</strong>
+        		<strong>You sent the request successfully.</strong>
         		</div>
         		<% 
         		request.getSession().removeAttribute("success"); 

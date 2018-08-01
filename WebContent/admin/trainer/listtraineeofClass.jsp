@@ -126,7 +126,7 @@ if( user.getRoleId() == 3) {
                 		  %>
 
                 		  <div class="alert alert-success" style="padding-left: 13px; margin-top: 10px;">
-                		  <Strong>Finish trainee evaluation!</Strong>
+                		  <Strong>You finished trainee evaluation.</Strong>
                 		  </div>
                 		  <% 
                   } 
@@ -134,7 +134,7 @@ if( user.getRoleId() == 3) {
                 	  %>
                 	  <div class="alert alert-danger" style="padding-left: 13px; margin-top: 10px;">
 
-                	  <strong>The class hasn't finished yet so you cannot evaluate!</strong>
+                	  <strong>This class has not finished yet, you can not evaluate.</strong>
                 	  </div>
                  <% 
                  

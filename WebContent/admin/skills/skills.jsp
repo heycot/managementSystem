@@ -49,23 +49,23 @@ if(request.getParameter("msg") != null){
 	switch(msgInt){
 	case 0:{
 		  check1 = false;
-		  msg  = "Error! System have some problems. Please try again"; break;
+		  msg  = "Error! System have some problems. Please try again."; break;
 	  }
 	case 1: {
 		check1 = false;
-		msg = "This skill has already existed in the system"; break;
+		msg = "This skill has already existed in the system."; break;
 	}
 	case 2: {
 		check1 = true;
-		msg = "You added the skill successfully"; break;
+		msg = "You added the skill successfully."; break;
 	}
 	case 3:{
 		check1 = true;
-		msg = "You edited the skill successfully"; break;
+		msg = "You edited the skill successfully."; break;
 	}
 	case 4:{
 		  check1 = true;
-		  msg  = "You deleted skills successfully"; break;
+		  msg  = "You deleted skills successfully."; break;
 	  }
 	}
 	if (check1 == false){
@@ -84,7 +84,7 @@ if(request.getParameter("msg") != null){
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
 	            	<button style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 13px;"
-	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new skill</button>
+	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add Skill</button>
 	        		</div>
 	        		<form action="<%=request.getContextPath()%>/DeleteSkills" method="POST">
 	            	<div style="float: left; margin-left: 15px;">
@@ -109,7 +109,7 @@ if(request.getParameter("msg") != null){
 	        	<table id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%"  style="margin-top: -24px;">
                   <thead>
                     <tr style="height:50px;">
-                      <th style="text-align: center;">Delete All<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center;">Delete<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
                       <th style="text-align: center;">Name</th>
                       <th style="text-align: center;"> Status</th>
                       <th style="text-align: center;">Action</th>
@@ -134,7 +134,7 @@ if(request.getParameter("msg") != null){
 				   %>
 				   
 				   <%-- <td style="text-align: center; vertical-align: middle;width=20%" ><%=k %></td> --%>
-              	  <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
+              	  <td style="text-align: center; vertical-align: middle;width=20%"><strong><%=list.getName()%></strong></td>
               	  <%if(list.getStatus()==0){
                 	  %>
 		                    <td  id="" style='text-align: center;"'><a><img alt="" src="<%= request.getContextPath()%>/templates/images/deactive.gif"></a></td>
@@ -165,7 +165,7 @@ if(request.getParameter("msg") != null){
 								<div class="modal-header alert alert-primary">
          							 <h5 class="modal-title " align="center">
 										<i class="fa fa-fw fa-graduation-cap"></i>
-										<strong><%= list.getName()%></strong>
+										<strong>Edit Skill</strong>
 									</h5>
 									<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
 								</div>
@@ -219,7 +219,7 @@ if(request.getParameter("msg") != null){
 											%>
 										</div>
 																							<div style="text-align:center;">
-														<button type="submit" class="btn btn-primary" style="width:80px; height:40px; font-size:15px;" id="btnSubmit">Save 
+														<button type="submit" class="btn btn-primary" style="width:80px; height:40px; font-size:15px;" id="btnSubmit">Edit 
 														</button>
 														<button style="width:80px; height:40px;" type="button" class="btn btn-default" data-dismiss="modal">Close
 														</button>
