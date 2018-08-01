@@ -83,7 +83,7 @@ if( user.getRoleId() == 3) {
 			<div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">            
 			<form action=""  method="post">
 		  	<div class="form">
-		  		<table class="myTable table-hover table-compact"  width="100%">
+		  		<table style="border-collapse: collapse;"  class="myTable table table-bordered table-hover table-compact" width="100%">
 
 		  		<%
 		  		if(tong !=0){
@@ -117,7 +117,7 @@ if( user.getRoleId() == 3) {
 				    <%
 				    %>
 				    <td class="btnRegisister" style="text-align: center;" >
-				    	<button  type="button" name="cancel" class = " btn cancel "  style="border-color: #2e9ade; background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>	
+				    	<button  type="button" name="cancel" class = " btn cancel "  style="border-color: #ba1d44; background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</button>	
 				    </td>
 				  </tr>
 				  <%

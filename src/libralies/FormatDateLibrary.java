@@ -7,7 +7,7 @@ import java.util.Date;
 public class FormatDateLibrary {
 	
 	public static String FormatDateUntilToString(java.util.Date date) {
-		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd");
 		return sfd.format(date);
 	}
 	
@@ -19,9 +19,10 @@ public class FormatDateLibrary {
 	
 	public static java.sql.Date ConvertStringToDateSQL(String dateSTring) {
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date parsed;
         java.sql.Date sql = null;
+        //String[] date= dateSTring.split(" ");
 		try {
 			parsed = format.parse(dateSTring);
 	        sql = new java.sql.Date(parsed.getTime());

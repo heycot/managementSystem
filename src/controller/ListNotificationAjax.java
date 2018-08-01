@@ -77,7 +77,7 @@ public class ListNotificationAjax extends HttpServlet {
 						
 						
 						if(myMessages.getStatus()==0){
-							out.print("<li style='background-color: rgb(212, 237, 218)'>"
+							out.print("<li  class='newNoti hoverDropdown' >"
 									+ "<a style='text-decoration:none'>"
 											+ "<span style='font-size:15px; font-weight:bold; color:#343a40;' class='message'>"
 											+ myMessages.getTitle()
@@ -91,7 +91,7 @@ public class ListNotificationAjax extends HttpServlet {
 													+ "</li>");
 							}
 						else {
-							out.print("<li><a style='text-decoration:none' >"
+							out.print("<li class='seenNoti hoverDropdown'><a style='text-decoration:none'  >"
 											+ "<span style='font-size:15px; font-weight:bold; color:#343a40;' class='message'>"
 											+ myMessages.getTitle()
 											+ " </span>"

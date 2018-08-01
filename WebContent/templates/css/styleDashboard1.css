@@ -220,7 +220,6 @@ a.user-profile {
 
 
 ul.msg_list li {
-    background: #f7f7f7;
     padding: 10px 5px 10px;
     display: -ms-flexbox;
     display: flex;
@@ -309,4 +308,13 @@ ul.msg_list li a .message {
 		width: 160px important!;
 	}
 }
-
+.hoverDropdown:hover {
+	background-color: #8bcb93e6;
+}
+.newNoti{
+	background-color: rgb(212, 237, 218);
+}
+.seenNoti{
+	background: #f7f7f7;
+	
+}

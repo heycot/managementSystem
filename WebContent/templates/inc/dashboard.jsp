@@ -249,7 +249,7 @@
               <i id="btt" class="iconMail fa fa-envelope-o" style=" width: 25px;font-size: 20px;"></i>
               <span  id ="countNoti" class="badge bg-green">0</span>
             </a>
-             <ul id="result1" class="dropdown-menu msg_list pull-right" role="menu"></ul>
+             <ul id="result1" class="dropdown-menu msg_list dropHover pull-right" role="menu"></ul>
            </li>
                 
           <li class="nav-item nav-item1">
