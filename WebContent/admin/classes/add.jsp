@@ -49,14 +49,14 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>">
   	<div class="alert1 alert alert-primary" style="margin-left: -14px;"> 
         <i class="fa1 fa fa-fw fa-university" style="margin-left: 10px; font-size: 23px;"></i>
-		<strong class="lb_name" style="">Add new class </strong>
+		<strong class="lb_name" style="">Add Class </strong>
 		</div>
 			  <div>
 			  	<%
 				if(request.getAttribute("error") != null){
 				%>
 				<div class="alert alert-danger">
-				  <strong>Error!</strong><%= request.getAttribute("error")%>
+				  <strong>Error!</strong><%= request.getAttribute("error")%>.
 				</div>
 				<%
 				}
@@ -182,7 +182,7 @@ if( user.getRoleId() == 3) {
 	              <div style="height: 5%"></div>
 	               
 	             	<div style="text-align:center;margin-top:15px;">
-	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
+	           		<input id="btnSubmitAddClass" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
 	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
 	           		
 	           	</div> 
@@ -348,7 +348,7 @@ if( user.getRoleId() == 3) {
       						},
       						messages: {
       							name:{
-      								required: "Name of course is required",
+      								required: "Name of class is required",
       							}
       						}
       					});
@@ -363,7 +363,7 @@ if( user.getRoleId() == 3) {
       							document.getElementById("btnSubmit").disabled = false; 
       						}
       						else {
-      							$('#spnNameStatus').html('Name of course must be character.');
+      							$('#spnNameStatus').html('Name of class must be character.');
       							$('#spnNameStatus').css('color', 'red');
       							document.getElementById("btnSubmit").disabled = true; 
       						}

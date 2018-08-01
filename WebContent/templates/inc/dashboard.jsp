@@ -27,10 +27,10 @@
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleDashboard1.css">
   	<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleCommon.css">
   	
-  	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
- 	<script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script>
-  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<!-- 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+ --> <script type="text/javascript" src="<%= request.getContextPath()%>/templates/vendor/jquery/jquery.min.js"></script> 
+  	<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --> 
   	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
  	<script type="text/javascript" src="jquery.twbsPagination.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.js" type="text/javascript"></script>
@@ -72,7 +72,7 @@
     	%>
     	<!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" style="box-shadow: 2px 2px #c8c5c5;border-bottom: 1px solid #D9DEE4;background: rgb(237, 237, 237); height:74px;">
-          <a class="navbar-brand" href="<%= request.getContextPath()%>/" style="margin-top:0px;margin-left:17px;">
+          <a class="navbar-brand" href="<%= request.getContextPath()%>/" style="margin-top:0px; margin-left:0px;">
           	<img src="<%=request.getContextPath()%>/templates/images/enclave_logo.png" width="100%" class="imglogo"/>
           </a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

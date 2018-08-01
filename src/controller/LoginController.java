@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());	
 				}
 				if(user.getRoleId()==3){
-					response.sendRedirect(request.getContextPath()+"/trainee/edit?id="+user.getUserId());
+					response.sendRedirect(request.getContextPath()+"/trainee/index");
 				}
 			}
 	}

@@ -41,7 +41,7 @@ if( user.getRoleId() == 3) {
 				if(request.getAttribute("error") != null){
 				%>
 				<div class="alert alert-danger">
-				  <strong>Error!</strong><%= request.getAttribute("error")%>
+				  <strong>Error!</strong><%= request.getAttribute("error")%>.
 				</div>
 				<%
 				}
@@ -77,7 +77,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	
-              	<div class="form-group">
+              	<div class="form-group" style="margin-top: 26px;">
 	              	<label class="required" ><strong>Email:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email"  disabled="disabled"/>
 	              	<span id="spnEmailStatus"></span>
@@ -131,7 +131,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group" style="margin-top: 20px;">
-	              	<label class="required" ><strong>Birthday:</strong></label>
+	              	<label class="required" ><strong>Day of Birth:</strong></label>
 	              	<input class="form-control" id="txtname" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
@@ -145,17 +145,17 @@ if( user.getRoleId() == 3) {
 
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="newpass"  name="newpass" placeholder="New password" />
-                   <span id="spnPassStatus"></span>
+                   <span id="spnNewPassStatus"></span>
                    <br>
                    <input style="display: none" type="password" class="form-control" id ="confirmpass"  name="confirmpass" placeholder="Confirm new password" />
-                   <span id="spnPassStatus"></span>
+                   <span id="spnConPassStatus"></span>
                   </div>
               	</div>
               	<div style="clear: both"></div>
               	<div class="error" ></div>
         
 	           	<div style="text-align:center;margin-top:15px;">
-	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
+	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Update" />
 	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
 	           		
 	           	</div> 
@@ -321,15 +321,45 @@ if( user.getRoleId() == 3) {
       				}); 
 
       				$(document).ready(function() {
-      					$('#txtPassword').blur(function(e) {
+      					$('#oldpass').blur(function(e) {
           					if (validatePassword()) {
       							$('#spnPassStatus').html('');
       							$('#spnPassStatus').css('color', 'green');
       							enableSubmit();
       						}
       						else {
-      							$('#spnPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnPassStatus').html('Minimum eight characters, at least one letter, one number and one special character');
       							$('#spnPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+
+      				$(document).ready(function() {
+      					$('#newpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnNewPassStatus').html('');
+      							$('#spnNewPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnNewPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnNewPassStatus').css('color', 'red');
+      							enableSubmit();
+      						}
+       					});
+      				});
+
+      				$(document).ready(function() {
+      					$('#confirmpass').blur(function(e) {
+          					if (validatePassword()) {
+      							$('#spnConPassStatus').html('');
+      							$('#spnConPassStatus').css('color', 'green');
+      							enableSubmit();
+      						}
+      						else {
+      							$('#spnConPassStatus').html('minimum eight characters, at least one letter, one number and one special character');
+      							$('#spnConPassStatus').css('color', 'red');
       							enableSubmit();
       						}
        					});

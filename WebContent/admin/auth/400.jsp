@@ -22,9 +22,13 @@
 					%>
 					<a href="<%= request.getContextPath()%>/trainer/edit?id=<%= user.getUserId()%>">Home Page</a>
 					<%
-					} else {
+					} else if (user.getRoleId() == 2){
 					%>
 					<a href="<%= request.getContextPath()%>/trainee/edit?id=<%= user.getUserId()%>">Home Page</a>
+					<%
+					} else {
+					%>
+					<a href="<%= request.getContextPath()%>/trainee/index">Home Page</a>
 					<%
 					}
 					%>

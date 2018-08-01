@@ -41,7 +41,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary"  style="margin-bottom: -6px;padding-left: 10px;"> 
+       	<div class="alert1 alert alert-primary"  style="margin-bottom: 0px;padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-book" ></i>
 			<strong class="lb_name">Course </strong>
 		</div>
@@ -56,31 +56,31 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check = true;
-			  msg = "You added the course successfully"; break;
+			  msg = "You added the course successfully."; break;
 		  }
 		  case 2:{
 			  check = true;
-			  msg = "You edit the course successfully"; break;
+			  msg = "You edit the course successfully."; break;
 		  }
 		  case 3:{
 			  check = true;
-			  msg = "You deleted the course successfully"; break;
+			  msg = "You deleted the course successfully."; break;
 		  }
 		  case 4:{
 			  check = true;
-			  msg  = "You deleted courses successfully"; break;
+			  msg  = "You deleted courses successfully."; break;
 		  }
 		  case 6:{
 			  check = false;
-			  msg  = "Error! This course has already existed in the system"; break;
+			  msg  = "Error! This course has already existed in the system."; break;
 		  }
 		  case 7:{
 			  check = false;
-			  msg  = "Error! Please complate all information"; break;
+			  msg  = "Error! Please complate all information."; break;
 		  }
 		  case 0:{
 			  check = false;
-			  msg  = "Error! System have some problems. Please try again"; break;
+			  msg  = "Error! System have some problems. Please try again."; break;
 		  }
 		  case 5:{
 			  check = false;
@@ -178,7 +178,7 @@ if( user.getRoleId() == 3) {
             <form action="<%= request.getContextPath()%>/course/del"  method="post">
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left">
-	            	<a style="width:auto; font-size:15px; height:auto; margin-left: 14px; " class="btn btn-primary" href="#" data-toggle="modal" data-target="#addModal" role="button">Add new course</a>
+	            	<a style="width:auto; font-size:15px; height:auto; margin-left: 14px; " class="btn btn-primary" href="#" data-toggle="modal" data-target="#addModal" role="button">Add Course</a>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;" >
 	            	<input  class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these courses?')" id="deleteall" type="submit" value="Delete courses">
@@ -313,7 +313,7 @@ if( user.getRoleId() == 3) {
 									<div class="modal-header alert alert-primary">
           								<h5 class="modal-title" align="center">
 											<i style="size: 20px;" class="fa fa-fw fa-book"></i>
-											<strong>Add new course</strong>
+											<strong>Add Course</strong>
 										</h5>
 										<button type="button" class="close" style="color: red;" data-dismiss="modal">&times;</button>
 									</div>

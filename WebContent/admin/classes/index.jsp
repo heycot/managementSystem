@@ -21,7 +21,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId" >
     <div  class="card1 card mb-3" style="margin-top:0px;box-shadow: 2px 2px #c8c5c5;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary"  style="padding-left: 10px; margin-bottom: -6px;"> 
+       	<div class="alert1 alert alert-primary"  style="padding-left: 10px; margin-bottom: 0px;"> 
         	<i class="fa fa-university" style="font-size: 23px;" ></i>
 			<strong  class="lb_name">Class</strong>
 		</div>
@@ -36,23 +36,23 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check = true;
-			  msg = "You added class successfully"; break;
+			  msg = "You added class successfully."; break;
 		  }
 		  case 2:{
 			  check = true;
-			  msg = "You edit class successfully"; break;
+			  msg = "You edit class successfully."; break;
 		  }
 		  case 3:{
 			  check = true;
-			  msg = "You deleted class successfully"; break;
+			  msg = "You deleted class successfully."; break;
 		  }
 		  case 4:{
 			  check = true;
-			  msg  = "You deleted classes successfully"; break;
+			  msg  = "You deleted classes successfully."; break;
 		  }
 		  case 0:{
 			  check = false;
-			  msg  = "Error! System have some problems. Please try again"; break;
+			  msg  = "Error! System have some problems. Please try again."; break;
 		  }
 		  }
 		   if( check == false){
@@ -126,7 +126,7 @@ if( user.getRoleId() == 3) {
 	            <div style="margin-left: -15px; margin-bottom: 5px;">
 	            
 	            	<div style="float: left">
-	            		<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;" class="btn btn-primary" href="<%=request.getContextPath() %>/classes/add" role="button">Add new class</a>
+	            		<a style="width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;" class="btn btn-primary" href="<%=request.getContextPath() %>/classes/add" role="button">Add Class</a>
 	        		</div>
 	        		
 	            	<div style="float: left; margin-left: 15px;" >

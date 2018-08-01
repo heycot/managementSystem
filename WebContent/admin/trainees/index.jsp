@@ -31,7 +31,7 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>" id="toggler_containerId">
     <div  class="card1 card mb-3" style="margin-top: 0px;border-radius: 5px;box-shadow: 2px 2px #c8c5c5;">
 <!-- Nav -->
-       	<div class="alert1 alert alert-primary" style="margin-bottom: -6px;padding-left: 10px;"> 
+       	<div class="alert1 alert alert-primary" style="margin-bottom: 0px;padding-left: 10px;"> 
         	<i class="fa1 fa fa-fw fa-users" ></i>
 			<strong class="lb_name">Trainee </strong>
 		</div>
@@ -46,23 +46,23 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check = true;
-			  msg = "You added the trainee successfully"; break;
+			  msg = "You added the trainee successfully."; break;
 		  }
 		  case 2:{
 			  check = true;
-			  msg = "You edit the trainee successfully"; break;
+			  msg = "You edit the trainee successfully."; break;
 		  }
 		  case 3:{
 			  check = true;
-			  msg = "You deleted the trainee successfully"; break;
+			  msg = "You deleted the trainee successfully."; break;
 		  }
 		  case 4:{
 			  check = true;
-			  msg  = "You deleted trainees successfully"; break;
+			  msg  = "You deleted trainees successfully."; break;
 		  }
 		  case 0:{
 			  check = false;
-			  msg  = "Error! System have some problems. Please try again"; break;
+			  msg  = "Error! System have some problems. Please try again."; break;
 		  }
 		  }
 		   if( check == false){

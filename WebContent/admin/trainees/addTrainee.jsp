@@ -1,4 +1,4 @@
-
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,7 +28,8 @@ if( user.getRoleId() == 3) {
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
-
+LocalDate date= LocalDate.now().minusYears(18);
+String dateMax= date.toString();
 %>
 <div class="<%= classNameContent%>" <%= styleContent%> style="">
   <div class="<%= classNameContainer%>">
@@ -42,7 +43,7 @@ if( user.getRoleId() == 3) {
 		if(request.getAttribute("error") != null){
 		%>
 		<div class="alert alert-danger">
-		  <strong>Error!</strong><%= request.getAttribute("error")%>
+		  <strong>Error!</strong><%= request.getAttribute("error")%>.
 		</div>
 		<%
 		}
@@ -77,11 +78,12 @@ if( user.getRoleId() == 3) {
 	              	<div style="clear: both"></div>
               	</div>
               
-              	<div class="form-group" style="margin-top: 10px;">
-	              	<label class="required" ><strong>Username:</strong></label>&nbsp;
+              	<div class="form-group" style="margin-top: 36px;">
+	              	<label class="required" ><strong>User Name:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="User Name" />
 	              	<span id="spnNameStatus"></span>
               	</div>
+              	
               	
               	<div class="form-group">
 	              	<label class="required" ><strong>Password:</strong></label>&nbsp;
@@ -98,6 +100,13 @@ if( user.getRoleId() == 3) {
               </div>
               
               <div class="col-sm-6" style="float: right">
+              
+              
+              	<div class="form-group">
+	              	<label class="required" ><strong>Email:</strong></label>&nbsp;
+	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" />
+	              	<span id="spnEmailStatus"></span>
+              	</div>
               	
               	<div class="form-group">
 	              	  <label class="required" ><strong>Gender:</strong></label> <br>
@@ -107,7 +116,7 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" ><strong>Fullname:</strong></label>&nbsp;
+	              	<label class="required" ><strong>Full Name:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Full Name" />
 	              	<span id="spnFullNameStatus"></span>
               	</div>
@@ -125,15 +134,10 @@ if( user.getRoleId() == 3) {
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" ><strong>Birthday</strong></label>
-	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
+	              	<label class="required" ><strong>Day of Birth:</strong></label>
+	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth"  value="<%=dateMax%>" max="<%=dateMax%>" placeholder="Birthday" />
               	</div>
               	
-              	<div class="form-group">
-	              	<label class="required" ><strong>Email</strong></label>&nbsp;
-	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" />
-	              	<span id="spnEmailStatus"></span>
-              	</div>
               	
               </div> 
               
