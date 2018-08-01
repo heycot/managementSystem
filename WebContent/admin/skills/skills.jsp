@@ -148,7 +148,7 @@ if(request.getParameter("msg") != null){
               	  
 				  <td style="text-align: center; vertical-align: middle;">
                    <button type="button" class="btn btn-link" name="editSkill" style="" data-toggle="modal"
-                   data-target="#editModal<%=list.getSkillId()%>"><i class="fa fa-edit" style="font-size:16px; !important; "></i></button>
+                   data-target="#editModal<%=list.getSkillId()%>"><i class="fa fa-edit" style="font-size:20px; !important; "></i></button>
                     </td>
                    </tr>
                    </form>

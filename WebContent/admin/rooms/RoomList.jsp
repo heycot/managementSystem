@@ -138,7 +138,7 @@ if( user.getRoleId() == 3) {
                    %>  
                   <td style="text-align: center; vertical-align: middle;">
                    <button type="button" class="btn btn-link" name="editRoom" style="" data-toggle="modal"
-                    data-target="#editModal<%=rooms.getRoomId()%>"><i class="fa fa-edit" style="font-size:16px; margin-top: 1px !important; "></i></button>
+                    data-target="#editModal<%=rooms.getRoomId()%>"><i class="fa fa-edit" style="font-size:20px; margin-top: 1px !important; "></i></button>
                    </td>
                   </tr>
 <!-- Edit room -->

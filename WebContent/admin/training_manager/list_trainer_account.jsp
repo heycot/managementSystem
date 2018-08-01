@@ -35,23 +35,23 @@ if( user.getRoleId() == 3) {
 		  switch(msgInt) {
 		  case 1: {
 			  check = true;
-			  msg = "You added the trainer successfully"; break;
+			  msg = "You added the trainer successfully."; break;
 		  }
 		  case 2:{
 			  check = true;
-			  msg = "You edit the trainer successfully"; break;
+			  msg = "You edit the trainer successfully."; break;
 		  }
 		  case 3:{
 			  check = true;
-			  msg = "You deleted the trainer successfully"; break;
+			  msg = "You deleted the trainer successfully."; break;
 		  }
 		  case 4:{
 			  check = true;
-			  msg  = "You deleted trainers successfully"; break;
+			  msg  = "You deleted trainers successfully."; break;
 		  }
 		  case 0:{
 			  check = false;
-			  msg  = "Error! System have some problems. Please try again"; break;
+			  msg  = "Error! System have some problems. Please try again."; break;
 		  }
 		  }
 		   if( check == false){
@@ -113,7 +113,7 @@ if( user.getRoleId() == 3) {
             <form  class="formTable" action="<%=request.getContextPath() %>/trainer/del"  method="post">
                 <div style="margin-bottom: 5px;margin-top: 10px;">
 	            	<div class="divBtnAdd" style="float: left; margin-bottom: 10px;">
-	            		<a style="height:auto !important;" class="btnAdd btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+	            		<a style="height:auto !important;" class="btnAdd btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add trainer's account</a>
 	         		</div>
 	            	<div style="float: left; margin-left: 15px;">
 	            		<input class="btn btn-danger" style="" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainer">
@@ -169,9 +169,9 @@ if( user.getRoleId() == 3) {
 	                    %>
 	                    <td style="text-align: center; vertical-align: middle;">
                         	<a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>">
-                        		<i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i></a>
+                        		<i class="fa fa-edit" style="font-size: 20px;color:#007bff;margin-right:8px;"></i></a>
                         	<a  href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')">
-                        		<i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69);"></i></a>
+                        		<i class="fa fa-trash iconDel" style="font-size: 20px;color:rgb(220, 53, 69);"></i></a>
                      	</td>
                     </tr>
                   <%	

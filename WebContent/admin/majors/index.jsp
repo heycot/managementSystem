@@ -34,19 +34,19 @@ if( user.getRoleId() == 3) {
 					  switch(msgInt) {
 						  case 1: {
 							  check = true;
-							  msg = "You added the major successfully!"; break;
+							  msg = "You added the major successfully."; break;
 						  }
 						  case 2:{
 							  check = true;
-							  msg = "You edited the major successfully!"; break;
+							  msg = "You edited the major successfully."; break;
 						  }
 						  case 3:{
 							  check = true;
-							  msg = "You deleted the major successfully!"; break;
+							  msg = "You deleted the major successfully."; break;
 						  }
 						  case 4:{
 							  check = true;
-							  msg  = "You deleted majors successfully!"; break;
+							  msg  = "You deleted majors successfully."; break;
 						  }
 						  case 5:{
 							  check = false;
@@ -54,7 +54,7 @@ if( user.getRoleId() == 3) {
 						  }
 						  case 6:{
 							  check = false;
-							  msg  = "No changes!"; break;
+							  msg  = "Nothing is changed."; break;
 						  }
 						  case 0:{
 							  check = false;
@@ -155,7 +155,7 @@ if( user.getRoleId() == 3) {
            			<form class="formTable" action="<%= request.getContextPath()%>/major/del"  method="post" style="margin-top: 2px;">
           				<div style="">
             				<div class=""  style="float: left; margin-bottom: 15px;" >
-			            		<button style="height: auto !important;" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
+			            		<button style="height: auto !important;" type="button" class=" btnAdd btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add Major
 	            				</button>
 			        		</div>
 			            	<div style="float: left; margin-left: 15px;">
@@ -181,7 +181,7 @@ if( user.getRoleId() == 3) {
 		                <table  id="myTable" class="myTable table table-bordered" width="100%" id="dataTable" cellspacing="0" style="background:white;box-shadow: 2px 2px rgb(189, 189, 189);">
 							<thead>
 		                    	<tr>
-									<th style="text-align: center; font-size: medium;max-width: 100px;">Delete All
+									<th style="text-align: center; font-size: medium;max-width: 100px;">Delete
 			                      		<input 	style="display: inline-block; margin-left: 15px;vertical-align: middle; margin-top: -3px;" 
 			                      				type="checkbox" class="checkall">
 			                      	</th>
@@ -198,20 +198,21 @@ if( user.getRoleId() == 3) {
 								   		<input 	style="vertical-align: middle;" type="checkbox" name="major<%= list.getMajorId()%>" 
 								   				value="<%= list.getMajorId()%>" class="checkitem" id="chkitem"> 
 							   	   </td>
-				                   <td style="text-align: center; vertical-align: middle;width=20%"><%=list.getName()%></td>
+				                   <td style="text-align: center; vertical-align: middle;width=20%"><strong><%=list.getName()%></strong></td>
 								   <td style="text-align: center; vertical-align: middle;">
 								   
 										<a name="editMajor"  data-toggle="modal"
 				                    			data-target="#editModal<%=list.getMajorId()%>" style="">
-                                            <i class="fa fa-edit" style="font-size: 18px;color:#007bff"></i>
+                                            <i class="fa fa-edit" style="font-size: 20px;color:#007bff;  margin-right: 8px;"></i>
                                         </a>
 								   		<a 	class="" href="<%= request.getContextPath()%>/major/del?id=<%= list.getMajorId()%>" 
 				                    		onclick="return confirm('Do you want to delete major : <%= list.getName()%>?')" name="deleteMajor"  style="">
-					                    	<i class="fa fa-trash iconDel" style="font-size: 18px;color:rgb(220, 53, 69)"></i>
+					                    	<i class="fa fa-trash iconDel" style="font-size: 20px;color:rgb(220, 53, 69)"></i>
 					                    	
 				                    	</a>
 								   
-				                   </td>          
+				                   </td>
+				                            
 			                   </tr>
 <!-- Edit list -->
 			                  <div class="modal fade" id="editModal<%=list.getMajorId()%>" role="dialog">
@@ -255,7 +256,7 @@ if( user.getRoleId() == 3) {
 												<div class="modal-header alert alert-primary">
 													<h5 class="modal-title" align="center">
 														<i style="size: 20px;" class="fa fa-fw fa-plus-square"></i>
-														<strong>Add new major</strong>
+														<strong>Add Major</strong>
 													</h5>
 													<button type="button" class="close" style="color: red; float: right;" data-dismiss="modal">&times;</button>
 												</div>

@@ -181,7 +181,7 @@ String dateMax= date.toString();
 											</td>
 											<td>Experience:
 											<input type="number" name="experience" value="0"
-												placeholder="Experience Year" id="exp" min="1" max="50" style="width:150px; margin-top:3px;"/>
+												placeholder="Experience Year" id="exp" min="0" max="50" style="width:150px; margin-top:3px;"/>
 											</td>
 									</thead>
 									<tbody>

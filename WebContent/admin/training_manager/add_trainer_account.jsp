@@ -122,7 +122,7 @@ String dateMax= date.toString();
 								<input type="radio" name="gender" value="0"  style="margin-left: 10px;"> Other
 							</div>
 							<div class="form-group" style="margin-top: 33px; ">
-								<label class="required"><strong>Address</strong><span
+								<label class="required"><strong>Address: </strong><span
 									style="color: red"> *</span></label>
 								<input class="form-control" id="txtaddress" type="text"
 									name="address" value="" placeholder="Address" required="required"/>
@@ -150,7 +150,7 @@ String dateMax= date.toString();
 									
 									<div class="form-inline">
 									<select
-									class="form-inline" name="skillId" required="required" style="height: 32px;margin-right: 10px;">
+									class="form-inline" name="skillId" required="required" style="height: 38px;margin-right: 10px;">
 									<%
 							SkillBo skillBo= new SkillBo();
 							List<Skills> skills= skillBo.getSkills();
@@ -159,7 +159,7 @@ String dateMax= date.toString();
 									<option value="<%=skill.getSkillId()%>"><%=skill.getName()%></option>
 									<%}%>
 								</select> <input class="form-inline" id="txtname" type="number"
-									name="experience" placeholder="Experience Year" min="1"
+									name="experience" placeholder="Experience Year" min="0"
 									max="50" required="required"/>
 							</div>
 							</div>
