@@ -23,7 +23,7 @@ public class NotificationDao {
 	
 	public int addNotiTakedayoffS( String dateoff, String datechange,  String timechange ,String room, Classes classes , User trainer, int admin_id, int request_id, String note){
 		int result = 0;
-		String title = "Request day off and compensation schedule.";
+		String title = "Request day off and compensative day.";
 		String nameTrainer = trainer.getFullname();
 		String nameclasses = classes.getName();
 		String content = "";
@@ -222,7 +222,7 @@ public class NotificationDao {
 	
 	public int addNotiRequestTakeDateOffToTraineeOffClass(RequestTakDayOff dayOff){
 		int result = 0;
-		String title = "Change schedule learning : " + dayOff.getClass_name();
+		String title = "Change learning day : " + dayOff.getClass_name();
 		String content = "";
 		content+= "The "+dayOff.getClass_name()+" on " +"<b>"+ dayOff.getDate_off()+"</b> will be canceled."+"<br/> ";
 		content+="This class will be moved to: <br/>";

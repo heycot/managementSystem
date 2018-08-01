@@ -34,7 +34,7 @@ if( user.getRoleId() == 3) {
 			  if (tong==0){
 					 %>
 					 <div class="alert alert-danger" style="margin-top: 10px;">
-			    	<strong> No Waiting Class </strong>
+			    	<strong> There is no pending class. </strong>
 			  		</div>
 					 <% 
 				  }
@@ -86,7 +86,8 @@ if( user.getRoleId() == 3) {
 				  <%
 				  }
 				  %> 
-          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">        	<form  class="formTable" action=""  method="post">
+          <div class="table-responsive" style="padding-left: 13px;padding-right: 13px;padding-top: 18px;">      
+            	<form  class="formTable" action=""  method="post">
         	
 	        	<table style="" id="myTable"  class="myTable table table-bordered table-hover table-compact" width="100%">
 		  		<%
@@ -159,7 +160,7 @@ background-color: #c82333; " id="<%= classOpening.getClassId() %>" >Cancel</butt
 			 cancelClass(classWaiting_id);
 		});
 		function cancelClass(classOpening_id)
-		{	if (confirm('Are you sure you want to cancel this?')) {
+		{	if (confirm('Are you sure to cancel this class?')) {
 			$.ajax({
 				url: '/managementSystem/trainee/cancelClass?classOpening_id=' + classOpening_id,
 				type : 'POST',

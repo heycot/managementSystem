@@ -41,7 +41,7 @@ if( user.getRoleId() == 3) {
 			if (total ==0){
 				 %>
 				 <div class="alert alert-danger">
-	    	<strong> No Request </strong>
+	    	<strong> There is no request. </strong>
 		  		</div>
 				 <% 
 			  }
@@ -164,7 +164,7 @@ if( user.getRoleId() == 3) {
             			},
             			success: function(data){
             				// Xử lý thành công
-            				alert("You appored the request!");
+            				alert("You have just approved this request!");
             				$('#status' + id).html(data);
             			},
             			error: function (){

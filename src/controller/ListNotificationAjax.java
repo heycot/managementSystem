@@ -72,7 +72,7 @@ public class ListNotificationAjax extends HttpServlet {
 						if (countrows==5) {
 							break;
 						}
-						String content = myMessages.getNotiContent().substring(0,15);
+						String content = myMessages.getNotiContent().substring(0,8);
 						content+="...";
 						
 						

@@ -105,13 +105,16 @@ public class EditTrainerController extends HttpServlet {
 			if (ability.getSkillId() == skillId) {
 					ability.setExperience(experience);
 					abilityBo.editTrainerAbility(ability);
+					response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
+
 			}
 			else{
 				ability.setSkillId(skillId);
 				ability.setExperience(experience);
-				abilityBo.editTrainerAbility(ability);		
+				abilityBo.editTrainerAbility(ability);	
+				response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
+
 			}
-			response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
 		} else {
 			request.setAttribute("trainer", trainer);
 			request.setAttribute("ability", ability);

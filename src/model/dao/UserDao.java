@@ -939,7 +939,7 @@ public class UserDao {
 	
 	public ArrayList<User> getTrainees(int traineeRoleId) {
 		ArrayList<User> trainees = new ArrayList<>();
-		String sql = "select * from users where role_id = ? order by user_id desc ";
+		String sql = "select * from users where role_id = ?";
 		
 		conn = ConnectDBLibrary.getConnection();
 		try {

@@ -123,7 +123,7 @@ if( user.getRoleId() == 3) {
         
         <script type="text/javascript">
             $(function () {
-                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+                var pageSize = 15; // Hiển thị 10 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
                     $(".contentPage").each(function (n) {

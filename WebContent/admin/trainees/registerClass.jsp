@@ -29,7 +29,7 @@ if( user.getRoleId() == 3) {
 			  if (tong==0){
 				 %>
 				 <div class="alert alert-danger" style="margin-top: 10px;">
-		    	<strong> No Class to register </strong>
+		    	<strong> There is no class to register. </strong>
 		  		</div>
 				 <% 
 			  }
@@ -146,7 +146,7 @@ if( user.getRoleId() == 3) {
 		});
 		function regiterClass(classOpening_id)
 		{	
-			if(confirm("Are you sure register class?")){
+			if(confirm("Are you sure register this class?")){
 				$.ajax({
 					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + classOpening_id,
 					type : 'POST',
@@ -167,7 +167,7 @@ if( user.getRoleId() == 3) {
 		
 		function registerClassIcon(class_id){
 			alert("now");
-			if(confirm("Are you sure register class?")){
+			if(confirm("Are you sure register this class?")){
 				$.ajax({
 					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + class_id,
 					type : 'POST',
@@ -183,7 +183,6 @@ if( user.getRoleId() == 3) {
 	});
 </script>
 <div id="post_modal_noti" class ="modal fade">
-		<div class = "modal-dialog">
 		
 		
 		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail_noti">

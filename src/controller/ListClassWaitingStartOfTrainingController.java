@@ -27,7 +27,7 @@ public class ListClassWaitingStartOfTrainingController extends HttpServlet {
 				UserBo userBo = new UserBo();
 				ArrayList<ClassWaiting> list = userBo.getClassWaitingStartOfTrainee(user.getUserId());
 				request.setAttribute("list", list);				
-				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/classwaitstart.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/trainees/classwaitstart2.jsp");
 				rd.forward(request, response);
 				
 			}  else {

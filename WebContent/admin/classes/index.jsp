@@ -169,7 +169,7 @@ if( user.getRoleId() == 3) {
 		        	<div  id="waiting" class="tab-pane active in">
 		        	<script type="text/javascript">
 			            $(function () {
-			                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+			                var pageSize = 25; // Hiển thị 10 sản phẩm trên 1 trang
 			                showPage = function (page) {
 			                    $(".contentPageWait").hide();
 			                    $(".contentPageWait").each(function (n) {
@@ -201,6 +201,7 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Name</th>
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Trainer</th>
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Course</th>
+		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Room</th>
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Time Of Date</th>
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;vertical-align: middle;">Duration (hours)</th>
@@ -227,6 +228,7 @@ if( user.getRoleId() == 3) {
 			                    }
 			                    %>
 			                    <td  style="vertical-align: middle;"><%= classIndex.getNameCourse()%></td>
+			                    <td  style="vertical-align: middle;"><%= classIndex.getNameRoom()%></td>
 			                    <td  style="vertical-align: middle;"><%= classIndex.getTimeOfDate()%></td>
 			                    <%
 			                    String openClass = "";
@@ -270,7 +272,7 @@ if( user.getRoleId() == 3) {
 		       		 <div  id="openning" class="tab-pane fade">
 		       		 	<script type="text/javascript">
 				            $(function () {
-				                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+				                var pageSize = 20; // Hiển thị 10 sản phẩm trên 1 trang
 				                showPage = function (page) {
 				                    $(".contentPageOpen").hide();
 				                    $(".contentPageOpen").each(function (n) {
@@ -302,6 +304,7 @@ if( user.getRoleId() == 3) {
 		                      <th style="text-align: center; font-size: medium;">Name</th>
 		                      <th style="text-align: center; font-size: medium;">Trainer</th>
 		                      <th style="text-align: center; font-size: medium;">Course</th>
+		                      <th style="text-align: center; font-size: medium;">Room</th>
 		                      <th style="text-align: center; font-size: medium;">Time Of Date</th>
 		                      <th style="text-align: center; font-size: medium;">Day Of Week</th>
 		                      <th style="text-align: center; font-size: medium;">Duration (hours)</th>
@@ -331,6 +334,7 @@ if( user.getRoleId() == 3) {
 			                    }
 			                    %>
 			                    <td  style="vertical-align: middle;"><%= classIndex.getNameCourse()%></td>
+			                    <td  style="vertical-align: middle;"><%= classIndex.getNameRoom()%></td>
 			                    <td  style="vertical-align: middle;"><%= classIndex.getTimeOfDate()%></td>
 			                    <%
 			                    String openClass = "";
@@ -370,7 +374,7 @@ if( user.getRoleId() == 3) {
 		       		 <div  id="finished" class="tab-pane fade">
 		       		 <script type="text/javascript">
 				            $(function () {
-				                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
+				                var pageSize = 20; // Hiển thị 10 sản phẩm trên 1 trang
 				                showPage = function (page) {
 				                    $(".contentPageFinish").hide();
 				                    $(".contentPageFinish").each(function (n) {

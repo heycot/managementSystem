@@ -25,11 +25,11 @@ if( user.getRoleId() == 3) {
   <div class="<%= classNameContainer%>">
         <div class="card1 card mb-3 divNoti">
         <div class="alert1 alert alert-primary" style=""> 
-             <i class="fa1 fa fa-fw fa-users" ></i>
+             <i class="fa1 fa fa-fw fa-bell" ></i>
 		    <strong class="lb_name">Notification</strong>
 		 </div>
        		
-		<div>
+		<div style="background-color: white ">
 			<div class="box-all-noti" style="margin-left:auto; margin-right:auto;">
 				<ul class="list-noti" style="width:50%; ">
 				
