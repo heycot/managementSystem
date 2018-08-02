@@ -169,7 +169,7 @@ if( user.getRoleId() == 3) {
 			alert("now");
 			if(confirm("Are you sure register this class?")){
 				$.ajax({
-					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + class_id,
+					url: '<%=request.getContextPath()%>/RegisterClassControllerAjax?classOpening_id=' + class_id,
 					type : 'POST',
 					success:function(data)
 					{
@@ -183,11 +183,7 @@ if( user.getRoleId() == 3) {
 	});
 </script>
 <div id="post_modal_noti" class ="modal fade">
-		
-		
-		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail_noti">
-		</div>
-		
+	<div style="margin-top:10%; margin-right: auto; margin-left: auto; width: 500px" class="modal-content"  id = "post_detail_noti" >
 	</div>
 </div>
 <%@include file="/templates/inc/footer.jsp" %> 

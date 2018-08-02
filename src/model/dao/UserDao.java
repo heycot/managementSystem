@@ -1461,10 +1461,10 @@ public class UserDao {
 		conn=ConnectDBLibrary.getConnection();
 		String sql = "select msg_id, messages.user_id, notification.title, messages.noti_id , messages.status , notification.content, notification.createdDate "
 				+ "FROM messages "
-			+ "inner join requestDayOff on requestDayOff.request_id = messages.request_id  "
+			+ "inner join requestdayoff on requestdayoff.request_id = messages.request_id  "
 				+ "INNER JOIN users on messages.user_id = users.user_id   "
 				+ "INNER JOIN notification ON notification.id = messages.noti_id  "
-				+ "where messages.user_id= ?  and requestDayOff.status = 0 order by messages.msg_id DESC;";
+				+ "where messages.user_id= ?  and requestdayoff.status = 0 order by messages.msg_id DESC;";
 		try {
 			System.out.println(sql);
 			pst = conn.prepareStatement(sql);

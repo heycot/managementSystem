@@ -19,7 +19,7 @@ public class RequestTakeDateOffDao {
 		conn = ConnectDBLibrary.getConnection();
 		int kq = 0;
 		try{
-			String sql= "insert into requestDayOff values(0,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql= "insert into requestdayoff values(0,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, classes.getClassId());
@@ -45,7 +45,7 @@ public class RequestTakeDateOffDao {
 	public int changeStatusRequestTakeDayOff(int request_id, int status){
 		int kq=0;
 		conn=ConnectDBLibrary.getConnection();
-		String sql = "UPDATE requestDayOff SET status = 1 WHERE request_id = ?";
+		String sql = "UPDATE requestdayoff SET status = 1 WHERE request_id = ?";
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, request_id);
@@ -62,10 +62,10 @@ public class RequestTakeDateOffDao {
 	
 	public ArrayList<RequestTakDayOff> getRequestTakeaDayOffs(){
 		ArrayList<RequestTakDayOff> listRequest = new ArrayList<>();
-		String sql = "select request_id,requestDayOff.class_id,  classes.name, users.fullname, date_off, date_change,time_change,"
-				+ " rooms.name, requestDayOff.status from requestDayOff inner join classes "
-				+ "on classes.class_id = requestDayOff.class_id "
-				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id where requestDayOff.status = 0  order by requestDayOff.request_id DESC  ;";
+		String sql = "select request_id,requestdayoff.class_id,  classes.name, users.fullname, date_off, date_change,time_change,"
+				+ " rooms.name, requestdayoff.status from requestdayoff inner join classes "
+				+ "on classes.class_id = requestdayoff.class_id "
+				+ "inner join rooms on rooms.room_id = requestdayoff.room_id inner join users on users.user_id = requestdayoff.trainer_id where requestdayoff.status = 0  order by requestdayoff.request_id DESC  ;";
 		
 		conn = ConnectDBLibrary.getConnection();
 		try {
@@ -96,10 +96,10 @@ public class RequestTakeDateOffDao {
 	
 	public RequestTakDayOff  getRequestByID(int request_id){
 		RequestTakDayOff requestTakDayOff = new RequestTakDayOff();
-		String sql = "select request_id,requestDayOff.class_id,  classes.name , requestDayOff.trainer_id, users.fullname, date_off, date_change,time_change,"
-				+ " rooms.name as nameroom, requestDayOff.status ,requestDayOff.note  from requestDayOff inner join classes "
-				+ "on classes.class_id = requestDayOff.class_id "
-				+ "inner join rooms on rooms.room_id = requestDayOff.room_id inner join users on users.user_id = requestDayOff.trainer_id where request_id = ? ;";
+		String sql = "select request_id,requestdayoff.class_id,  classes.name , requestdayoff.trainer_id, users.fullname, date_off, date_change,time_change,"
+				+ " rooms.name as nameroom, requestdayoff.status ,requestdayoff.note  from requestdayoff inner join classes "
+				+ "on classes.class_id = requestdayoff.class_id "
+				+ "inner join rooms on rooms.room_id = requestdayoff.room_id inner join users on users.user_id = requestdayoff.trainer_id where request_id = ? ;";
 		conn = ConnectDBLibrary.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class RequestTakeDateOffDao {
 	}
 	public int getIdOfRequestNearest(){
 		int kq=0;
-		String sql = "select * from requestDayOff order by request_id desc limit 1;";
+		String sql = "select * from requestdayoff order by request_id desc limit 1;";
 		conn = ConnectDBLibrary.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);

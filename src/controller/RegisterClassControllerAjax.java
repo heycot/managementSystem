@@ -64,7 +64,7 @@ public class RegisterClassControllerAjax extends HttpServlet {
 							" <button type='button' class='close' style='color: red;' data-dismiss='modal'>&times;</button>" + 
 							" </div>";
 					out.println(result);
-					out.print("</div> <div class ='modal-body' >");
+					out.print(" <div class ='modal-body' >");
 					out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > There is a conflict with class: "+ classConflicted.getClassName() +"</label>");
 					out.println("</div> <div class='modal-footer'><button type='button' style=' background:#2e9ade; color: white; ' class ='btn btn-infor' data-dismiss='modal'>Close</button> </div>");
 				
@@ -79,7 +79,7 @@ public class RegisterClassControllerAjax extends HttpServlet {
 								" <button type='button' class='close' style='color: red;' data-dismiss='modal'>&times;</button>" + 
 								" </div>";
 						out.println(result);
-						out.print("</div> <div class ='modal-body' >");
+						out.print(" <div class ='modal-body' >");
 						out.println("<label style='font-size:15px; color: #343a40;; padding: 10px 5px 10px;' > You registed class: "+ classregisted.getClassName() +"</label>");
 						out.println("</div> <div class='modal-footer'><button type='button' style=' background:#2e9ade; color: white; ' class ='btn btn-infor' data-dismiss='modal'>Close</button> </div>");
 					

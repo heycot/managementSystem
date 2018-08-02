@@ -109,7 +109,7 @@ public class NotificationDao {
 		conn = ConnectDBLibrary.getConnection();
 		int kq = 0;
 		try{
-			String sql= "insert into requestDayOff(class_id, trainer_id, date_off, date_change, time_change, room_id, status, note) values(?,?,?,?,?,?,?,?)";
+			String sql= "insert into requestdayoff(class_id, trainer_id, date_off, date_change, time_change, room_id, status, note) values(?,?,?,?,?,?,?,?)";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, classes.getClassId());
