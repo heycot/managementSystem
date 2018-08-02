@@ -84,13 +84,13 @@ if( user.getRoleId() == 3) {
               	</div>
               
               	<div class="form-group">
-	              	<label class="required" ><strong>UserName:</strong></label>&nbsp;
+	              	<label class="required" ><strong>User Name:</strong></label>&nbsp;
 	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username"  />
 	              	<span id="spnNameStatus"></span>
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" ><strong>FullName:</strong></label>&nbsp;
+	              	<label class="required" ><strong>Full Name:</strong></label>&nbsp;
 
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
 	              	<span id="spnFullNameStatus"></span>

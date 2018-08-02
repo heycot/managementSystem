@@ -1190,7 +1190,11 @@ public class UserDao {
 	
 	public ArrayList<ClassWaiting> getClassCanRegisterOfTrainee(int trainee_id){
 		ArrayList<ClassWaiting> list = new ArrayList<>();
-		String sql = "SELECT classes.class_id, classes.name, classes.date_of_week, classes.time_of_date, courses.duration, classes.trainer_id FROM mcts.classes inner join courses on classes.course_id = courses.course_id where class_id != all (select class_id from waiting where user_id = ? ) and class_id != all (select class_id from learning where user_id = ? ) and courses.status = 0 ;";
+		String sql = "SELECT classes.class_id, classes.name, classes.date_of_week, "
+				+ "classes.time_of_date, courses.duration, classes.trainer_id FROM mcts.classes "
+				+ "inner join courses on classes.course_id = courses.course_id "
+				+ "where class_id != all (select class_id from waiting where user_id = ? ) and class_id != all (select class_id from learning where user_id = ? ) ;";
+//				+ "and courses.status = 0 ;";
 		conn = ConnectDBLibrary.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);

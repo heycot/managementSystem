@@ -5,6 +5,10 @@
 <%@include file="/templates/inc/dashboard.jsp" %>  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleMajor.css">
 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
@@ -167,7 +171,7 @@ if( user.getRoleId() == 3) {
 	        	</div>
 	        	<div class="tab-content">
 		        	<div  id="waiting" class="tab-pane active in">
-		        	<script type="text/javascript">
+		        	<%-- <script type="text/javascript">
 			            $(function () {
 			                var pageSize = 25; // Hiển thị 10 sản phẩm trên 1 trang
 			                showPage = function (page) {
@@ -193,7 +197,7 @@ if( user.getRoleId() == 3) {
 			                });
 			                console.info(obj.data());
 			            });
-			        </script>
+			        </script> --%>
 		        		<table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
                   			<thead>
 		                    <tr>
@@ -265,12 +269,18 @@ if( user.getRoleId() == 3) {
                 	</table>
 	                	
 	                <div id="pager">
-						<ul id="paginationWait" class="pagination-sm"></ul>
+						<ul id="paginationFinish" class="pagination-sm pagination">
+							<li class="page-item first disabled"><a href="#" class="page-link">First</a></li>
+							<li class="page-item prev disabled"><a href="#" class="page-link">Previous</a></li>
+							<li class="page-item active"><a href="#" class="page-link">1</a></li>
+							<li class="page-item next disabled"><a href="#" class="page-link">Next</a></li>
+							<li class="page-item last disabled"><a href="#" class="page-link">Last</a></li>
+						</ul>
 					</div>
 		       		</div>
 		       		 
 		       		 <div  id="openning" class="tab-pane fade">
-		       		 	<script type="text/javascript">
+		       		 	<%-- <script type="text/javascript">
 				            $(function () {
 				                var pageSize = 20; // Hiển thị 10 sản phẩm trên 1 trang
 				                showPage = function (page) {
@@ -296,7 +306,7 @@ if( user.getRoleId() == 3) {
 				                });
 				                console.info(obj.data());
 				            });
-				        </script>
+				        </script> --%>
 				        <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
 		                  <thead>
 		                    <tr>
@@ -367,12 +377,18 @@ if( user.getRoleId() == 3) {
                		 </table>
                		 
 	                <div id="pager">
-						<ul id="paginationOpen" class="pagination-sm"></ul>
+						<ul id="paginationFinish" class="pagination-sm pagination">
+							<li class="page-item first disabled"><a href="#" class="page-link">First</a></li>
+							<li class="page-item prev disabled"><a href="#" class="page-link">Previous</a></li>
+							<li class="page-item active"><a href="#" class="page-link">1</a></li>
+							<li class="page-item next disabled"><a href="#" class="page-link">Next</a></li>
+							<li class="page-item last disabled"><a href="#" class="page-link">Last</a></li>
+						</ul>
 					</div>
 		       		</div>
 		       		 
 		       		 <div  id="finished" class="tab-pane fade">
-		       		 <script type="text/javascript">
+		       		 <%-- <script type="text/javascript">
 				            $(function () {
 				                var pageSize = 20; // Hiển thị 10 sản phẩm trên 1 trang
 				                showPage = function (page) {
@@ -398,7 +414,7 @@ if( user.getRoleId() == 3) {
 				                });
 				                console.info(obj.data());
 				            });
-				        </script>
+				        </script> --%>
 				        <table style="border-collapse: collapse;" id="myTable" class="myTable table table-bordered table-hover table-compact" width="100%">
 		                  <thead>
 		                    <tr>
@@ -470,7 +486,13 @@ if( user.getRoleId() == 3) {
                 	</table>
                 	
                 <div id="pager">
-					<ul id="paginationFinish" class="pagination-sm"></ul>
+						<ul id="paginationFinish" class="pagination-sm pagination">
+							<li class="page-item first disabled"><a href="#" class="page-link">First</a></li>
+							<li class="page-item prev disabled"><a href="#" class="page-link">Previous</a></li>
+							<li class="page-item active"><a href="#" class="page-link">1</a></li>
+							<li class="page-item next disabled"><a href="#" class="page-link">Next</a></li>
+							<li class="page-item last disabled"><a href="#" class="page-link">Last</a></li>
+						</ul>
 				</div>
 		       	</div>
 	        	</div>
