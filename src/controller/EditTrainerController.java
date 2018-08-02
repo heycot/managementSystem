@@ -68,7 +68,6 @@ public class EditTrainerController extends HttpServlet {
 		Ability ability = abilityBo.getAbilityByUserId(userID);
 		
 		if ( !"".equals(request.getParameter("oldpass"))) { 
-			
 			if (trainer.getPassword().equals(MD5Library.md5(request.getParameter("oldpass")))) {
 				trainer.setPassword(MD5Library.md5(request.getParameter("newpass")));
 			} else {
@@ -79,7 +78,6 @@ public class EditTrainerController extends HttpServlet {
 			}
 		}
 		else if (userBo.checkUsernameAlreadyExistsEdit(userName, trainer.getUserId())) {
-			System.out.println("check usernmae");
 			request.setAttribute("trainer", trainer);
 			request.setAttribute("ability", ability);
 
@@ -96,21 +94,21 @@ public class EditTrainerController extends HttpServlet {
 			request.setAttribute("error", " Please add file jpg, png, gif");
 			request.getRequestDispatcher("/admin/training_manager/edit_trainer_account.jsp").forward(request, response);
 			
-		} else if (userBo.checkAddTraineeAvatar(request.getPart("avatar"), request) == 2) {
+		} else{
 			trainer.setAvatar(userBo.addTraineeAvatar(request.getPart("avatar"), request));			
 		}
 		
-		
-		else if(userBo.editTrainer(trainer) > 0) {
+		if(userBo.editTrainer(trainer) > 0) {
 			if (ability.getSkillId() == skillId) {
 					ability.setExperience(experience);
+					ability.setCourseId(5);
 					abilityBo.editTrainerAbility(ability);
 					response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
-
 			}
 			else{
 				ability.setSkillId(skillId);
 				ability.setExperience(experience);
+				ability.setCourseId(5);
 				abilityBo.editTrainerAbility(ability);	
 				response.sendRedirect(request.getContextPath() + "/trainer/index?msg=2");
 

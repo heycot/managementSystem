@@ -106,7 +106,6 @@ String dateMax= date.toString();
 						</div>
 
 						<div class="col-md-6">
-						<br>
 							<div class="form-group" style="margin-top: 20px; ">
 								<label class="required"><strong>Full Name:</strong><span
 									style="color: red"> *</span></label>
@@ -282,7 +281,7 @@ String dateMax= date.toString();
 	$(document).ready(function() {
 		$('#txtfullname').blur(function(e) {
 			var fullName = $('#txtfullname').val();
-			if (validateStrings(fullName)) {
+			if (validateFullName(fullName)) {
 				$('#spnFullNameStatus').html('');
 				$('#spnFullNameStatus').css('color', 'green');
 				document.getElementById("btnSubmit").disabled = false;
@@ -332,10 +331,9 @@ String dateMax= date.toString();
 	}
 
 	function validateFullName(string) {
-			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9(\s)]+$/;
-			//var pattern = /^[a-zA-Z]+$/;
+			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!0-9]+$/;
 			return $.trim(string).match(pattern) ? true : false;
-		}
+	}
 
 	function validateAddress(string) {
 			var pattern = /^[^`~<>@#%&\*\$\{\}\[\]\(\)\+\=?\|\;_!]+$/;

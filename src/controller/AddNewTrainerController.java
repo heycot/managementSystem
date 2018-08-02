@@ -74,7 +74,7 @@ public class AddNewTrainerController extends HttpServlet {
 		
 		User trainer = new User(0, userName, password, fullName, dateOfBirth,
 				email, createdDate, 1, gender, address, phone, "", avatar);
-		Ability ability= new Ability(0,userBo.getLastUserId()+1, skillId, experience, 0);
+		Ability ability= new Ability(0,userBo.getLastUserId()+1, skillId, experience, 7);
 		
 		if(!password.equals(confirmPass)){
 			request.setAttribute("error", "Password is not matching.");
