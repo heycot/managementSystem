@@ -173,5 +173,13 @@ public class ClassesBo {
 		return false;
 	}
 
+	public Classes getClassById(int id) {
+		ClassesDao classDao = new ClassesDao();
+		return classDao.getClassById(id);
+	}
 
+	public int reopenClass(Classes classRe) {
+		ClassesDao classDao = new ClassesDao();
+		return classDao.reopenClass(classRe);
+	}
 }

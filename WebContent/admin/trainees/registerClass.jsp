@@ -29,36 +29,36 @@ if( user.getRoleId() == 3) {
 			  if (tong==0){
 				 %>
 				 <div class="alert alert-danger" style="margin-top: 10px;">
-		    	<strong> There is no class to register. </strong>
+		    	<strong> No Class to register </strong>
 		  		</div>
 				 <% 
 			  }
 			%>
 			<script type="text/javascript">
-            $(function () {
-                var pageSize = 10; // Hiển thị 6 sản phẩm trên 1 trang
-                showPage = function (page) {
-                    $(".contentPage").hide();
-                    $(".contentPage").each(function (n) {
-                        if (n >= pageSize * (page - 1) && n < pageSize * page)
-                            $(this).show();
-                    });
-                }
-                showPage(1);
-                ///** Cần truyền giá trị vào đây **///
-                var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
-                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
-                var iTotalPages = Math.ceil(totalRows / pageSize);
-                var obj = $('#pagination').twbsPagination({
-                    totalPages: iTotalPages,
-                    visiblePages: btnPage,
-                    onPageClick: function (event, page) {
-                        console.info(page);
-                        showPage(page);
-                    }
-                });
-                console.info(obj.data());
-            });
+			 $(function () {
+	                var pageSize = 10; // Hiển thị 6 sản phẩm trên 1 trang
+	                showPage = function (page) {
+	                    $(".contentPage").hide();
+	                    $(".contentPage").each(function (n) {
+	                        if (n >= pageSize * (page - 1) && n < pageSize * page)
+	                            $(this).show();
+	                    });
+	                }
+	                showPage(1);
+	                ///** Cần truyền giá trị vào đây **///
+	                var totalRows = <%= tong%>; // Tổng số sản phẩm hiển thị
+	                var btnPage = 5; // Số nút bấm hiển thị di chuyển trang
+	                var iTotalPages = Math.ceil(totalRows / pageSize);
+	                var obj = $('#pagination').twbsPagination({
+	                    totalPages: iTotalPages,
+	                    visiblePages: btnPage,
+	                    onPageClick: function (event, page) {
+	                        console.info(page);
+	                        showPage(page);
+	                    }
+	                });
+	                console.info(obj.data());
+	            });
         </script>
            <div class="card-body">
            <div style="float: right; width: 25%;margin-top: 20px;margin-bottom: 20px;margin-right: 13px;">
@@ -146,7 +146,7 @@ if( user.getRoleId() == 3) {
 		});
 		function regiterClass(classOpening_id)
 		{	
-			if(confirm("Are you sure register this class?")){
+			if(confirm("Are you sure register class?")){
 				$.ajax({
 					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + classOpening_id,
 					type : 'POST',
@@ -167,9 +167,9 @@ if( user.getRoleId() == 3) {
 		
 		function registerClassIcon(class_id){
 			alert("now");
-			if(confirm("Are you sure register this class?")){
+			if(confirm("Are you sure register class?")){
 				$.ajax({
-					url: '<%=request.getContextPath()%>/RegisterClassControllerAjax?classOpening_id=' + class_id,
+					url: '/managementSystem/RegisterClassControllerAjax?classOpening_id=' + class_id,
 					type : 'POST',
 					success:function(data)
 					{
@@ -183,7 +183,12 @@ if( user.getRoleId() == 3) {
 	});
 </script>
 <div id="post_modal_noti" class ="modal fade">
-	<div style="margin-top:10%; margin-right: auto; margin-left: auto; width: 500px" class="modal-content"  id = "post_detail_noti" >
+		<div class = "modal-dialog">
+		
+		
+		<div style="margin:auto;margin-top:60%;" class="modal-content"  id = "post_detail_noti">
+		</div>
+		
 	</div>
 </div>
 <%@include file="/templates/inc/footer.jsp" %> 

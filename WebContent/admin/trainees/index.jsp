@@ -182,7 +182,7 @@ if( user.getRoleId() == 3) {
                       	<input style="display: inline-block; " type="checkbox" class="checkall">
                    	  </th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Avatar</th>
-                      <th style="text-align: center; font-size: medium; vertical-align:middle;">UserName</th>
+                      <th style="text-align: center; font-size: medium; vertical-align:middle;">User Name</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Email</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Phone</th>
                       <th style="text-align: center; font-size: medium; vertical-align:middle;">Status</th>

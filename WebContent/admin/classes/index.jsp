@@ -54,6 +54,10 @@ if( user.getRoleId() == 3) {
 			  check = true;
 			  msg  = "You deleted classes successfully."; break;
 		  }
+		  case 5:{
+				check = true;
+				msg  = "You reopen class successfully."; break;
+		  }
 		  case 0:{
 			  check = false;
 			  msg  = "Error! System have some problems. Please try again."; break;
@@ -454,11 +458,13 @@ if( user.getRoleId() == 3) {
 			                    <td  style="vertical-align: middle;"><%= classIndex.getTimeOfDate()%></td>
 			                    <%
 			                    String openClass = "";
-			                    String colorStatus = "color: #999999";
-			                    if ( classIndex.getStudents() >= 5) {
-			                    	openClass = "changeStatusClass( " + classIndex.getClassId() + ", 0);";
-			                    	colorStatus = "";
-			                    }
+			                	String link = "javascript:void(0)";
+			                	String colorStatus = "color: #999999";
+			                	if ( classIndex.getStudents() >= 5) {
+				                	openClass = "changeStatusClass( " + classIndex.getClassId() + ", 2);";
+				                	colorStatus = "";
+				                	link = request.getContextPath() + "/classes/reopen?id=" + classIndex.getClassId();
+				                }
 			                    String[] date = classIndex.getDateOfWeek().split(",");
 			                    String dateStr = "";
 			                    for (int j = 0; j < date.length; j++) {
@@ -476,7 +482,7 @@ if( user.getRoleId() == 3) {
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getTotalStudents()%></td>
 			                    <td  style="text-align: center; vertical-align: middle;"><%= classIndex.getStudents()%></td>
 		                    	<td  style="text-align: center; vertical-align: middle;">
-		                    		<a href="javascript:void(0)" onclick="<%= openClass%>" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; <%= colorStatus%>"></i></a>
+									<a href="<%= link%>" onclick="<%= openClass%>" ><i class="fa fa-check" aria-hidden="true" style="font-size:20px; <%= colorStatus%>"></i></a>
 		                     	</td>
 		                    </tr>
 		                  <%	

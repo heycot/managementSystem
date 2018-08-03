@@ -17,6 +17,7 @@ import model.bean.Results;
 import model.bean.Schedule;
 import model.bean.ScheduleOfTrainee;
 import model.bean.User;
+import sun.text.resources.cldr.chr.FormatData_chr;
 
 public class UserDao {
 	private Connection conn;
@@ -1510,8 +1511,10 @@ public class UserDao {
 				Ability albility = new Ability(rs.getInt("ability_id"), rs.getInt("user_id"), rs.getInt("id_skill") , rs.getInt("ex"), rs.getInt("c_id"));
 				trainer.setAbility(albility);
 						
-				trainers.add(trainer);
-			}
+				if( checkTrainerInArr(trainers, trainer.getUserId()) == false) {
+					trainers.add(trainer);
+				}
+			} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1520,5 +1523,15 @@ public class UserDao {
 		}
 		
 		return trainers;
+	}
+	
+	public boolean checkTrainerInArr(ArrayList<User> trainers, int trainerId) {
+		for (User user : trainers) {
+			if ( user.getUserId() == trainerId) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

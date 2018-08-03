@@ -405,4 +405,57 @@ public class ClassesDao {
 		return kq;
 	}
 	
+	public Classes getClassById(int id) {
+		Classes classE = new Classes();
+		
+		conn  = ConnectDBLibrary.getConnection();
+		String sql = "select classes.class_id, classes.name, classes.status, classes.created_at, time_of_date, date_of_week, count_lesson, courses.course_id, courses.name as courseName, trainer_id " + 
+				", courses.duration, classes.count_lesson, users.username as nameTrainer, classes.room_id, rooms.name as nameRoom, count(learning.user_id) as students from classes " +
+				"inner join courses on classes.course_id = courses.course_id  left join learning on classes.class_id = learning.class_id " + 
+				"inner join users on classes.trainer_id = users.user_id  inner join rooms on classes.room_id = rooms.room_id where classes.status = 1 group by classes.class_id" +
+				" order by classes.class_id desc";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				classE = new Classes(rs.getInt("class_id"), rs.getInt("course_id"), rs.getInt("trainer_id"), rs.getDate("created_at"), rs.getString("time_of_date"),
+									rs.getString("date_of_week"), rs.getInt("count_lesson"), rs.getInt("room_id"), rs.getString("name"), rs.getInt("status"), 
+									rs.getString("nameTrainer"),rs.getString("courseName"),  rs.getInt("duration"), rs.getString("nameRoom"), rs.getInt("students"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectDBLibrary.close(rs, pst, conn);
+		}
+		
+		return classE;
+	}
+
+	public int reopenClass(Classes classRe) {
+		int kq = 0;
+		
+		conn = ConnectDBLibrary.getConnection();
+		String sql = "update classes set time_of_date = ?, date_of_week = ?, count_lesson = ?, trainer_id = ?, room_id = ?, status = ?";
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			
+			pst.setString(1, classRe.getTimeOfDate());
+			pst.setString(2, classRe.getDateOfWeek());
+			pst.setInt(3, classRe.getCountLession());
+			pst.setInt(4, classRe.getTrainerId());
+			pst.setInt(5, classRe.getRoomId());
+			pst.setInt(6, 0);
+			
+			kq = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return kq;
+	}
+	
 }

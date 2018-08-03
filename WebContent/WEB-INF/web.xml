@@ -161,4 +161,15 @@
     <servlet-name>GetFreeTimeInDateController</servlet-name>
     <url-pattern>/freetime</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReOpenClassesController</servlet-name>
+    <servlet-class>controller.ReOpenClassesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReOpenClassesController</servlet-name>
+    <url-pattern>/classes/reopen</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
