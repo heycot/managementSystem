@@ -97,9 +97,9 @@ public class CancelRegisterClassController extends HttpServlet {
 				    +"<td class='duration'>"+ classWaiting.getDuration()+ "</td>"
 				    +"<td class='trainer'>"+ classWaiting.getTrainerName() +"</td>"			
 				    +"<td class='btnRegister'>"
-				    +"<button  type='button' name='cancel' class ='btncancel btn-danger cancel' id='"+ classWaiting.getClassId()+ "'>Cancel</button>"
-						    +"</td>"
-						    +"</tr>");
+				    +"<button  type='button' name='cancel' class ='btn cancel' style='border-color: #ba1d44; background-color: #c82333; ' id='"+ classWaiting.getClassId()+ "'>Cancel</button>"
+					+"</td>"
+					+"</tr>");
 				    
 				   
 				}
